@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 
+using SimulationOfBusRoute.Models;
+using SimulationOfBusRoute.Presenters;
+using SimulationOfBusRoute.Views;
+
 
 namespace SimulationOfBusRoute
 {
@@ -14,7 +18,12 @@ namespace SimulationOfBusRoute
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            CBusRoute model = new CBusRoute(42);
+            MainForm view = new MainForm();
+            CMainFormPresenter mainViewPresenter = new CMainFormPresenter(model, view);
+
+            Application.Run(view);
         }
     }
 }

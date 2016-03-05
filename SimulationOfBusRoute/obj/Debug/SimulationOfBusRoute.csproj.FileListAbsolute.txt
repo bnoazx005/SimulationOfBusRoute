@@ -1,5 +1,4 @@
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\SimulationOfBusRoute.exe.config
-c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Properties.Resources.resources
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csproj.GenerateResource.Cache
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\SimulationOfBusRoute.exe

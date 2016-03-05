@@ -1,5 +1,6 @@
 ﻿using System;
 using SimulationOfBusRoute.Utils;
+using GMap.NET.WindowsForms;
 
 
 namespace SimulationOfBusRoute.Views
@@ -7,6 +8,10 @@ namespace SimulationOfBusRoute.Views
     public interface IMainFormView : IBaseView
     {
         TPoint2 CurrCursorPosition { get; } //положение курсора в географических координатах (широта, долгота)
+
+        int MapZoomValue { get; set; }
+
+        GMapControl Map { get; set; }
 
         #region MouseEvents
 
