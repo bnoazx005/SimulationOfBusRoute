@@ -2,16 +2,16 @@
 using System.Windows.Forms;
 using SimulationOfBusRoute.Models;
 using SimulationOfBusRoute.Views;
-using SimulationOfBusRoute.Utils;
 using GMap.NET.WindowsForms;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET;
+using System.Text;
 
 
 namespace SimulationOfBusRoute.Presenters
 {
-    public class CMainFormPresenter : IBasePresenter
+    public class CMainFormPresenter : CBasePresenter
     {
         private CMainModel mModel;
 
@@ -91,13 +91,15 @@ namespace SimulationOfBusRoute.Presenters
         private void _onAddBusStation(object sender, EventArgs e)
         {
             Button addBusStationButton = sender as Button;  //заменить в будущем на обращение к mView
-
+            
             if (mModel.CurrState != E_CURRENT_STATE.CS_EDITOR_ADD_MARKER)
             {
                 mModel.CurrState = E_CURRENT_STATE.CS_EDITOR_ADD_MARKER;
 
                 addBusStationButton.BackgroundImage = Properties.Resources.add_station_button_active;
 
+                mView.IsPropertyActive = true;
+                
                 return;
             }
 
@@ -143,8 +145,10 @@ namespace SimulationOfBusRoute.Presenters
             GMapControl map = mView.Map;
             GMapOverlay busStationsOverlay = map.Overlays[0];
 
-            GMapMarker newBusStationMarker = null;
+            GMapMarker busStationMarker = null;
             PointLatLng currCorrdinates;
+
+            StringBuilder newItemStr;
 
             //ЗАСТАВИТЬ ОБНОВЛЯТЬСЯ КНОПКИ ПОСЛЕ ЗАВЕРШЕНИЯ СОБЫТИЯ
 
@@ -152,13 +156,29 @@ namespace SimulationOfBusRoute.Presenters
             {
                 currCorrdinates = map.FromLocalToLatLng(e.X, e.Y);
 
-                newBusStationMarker = new GMarkerGoogle(currCorrdinates, GMarkerGoogleType.blue_dot);
+                busStationMarker = new GMarkerGoogle(currCorrdinates, GMarkerGoogleType.blue_dot);
 
-                busStationsOverlay.Markers.Add(newBusStationMarker);
+                busStationsOverlay.Markers.Add(busStationMarker);
                 map.Update();
 
                 mModel.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_MARKER;
-                mModel.CurrMarker = newBusStationMarker;
+                mModel.CurrMarker = busStationMarker;
+                
+                //TEMP CODE
+                newItemStr = new StringBuilder();
+                newItemStr.AppendFormat("{0} : ({1:F3};{2:F3})", mView.BusStationNameProperty, currCorrdinates.Lat, currCorrdinates.Lng);
+                mView.BusStationsList.Items.Add(newItemStr.ToString());
+            }
+            
+            if ((e.Button == MouseButtons.Left) && (mModel.CurrState == E_CURRENT_STATE.CS_EDITOR_UPDATE_MARKER))
+            {
+                currCorrdinates = map.FromLocalToLatLng(e.X, e.Y);
+
+                busStationMarker = mModel.CurrMarker as GMarkerGoogle;
+
+                busStationMarker.Position = currCorrdinates;
+
+                map.Update();
             }
         }
 
@@ -186,6 +206,16 @@ namespace SimulationOfBusRoute.Presenters
                 mModel.CurrState = E_CURRENT_STATE.CS_DEFAULT;
                 mModel.CurrMarker = null;
             }
+        }
+
+        protected override void _updateModelWithView(ref IBaseModel model, ref IBaseView view)
+        {
+            
+        }
+
+        protected override void _updateViewWithModel(ref IBaseView view, ref IBaseModel model)
+        {
+
         }
 
         #endregion

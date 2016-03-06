@@ -83,6 +83,7 @@
     <Compile Include="Models\CBusStation.cs" />
     <Compile Include="Models\CMainModel.cs" />
     <Compile Include="Models\IBaseModel.cs" />
+    <Compile Include="Presenters\CBasePresenter.cs" />
     <Compile Include="Presenters\CMainFormPresenter.cs" />
     <Compile Include="Presenters\IBasePresenter.cs" />
     <Compile Include="Program.cs" />

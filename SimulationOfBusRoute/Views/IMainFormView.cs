@@ -9,7 +9,7 @@ namespace SimulationOfBusRoute.Views
 {
     public interface IMainFormView : IBaseView
     {
-        TPoint2 CurrCursorPosition { get; } //положение курсора в географических координатах (широта, долгота)
+        TPoint2 CurrCursorPosition { get; set; } //положение курсора в географических координатах (широта, долгота)
 
         int MapZoomValue { get; set; }
 
@@ -17,16 +17,18 @@ namespace SimulationOfBusRoute.Views
 
         ListBox BusStationsList { get; set; }
 
+        bool IsPropertyActive { get; set; }
+
+        string BusStationNameProperty { get; set; }
+
+        ushort BusStationNumOfPassengersProperty { get; set; }
+
+        ushort BusStationIntensityProperty { get; set; }
+
         Dictionary<string, Button> ButtonsList { get; set; }
 
         event EventHandler<EventArgs> OnFormInit;
-
-        #region MouseEvents
-
-        event EventHandler<MouseEventArgs> OnMapMouseClick;
-
-        #endregion
-
+        
         #region KeyboardEvents
 
         event EventHandler<KeyEventArgs> OnKeyPressed;
@@ -56,6 +58,8 @@ namespace SimulationOfBusRoute.Views
         event EventHandler<EventArgs> OnMapZoomChanged;
 
         event MarkerClick OnMarkerSelected;
+
+        event EventHandler<MouseEventArgs> OnMapMouseClick;
 
         #endregion
 

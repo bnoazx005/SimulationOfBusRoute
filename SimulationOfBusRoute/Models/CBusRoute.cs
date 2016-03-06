@@ -58,7 +58,7 @@ namespace SimulationOfBusRoute.Models
             mBuses.Add(new CBus(newBusID, startStationIndex, mBusStations[(int)startStationIndex].Position, maxNumOfPassengers));
         }
 
-        public void AddBusStation(TPoint2 position, ushort startNumOfPassengers, uint intensity)
+        public void AddBusStation(TPoint2 position, ushort startNumOfPassengers, ushort intensity)
         {
             uint newBusStationID = Convert.ToUInt32(mBusStations.Count + 1);
 

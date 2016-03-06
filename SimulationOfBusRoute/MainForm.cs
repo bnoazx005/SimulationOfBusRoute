@@ -156,6 +156,11 @@ namespace SimulationOfBusRoute
             {
                 return new TPoint2(mainMap.Position.Lat, mainMap.Position.Lng);
             }
+
+            set
+            {
+                mainMap.Position = new GMap.NET.PointLatLng(value.X, value.Y);
+            }
         }
 
         public int MapZoomValue
@@ -207,6 +212,58 @@ namespace SimulationOfBusRoute
             set
             {
                 mButtonsList = value;
+            }
+        }
+
+        public string BusStationNameProperty
+        {
+            get
+            {
+                return currStationNameBox.Text;
+            }
+
+            set
+            {
+                currStationNameBox.Text = value;
+            }
+        }
+
+        public ushort BusStationNumOfPassengersProperty
+        {
+            get
+            {
+                return 0;
+            }
+
+            set
+            {
+                ;
+            }
+        }
+
+        public ushort BusStationIntensityProperty
+        {
+            get
+            {
+                return 0;
+            }
+
+            set
+            {
+                ;
+            }
+        }
+        
+        public bool IsPropertyActive
+        {
+            get
+            {
+                return splitContainer1.Panel2.Enabled;
+            }
+
+            set
+            {
+                splitContainer1.Panel2.Enabled = value;
             }
         }
 

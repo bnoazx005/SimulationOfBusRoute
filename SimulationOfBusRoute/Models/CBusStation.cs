@@ -14,7 +14,7 @@ namespace SimulationOfBusRoute.Models
 
         private ushort mCurrNumOfPassengers;
 
-        private uint mIntensity;
+        private ushort mIntensity;
 
         #region Constructors
 
@@ -31,7 +31,7 @@ namespace SimulationOfBusRoute.Models
             mIntensity = 0;
         }
 
-        public CBusStation(uint id, TPoint2 position, ushort startNumOfPassengers, uint intensity)
+        public CBusStation(uint id, TPoint2 position, ushort startNumOfPassengers, ushort intensity)
         {
             mIndex = id;
 

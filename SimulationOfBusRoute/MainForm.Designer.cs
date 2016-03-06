@@ -37,6 +37,12 @@
             this.statusInfo1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.propertiesGroupBox = new System.Windows.Forms.GroupBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.stationsListGroupBox = new System.Windows.Forms.GroupBox();
+            this.stationsList = new System.Windows.Forms.ListBox();
+            this.clearMapButtonAlt = new System.Windows.Forms.Button();
+            this.removeBusStationAlt = new System.Windows.Forms.Button();
+            this.addBusStationAlt = new System.Windows.Forms.Button();
             this.toolboxGroupBox = new System.Windows.Forms.GroupBox();
             this.resetSimulationButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
@@ -63,25 +69,26 @@
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.busStationProperties = new System.Windows.Forms.Panel();
-            this.stationsListGroupBox = new System.Windows.Forms.GroupBox();
-            this.addBusStationAlt = new System.Windows.Forms.Button();
-            this.removeBusStationAlt = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.clearMapButtonAlt = new System.Windows.Forms.Button();
-            this.stationsList = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.currStationName = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.currStationNameBox = new System.Windows.Forms.TextBox();
+            this.currStationNumOfPassengersBox = new System.Windows.Forms.TextBox();
+            this.currStationIntensityBox = new System.Windows.Forms.TextBox();
             this.zoomGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomBar)).BeginInit();
             this.mapGroupBox.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.propertiesGroupBox.SuspendLayout();
-            this.toolboxGroupBox.SuspendLayout();
-            this.menu.SuspendLayout();
-            this.busStationProperties.SuspendLayout();
-            this.stationsListGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.stationsListGroupBox.SuspendLayout();
+            this.toolboxGroupBox.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMap
@@ -109,7 +116,7 @@
             this.mainMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.mainMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.mainMap.ShowTileGridLines = false;
-            this.mainMap.Size = new System.Drawing.Size(639, 471);
+            this.mainMap.Size = new System.Drawing.Size(622, 471);
             this.mainMap.TabIndex = 0;
             this.mainMap.Zoom = 0D;
             this.mainMap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.mainMap_OnMarkerClick);
@@ -121,7 +128,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.zoomGroupBox.AutoSize = true;
             this.zoomGroupBox.Controls.Add(this.zoomBar);
-            this.zoomGroupBox.Location = new System.Drawing.Point(659, 111);
+            this.zoomGroupBox.Location = new System.Drawing.Point(642, 111);
             this.zoomGroupBox.MinimumSize = new System.Drawing.Size(68, 505);
             this.zoomGroupBox.Name = "zoomGroupBox";
             this.zoomGroupBox.Size = new System.Drawing.Size(68, 505);
@@ -153,9 +160,8 @@
             this.mapGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mapGroupBox.Controls.Add(this.mainMap);
             this.mapGroupBox.Location = new System.Drawing.Point(2, 111);
-            this.mapGroupBox.MinimumSize = new System.Drawing.Size(651, 505);
             this.mapGroupBox.Name = "mapGroupBox";
-            this.mapGroupBox.Size = new System.Drawing.Size(651, 505);
+            this.mapGroupBox.Size = new System.Drawing.Size(634, 505);
             this.mapGroupBox.TabIndex = 7;
             this.mapGroupBox.TabStop = false;
             this.mapGroupBox.Text = "Карта";
@@ -187,14 +193,98 @@
             this.propertiesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertiesGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.propertiesGroupBox.Controls.Add(this.busStationProperties);
-            this.propertiesGroupBox.Location = new System.Drawing.Point(733, 111);
+            this.propertiesGroupBox.Controls.Add(this.splitContainer1);
+            this.propertiesGroupBox.Location = new System.Drawing.Point(716, 111);
             this.propertiesGroupBox.MinimumSize = new System.Drawing.Size(230, 505);
             this.propertiesGroupBox.Name = "propertiesGroupBox";
-            this.propertiesGroupBox.Size = new System.Drawing.Size(261, 505);
+            this.propertiesGroupBox.Size = new System.Drawing.Size(278, 505);
             this.propertiesGroupBox.TabIndex = 12;
             this.propertiesGroupBox.TabStop = false;
             this.propertiesGroupBox.Text = "Свойства";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Location = new System.Drawing.Point(6, 21);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.stationsListGroupBox);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.currStationIntensityBox);
+            this.splitContainer1.Panel2.Controls.Add(this.currStationNumOfPassengersBox);
+            this.splitContainer1.Panel2.Controls.Add(this.currStationNameBox);
+            this.splitContainer1.Panel2.Controls.Add(this.label5);
+            this.splitContainer1.Panel2.Controls.Add(this.label4);
+            this.splitContainer1.Panel2.Controls.Add(this.currStationName);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Enabled = false;
+            this.splitContainer1.Panel2MinSize = 125;
+            this.splitContainer1.Size = new System.Drawing.Size(263, 472);
+            this.splitContainer1.SplitterDistance = 327;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // stationsListGroupBox
+            // 
+            this.stationsListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.stationsListGroupBox.Controls.Add(this.stationsList);
+            this.stationsListGroupBox.Controls.Add(this.clearMapButtonAlt);
+            this.stationsListGroupBox.Controls.Add(this.removeBusStationAlt);
+            this.stationsListGroupBox.Controls.Add(this.addBusStationAlt);
+            this.stationsListGroupBox.Location = new System.Drawing.Point(3, 6);
+            this.stationsListGroupBox.Name = "stationsListGroupBox";
+            this.stationsListGroupBox.Size = new System.Drawing.Size(228, 316);
+            this.stationsListGroupBox.TabIndex = 0;
+            this.stationsListGroupBox.TabStop = false;
+            this.stationsListGroupBox.Text = "Список остановок:";
+            // 
+            // stationsList
+            // 
+            this.stationsList.FormattingEnabled = true;
+            this.stationsList.ItemHeight = 16;
+            this.stationsList.Location = new System.Drawing.Point(6, 30);
+            this.stationsList.MultiColumn = true;
+            this.stationsList.Name = "stationsList";
+            this.stationsList.Size = new System.Drawing.Size(207, 148);
+            this.stationsList.TabIndex = 4;
+            // 
+            // clearMapButtonAlt
+            // 
+            this.clearMapButtonAlt.Location = new System.Drawing.Point(126, 224);
+            this.clearMapButtonAlt.Name = "clearMapButtonAlt";
+            this.clearMapButtonAlt.Size = new System.Drawing.Size(87, 26);
+            this.clearMapButtonAlt.TabIndex = 3;
+            this.clearMapButtonAlt.Text = "Очистить";
+            this.clearMapButtonAlt.UseVisualStyleBackColor = true;
+            // 
+            // removeBusStationAlt
+            // 
+            this.removeBusStationAlt.Location = new System.Drawing.Point(126, 192);
+            this.removeBusStationAlt.Name = "removeBusStationAlt";
+            this.removeBusStationAlt.Size = new System.Drawing.Size(87, 26);
+            this.removeBusStationAlt.TabIndex = 2;
+            this.removeBusStationAlt.Text = "Удалить";
+            this.removeBusStationAlt.UseVisualStyleBackColor = true;
+            // 
+            // addBusStationAlt
+            // 
+            this.addBusStationAlt.Location = new System.Drawing.Point(6, 192);
+            this.addBusStationAlt.Name = "addBusStationAlt";
+            this.addBusStationAlt.Size = new System.Drawing.Size(86, 26);
+            this.addBusStationAlt.TabIndex = 1;
+            this.addBusStationAlt.Text = "Добавить";
+            this.addBusStationAlt.UseVisualStyleBackColor = true;
             // 
             // toolboxGroupBox
             // 
@@ -454,84 +544,74 @@
             this.OpenDocsMenuItem.Size = new System.Drawing.Size(185, 26);
             this.OpenDocsMenuItem.Text = "Документация";
             // 
-            // busStationProperties
+            // label1
             // 
-            this.busStationProperties.AutoScroll = true;
-            this.busStationProperties.Controls.Add(this.splitContainer1);
-            this.busStationProperties.Location = new System.Drawing.Point(6, 21);
-            this.busStationProperties.Name = "busStationProperties";
-            this.busStationProperties.Size = new System.Drawing.Size(249, 472);
-            this.busStationProperties.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Текущий объект:";
             // 
-            // stationsListGroupBox
+            // label2
             // 
-            this.stationsListGroupBox.Controls.Add(this.stationsList);
-            this.stationsListGroupBox.Controls.Add(this.clearMapButtonAlt);
-            this.stationsListGroupBox.Controls.Add(this.removeBusStationAlt);
-            this.stationsListGroupBox.Controls.Add(this.addBusStationAlt);
-            this.stationsListGroupBox.Location = new System.Drawing.Point(3, 6);
-            this.stationsListGroupBox.Name = "stationsListGroupBox";
-            this.stationsListGroupBox.Size = new System.Drawing.Size(219, 263);
-            this.stationsListGroupBox.TabIndex = 0;
-            this.stationsListGroupBox.TabStop = false;
-            this.stationsListGroupBox.Text = "Список остановок:";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Название:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // addBusStationAlt
+            // currStationName
             // 
-            this.addBusStationAlt.Location = new System.Drawing.Point(6, 192);
-            this.addBusStationAlt.Name = "addBusStationAlt";
-            this.addBusStationAlt.Size = new System.Drawing.Size(86, 26);
-            this.addBusStationAlt.TabIndex = 1;
-            this.addBusStationAlt.Text = "Добавить";
-            this.addBusStationAlt.UseVisualStyleBackColor = true;
+            this.currStationName.AutoSize = true;
+            this.currStationName.Location = new System.Drawing.Point(143, 12);
+            this.currStationName.Name = "currStationName";
+            this.currStationName.Size = new System.Drawing.Size(13, 17);
+            this.currStationName.TabIndex = 2;
+            this.currStationName.Text = "-";
             // 
-            // removeBusStationAlt
+            // label4
             // 
-            this.removeBusStationAlt.Location = new System.Drawing.Point(126, 192);
-            this.removeBusStationAlt.Name = "removeBusStationAlt";
-            this.removeBusStationAlt.Size = new System.Drawing.Size(87, 26);
-            this.removeBusStationAlt.TabIndex = 2;
-            this.removeBusStationAlt.Text = "Удалить";
-            this.removeBusStationAlt.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(139, 17);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Кол-во пассажиров:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // splitContainer1
+            // label5
             // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 17);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Скорость притока:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // splitContainer1.Panel1
+            // currStationNameBox
             // 
-            this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.Controls.Add(this.stationsListGroupBox);
+            this.currStationNameBox.Location = new System.Drawing.Point(145, 42);
+            this.currStationNameBox.Name = "currStationNameBox";
+            this.currStationNameBox.Size = new System.Drawing.Size(86, 22);
+            this.currStationNameBox.TabIndex = 5;
             // 
-            // splitContainer1.Panel2
+            // currStationNumOfPassengersBox
             // 
-            this.splitContainer1.Panel2.AutoScroll = true;
-            this.splitContainer1.Size = new System.Drawing.Size(249, 472);
-            this.splitContainer1.SplitterDistance = 271;
-            this.splitContainer1.TabIndex = 0;
+            this.currStationNumOfPassengersBox.Location = new System.Drawing.Point(145, 67);
+            this.currStationNumOfPassengersBox.Name = "currStationNumOfPassengersBox";
+            this.currStationNumOfPassengersBox.Size = new System.Drawing.Size(86, 22);
+            this.currStationNumOfPassengersBox.TabIndex = 6;
             // 
-            // clearMapButtonAlt
+            // currStationIntensityBox
             // 
-            this.clearMapButtonAlt.Location = new System.Drawing.Point(126, 224);
-            this.clearMapButtonAlt.Name = "clearMapButtonAlt";
-            this.clearMapButtonAlt.Size = new System.Drawing.Size(87, 26);
-            this.clearMapButtonAlt.TabIndex = 3;
-            this.clearMapButtonAlt.Text = "Очистить";
-            this.clearMapButtonAlt.UseVisualStyleBackColor = true;
-            // 
-            // stationsList
-            // 
-            this.stationsList.FormattingEnabled = true;
-            this.stationsList.ItemHeight = 16;
-            this.stationsList.Location = new System.Drawing.Point(6, 30);
-            this.stationsList.MultiColumn = true;
-            this.stationsList.Name = "stationsList";
-            this.stationsList.Size = new System.Drawing.Size(207, 148);
-            this.stationsList.TabIndex = 4;
+            this.currStationIntensityBox.Location = new System.Drawing.Point(145, 92);
+            this.currStationIntensityBox.Name = "currStationIntensityBox";
+            this.currStationIntensityBox.Size = new System.Drawing.Size(86, 22);
+            this.currStationIntensityBox.TabIndex = 7;
             // 
             // MainForm
             // 
@@ -549,7 +629,7 @@
             this.MainMenuStrip = this.menu;
             this.MinimumSize = new System.Drawing.Size(984, 688);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Моделирование пассажирских перевозок";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.zoomGroupBox.ResumeLayout(false);
@@ -559,14 +639,15 @@
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.propertiesGroupBox.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.stationsListGroupBox.ResumeLayout(false);
             this.toolboxGroupBox.ResumeLayout(false);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
-            this.busStationProperties.ResumeLayout(false);
-            this.stationsListGroupBox.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,12 +689,19 @@
         private System.Windows.Forms.ToolStripMenuItem resetSimulationMenuItem;
         private System.Windows.Forms.Button resetSimulationButton;
         private System.Windows.Forms.ToolStripStatusLabel statusInfo1;
-        private System.Windows.Forms.Panel busStationProperties;
         private System.Windows.Forms.GroupBox stationsListGroupBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button removeBusStationAlt;
         private System.Windows.Forms.Button addBusStationAlt;
         private System.Windows.Forms.Button clearMapButtonAlt;
         private System.Windows.Forms.ListBox stationsList;
+        private System.Windows.Forms.Label currStationName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox currStationNameBox;
+        private System.Windows.Forms.TextBox currStationIntensityBox;
+        private System.Windows.Forms.TextBox currStationNumOfPassengersBox;
     }
 }
