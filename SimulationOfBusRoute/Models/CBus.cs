@@ -74,12 +74,28 @@ namespace SimulationOfBusRoute.Models
 
         public void LoadFromDataBase(SQLiteConnection dbConnection)
         {
-
+            throw new System.NotImplementedException();
         }
 
         public void SaveIntoDataBase(SQLiteConnection dbConnection)
         {
+            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
+            {
+                //добавление данных в таблицу buses
+                currCommand.CommandText = Properties.Resources.mSQLQueryInsertBus;
 
+                currCommand.Parameters.AddWithValue("@id", mIndex);
+                currCommand.Parameters.AddWithValue("@name", mName);
+                currCommand.Parameters.AddWithValue("@position", mPosition.ToString());
+                currCommand.Parameters.AddWithValue("@velocity", mVelocity);
+                currCommand.Parameters.AddWithValue("@currNumOfPassengers", mCurrNumOfPassengers);
+                currCommand.Parameters.AddWithValue("@numOfIncomingPassengers", mNumOfIncomingPassengers);
+                currCommand.Parameters.AddWithValue("@numOfExcurrentPassengers", mNumOfExcurrentPassengers);
+                currCommand.Parameters.AddWithValue("@maxNumOfPassengers", mMaxNumOfPassengers);
+                currCommand.Parameters.AddWithValue("@currRouteNodeIndex", mCurrStationIndex);
+
+                currCommand.ExecuteNonQuery();
+            }
         }
 
         #endregion
@@ -117,6 +133,11 @@ namespace SimulationOfBusRoute.Models
             get
             {
                 return mPosition;
+            }
+
+            set
+            {
+                mPosition = value;
             }
         }
 

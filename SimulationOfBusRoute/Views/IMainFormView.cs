@@ -15,17 +15,37 @@ namespace SimulationOfBusRoute.Views
 
         GMapControl Map { get; set; }
 
-        ListBox BusStationsList { get; set; }
+        ListBox NodesList { get; set; }
 
         bool IsPropertyActive { get; set; }
 
-        string BusStationNameProperty { get; set; }
+        bool IsBusStationPropertiesActive { get; set; }
+
+        bool IsCrossroadPropertiesActive { get; set; }
+
+        string NodeNameProperty { get; set; }
 
         ushort BusStationNumOfPassengersProperty { get; set; }
 
         ushort BusStationIntensityProperty { get; set; }
 
+        double CrossroadLoadProperty { get; set; }
+
+        ComboBox RouteNodeTypeProperty { get; set; }
+
+        string CurrNodeName { get; set; }
+
         Dictionary<string, Button> ButtonsList { get; set; }
+
+        int CurrMarkerIndex { get; set; }
+
+        string StatusLine { get; set; }
+
+        OpenFileDialog OpenFileDialog { get; set; }
+
+        SaveFileDialog SaveFileDialog { get; set; }
+
+        bool IsFastSaveAvailable { get; set; }
 
         event EventHandler<EventArgs> OnFormInit;
         
@@ -43,9 +63,9 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler<EventArgs> OnStopSimulation;
 
-        event EventHandler<EventArgs> OnAddBusStation;
+        event EventHandler<EventArgs> OnAddRouteNode;
 
-        event EventHandler<EventArgs> OnRemoveBusStation;
+        event EventHandler<EventArgs> OnRemoveRouteNode;
 
         event EventHandler<EventArgs> OnOpenBusEditor;
 
@@ -65,11 +85,16 @@ namespace SimulationOfBusRoute.Views
 
         #region PropertiesEvents
 
+        //УДАЛИТЬ НЕНУЖНЫЕ
+        event EventHandler<EventArgs> OnNodeSelectionChanged;
+
+        event EventHandler<EventArgs> OnNodeTypeChanged;
+
         event EventHandler<EventArgs> OnPropertiesChanged;
 
-        event EventHandler<EventArgs> OnPropertiesSubmit;
+        event EventHandler<EventArgs> OnSubmitProperties;
 
-        event EventHandler<EventArgs> OnPropertiesCancel;
+        event EventHandler<EventArgs> OnAbortPropertiesChanges;
 
         #endregion
 
@@ -77,9 +102,9 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler<EventArgs> OnClearMap;
 
-        event EventHandler<EventArgs> OnLoadBusRoute;
+        event EventHandler<EventArgs> OnLoadData;
 
-        event EventHandler<EventArgs> OnSaveBusRoute;
+        event EventHandler<EventArgs> OnSaveData;
 
         event EventHandler<EventArgs> OnQuit;
 

@@ -63,26 +63,6 @@ namespace SimulationOfBusRoute.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_station_button {
-            get {
-                object obj = ResourceManager.GetObject("add_station_button", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap add_station_button_active {
-            get {
-                object obj = ResourceManager.GetObject("add_station_button_active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bus_editor_button {
             get {
                 object obj = ResourceManager.GetObject("bus_editor_button", resourceCulture);
@@ -113,6 +93,181 @@ namespace SimulationOfBusRoute.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mAddRouteNodeButton {
+            get {
+                object obj = ResourceManager.GetObject("mAddRouteNodeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mAddRouteNodeButtonActive {
+            get {
+                object obj = ResourceManager.GetObject("mAddRouteNodeButtonActive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to addRouteNodeButton.
+        /// </summary>
+        internal static string mAddRouteNodeButtonName {
+            get {
+                return ResourceManager.GetString("mAddRouteNodeButtonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mRemoveRouteNodeButton {
+            get {
+                object obj = ResourceManager.GetObject("mRemoveRouteNodeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mRemoveRouteNodeButtonActive {
+            get {
+                object obj = ResourceManager.GetObject("mRemoveRouteNodeButtonActive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to removeRouteNodeButton.
+        /// </summary>
+        internal static string mRemoveRouteNodeButtonName {
+            get {
+                return ResourceManager.GetString("mRemoveRouteNodeButtonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to buses.
+        /// </summary>
+        internal static string mSQLBusesTableName {
+            get {
+                return ResourceManager.GetString("mSQLBusesTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to busStationNodes.
+        /// </summary>
+        internal static string mSQLBusStationNodesTableName {
+            get {
+                return ResourceManager.GetString("mSQLBusStationNodesTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to crossroadNodes.
+        /// </summary>
+        internal static string mSQLCrossroadNodesTableName {
+            get {
+                return ResourceManager.GetString("mSQLCrossroadNodesTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, position TEXT, velocity REAL, currNumOfPassengers INTEGER, numOfIncomingPassengers INTEGER, numOfExcurrentPassengers INTEGER,  maxNumOfPassengers INTEGER,  currRouteNodeIndex INTEGER, FOREIGN KEY (currRouteNodeIndex) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);.
+        /// </summary>
+        internal static string mSQLQueryCreateBusesTable {
+            get {
+                return ResourceManager.GetString("mSQLQueryCreateBusesTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS busStationNodes (id INTEGER, currNumOfPassengers INTEGER, intensity INTEGER, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);.
+        /// </summary>
+        internal static string mSQLQueryCreateBusStationNodesTable {
+            get {
+                return ResourceManager.GetString("mSQLQueryCreateBusStationNodesTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS crossroadNodes (id INTEGER, loadCoefficient REAL, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);.
+        /// </summary>
+        internal static string mSQLQueryCreateCrossroadNodesTable {
+            get {
+                return ResourceManager.GetString("mSQLQueryCreateCrossroadNodesTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS routeNodes (id INTEGER PRIMARY KEY, name TEXT, position TEXT, type INTEGER);.
+        /// </summary>
+        internal static string mSQLQueryCreateRouteNodesTable {
+            get {
+                return ResourceManager.GetString("mSQLQueryCreateRouteNodesTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DROP TABLE IF EXISTS {0}.
+        /// </summary>
+        internal static string mSQLQueryDropTable {
+            get {
+                return ResourceManager.GetString("mSQLQueryDropTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO buses (id, name, position, velocity, currNumOfPassengers, numOfIncomingPassengers, numOfExcurrentPassengers, maxNumOfPassengers, currRouteNodeIndex) VALUES(@id, @name, @position, @velocity, @currNumOfPassengers, @numOfIncomingPassengers, @numOfExcurrentPassengers, @maxNumOfPassengers, @currRouteNodeIndex).
+        /// </summary>
+        internal static string mSQLQueryInsertBus {
+            get {
+                return ResourceManager.GetString("mSQLQueryInsertBus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO busStationNodes (id, currNumOfPassengers, intensity) VALUES (@id, @currNumOfPassengers, @intensity).
+        /// </summary>
+        internal static string mSQLQueryInsertBusStationNode {
+            get {
+                return ResourceManager.GetString("mSQLQueryInsertBusStationNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO crossroadNodes (id, loadCoefficient) VALUES (@id, @loadCoefficient).
+        /// </summary>
+        internal static string mSQLQueryInsertCrossroadNode {
+            get {
+                return ResourceManager.GetString("mSQLQueryInsertCrossroadNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO routeNodes (id, name, position, type) VALUES(@id, @name, @position, @type).
+        /// </summary>
+        internal static string mSQLQueryInsertRouteNode {
+            get {
+                return ResourceManager.GetString("mSQLQueryInsertRouteNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to routeNodes.
+        /// </summary>
+        internal static string mSQLRouteNodesTableName {
+            get {
+                return ResourceManager.GetString("mSQLRouteNodesTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap open_route_button {
             get {
                 object obj = ResourceManager.GetObject("open_route_button", resourceCulture);
@@ -136,26 +291,6 @@ namespace SimulationOfBusRoute.Properties {
         internal static System.Drawing.Bitmap quit_button {
             get {
                 object obj = ResourceManager.GetObject("quit_button", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap remove_station_button {
-            get {
-                object obj = ResourceManager.GetObject("remove_station_button", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap remove_station_button_active {
-            get {
-                object obj = ResourceManager.GetObject("remove_station_button_active", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

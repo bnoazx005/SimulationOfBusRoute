@@ -9,7 +9,6 @@ c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\Simula
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\GMap.NET.WindowsForms.dll
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\GMap.NET.Core.xml
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\GMap.NET.WindowsForms.xml
-c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.MainForm.resources
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\EntityFramework.dll
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\EntityFramework.SqlServer.dll
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\System.Data.SQLite.dll
@@ -18,6 +17,8 @@ c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\Simula
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\EntityFramework.xml
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\EntityFramework.SqlServer.xml
 c:\users\ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\System.Data.SQLite.xml
-C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\Properties\Settings.Designer.cs
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\Properties\Settings.settings
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.BusEditor.resources
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.MainForm.resources
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.StatisticsWindow.resources

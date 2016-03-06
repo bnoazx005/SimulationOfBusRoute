@@ -17,21 +17,29 @@ namespace SimulationOfBusRoute.Models
         CS_DEFAULT
     }
 
+
     public class CMainModel : IBaseModel
     {
         private uint mIndex;
 
         private string mName;
-
-        private object mCurrMarker;
-
+        
         private E_CURRENT_STATE mCurrState;
+
+        private CBusRoute mCurrBusRoute;
+
+        private byte mCurrNumOfEndingStations;
+
+        private bool mIsChanged;
 
         #region Contructors
         
         public CMainModel()
         {
-            mCurrMarker = null;
+            mCurrBusRoute = new CBusRoute(0);
+            mCurrNumOfEndingStations = 0;
+
+            mIsChanged = false;
 
             mCurrState = E_CURRENT_STATE.CS_DEFAULT;
         }
@@ -40,14 +48,49 @@ namespace SimulationOfBusRoute.Models
 
         #region Methods
 
+        public void ClearRoute()
+        {
+            CBusRoute route = mCurrBusRoute;
+
+            if (route == null)
+            {
+                return;
+            }
+
+            route.Clear();
+
+            mIsChanged = true;
+        }
+
+        public void UpdateRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
+        {
+            mCurrBusRoute.UpdateRouteNodeByID(id, newRouteNodeValue);
+
+            mIsChanged = true;
+        }
+
         public void LoadFromDataBase(SQLiteConnection dbConnection)
         {
-
+            throw new NotImplementedException("LoadFromDataBase method was called, but it's not implemented yet");
+            
+            mIsChanged = true;
         }
 
         public void SaveIntoDataBase(SQLiteConnection dbConnection)
         {
+            if (dbConnection == null)
+            {
+                throw new ArgumentNullException();
+            }
 
+            dbConnection.Open();
+
+            mCurrBusRoute.SaveIntoDataBase(dbConnection);
+
+            dbConnection.Close();
+            dbConnection.Dispose();
+
+            mIsChanged = false;
         }
 
         #endregion
@@ -80,20 +123,6 @@ namespace SimulationOfBusRoute.Models
             }
         }
         
-        public object CurrMarker
-        {
-            get
-            {
-                return mCurrMarker;
-            }
-
-            set
-            {
-                //проверка на корректность типа присваиваеваемой ссылки ложится на вызывающий код
-                mCurrMarker = value;
-            }
-        }
-
         public E_CURRENT_STATE CurrState
         {
             get
@@ -105,6 +134,44 @@ namespace SimulationOfBusRoute.Models
             {
                 mCurrState = value;
             }
+        }
+
+        public CBusRoute CurrBusRoute
+        {
+            get
+            {
+                return mCurrBusRoute;
+            }
+
+            set
+            {
+                mCurrBusRoute = value;
+            }
+        }
+
+        public byte CurrNumOfEndingStations
+        {
+            get
+            {
+                return mCurrNumOfEndingStations;
+            }
+
+            set
+            {
+                mCurrNumOfEndingStations = value;
+            }
+        }
+        public bool IsChanged
+        {
+            get
+            {
+                return mIsChanged;
+            }
+
+            //set
+            //{
+            //    mIsChanged = value;
+            //}
         }
 
         #endregion
