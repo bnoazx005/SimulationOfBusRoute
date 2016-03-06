@@ -19,8 +19,9 @@ namespace SimulationOfBusRoute
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            CBusRoute model = new CBusRoute(42);
+            CMainModel model = new CMainModel();
             MainForm view = new MainForm();
+
             CMainFormPresenter mainViewPresenter = new CMainFormPresenter(model, view);
 
             Application.Run(view);

@@ -1,6 +1,8 @@
 ﻿using System;
 using SimulationOfBusRoute.Utils;
 using GMap.NET.WindowsForms;
+using System.Windows.Forms;
+using System.Collections.Generic;
 
 
 namespace SimulationOfBusRoute.Views
@@ -13,9 +15,21 @@ namespace SimulationOfBusRoute.Views
 
         GMapControl Map { get; set; }
 
+        ListBox BusStationsList { get; set; }
+
+        Dictionary<string, Button> ButtonsList { get; set; }
+
+        event EventHandler<EventArgs> OnFormInit;
+
         #region MouseEvents
 
-        // event EventHandler<EventArgs> OnMouseClick;
+        event EventHandler<MouseEventArgs> OnMapMouseClick;
+
+        #endregion
+
+        #region KeyboardEvents
+
+        event EventHandler<KeyEventArgs> OnKeyPressed;
 
         #endregion
 
@@ -40,6 +54,8 @@ namespace SimulationOfBusRoute.Views
         #region MapEvents
 
         event EventHandler<EventArgs> OnMapZoomChanged;
+
+        event MarkerClick OnMarkerSelected;
 
         #endregion
 

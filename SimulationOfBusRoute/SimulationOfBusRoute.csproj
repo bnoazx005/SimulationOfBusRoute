@@ -81,6 +81,7 @@
     <Compile Include="Models\CBus.cs" />
     <Compile Include="Models\CBusRoute.cs" />
     <Compile Include="Models\CBusStation.cs" />
+    <Compile Include="Models\CMainModel.cs" />
     <Compile Include="Models\IBaseModel.cs" />
     <Compile Include="Presenters\CMainFormPresenter.cs" />
     <Compile Include="Presenters\IBasePresenter.cs" />
@@ -107,18 +108,65 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\add_station_button_active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_station_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bus_editor_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_pics.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open_route_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_simulation_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quit_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_station_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset_simulation_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_route_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start_simulation_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_simulation_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bus_editor_button_active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_station_button_active.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics_button_active.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" />

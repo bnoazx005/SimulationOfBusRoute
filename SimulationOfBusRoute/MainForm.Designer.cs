@@ -34,39 +34,54 @@
             this.zoomBar = new System.Windows.Forms.TrackBar();
             this.mapGroupBox = new System.Windows.Forms.GroupBox();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.statusInfo1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.propertiesGroupBox = new System.Windows.Forms.GroupBox();
             this.toolboxGroupBox = new System.Windows.Forms.GroupBox();
+            this.resetSimulationButton = new System.Windows.Forms.Button();
+            this.quitButton = new System.Windows.Forms.Button();
+            this.statisticsButton = new System.Windows.Forms.Button();
+            this.stopSimulationButton = new System.Windows.Forms.Button();
+            this.pauseSimulationButton = new System.Windows.Forms.Button();
+            this.startSimulationButton = new System.Windows.Forms.Button();
+            this.busEditorButton = new System.Windows.Forms.Button();
+            this.removeStationButton = new System.Windows.Forms.Button();
+            this.addStationButton = new System.Windows.Forms.Button();
+            this.saveRouteButton = new System.Windows.Forms.Button();
             this.openRouteButton = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.QuitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveRouteButton = new System.Windows.Forms.Button();
-            this.addStationButton = new System.Windows.Forms.Button();
-            this.removeStationButton = new System.Windows.Forms.Button();
-            this.busEditorButton = new System.Windows.Forms.Button();
-            this.startSimulationButton = new System.Windows.Forms.Button();
-            this.pauseSimulationButton = new System.Windows.Forms.Button();
-            this.stopSimulationButton = new System.Windows.Forms.Button();
-            this.statisticsButton = new System.Windows.Forms.Button();
-            this.quitButton = new System.Windows.Forms.Button();
             this.loadRouteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveRouteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearRouteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.QuitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetSimulationButton = new System.Windows.Forms.Button();
+            this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.busStationProperties = new System.Windows.Forms.Panel();
+            this.stationsListGroupBox = new System.Windows.Forms.GroupBox();
+            this.addBusStationAlt = new System.Windows.Forms.Button();
+            this.removeBusStationAlt = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.clearMapButtonAlt = new System.Windows.Forms.Button();
+            this.stationsList = new System.Windows.Forms.ListBox();
             this.zoomGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomBar)).BeginInit();
             this.mapGroupBox.SuspendLayout();
+            this.statusBar.SuspendLayout();
+            this.propertiesGroupBox.SuspendLayout();
             this.toolboxGroupBox.SuspendLayout();
             this.menu.SuspendLayout();
+            this.busStationProperties.SuspendLayout();
+            this.stationsListGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMap
@@ -97,6 +112,8 @@
             this.mainMap.Size = new System.Drawing.Size(639, 471);
             this.mainMap.TabIndex = 0;
             this.mainMap.Zoom = 0D;
+            this.mainMap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.mainMap_OnMarkerClick);
+            this.mainMap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainMap_MouseClick);
             // 
             // zoomGroupBox
             // 
@@ -146,11 +163,19 @@
             // statusBar
             // 
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusBar.Location = new System.Drawing.Point(0, 619);
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusInfo1});
+            this.statusBar.Location = new System.Drawing.Point(0, 616);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(966, 22);
+            this.statusBar.Size = new System.Drawing.Size(997, 25);
             this.statusBar.TabIndex = 9;
             this.statusBar.Text = "hhyhyhy";
+            // 
+            // statusInfo1
+            // 
+            this.statusInfo1.Name = "statusInfo1";
+            this.statusInfo1.Size = new System.Drawing.Size(102, 20);
+            this.statusInfo1.Text = "Current State: ";
             // 
             // statusLabel
             // 
@@ -162,10 +187,11 @@
             this.propertiesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertiesGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.propertiesGroupBox.Controls.Add(this.busStationProperties);
             this.propertiesGroupBox.Location = new System.Drawing.Point(733, 111);
             this.propertiesGroupBox.MinimumSize = new System.Drawing.Size(230, 505);
             this.propertiesGroupBox.Name = "propertiesGroupBox";
-            this.propertiesGroupBox.Size = new System.Drawing.Size(230, 505);
+            this.propertiesGroupBox.Size = new System.Drawing.Size(261, 505);
             this.propertiesGroupBox.TabIndex = 12;
             this.propertiesGroupBox.TabStop = false;
             this.propertiesGroupBox.Text = "Свойства";
@@ -187,10 +213,129 @@
             this.toolboxGroupBox.Controls.Add(this.openRouteButton);
             this.toolboxGroupBox.Location = new System.Drawing.Point(2, 31);
             this.toolboxGroupBox.Name = "toolboxGroupBox";
-            this.toolboxGroupBox.Size = new System.Drawing.Size(961, 74);
+            this.toolboxGroupBox.Size = new System.Drawing.Size(992, 74);
             this.toolboxGroupBox.TabIndex = 11;
             this.toolboxGroupBox.TabStop = false;
             this.toolboxGroupBox.Text = "Панель инструментов";
+            // 
+            // resetSimulationButton
+            // 
+            this.resetSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.resetSimulationButton.Enabled = false;
+            this.resetSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.resetSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("resetSimulationButton.Image")));
+            this.resetSimulationButton.Location = new System.Drawing.Point(565, 21);
+            this.resetSimulationButton.Name = "resetSimulationButton";
+            this.resetSimulationButton.Size = new System.Drawing.Size(39, 38);
+            this.resetSimulationButton.TabIndex = 11;
+            this.resetSimulationButton.UseVisualStyleBackColor = false;
+            // 
+            // quitButton
+            // 
+            this.quitButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.quitButton.Image = ((System.Drawing.Image)(resources.GetObject("quitButton.Image")));
+            this.quitButton.Location = new System.Drawing.Point(100, 21);
+            this.quitButton.Name = "quitButton";
+            this.quitButton.Size = new System.Drawing.Size(39, 38);
+            this.quitButton.TabIndex = 10;
+            this.quitButton.UseVisualStyleBackColor = false;
+            this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
+            // 
+            // statisticsButton
+            // 
+            this.statisticsButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.statisticsButton.Image = ((System.Drawing.Image)(resources.GetObject("statisticsButton.Image")));
+            this.statisticsButton.Location = new System.Drawing.Point(330, 21);
+            this.statisticsButton.Name = "statisticsButton";
+            this.statisticsButton.Size = new System.Drawing.Size(39, 38);
+            this.statisticsButton.TabIndex = 9;
+            this.statisticsButton.UseVisualStyleBackColor = false;
+            // 
+            // stopSimulationButton
+            // 
+            this.stopSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.stopSimulationButton.Enabled = false;
+            this.stopSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.stopSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("stopSimulationButton.Image")));
+            this.stopSimulationButton.Location = new System.Drawing.Point(520, 21);
+            this.stopSimulationButton.Name = "stopSimulationButton";
+            this.stopSimulationButton.Size = new System.Drawing.Size(39, 38);
+            this.stopSimulationButton.TabIndex = 8;
+            this.stopSimulationButton.UseVisualStyleBackColor = false;
+            // 
+            // pauseSimulationButton
+            // 
+            this.pauseSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pauseSimulationButton.Enabled = false;
+            this.pauseSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pauseSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("pauseSimulationButton.Image")));
+            this.pauseSimulationButton.Location = new System.Drawing.Point(475, 21);
+            this.pauseSimulationButton.Name = "pauseSimulationButton";
+            this.pauseSimulationButton.Size = new System.Drawing.Size(39, 38);
+            this.pauseSimulationButton.TabIndex = 7;
+            this.pauseSimulationButton.UseVisualStyleBackColor = false;
+            // 
+            // startSimulationButton
+            // 
+            this.startSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.startSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.startSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("startSimulationButton.Image")));
+            this.startSimulationButton.Location = new System.Drawing.Point(430, 21);
+            this.startSimulationButton.Name = "startSimulationButton";
+            this.startSimulationButton.Size = new System.Drawing.Size(39, 38);
+            this.startSimulationButton.TabIndex = 6;
+            this.startSimulationButton.UseVisualStyleBackColor = false;
+            // 
+            // busEditorButton
+            // 
+            this.busEditorButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.busEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.busEditorButton.Image = ((System.Drawing.Image)(resources.GetObject("busEditorButton.Image")));
+            this.busEditorButton.Location = new System.Drawing.Point(285, 21);
+            this.busEditorButton.Name = "busEditorButton";
+            this.busEditorButton.Size = new System.Drawing.Size(39, 38);
+            this.busEditorButton.TabIndex = 5;
+            this.busEditorButton.UseVisualStyleBackColor = false;
+            // 
+            // removeStationButton
+            // 
+            this.removeStationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.removeStationButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.remove_station_button;
+            this.removeStationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.removeStationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.removeStationButton.Location = new System.Drawing.Point(240, 21);
+            this.removeStationButton.Name = "removeStationButton";
+            this.removeStationButton.Size = new System.Drawing.Size(39, 38);
+            this.removeStationButton.TabIndex = 4;
+            this.removeStationButton.UseVisualStyleBackColor = false;
+            this.removeStationButton.Click += new System.EventHandler(this.removeStationButton_Click);
+            // 
+            // addStationButton
+            // 
+            this.addStationButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addStationButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.add_station_button;
+            this.addStationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.addStationButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addStationButton.ImageKey = "(none)";
+            this.addStationButton.Location = new System.Drawing.Point(195, 21);
+            this.addStationButton.Name = "addStationButton";
+            this.addStationButton.Size = new System.Drawing.Size(39, 38);
+            this.addStationButton.TabIndex = 3;
+            this.addStationButton.UseVisualStyleBackColor = false;
+            this.addStationButton.Click += new System.EventHandler(this.addStationButton_Click);
+            // 
+            // saveRouteButton
+            // 
+            this.saveRouteButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.saveRouteButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.saveRouteButton.Image = ((System.Drawing.Image)(resources.GetObject("saveRouteButton.Image")));
+            this.saveRouteButton.Location = new System.Drawing.Point(55, 21);
+            this.saveRouteButton.Name = "saveRouteButton";
+            this.saveRouteButton.Size = new System.Drawing.Size(39, 38);
+            this.saveRouteButton.TabIndex = 2;
+            this.saveRouteButton.UseVisualStyleBackColor = false;
             // 
             // openRouteButton
             // 
@@ -212,7 +357,7 @@
             this.HelpMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(966, 28);
+            this.menu.Size = new System.Drawing.Size(997, 28);
             this.menu.TabIndex = 13;
             this.menu.Text = "menuStrip1";
             // 
@@ -227,12 +372,66 @@
             this.FileMenuItem.Size = new System.Drawing.Size(57, 24);
             this.FileMenuItem.Text = "Файл";
             // 
+            // loadRouteMenuItem
+            // 
+            this.loadRouteMenuItem.Name = "loadRouteMenuItem";
+            this.loadRouteMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadRouteMenuItem.Text = "Загрузить маршрут";
+            // 
+            // saveRouteMenuItem
+            // 
+            this.saveRouteMenuItem.Name = "saveRouteMenuItem";
+            this.saveRouteMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveRouteMenuItem.Text = "Сохранить маршрут";
+            // 
+            // clearRouteMenuItem
+            // 
+            this.clearRouteMenuItem.Name = "clearRouteMenuItem";
+            this.clearRouteMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.clearRouteMenuItem.Text = "Удалить маршрут";
+            this.clearRouteMenuItem.Click += new System.EventHandler(this.clearRouteMenuItem_Click);
+            // 
             // QuitMenuItem
             // 
             this.QuitMenuItem.Name = "QuitMenuItem";
-            this.QuitMenuItem.Size = new System.Drawing.Size(286, 26);
+            this.QuitMenuItem.Size = new System.Drawing.Size(224, 26);
             this.QuitMenuItem.Text = "Выход";
             this.QuitMenuItem.Click += new System.EventHandler(this.QuitMenuItem_Click);
+            // 
+            // simulationMenuItem
+            // 
+            this.simulationMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startSimulationMenuItem,
+            this.pauseSimulationMenuItem,
+            this.stopSimulationMenuItem,
+            this.resetSimulationMenuItem});
+            this.simulationMenuItem.Name = "simulationMenuItem";
+            this.simulationMenuItem.Size = new System.Drawing.Size(136, 24);
+            this.simulationMenuItem.Text = "Моделирование";
+            // 
+            // startSimulationMenuItem
+            // 
+            this.startSimulationMenuItem.Name = "startSimulationMenuItem";
+            this.startSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.startSimulationMenuItem.Text = "Начать";
+            // 
+            // pauseSimulationMenuItem
+            // 
+            this.pauseSimulationMenuItem.Name = "pauseSimulationMenuItem";
+            this.pauseSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.pauseSimulationMenuItem.Text = "Пауза";
+            // 
+            // stopSimulationMenuItem
+            // 
+            this.stopSimulationMenuItem.Name = "stopSimulationMenuItem";
+            this.stopSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.stopSimulationMenuItem.Text = "Остановить";
+            // 
+            // resetSimulationMenuItem
+            // 
+            this.resetSimulationMenuItem.Name = "resetSimulationMenuItem";
+            this.resetSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.resetSimulationMenuItem.Text = "Сброс";
             // 
             // HelpMenuItem
             // 
@@ -255,178 +454,90 @@
             this.OpenDocsMenuItem.Size = new System.Drawing.Size(185, 26);
             this.OpenDocsMenuItem.Text = "Документация";
             // 
-            // saveRouteButton
+            // busStationProperties
             // 
-            this.saveRouteButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.saveRouteButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.saveRouteButton.Image = ((System.Drawing.Image)(resources.GetObject("saveRouteButton.Image")));
-            this.saveRouteButton.Location = new System.Drawing.Point(55, 21);
-            this.saveRouteButton.Name = "saveRouteButton";
-            this.saveRouteButton.Size = new System.Drawing.Size(39, 38);
-            this.saveRouteButton.TabIndex = 2;
-            this.saveRouteButton.UseVisualStyleBackColor = false;
+            this.busStationProperties.AutoScroll = true;
+            this.busStationProperties.Controls.Add(this.splitContainer1);
+            this.busStationProperties.Location = new System.Drawing.Point(6, 21);
+            this.busStationProperties.Name = "busStationProperties";
+            this.busStationProperties.Size = new System.Drawing.Size(249, 472);
+            this.busStationProperties.TabIndex = 0;
             // 
-            // addStationButton
+            // stationsListGroupBox
             // 
-            this.addStationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.addStationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.addStationButton.Image = ((System.Drawing.Image)(resources.GetObject("addStationButton.Image")));
-            this.addStationButton.Location = new System.Drawing.Point(195, 21);
-            this.addStationButton.Name = "addStationButton";
-            this.addStationButton.Size = new System.Drawing.Size(39, 38);
-            this.addStationButton.TabIndex = 3;
-            this.addStationButton.UseVisualStyleBackColor = false;
+            this.stationsListGroupBox.Controls.Add(this.stationsList);
+            this.stationsListGroupBox.Controls.Add(this.clearMapButtonAlt);
+            this.stationsListGroupBox.Controls.Add(this.removeBusStationAlt);
+            this.stationsListGroupBox.Controls.Add(this.addBusStationAlt);
+            this.stationsListGroupBox.Location = new System.Drawing.Point(3, 6);
+            this.stationsListGroupBox.Name = "stationsListGroupBox";
+            this.stationsListGroupBox.Size = new System.Drawing.Size(219, 263);
+            this.stationsListGroupBox.TabIndex = 0;
+            this.stationsListGroupBox.TabStop = false;
+            this.stationsListGroupBox.Text = "Список остановок:";
             // 
-            // removeStationButton
+            // addBusStationAlt
             // 
-            this.removeStationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.removeStationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.removeStationButton.Image = ((System.Drawing.Image)(resources.GetObject("removeStationButton.Image")));
-            this.removeStationButton.Location = new System.Drawing.Point(240, 21);
-            this.removeStationButton.Name = "removeStationButton";
-            this.removeStationButton.Size = new System.Drawing.Size(39, 38);
-            this.removeStationButton.TabIndex = 4;
-            this.removeStationButton.UseVisualStyleBackColor = false;
+            this.addBusStationAlt.Location = new System.Drawing.Point(6, 192);
+            this.addBusStationAlt.Name = "addBusStationAlt";
+            this.addBusStationAlt.Size = new System.Drawing.Size(86, 26);
+            this.addBusStationAlt.TabIndex = 1;
+            this.addBusStationAlt.Text = "Добавить";
+            this.addBusStationAlt.UseVisualStyleBackColor = true;
             // 
-            // busEditorButton
+            // removeBusStationAlt
             // 
-            this.busEditorButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.busEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.busEditorButton.Image = ((System.Drawing.Image)(resources.GetObject("busEditorButton.Image")));
-            this.busEditorButton.Location = new System.Drawing.Point(285, 21);
-            this.busEditorButton.Name = "busEditorButton";
-            this.busEditorButton.Size = new System.Drawing.Size(39, 38);
-            this.busEditorButton.TabIndex = 5;
-            this.busEditorButton.UseVisualStyleBackColor = false;
+            this.removeBusStationAlt.Location = new System.Drawing.Point(126, 192);
+            this.removeBusStationAlt.Name = "removeBusStationAlt";
+            this.removeBusStationAlt.Size = new System.Drawing.Size(87, 26);
+            this.removeBusStationAlt.TabIndex = 2;
+            this.removeBusStationAlt.Text = "Удалить";
+            this.removeBusStationAlt.UseVisualStyleBackColor = true;
             // 
-            // startSimulationButton
+            // splitContainer1
             // 
-            this.startSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.startSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.startSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("startSimulationButton.Image")));
-            this.startSimulationButton.Location = new System.Drawing.Point(430, 21);
-            this.startSimulationButton.Name = "startSimulationButton";
-            this.startSimulationButton.Size = new System.Drawing.Size(39, 38);
-            this.startSimulationButton.TabIndex = 6;
-            this.startSimulationButton.UseVisualStyleBackColor = false;
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // pauseSimulationButton
+            // splitContainer1.Panel1
             // 
-            this.pauseSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pauseSimulationButton.Enabled = false;
-            this.pauseSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pauseSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("pauseSimulationButton.Image")));
-            this.pauseSimulationButton.Location = new System.Drawing.Point(475, 21);
-            this.pauseSimulationButton.Name = "pauseSimulationButton";
-            this.pauseSimulationButton.Size = new System.Drawing.Size(39, 38);
-            this.pauseSimulationButton.TabIndex = 7;
-            this.pauseSimulationButton.UseVisualStyleBackColor = false;
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.stationsListGroupBox);
             // 
-            // stopSimulationButton
+            // splitContainer1.Panel2
             // 
-            this.stopSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.stopSimulationButton.Enabled = false;
-            this.stopSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.stopSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("stopSimulationButton.Image")));
-            this.stopSimulationButton.Location = new System.Drawing.Point(520, 21);
-            this.stopSimulationButton.Name = "stopSimulationButton";
-            this.stopSimulationButton.Size = new System.Drawing.Size(39, 38);
-            this.stopSimulationButton.TabIndex = 8;
-            this.stopSimulationButton.UseVisualStyleBackColor = false;
+            this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Size = new System.Drawing.Size(249, 472);
+            this.splitContainer1.SplitterDistance = 271;
+            this.splitContainer1.TabIndex = 0;
             // 
-            // statisticsButton
+            // clearMapButtonAlt
             // 
-            this.statisticsButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.statisticsButton.Image = ((System.Drawing.Image)(resources.GetObject("statisticsButton.Image")));
-            this.statisticsButton.Location = new System.Drawing.Point(330, 21);
-            this.statisticsButton.Name = "statisticsButton";
-            this.statisticsButton.Size = new System.Drawing.Size(39, 38);
-            this.statisticsButton.TabIndex = 9;
-            this.statisticsButton.UseVisualStyleBackColor = false;
+            this.clearMapButtonAlt.Location = new System.Drawing.Point(126, 224);
+            this.clearMapButtonAlt.Name = "clearMapButtonAlt";
+            this.clearMapButtonAlt.Size = new System.Drawing.Size(87, 26);
+            this.clearMapButtonAlt.TabIndex = 3;
+            this.clearMapButtonAlt.Text = "Очистить";
+            this.clearMapButtonAlt.UseVisualStyleBackColor = true;
             // 
-            // quitButton
+            // stationsList
             // 
-            this.quitButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = ((System.Drawing.Image)(resources.GetObject("quitButton.Image")));
-            this.quitButton.Location = new System.Drawing.Point(100, 21);
-            this.quitButton.Name = "quitButton";
-            this.quitButton.Size = new System.Drawing.Size(39, 38);
-            this.quitButton.TabIndex = 10;
-            this.quitButton.UseVisualStyleBackColor = false;
-            this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
-            // 
-            // loadRouteMenuItem
-            // 
-            this.loadRouteMenuItem.Name = "loadRouteMenuItem";
-            this.loadRouteMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.loadRouteMenuItem.Text = "Загрузить маршрут";
-            // 
-            // saveRouteMenuItem
-            // 
-            this.saveRouteMenuItem.Name = "saveRouteMenuItem";
-            this.saveRouteMenuItem.Size = new System.Drawing.Size(286, 26);
-            this.saveRouteMenuItem.Text = "Сохранить маршрут";
-            // 
-            // clearRouteMenuItem
-            // 
-            this.clearRouteMenuItem.Name = "clearRouteMenuItem";
-            this.clearRouteMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.clearRouteMenuItem.Text = "Удалить маршрут";
-            // 
-            // simulationMenuItem
-            // 
-            this.simulationMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startSimulationMenuItem,
-            this.pauseSimulationMenuItem,
-            this.stopSimulationMenuItem,
-            this.resetSimulationMenuItem});
-            this.simulationMenuItem.Name = "simulationMenuItem";
-            this.simulationMenuItem.Size = new System.Drawing.Size(136, 24);
-            this.simulationMenuItem.Text = "Моделирование";
-            // 
-            // startSimulationMenuItem
-            // 
-            this.startSimulationMenuItem.Name = "startSimulationMenuItem";
-            this.startSimulationMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.startSimulationMenuItem.Text = "Начать";
-            // 
-            // stopSimulationMenuItem
-            // 
-            this.stopSimulationMenuItem.Name = "stopSimulationMenuItem";
-            this.stopSimulationMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.stopSimulationMenuItem.Text = "Остановить";
-            // 
-            // pauseSimulationMenuItem
-            // 
-            this.pauseSimulationMenuItem.Name = "pauseSimulationMenuItem";
-            this.pauseSimulationMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.pauseSimulationMenuItem.Text = "Пауза";
-            // 
-            // resetSimulationMenuItem
-            // 
-            this.resetSimulationMenuItem.Name = "resetSimulationMenuItem";
-            this.resetSimulationMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.resetSimulationMenuItem.Text = "Сброс";
-            // 
-            // resetSimulationButton
-            // 
-            this.resetSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.resetSimulationButton.Enabled = false;
-            this.resetSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.resetSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("resetSimulationButton.Image")));
-            this.resetSimulationButton.Location = new System.Drawing.Point(565, 21);
-            this.resetSimulationButton.Name = "resetSimulationButton";
-            this.resetSimulationButton.Size = new System.Drawing.Size(39, 38);
-            this.resetSimulationButton.TabIndex = 11;
-            this.resetSimulationButton.UseVisualStyleBackColor = false;
+            this.stationsList.FormattingEnabled = true;
+            this.stationsList.ItemHeight = 16;
+            this.stationsList.Location = new System.Drawing.Point(6, 30);
+            this.stationsList.MultiColumn = true;
+            this.stationsList.Name = "stationsList";
+            this.stationsList.Size = new System.Drawing.Size(207, 148);
+            this.stationsList.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(966, 641);
+            this.ClientSize = new System.Drawing.Size(997, 641);
             this.Controls.Add(this.zoomGroupBox);
             this.Controls.Add(this.mapGroupBox);
             this.Controls.Add(this.statusBar);
@@ -434,18 +545,28 @@
             this.Controls.Add(this.propertiesGroupBox);
             this.Controls.Add(this.toolboxGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menu;
             this.MinimumSize = new System.Drawing.Size(984, 688);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.zoomGroupBox.ResumeLayout(false);
             this.zoomGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomBar)).EndInit();
             this.mapGroupBox.ResumeLayout(false);
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
+            this.propertiesGroupBox.ResumeLayout(false);
             this.toolboxGroupBox.ResumeLayout(false);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.busStationProperties.ResumeLayout(false);
+            this.stationsListGroupBox.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,5 +607,13 @@
         private System.Windows.Forms.ToolStripMenuItem stopSimulationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetSimulationMenuItem;
         private System.Windows.Forms.Button resetSimulationButton;
+        private System.Windows.Forms.ToolStripStatusLabel statusInfo1;
+        private System.Windows.Forms.Panel busStationProperties;
+        private System.Windows.Forms.GroupBox stationsListGroupBox;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button removeBusStationAlt;
+        private System.Windows.Forms.Button addBusStationAlt;
+        private System.Windows.Forms.Button clearMapButtonAlt;
+        private System.Windows.Forms.ListBox stationsList;
     }
 }
