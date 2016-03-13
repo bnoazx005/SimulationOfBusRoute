@@ -82,6 +82,11 @@ namespace SimulationOfBusRoute.Presenters
             _activatePropertiesEditor((E_ROUTE_NODE_TYPE)routeNodeType.SelectedValue);
         }
 
+        public void Run()
+        {
+            mView.Display();
+        }
+
         private void _onKeyPressed(object sender, KeyEventArgs e)
         {
             //MessageBox.Show("Pressed" + e.KeyValue.ToString());
@@ -249,6 +254,13 @@ namespace SimulationOfBusRoute.Presenters
                 model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_MARKER;
                 view.CurrMarkerIndex = (currMarkerIndex + 1);
 
+                view.CurrNodeName = "-";
+                view.NodeNameProperty = "";
+                view.RouteNodeTypeProperty.SelectedIndex = (int)E_ROUTE_NODE_TYPE.RNT_BUS_STATION;                
+                view.BusStationNumOfPassengersProperty = 0;
+                view.BusStationIntensityProperty = 0;
+                view.CrossroadLoadProperty = 0.0;
+
                 // обновление представления соответствующей кнопки
                 currActiveButton = view.ButtonsList[Properties.Resources.mAddRouteNodeButtonName];
                 currActiveButton.BackgroundImage = Properties.Resources.mAddRouteNodeButton;
@@ -297,9 +309,10 @@ namespace SimulationOfBusRoute.Presenters
                 routeNodesOverlay.Markers.RemoveAt(currMarkerIndex);
 
                 //Добавить удаление сведений из модели (обновление модели)
+                model.RemoveRouteNode((uint)currMarkerIndex);
 
                 model.CurrState = E_CURRENT_STATE.CS_DEFAULT;
-
+                
                 //обновление представления
                 view.NodesList.Items.RemoveAt(currMarkerIndex);
                 view.CurrMarkerIndex = -1;
@@ -557,15 +570,17 @@ namespace SimulationOfBusRoute.Presenters
         {
             BusEditor busEditorWindow = new BusEditor();
 
-            busEditorWindow.Show();
+            CBusEditorPresenter busEditorPresenter = new CBusEditorPresenter(mModel, busEditorWindow);
+            busEditorPresenter.Run();
         }
 
         private void _onShowStatisticsWindow(object sender, EventArgs e)
         {
-            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            //StatisticsWindow statisticsWindow = new StatisticsWindow();
 
-            statisticsWindow.Show();
+            //statisticsWindow.Show();
         }
+
         //protected override void _updateModelWithView(ref IBaseModel model, ref IBaseView view)
         //{
             

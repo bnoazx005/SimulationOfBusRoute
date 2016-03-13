@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 598);
+            this.ClientSize = new System.Drawing.Size(769, 598);
             this.Name = "BusEditor";
             this.Text = "Моделирование пассажирских перевозок [Редактор транспорта]";
             this.ResumeLayout(false);

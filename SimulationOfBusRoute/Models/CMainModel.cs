@@ -69,11 +69,16 @@ namespace SimulationOfBusRoute.Models
             mIsChanged = true;
         }
 
+        public void RemoveRouteNode(uint id)
+        {
+            mIsChanged = mCurrBusRoute.RemoveRouteNode(id);
+        }
+
         public void LoadFromDataBase(SQLiteConnection dbConnection)
         {
             throw new NotImplementedException("LoadFromDataBase method was called, but it's not implemented yet");
             
-            mIsChanged = true;
+            //mIsChanged = true;
         }
 
         public void SaveIntoDataBase(SQLiteConnection dbConnection)

@@ -2,8 +2,7 @@
 
 namespace SimulationOfBusRoute.Views
 {
-    public interface IBaseView
+    public interface IBusEditorView : IBaseView
     {
-        void Display();
     }
 }

@@ -23,8 +23,7 @@ namespace SimulationOfBusRoute
             MainForm view = new MainForm();
 
             CMainFormPresenter mainViewPresenter = new CMainFormPresenter(model, view);
-
-            Application.Run(view);
+            mainViewPresenter.Run();
         }
     }
 }

@@ -87,6 +87,11 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler<EventArgs> OnSaveData;
         public event EventHandler<EventArgs> OnShowStatistics;
         public event EventHandler<EventArgs> OnStopSimulation;
+
+        public void Display()
+        {
+            Application.Run(this);            
+        }
         
         #region Properties
 

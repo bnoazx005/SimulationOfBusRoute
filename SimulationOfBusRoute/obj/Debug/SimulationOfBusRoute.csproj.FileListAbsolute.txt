@@ -22,3 +22,4 @@ C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.BusEditor.resources
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.MainForm.resources
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.StatisticsWindow.resources
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache

@@ -143,6 +143,18 @@ namespace SimulationOfBusRoute.Models
             return mRouteNodes[(int)id];
         }
 
+        public bool RemoveRouteNode(uint id)
+        {
+            if (id >= mRouteNodes.Count)
+            {
+                return false;
+            }
+
+            mRouteNodes.RemoveAt((int)id);
+
+            return true;
+        }
+
         public void LoadFromDataBase(SQLiteConnection dbConnection)
         {
             throw new System.NotImplementedException();

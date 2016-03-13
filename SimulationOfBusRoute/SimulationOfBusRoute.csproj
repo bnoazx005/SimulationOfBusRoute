@@ -76,12 +76,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\CBusEditorPresenter.cs" />
     <Compile Include="Views\BusEditor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\BusEditor.Designer.cs">
       <DependentUpon>BusEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\IBusEditorView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

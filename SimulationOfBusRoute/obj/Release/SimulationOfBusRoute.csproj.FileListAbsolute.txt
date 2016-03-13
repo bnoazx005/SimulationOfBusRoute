@@ -13,10 +13,12 @@ C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\GMap.NET.Core.xml
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\GMap.NET.WindowsForms.xml
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\System.Data.SQLite.xml
-C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.MainForm.resources
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.Properties.Resources.resources
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.csproj.GenerateResource.Cache
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.exe
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.pdb
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\Properties\Settings.Designer.cs
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\Properties\Settings.settings
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.Views.BusEditor.resources
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.Views.MainForm.resources
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.Views.StatisticsWindow.resources
