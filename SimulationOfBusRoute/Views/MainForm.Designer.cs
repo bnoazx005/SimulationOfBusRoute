@@ -58,8 +58,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toolboxGroupBox = new System.Windows.Forms.GroupBox();
-            this.resetSimulationButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
+            this.trafficEditor = new System.Windows.Forms.Button();
+            this.resetSimulationButton = new System.Windows.Forms.Button();
             this.statisticsButton = new System.Windows.Forms.Button();
             this.stopSimulationButton = new System.Windows.Forms.Button();
             this.pauseSimulationButton = new System.Windows.Forms.Button();
@@ -130,7 +133,7 @@
             this.mainMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.mainMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.mainMap.ShowTileGridLines = false;
-            this.mainMap.Size = new System.Drawing.Size(622, 471);
+            this.mainMap.Size = new System.Drawing.Size(622, 518);
             this.mainMap.TabIndex = 0;
             this.mainMap.Zoom = 0D;
             // 
@@ -143,7 +146,7 @@
             this.zoomGroupBox.Location = new System.Drawing.Point(642, 111);
             this.zoomGroupBox.MinimumSize = new System.Drawing.Size(68, 505);
             this.zoomGroupBox.Name = "zoomGroupBox";
-            this.zoomGroupBox.Size = new System.Drawing.Size(68, 505);
+            this.zoomGroupBox.Size = new System.Drawing.Size(68, 552);
             this.zoomGroupBox.TabIndex = 8;
             this.zoomGroupBox.TabStop = false;
             this.zoomGroupBox.Text = "Zoom";
@@ -159,7 +162,7 @@
             this.zoomBar.Name = "zoomBar";
             this.zoomBar.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.zoomBar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.zoomBar.Size = new System.Drawing.Size(56, 465);
+            this.zoomBar.Size = new System.Drawing.Size(56, 512);
             this.zoomBar.TabIndex = 0;
             this.zoomBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             // 
@@ -172,7 +175,7 @@
             this.mapGroupBox.Controls.Add(this.mainMap);
             this.mapGroupBox.Location = new System.Drawing.Point(2, 111);
             this.mapGroupBox.Name = "mapGroupBox";
-            this.mapGroupBox.Size = new System.Drawing.Size(634, 505);
+            this.mapGroupBox.Size = new System.Drawing.Size(634, 552);
             this.mapGroupBox.TabIndex = 7;
             this.mapGroupBox.TabStop = false;
             this.mapGroupBox.Text = "Карта";
@@ -182,17 +185,16 @@
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusInfo1});
-            this.statusBar.Location = new System.Drawing.Point(0, 616);
+            this.statusBar.Location = new System.Drawing.Point(0, 666);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(997, 25);
+            this.statusBar.Size = new System.Drawing.Size(997, 22);
             this.statusBar.TabIndex = 9;
             this.statusBar.Text = "hhyhyhy";
             // 
             // statusInfo1
             // 
             this.statusInfo1.Name = "statusInfo1";
-            this.statusInfo1.Size = new System.Drawing.Size(102, 20);
-            this.statusInfo1.Text = "Current State: ";
+            this.statusInfo1.Size = new System.Drawing.Size(0, 17);
             // 
             // statusLabel
             // 
@@ -208,7 +210,7 @@
             this.propertiesGroupBox.Location = new System.Drawing.Point(716, 111);
             this.propertiesGroupBox.MinimumSize = new System.Drawing.Size(230, 505);
             this.propertiesGroupBox.Name = "propertiesGroupBox";
-            this.propertiesGroupBox.Size = new System.Drawing.Size(278, 505);
+            this.propertiesGroupBox.Size = new System.Drawing.Size(278, 552);
             this.propertiesGroupBox.TabIndex = 12;
             this.propertiesGroupBox.TabStop = false;
             this.propertiesGroupBox.Text = "Свойства";
@@ -243,8 +245,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Enabled = false;
             this.splitContainer1.Panel2MinSize = 125;
-            this.splitContainer1.Size = new System.Drawing.Size(263, 472);
-            this.splitContainer1.SplitterDistance = 247;
+            this.splitContainer1.Size = new System.Drawing.Size(263, 519);
+            this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.TabIndex = 0;
             // 
             // stationsListGroupBox
@@ -255,7 +257,7 @@
             this.stationsListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stationsListGroupBox.Location = new System.Drawing.Point(0, 0);
             this.stationsListGroupBox.Name = "stationsListGroupBox";
-            this.stationsListGroupBox.Size = new System.Drawing.Size(261, 245);
+            this.stationsListGroupBox.Size = new System.Drawing.Size(261, 269);
             this.stationsListGroupBox.TabIndex = 0;
             this.stationsListGroupBox.TabStop = false;
             this.stationsListGroupBox.Text = "Список узлов:";
@@ -267,14 +269,14 @@
             this.routeNodesList.ItemHeight = 16;
             this.routeNodesList.Location = new System.Drawing.Point(3, 18);
             this.routeNodesList.Name = "routeNodesList";
-            this.routeNodesList.Size = new System.Drawing.Size(255, 197);
+            this.routeNodesList.Size = new System.Drawing.Size(255, 221);
             this.routeNodesList.TabIndex = 4;
             // 
             // clearMapButtonAlt
             // 
             this.clearMapButtonAlt.AutoSize = true;
             this.clearMapButtonAlt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.clearMapButtonAlt.Location = new System.Drawing.Point(3, 215);
+            this.clearMapButtonAlt.Location = new System.Drawing.Point(3, 239);
             this.clearMapButtonAlt.Name = "clearMapButtonAlt";
             this.clearMapButtonAlt.Size = new System.Drawing.Size(255, 27);
             this.clearMapButtonAlt.TabIndex = 3;
@@ -371,6 +373,12 @@
             // 
             // stationNumOfPassengersProperty
             // 
+            this.stationNumOfPassengersProperty.DecimalPlaces = 2;
+            this.stationNumOfPassengersProperty.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.stationNumOfPassengersProperty.Location = new System.Drawing.Point(143, 6);
             this.stationNumOfPassengersProperty.Maximum = new decimal(new int[] {
             65535,
@@ -383,6 +391,12 @@
             // 
             // stationIntensityProperty
             // 
+            this.stationIntensityProperty.DecimalPlaces = 2;
+            this.stationIntensityProperty.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.stationIntensityProperty.Location = new System.Drawing.Point(143, 34);
             this.stationIntensityProperty.Maximum = new decimal(new int[] {
             65535,
@@ -453,8 +467,11 @@
             // 
             this.toolboxGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.toolboxGroupBox.Controls.Add(this.resetSimulationButton);
+            this.toolboxGroupBox.Controls.Add(this.button2);
+            this.toolboxGroupBox.Controls.Add(this.button1);
             this.toolboxGroupBox.Controls.Add(this.quitButton);
+            this.toolboxGroupBox.Controls.Add(this.trafficEditor);
+            this.toolboxGroupBox.Controls.Add(this.resetSimulationButton);
             this.toolboxGroupBox.Controls.Add(this.statisticsButton);
             this.toolboxGroupBox.Controls.Add(this.stopSimulationButton);
             this.toolboxGroupBox.Controls.Add(this.pauseSimulationButton);
@@ -471,36 +488,68 @@
             this.toolboxGroupBox.TabStop = false;
             this.toolboxGroupBox.Text = "Панель инструментов";
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Control;
+            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.Image = global::SimulationOfBusRoute.Properties.Resources.mMoveNodeButton;
+            this.button2.Location = new System.Drawing.Point(330, 21);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(39, 38);
+            this.button2.TabIndex = 15;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Window;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(285, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(39, 38);
+            this.button1.TabIndex = 14;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // quitButton
+            // 
+            this.quitButton.BackColor = System.Drawing.SystemColors.Control;
+            this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButton;
+            this.quitButton.Location = new System.Drawing.Point(100, 21);
+            this.quitButton.Name = "quitButton";
+            this.quitButton.Size = new System.Drawing.Size(39, 38);
+            this.quitButton.TabIndex = 13;
+            this.quitButton.UseVisualStyleBackColor = false;
+            // 
+            // trafficEditor
+            // 
+            this.trafficEditor.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.trafficEditor.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.trafficEditor.Location = new System.Drawing.Point(470, 21);
+            this.trafficEditor.Name = "trafficEditor";
+            this.trafficEditor.Size = new System.Drawing.Size(39, 38);
+            this.trafficEditor.TabIndex = 12;
+            this.trafficEditor.UseVisualStyleBackColor = false;
+            // 
             // resetSimulationButton
             // 
             this.resetSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.resetSimulationButton.Enabled = false;
             this.resetSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.resetSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("resetSimulationButton.Image")));
-            this.resetSimulationButton.Location = new System.Drawing.Point(565, 21);
+            this.resetSimulationButton.Location = new System.Drawing.Point(745, 21);
             this.resetSimulationButton.Name = "resetSimulationButton";
             this.resetSimulationButton.Size = new System.Drawing.Size(39, 38);
             this.resetSimulationButton.TabIndex = 11;
             this.resetSimulationButton.UseVisualStyleBackColor = false;
             // 
-            // quitButton
-            // 
-            this.quitButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = ((System.Drawing.Image)(resources.GetObject("quitButton.Image")));
-            this.quitButton.Location = new System.Drawing.Point(100, 21);
-            this.quitButton.Name = "quitButton";
-            this.quitButton.Size = new System.Drawing.Size(39, 38);
-            this.quitButton.TabIndex = 10;
-            this.quitButton.UseVisualStyleBackColor = false;
-            // 
             // statisticsButton
             // 
-            this.statisticsButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.statisticsButton.BackColor = System.Drawing.SystemColors.Control;
             this.statisticsButton.Enabled = false;
             this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.statisticsButton.Image = ((System.Drawing.Image)(resources.GetObject("statisticsButton.Image")));
-            this.statisticsButton.Location = new System.Drawing.Point(330, 21);
+            this.statisticsButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButton;
+            this.statisticsButton.Location = new System.Drawing.Point(515, 21);
             this.statisticsButton.Name = "statisticsButton";
             this.statisticsButton.Size = new System.Drawing.Size(39, 38);
             this.statisticsButton.TabIndex = 9;
@@ -508,11 +557,11 @@
             // 
             // stopSimulationButton
             // 
-            this.stopSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.stopSimulationButton.BackColor = System.Drawing.SystemColors.Control;
             this.stopSimulationButton.Enabled = false;
             this.stopSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.stopSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("stopSimulationButton.Image")));
-            this.stopSimulationButton.Location = new System.Drawing.Point(520, 21);
+            this.stopSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStopSimulationButton;
+            this.stopSimulationButton.Location = new System.Drawing.Point(700, 21);
             this.stopSimulationButton.Name = "stopSimulationButton";
             this.stopSimulationButton.Size = new System.Drawing.Size(39, 38);
             this.stopSimulationButton.TabIndex = 8;
@@ -524,7 +573,7 @@
             this.pauseSimulationButton.Enabled = false;
             this.pauseSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pauseSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("pauseSimulationButton.Image")));
-            this.pauseSimulationButton.Location = new System.Drawing.Point(475, 21);
+            this.pauseSimulationButton.Location = new System.Drawing.Point(655, 21);
             this.pauseSimulationButton.Name = "pauseSimulationButton";
             this.pauseSimulationButton.Size = new System.Drawing.Size(39, 38);
             this.pauseSimulationButton.TabIndex = 7;
@@ -532,10 +581,10 @@
             // 
             // startSimulationButton
             // 
-            this.startSimulationButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.startSimulationButton.BackColor = System.Drawing.SystemColors.Control;
             this.startSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.startSimulationButton.Image = ((System.Drawing.Image)(resources.GetObject("startSimulationButton.Image")));
-            this.startSimulationButton.Location = new System.Drawing.Point(430, 21);
+            this.startSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStartSimulationButton;
+            this.startSimulationButton.Location = new System.Drawing.Point(610, 21);
             this.startSimulationButton.Name = "startSimulationButton";
             this.startSimulationButton.Size = new System.Drawing.Size(39, 38);
             this.startSimulationButton.TabIndex = 6;
@@ -546,7 +595,7 @@
             this.busEditorButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.busEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.busEditorButton.Image = ((System.Drawing.Image)(resources.GetObject("busEditorButton.Image")));
-            this.busEditorButton.Location = new System.Drawing.Point(285, 21);
+            this.busEditorButton.Location = new System.Drawing.Point(425, 21);
             this.busEditorButton.Name = "busEditorButton";
             this.busEditorButton.Size = new System.Drawing.Size(39, 38);
             this.busEditorButton.TabIndex = 5;
@@ -554,8 +603,8 @@
             // 
             // removeRouteNodeButton
             // 
-            this.removeRouteNodeButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.removeRouteNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mRemoveRouteNodeButton;
+            this.removeRouteNodeButton.BackColor = System.Drawing.SystemColors.Window;
+            this.removeRouteNodeButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("removeRouteNodeButton.BackgroundImage")));
             this.removeRouteNodeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.removeRouteNodeButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.removeRouteNodeButton.Location = new System.Drawing.Point(240, 21);
@@ -579,9 +628,9 @@
             // 
             // saveDataButton
             // 
-            this.saveDataButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.saveDataButton.BackColor = System.Drawing.SystemColors.Control;
             this.saveDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.saveDataButton.Image = ((System.Drawing.Image)(resources.GetObject("saveDataButton.Image")));
+            this.saveDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSaveRouteButton;
             this.saveDataButton.Location = new System.Drawing.Point(55, 21);
             this.saveDataButton.Name = "saveDataButton";
             this.saveDataButton.Size = new System.Drawing.Size(39, 38);
@@ -590,9 +639,9 @@
             // 
             // loadDataButton
             // 
-            this.loadDataButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.loadDataButton.BackColor = System.Drawing.SystemColors.Control;
             this.loadDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.loadDataButton.Image = ((System.Drawing.Image)(resources.GetObject("loadDataButton.Image")));
+            this.loadDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mLoadRouteButton;
             this.loadDataButton.Location = new System.Drawing.Point(10, 21);
             this.loadDataButton.Name = "loadDataButton";
             this.loadDataButton.Size = new System.Drawing.Size(39, 38);
@@ -713,13 +762,20 @@
             // 
             // openFileDialog
             // 
+            this.openFileDialog.DefaultExt = "data";
             this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "Model data (*.data)|*.data|All Files (*.*)|*.*";
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "data";
+            this.saveFileDialog.Filter = "Model data (*.data)|*.data|All Files (*.*)|*.*";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(997, 641);
+            this.ClientSize = new System.Drawing.Size(997, 688);
             this.Controls.Add(this.zoomGroupBox);
             this.Controls.Add(this.mapGroupBox);
             this.Controls.Add(this.statusBar);
@@ -786,7 +842,6 @@
         private System.Windows.Forms.Button pauseSimulationButton;
         private System.Windows.Forms.Button startSimulationButton;
         private System.Windows.Forms.Button statisticsButton;
-        private System.Windows.Forms.Button quitButton;
         private System.Windows.Forms.ToolStripMenuItem clearRouteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simulationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startSimulationMenuItem;
@@ -820,5 +875,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolStripMenuItem saveDataAsMenuItem;
+        private System.Windows.Forms.Button trafficEditor;
+        private System.Windows.Forms.Button quitButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

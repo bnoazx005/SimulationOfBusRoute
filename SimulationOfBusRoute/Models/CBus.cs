@@ -24,6 +24,12 @@ namespace SimulationOfBusRoute.Models
 
         private ushort mMaxNumOfPassengers;
 
+        private uint mStartTime;
+
+        private uint mAlightingTimePerPassenger;
+
+        private uint mBoardingTimePerPassenger;
+
         #region Contructors
 
         //конструктор, используемый для загрузки данных об автобусе из БД
@@ -45,19 +51,21 @@ namespace SimulationOfBusRoute.Models
             mNumOfExcurrentPassengers = 0;
 
             mMaxNumOfPassengers = 0;
+
+            mStartTime = 0;
         }
 
         //конструктор используется при создании нового автобуса
 
-        public CBus(uint id, uint currStationIndex, TPoint2 currPosition, ushort maxNumOfPassengers)
+        public CBus(uint id, ushort maxNumOfPassengers, uint startTime, uint alightingTimePerPassenger, uint boardingTimePerPassenger)
         {
             mIndex = id;
 
             mName = "Bus" + mIndex.ToString();
 
-            mPosition = currPosition;
+            mPosition = TPoint2.mNullPoint;
 
-            mCurrStationIndex = currStationIndex;
+            mCurrStationIndex = 0;
 
             mCurrNumOfPassengers = 0;
 
@@ -66,6 +74,12 @@ namespace SimulationOfBusRoute.Models
             mNumOfExcurrentPassengers = 0;
 
             mMaxNumOfPassengers = maxNumOfPassengers;
+
+            mStartTime = startTime;
+
+            mAlightingTimePerPassenger = alightingTimePerPassenger;
+
+            mBoardingTimePerPassenger = boardingTimePerPassenger;
         }
 
         #endregion
@@ -86,13 +100,10 @@ namespace SimulationOfBusRoute.Models
 
                 currCommand.Parameters.AddWithValue("@id", mIndex);
                 currCommand.Parameters.AddWithValue("@name", mName);
-                currCommand.Parameters.AddWithValue("@position", mPosition.ToString());
-                currCommand.Parameters.AddWithValue("@velocity", mVelocity);
-                currCommand.Parameters.AddWithValue("@currNumOfPassengers", mCurrNumOfPassengers);
-                currCommand.Parameters.AddWithValue("@numOfIncomingPassengers", mNumOfIncomingPassengers);
-                currCommand.Parameters.AddWithValue("@numOfExcurrentPassengers", mNumOfExcurrentPassengers);
                 currCommand.Parameters.AddWithValue("@maxNumOfPassengers", mMaxNumOfPassengers);
-                currCommand.Parameters.AddWithValue("@currRouteNodeIndex", mCurrStationIndex);
+                currCommand.Parameters.AddWithValue("@startTime", mStartTime);
+                currCommand.Parameters.AddWithValue("@alightingTimePerPassenger", mAlightingTimePerPassenger);
+                currCommand.Parameters.AddWithValue("@boardingTimePerPassenger", mBoardingTimePerPassenger);
 
                 currCommand.ExecuteNonQuery();
             }
@@ -128,6 +139,19 @@ namespace SimulationOfBusRoute.Models
             }
         }
 
+        public uint CurrStationIndex
+        {
+            get
+            {
+                return mCurrStationIndex;
+            }
+
+            set
+            {
+                mCurrStationIndex = value;
+            }
+        }
+
         public TPoint2 Position
         {
             get
@@ -138,6 +162,58 @@ namespace SimulationOfBusRoute.Models
             set
             {
                 mPosition = value;
+            }
+        }
+
+        public ushort MaxNumOfPassengers
+        {
+            get
+            {
+                return mMaxNumOfPassengers;
+            }
+
+            set
+            {
+                mMaxNumOfPassengers = value;
+            }
+        }
+
+        public uint StartTime
+        {
+            get
+            {
+                return mStartTime;
+            }
+
+            set
+            {
+                mStartTime = value;
+            }
+        }
+
+        public uint AlightingTimePerPassenger
+        {
+            get
+            {
+                return mAlightingTimePerPassenger;
+            }
+
+            set
+            {
+                mAlightingTimePerPassenger = value;
+            }
+        }
+
+        public uint BoardingTimePerPassenger
+        {
+            get
+            {
+                return mBoardingTimePerPassenger;
+            }
+
+            set
+            {
+                mBoardingTimePerPassenger = value;
             }
         }
 

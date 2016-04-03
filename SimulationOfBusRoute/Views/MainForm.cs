@@ -28,6 +28,7 @@ namespace SimulationOfBusRoute.Views
             //Привязывание событий к элементам интерфейса
 
             Load                            += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, EventArgs.Empty); } };
+            FormClosing                     += (sender, e) => { if (OnFormIsClosing != null) { OnFormIsClosing(this, e); } };
             KeyDown                         += (sender, e) => { if (OnKeyPressed != null) { OnKeyPressed(this, e); } };
 
             //menu events
@@ -35,7 +36,7 @@ namespace SimulationOfBusRoute.Views
             saveDataMenuItem.Click          += (sender, e) => { if (OnSaveData != null) { OnSaveData(this, EventArgs.Empty); } };
             saveDataAsMenuItem.Click        += (sender, e) => { if (OnSaveData != null) { OnSaveData(this, EventArgs.Empty); } };
             clearRouteMenuItem.Click        += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, EventArgs.Empty); } };
-            quitMenuItem.Click              += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };
+            quitMenuItem.Click              += (sender, e) => { if (OnQuit != null) { OnQuit(null, EventArgs.Empty); } };
 
             //toolbox events
             loadDataButton.Click            += (sender, e) => { if (OnLoadData != null) { OnLoadData(this, EventArgs.Empty); } };
@@ -63,34 +64,41 @@ namespace SimulationOfBusRoute.Views
             routeNodesList.SelectedIndexChanged += (sender, e) => { if (OnNodeSelectionChanged != null) { OnNodeSelectionChanged(this, EventArgs.Empty); } };
         }
 
-        public event EventHandler<EventArgs> OnFormInit;
+        public event EventHandler OnFormInit;
+
+        public event EventHandler OnFormIsClosing;
 
         public event EventHandler<MouseEventArgs> OnMapMouseClick;
         public event EventHandler<KeyEventArgs> OnKeyPressed;
-        public event EventHandler<EventArgs> OnAbout;
-        public event EventHandler<EventArgs> OnAddRouteNode;
-        public event EventHandler<EventArgs> OnClearMap;
-        public event EventHandler<EventArgs> OnLoadData;
-        public event EventHandler<EventArgs> OnMapZoomChanged;
+        public event EventHandler OnAbout;
+        public event EventHandler OnAddRouteNode;
+        public event EventHandler OnClearMap;
+        public event EventHandler OnLoadData;
+        public event EventHandler OnMapZoomChanged;
         public event MarkerClick OnMarkerSelected;
-        public event EventHandler<EventArgs> OnOpenBusEditor;
-        public event EventHandler<EventArgs> OnOpenDocs;
-        public event EventHandler<EventArgs> OnPauseSimulation;
-        public event EventHandler<EventArgs> OnNodeSelectionChanged;
-        public event EventHandler<EventArgs> OnNodeTypeChanged;
-        public event EventHandler<EventArgs> OnAbortPropertiesChanges;
-        public event EventHandler<EventArgs> OnPropertiesChanged;
-        public event EventHandler<EventArgs> OnSubmitProperties;
-        public event EventHandler<EventArgs> OnQuit;
-        public event EventHandler<EventArgs> OnRemoveRouteNode;
-        public event EventHandler<EventArgs> OnRunSimulation;
-        public event EventHandler<EventArgs> OnSaveData;
-        public event EventHandler<EventArgs> OnShowStatistics;
-        public event EventHandler<EventArgs> OnStopSimulation;
+        public event EventHandler OnOpenBusEditor;
+        public event EventHandler OnOpenDocs;
+        public event EventHandler OnPauseSimulation;
+        public event EventHandler OnNodeSelectionChanged;
+        public event EventHandler OnNodeTypeChanged;
+        public event EventHandler OnAbortPropertiesChanges;
+        public event EventHandler OnPropertiesChanged;
+        public event EventHandler OnSubmitProperties;
+        public event EventHandler OnQuit;
+        public event EventHandler OnRemoveRouteNode;
+        public event EventHandler OnRunSimulation;
+        public event EventHandler OnSaveData;
+        public event EventHandler OnShowStatistics;
+        public event EventHandler OnStopSimulation;
 
         public void Display()
         {
             Application.Run(this);            
+        }
+
+        public void Quit()
+        {
+            Application.Exit();
         }
         
         #region Properties
@@ -173,29 +181,29 @@ namespace SimulationOfBusRoute.Views
             }
         }
 
-        public ushort BusStationNumOfPassengersProperty
+        public double BusStationNumOfPassengersProperty
         {
             get
             {
-                return Convert.ToUInt16(stationNumOfPassengersProperty.Value);
+                return Convert.ToDouble(stationNumOfPassengersProperty.Value);
             }
 
             set
             {
-                stationNumOfPassengersProperty.Value = value;
+                stationNumOfPassengersProperty.Value = Convert.ToDecimal(value);
             }
         }
 
-        public ushort BusStationIntensityProperty
+        public double BusStationIntensityProperty
         {
             get
             {
-                return Convert.ToUInt16(stationIntensityProperty.Value);
+                return Convert.ToDouble(stationIntensityProperty.Value);
             }
 
             set
             {
-                stationIntensityProperty.Value = value;
+                stationIntensityProperty.Value = Convert.ToDecimal(value);
             }
         }
         

@@ -25,9 +25,9 @@ namespace SimulationOfBusRoute.Views
 
         string NodeNameProperty { get; set; }
 
-        ushort BusStationNumOfPassengersProperty { get; set; }
+        double BusStationNumOfPassengersProperty { get; set; }
 
-        ushort BusStationIntensityProperty { get; set; }
+        double BusStationIntensityProperty { get; set; }
 
         double CrossroadLoadProperty { get; set; }
 
@@ -47,8 +47,10 @@ namespace SimulationOfBusRoute.Views
 
         bool IsFastSaveAvailable { get; set; }
 
-        event EventHandler<EventArgs> OnFormInit;
-        
+        event EventHandler OnFormInit;
+
+        event EventHandler OnFormIsClosing;
+
         #region KeyboardEvents
 
         event EventHandler<KeyEventArgs> OnKeyPressed;
@@ -57,25 +59,25 @@ namespace SimulationOfBusRoute.Views
 
         #region ToolboxEvents
 
-        event EventHandler<EventArgs> OnRunSimulation;
+        event EventHandler OnRunSimulation;
 
-        event EventHandler<EventArgs> OnPauseSimulation;
+        event EventHandler OnPauseSimulation;
 
-        event EventHandler<EventArgs> OnStopSimulation;
+        event EventHandler OnStopSimulation;
 
-        event EventHandler<EventArgs> OnAddRouteNode;
+        event EventHandler OnAddRouteNode;
 
-        event EventHandler<EventArgs> OnRemoveRouteNode;
+        event EventHandler OnRemoveRouteNode;
 
-        event EventHandler<EventArgs> OnOpenBusEditor;
+        event EventHandler OnOpenBusEditor;
 
-        event EventHandler<EventArgs> OnShowStatistics;
+        event EventHandler OnShowStatistics;
 
         #endregion
 
         #region MapEvents
 
-        event EventHandler<EventArgs> OnMapZoomChanged;
+        event EventHandler OnMapZoomChanged;
 
         event MarkerClick OnMarkerSelected;
 
@@ -86,31 +88,31 @@ namespace SimulationOfBusRoute.Views
         #region PropertiesEvents
 
         //УДАЛИТЬ НЕНУЖНЫЕ
-        event EventHandler<EventArgs> OnNodeSelectionChanged;
+        event EventHandler OnNodeSelectionChanged;
 
-        event EventHandler<EventArgs> OnNodeTypeChanged;
+        event EventHandler OnNodeTypeChanged;
 
-        event EventHandler<EventArgs> OnPropertiesChanged;
+        event EventHandler OnPropertiesChanged;
 
-        event EventHandler<EventArgs> OnSubmitProperties;
+        event EventHandler OnSubmitProperties;
 
-        event EventHandler<EventArgs> OnAbortPropertiesChanges;
+        event EventHandler OnAbortPropertiesChanges;
 
         #endregion
 
         #region MenuEvents
 
-        event EventHandler<EventArgs> OnClearMap;
+        event EventHandler OnClearMap;
 
-        event EventHandler<EventArgs> OnLoadData;
+        event EventHandler OnLoadData;
 
-        event EventHandler<EventArgs> OnSaveData;
+        event EventHandler OnSaveData;
 
-        event EventHandler<EventArgs> OnQuit;
+        event EventHandler OnQuit;
 
-        event EventHandler<EventArgs> OnAbout;
+        event EventHandler OnAbout;
 
-        event EventHandler<EventArgs> OnOpenDocs;
+        event EventHandler OnOpenDocs;
 
         #endregion
     }

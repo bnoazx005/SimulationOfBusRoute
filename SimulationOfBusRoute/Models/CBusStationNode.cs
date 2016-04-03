@@ -6,24 +6,40 @@ namespace SimulationOfBusRoute.Models
 {
     public class CBusStationNode : CRouteNode
     {
-        private ushort mCurrNumOfPassengers;
+        private double mCurrNumOfPassengers;
 
-        private ushort mIntensity;
+        private double mIntensity;
 
         private bool mIsEndingStation;
+
+        private double mVelocityOfSpan;
 
         #region Constructors
 
         public CBusStationNode(uint id, string name):
             base(id, name)
         {
-            mCurrNumOfPassengers = 0;
+            mCurrNumOfPassengers = 0.0;
 
-            mIntensity = 0;
+            mIntensity = 0.0;
+
+            mVelocityOfSpan = 0.0;
         }
 
-        public CBusStationNode(uint id, string name, TPoint2 position, ushort startNumOfPassengers, 
-                               ushort intensity, bool isEnding):
+        public CBusStationNode(uint id, string name, bool isEndingStation) :
+            base(id, name)
+        {
+            mCurrNumOfPassengers = 0.0;
+
+            mIntensity = 0.0;
+
+            mVelocityOfSpan = 0.0;
+
+            mIsEndingStation = isEndingStation;
+        }
+
+        public CBusStationNode(uint id, string name, TPoint2 position, double startNumOfPassengers, 
+                               double intensity, bool isEnding):
             base(id, name, position)
         {
             mCurrNumOfPassengers = startNumOfPassengers;
@@ -70,6 +86,7 @@ namespace SimulationOfBusRoute.Models
                 currCommand.Parameters.AddWithValue("@id", mIndex);
                 currCommand.Parameters.AddWithValue("@currNumOfPassengers", mCurrNumOfPassengers);
                 currCommand.Parameters.AddWithValue("@intensity", mIntensity);
+                currCommand.Parameters.AddWithValue("@velocityOfSpan", mVelocityOfSpan);
 
                 currCommand.ExecuteNonQuery();
             }
@@ -78,8 +95,16 @@ namespace SimulationOfBusRoute.Models
         #endregion
 
         #region Properties
-        
-        public ushort CurrNumOfPassengers
+
+        public override E_ROUTE_NODE_TYPE NodeType
+        {
+            get
+            {
+                return mIsEndingStation ? E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION : E_ROUTE_NODE_TYPE.RNT_BUS_STATION;
+            }
+        }
+
+        public double CurrNumOfPassengers
         {
             get
             {
@@ -92,7 +117,7 @@ namespace SimulationOfBusRoute.Models
             }
         }
 
-        public ushort Intensity
+        public double Intensity
         {
             get
             {
@@ -102,6 +127,19 @@ namespace SimulationOfBusRoute.Models
             set
             {
                 mIntensity = value;
+            }
+        }
+
+        public double VelocityOfSpan
+        {
+            get
+            {
+                return mVelocityOfSpan;
+            }
+
+            set
+            {
+                mVelocityOfSpan = value;
             }
         }
 

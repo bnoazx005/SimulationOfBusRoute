@@ -58,7 +58,15 @@ namespace SimulationOfBusRoute.Models
         #endregion
 
         #region Properties   
-        
+
+        public override E_ROUTE_NODE_TYPE NodeType
+        {
+            get
+            {
+                return E_ROUTE_NODE_TYPE.RNT_CROSSROAD;
+            }
+        }
+
         public double LoadCoefficient
         {
             get

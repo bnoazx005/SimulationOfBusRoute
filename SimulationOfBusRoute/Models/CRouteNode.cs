@@ -76,6 +76,8 @@ namespace SimulationOfBusRoute.Models
             }
         }
 
+        public abstract E_ROUTE_NODE_TYPE NodeType { get; }
+
         public TPoint2 Position
         {
             get

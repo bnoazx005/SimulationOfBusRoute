@@ -22,4 +22,7 @@ C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.BusEditor.resources
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.MainForm.resources
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.StatisticsWindow.resources
-C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\BusEditableItem.dll
+C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\BusEditableItem.pdb
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.ProgressDialog.resources
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache

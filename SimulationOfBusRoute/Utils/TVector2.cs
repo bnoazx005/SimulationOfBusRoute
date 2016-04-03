@@ -41,9 +41,35 @@ namespace SimulationOfBusRoute.Utils
 
         #region Methods
 
+        public void Normalize()
+        {
+            double invMag = 1.0 / Math.Sqrt(mX * mX + mY * mY);
+
+            mX *= invMag;
+            mY *= invMag;
+        }
+
+        public TVector2 UnitVector()
+        {
+            double invMag = 1.0 / Math.Sqrt(mX * mX + mY * mY);
+
+            return new TVector2(mX * invMag, mY * invMag);
+        }
+
         #endregion
 
         #region Operators
+
+        public static TVector2 operator* (TVector2 vec2, double coeff)
+        {
+            return new TVector2(vec2.X * coeff, vec2.Y * coeff);
+        }
+
+        public static TVector2 operator *(double coeff, TVector2 vec2)
+        {
+            return new TVector2(vec2.X * coeff, vec2.Y * coeff);
+        }
+
         #endregion
 
         #region Properties

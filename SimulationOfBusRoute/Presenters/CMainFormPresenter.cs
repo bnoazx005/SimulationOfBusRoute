@@ -12,6 +12,9 @@ using SimulationOfBusRoute.Utils;
 using System.IO;
 using System.Data.SQLite;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics;       //TEMP USING SHOULD BE DELETED
 
 
 namespace SimulationOfBusRoute.Presenters
@@ -22,11 +25,36 @@ namespace SimulationOfBusRoute.Presenters
 
         private IMainFormView mView;
 
+        //возможно стоит определить отдельный класс CSimulator или еще как-то
+        //чтобы не торчало лишних методов снаружи
+
+        private Task mSimulationJob;
+
+        private object mJobSyncObject;
+
+        private bool mIsSimulationPaused;
+        
+        private bool mIsRunning;
+
+        private CBusEditorPresenter mBusEditorPresenter;
+
+        private List<Action> mSubscribersList;
+
         public CMainFormPresenter(CMainModel model, IMainFormView view)
         {
             mModel = model;
             mView = view;
 
+            mJobSyncObject = new object();
+
+            mIsSimulationPaused = false;
+            mIsRunning = false;
+
+            mSubscribersList = new List<Action>();
+
+            mBusEditorPresenter = new CBusEditorPresenter(mModel, new BusEditor());
+
+            mView.OnFormIsClosing += _onQuit;
             mView.OnFormInit += _onFormInit;
 
             //keyboard events
@@ -37,6 +65,8 @@ namespace SimulationOfBusRoute.Presenters
             mView.OnRemoveRouteNode += _onRemoveRouteNode;
             mView.OnOpenBusEditor += _onLaunchBusEditor;
             mView.OnShowStatistics += _onShowStatisticsWindow;
+            mView.OnRunSimulation += _onRunSimulation;
+            mView.OnPauseSimulation += _onPauseSimulation;
 
             //map events
             mView.OnMapZoomChanged += _onZoomMapChanged;
@@ -46,13 +76,17 @@ namespace SimulationOfBusRoute.Presenters
             //properties events
             mView.OnNodeTypeChanged += _onNodeTypeChanged;
             mView.OnSubmitProperties += _onSubmitProperties;
-            mView.OnNodeSelectionChanged += _onNodeSelectionChanged;
+            mView.OnAbortPropertiesChanges += _onWritePropertiesOfNode;
+            mView.OnNodeSelectionChanged += _onWritePropertiesOfNode;
 
             //menu events
             mView.OnLoadData += _onLoadModelData;
             mView.OnSaveData += _onSaveModelData;
             mView.OnQuit += _onQuit;
             mView.OnClearMap += _onClearMap;
+
+            //привязка к событию изменения модели
+            mModel.OnModelChanged += _onModelChanged;
         }
 
         #region Methods
@@ -79,12 +113,38 @@ namespace SimulationOfBusRoute.Presenters
 
             routeNodeType.DataSource = Enum.GetValues(typeof(E_ROUTE_NODE_TYPE));
 
+            _onClearMap(null, EventArgs.Empty);
+            _updateViewWithModel(ref mView, ref mModel);
+            
+            //выбирать то окно нода какого типа активна в данный момент
             _activatePropertiesEditor((E_ROUTE_NODE_TYPE)routeNodeType.SelectedValue);
         }
 
         public void Run()
         {
+            mIsRunning = true;
+
             mView.Display();
+        }
+
+        public void Subscribe(Action subscribersEvent)
+        {
+            if (subscribersEvent == null)
+            {
+                return;
+            }
+
+            mSubscribersList.Add(subscribersEvent);
+        }
+
+        public void Unsubscribe(Action subscribersEvent)
+        {
+            if (subscribersEvent == null)
+            {
+                return;
+            }
+
+            mSubscribersList.Remove(subscribersEvent);
         }
 
         private void _onKeyPressed(object sender, KeyEventArgs e)
@@ -92,10 +152,10 @@ namespace SimulationOfBusRoute.Presenters
             //MessageBox.Show("Pressed" + e.KeyValue.ToString());
             // mModel.AddBusStation(TPoint2.mNullPoint, 42, 3);
 
-            if (e.KeyCode == Keys.C) //временное решение, будет переделано позже
-            {
-                mView.Map.Position = new PointLatLng(56.855079, 53.239444);               
-            }
+            //if (e.KeyCode == Keys.C) //временное решение, будет переделано позже
+            //{
+            //    mView.Map.Position = new PointLatLng(56.855079, 53.239444);               
+            //}
 
             //ЗАМЕНИТЬ НА ВЫЗОВ _onAddBusStation
             //сделать на "+" приближение карты
@@ -112,9 +172,27 @@ namespace SimulationOfBusRoute.Presenters
         
         private void _onQuit(object sender, EventArgs e)
         {
-            //ДОБАВИТЬ ВАЛИДАЦИЮ СОСТОЯНИЯ МОДЕЛИ, ЕСЛИ ИЗМЕНЕНА, ТО ПРЕДЛОЖИТЬ СОХРАНИТЬ
+            if (!mModel.IsChanged)
+            {
+                mView.Quit();
 
-            Application.Exit();
+                return;
+            }
+            
+            DialogResult result = MessageBox.Show("Были обнаружены изменения данных. Сохранить их?", "Сохранить изменения?", MessageBoxButtons.YesNoCancel);
+            
+            if (result == DialogResult.Yes)
+            {
+                _onSaveModelData(this, EventArgs.Empty);
+            }       
+            else if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            mView.Quit();
+
+            mIsRunning = false;
         }
 
         private void _onAddRouteNode(object sender, EventArgs e)
@@ -124,14 +202,16 @@ namespace SimulationOfBusRoute.Presenters
 
             Button addRouteNodeButton = view.ButtonsList[Properties.Resources.mAddRouteNodeButtonName];
             
-            if (model.CurrState != E_CURRENT_STATE.CS_EDITOR_ADD_MARKER)
+            if (model.CurrState != E_CURRENT_STATE.CS_EDITOR_ADD_NODE)
             {
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_ADD_MARKER;
+                model.CurrState = E_CURRENT_STATE.CS_EDITOR_ADD_NODE;
 
                 addRouteNodeButton.BackgroundImage = Properties.Resources.mAddRouteNodeButtonActive;
 
                 view.IsPropertyActive = true;
-                
+
+                _onSubmitProperties(this, EventArgs.Empty); //записать данные предыдущего узла
+
                 return;
             }
 
@@ -147,9 +227,9 @@ namespace SimulationOfBusRoute.Presenters
 
             Button removeRouteNodeButton = view.ButtonsList[Properties.Resources.mRemoveRouteNodeButtonName];
 
-            if (model.CurrState != E_CURRENT_STATE.CS_EDITOR_REMOVE_MARKER)
+            if (model.CurrState != E_CURRENT_STATE.CS_EDITOR_REMOVE_NODE)
             {
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_REMOVE_MARKER;
+                model.CurrState = E_CURRENT_STATE.CS_EDITOR_REMOVE_NODE;
 
                 removeRouteNodeButton.BackgroundImage = Properties.Resources.mRemoveRouteNodeButtonActive;
 
@@ -173,6 +253,8 @@ namespace SimulationOfBusRoute.Presenters
             view.CurrMarkerIndex = -1;
 
             view.NodesList.Items.Clear();
+
+            view.IsPropertyActive = false;
 
             //Добавить удаление линий после удаления маркеров
             busStationsOverlay.Markers.Clear();
@@ -207,7 +289,7 @@ namespace SimulationOfBusRoute.Presenters
             GMapOverlay busStationsOverlay = map.Overlays[1];
 
             GMapMarker busStationMarker = null;
-            PointLatLng currCorrdinates;
+            PointLatLng currCoordinates;
 
             StringBuilder newItemStr;
 
@@ -217,21 +299,33 @@ namespace SimulationOfBusRoute.Presenters
 
             Button currActiveButton = null;
 
-            //добавление маркера на карту
-            if ((e.Button == MouseButtons.Left) && (model.CurrState == E_CURRENT_STATE.CS_EDITOR_ADD_MARKER))
-            {
-                currCorrdinates = map.FromLocalToLatLng(e.X, e.Y);
+            CRouteNode currNode = null;
 
+            //добавление маркера на карту
+            if ((e.Button == MouseButtons.Left) && (model.CurrState == E_CURRENT_STATE.CS_EDITOR_ADD_NODE))
+            {
+                currCoordinates = map.FromLocalToLatLng(e.X, e.Y);
+                
                 switch (routeNodeType)
                 {
                     case E_ROUTE_NODE_TYPE.RNT_BUS_STATION:
-                        busStationMarker = new GMarkerGoogle(currCorrdinates, GMarkerGoogleType.blue_dot);
+                        busStationMarker = new GMarkerGoogle(currCoordinates, GMarkerGoogleType.blue_dot);
+
+                        currNode = new CBusStationNode((uint)(currMarkerIndex + 1), view.NodeNameProperty, false);
+
+                        //busStationMarker = new CGMapImageMarker(currCoordinates, Properties.Resources.mAddRouteNodeButton)
                         break;
                     case E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION:
-                        busStationMarker = new GMarkerGoogle(currCorrdinates, GMarkerGoogleType.red_dot);
+                        busStationMarker = new GMarkerGoogle(currCoordinates, GMarkerGoogleType.red_dot);
+
+                        currNode = new CBusStationNode((uint)(currMarkerIndex + 1), view.NodeNameProperty, true);
+
                         break;
                     case E_ROUTE_NODE_TYPE.RNT_CROSSROAD:
-                        busStationMarker = new GMarkerGoogle(currCorrdinates, GMarkerGoogleType.yellow_dot);
+                        busStationMarker = new GMarkerGoogle(currCoordinates, GMarkerGoogleType.yellow_dot);
+
+                        currNode = new CCrossRoadNode((uint)(currMarkerIndex + 1), view.NodeNameProperty);
+
                         break;
                 }
 
@@ -242,16 +336,16 @@ namespace SimulationOfBusRoute.Presenters
                 
                 map.Update();
 
-                model.CurrBusRoute.InsertRouteNodeByID((uint)(currMarkerIndex + 1), null);
+                model.InsertRouteNodeByID((uint)(currMarkerIndex + 1), currNode);
 
                 //TEMP CODE
                 //Переписать в более нормальном виде
                 //Генерить список по списку маркеров, чтобы было правильное упорядочивание
                 newItemStr = new StringBuilder();
-                newItemStr.AppendFormat("{0} : ({1:F3};{2:F3})", view.NodeNameProperty, currCorrdinates.Lat, currCorrdinates.Lng);
+                newItemStr.AppendFormat("{0} : ({1:F3};{2:F3})", view.NodeNameProperty, currCoordinates.Lat, currCoordinates.Lng);
                 view.NodesList.Items.Insert(currMarkerIndex + 1, newItemStr.ToString());
 
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_MARKER;
+                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
                 view.CurrMarkerIndex = (currMarkerIndex + 1);
 
                 view.CurrNodeName = "-";
@@ -267,13 +361,13 @@ namespace SimulationOfBusRoute.Presenters
             }
             
             //ДОБАВИТЬ ОБНОВЛЕНИЕ МОДЕЛИ ПРИ ПЕРЕМЕЩЕНИИ МАРКЕРА И ОБНОВЛЕНИЕ ПОЛИГОНА МАРШРУТА
-            if ((e.Button == MouseButtons.Left) && (model.CurrState == E_CURRENT_STATE.CS_EDITOR_UPDATE_MARKER))
+            if ((e.Button == MouseButtons.Left) && (model.CurrState == E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE))
             {
-                currCorrdinates = map.FromLocalToLatLng(e.X, e.Y);
+                currCoordinates = map.FromLocalToLatLng(e.X, e.Y);
 
                 busStationMarker = _getCurrMarker() as GMarkerGoogle;
 
-                busStationMarker.Position = currCorrdinates;
+                busStationMarker.Position = currCoordinates;
 
                 _updateRouteLines(map, busStationsOverlay.Markers); // обновление пути
 
@@ -299,11 +393,11 @@ namespace SimulationOfBusRoute.Presenters
 
             if (model.CurrState == E_CURRENT_STATE.CS_DEFAULT)
             {
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_MARKER;
+                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
                 view.CurrMarkerIndex = routeNodesOverlay.Markers.IndexOf(item);
             }
 
-            if (e.Button == MouseButtons.Left && model.CurrState == E_CURRENT_STATE.CS_EDITOR_REMOVE_MARKER)
+            if (e.Button == MouseButtons.Left && model.CurrState == E_CURRENT_STATE.CS_EDITOR_REMOVE_NODE)
             {
                 currMarkerIndex = routeNodesOverlay.Markers.IndexOf(item);
                 routeNodesOverlay.Markers.RemoveAt(currMarkerIndex);
@@ -418,6 +512,12 @@ namespace SimulationOfBusRoute.Presenters
             E_ROUTE_NODE_TYPE currRouteNodeType = (E_ROUTE_NODE_TYPE)mView.RouteNodeTypeProperty.SelectedValue;
 
             int currMarkerIndex = mView.CurrMarkerIndex;
+
+            if (currMarkerIndex < 0)
+            {
+                return;
+            }
+
             PointLatLng currPosition = _getCurrMarker().Position;
 
             switch (currRouteNodeType)
@@ -452,43 +552,51 @@ namespace SimulationOfBusRoute.Presenters
         }
 
         //ПЕРЕДЕЛАТЬ ДАННЫЙ МЕТОД
-        private void _onNodeSelectionChanged(object sender, EventArgs e)
+        private void _onWritePropertiesOfNode(object sender, EventArgs e)
         {
             IMainFormView view = mView;
             CMainModel model = mModel;
 
             int currMarkerIndex = view.CurrMarkerIndex;
 
-            CRouteNode currSelectedNode = model.CurrBusRoute.GetRouteNodeByID((uint)currMarkerIndex);
+            CRouteNode currSelectedNode = model.GetRouteNodeByID((uint)currMarkerIndex);
 
             if (currSelectedNode == null)
             {
                 return;
             }
 
-            CBusStationNode tmpBusStationNode = currSelectedNode as CBusStationNode;
+            CBusStationNode tmpBusStationNode = null;
+            CCrossRoadNode tmpCrossRoadNode = null;
 
-            if (tmpBusStationNode != null)
+            switch (currSelectedNode.NodeType)
             {
-                mView.NodeNameProperty = tmpBusStationNode.Name;
-                mView.CurrNodeName = tmpBusStationNode.Name;
+                case E_ROUTE_NODE_TYPE.RNT_BUS_STATION:
+                case E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION:
 
-                mView.RouteNodeTypeProperty.SelectedIndex = tmpBusStationNode.IsEndingStation ?
-                                                            (int)E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION :
-                                                            (int)E_ROUTE_NODE_TYPE.RNT_BUS_STATION;
+                    tmpBusStationNode = currSelectedNode as CBusStationNode;
 
-                mView.BusStationNumOfPassengersProperty = tmpBusStationNode.CurrNumOfPassengers;
-                mView.BusStationIntensityProperty = tmpBusStationNode.Intensity;
-            }
+                    mView.NodeNameProperty = tmpBusStationNode.Name;
+                    mView.CurrNodeName = tmpBusStationNode.Name;
 
-            CCrossRoadNode tmpCrossRoadNode = currSelectedNode as CCrossRoadNode;
+                    mView.RouteNodeTypeProperty.SelectedIndex = tmpBusStationNode.IsEndingStation ?
+                                                                (int)E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION :
+                                                                (int)E_ROUTE_NODE_TYPE.RNT_BUS_STATION;
 
-            if (tmpCrossRoadNode != null)
-            {
-                mView.NodeNameProperty = tmpCrossRoadNode.Name;
-                mView.CurrNodeName = tmpCrossRoadNode.Name;
-                mView.RouteNodeTypeProperty.SelectedIndex = (int)E_ROUTE_NODE_TYPE.RNT_CROSSROAD;
-                mView.CrossroadLoadProperty = tmpCrossRoadNode.LoadCoefficient;
+                    mView.BusStationNumOfPassengersProperty = tmpBusStationNode.CurrNumOfPassengers;
+                    mView.BusStationIntensityProperty = tmpBusStationNode.Intensity;
+
+                    break;
+                case E_ROUTE_NODE_TYPE.RNT_CROSSROAD:
+
+                    tmpCrossRoadNode = currSelectedNode as CCrossRoadNode;
+
+                    mView.NodeNameProperty = tmpCrossRoadNode.Name;
+                    mView.CurrNodeName = tmpCrossRoadNode.Name;
+                    mView.RouteNodeTypeProperty.SelectedIndex = (int)E_ROUTE_NODE_TYPE.RNT_CROSSROAD;
+                    mView.CrossroadLoadProperty = tmpCrossRoadNode.LoadCoefficient;
+
+                    break;
             }
         }
 
@@ -499,12 +607,24 @@ namespace SimulationOfBusRoute.Presenters
 
             if (filename != null)
             {
-                connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+                //выполняется в фоновом потоке
 
-                using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+                CHelper.BackgroundModelOperation(ref mModel, "Выполняется сохранение\n данных...", () =>
                 {
-                    mModel.SaveIntoDataBase(new SQLiteConnection(connectionString));
-                }
+                    connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+
+                    using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+                    {
+                        mModel.SaveIntoDataBase(sqliteConnection);
+                    }
+                });
+
+                //connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+
+                //using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+                //{
+                //    mModel.SaveIntoDataBase(new SQLiteConnection(connectionString));
+                //}
 
                 return;
             }
@@ -526,19 +646,71 @@ namespace SimulationOfBusRoute.Presenters
                 SQLiteConnection.CreateFile(filename);
             }
 
-            connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+            //выполняется в фоновом потоке
 
-            using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+            CHelper.BackgroundModelOperation(ref mModel, "Выполняется сохранение\n данных...", () =>
             {
-                mModel.SaveIntoDataBase(new SQLiteConnection(connectionString));
-            }
+                connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+
+                using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+                {
+                    mModel.SaveIntoDataBase(sqliteConnection);
+                }
+            });
+            
+            //connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+
+            //using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+            //{
+            //    mModel.SaveIntoDataBase(sqliteConnection);
+            //}
 
             mView.IsFastSaveAvailable = true;
         }
 
         private void _onLoadModelData(object sender, EventArgs e)
         {
-            MessageBox.Show("Loading");
+            OpenFileDialog openFileDialog = mView.OpenFileDialog;
+
+            DialogResult openDialogCallResult = openFileDialog.ShowDialog();
+            
+            if (openDialogCallResult != DialogResult.OK)
+            {
+                return;
+            }
+
+            _onClearMap(null, EventArgs.Empty);
+
+            //загрузка данных в модель
+
+            CHelper.BackgroundModelOperation(ref mModel, "Выполняется загрузка\n данных...", () =>
+            {
+                string filename = openFileDialog.FileName;
+
+                string connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+
+                using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+                {
+                    mModel.LoadFromDataBase(sqliteConnection);
+                }
+
+                mModel.Name = openFileDialog.FileName;
+            });
+
+            //string filename = openFileDialog.FileName;
+
+            //string connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
+
+            //using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
+            //{
+            //    mModel.LoadFromDataBase(sqliteConnection);
+            //}
+
+            //mModel.Name = openFileDialog.FileName;
+
+            mView.IsFastSaveAvailable = true;
+
+            _updateViewWithModel(ref mView, ref mModel);
         }
 
         //private void _updateButtonView(Button button, E_CURRENT_STATE prevState, E_CURRENT_STATE newState)
@@ -548,6 +720,11 @@ namespace SimulationOfBusRoute.Presenters
 
         private void _updateRouteLines(GMapControl mapControl, GMap.NET.ObjectModel.ObservableCollectionThreadSafe<GMapMarker> markers)
         {
+            if (markers.Count < 2) //если маркеров меньше двух, то линию построить невозможно
+            {
+                return;
+            }
+
             GMapOverlay routeLinesOverlay = mapControl.Overlays[0];
 
             List<PointLatLng> updatedPoints = new List<PointLatLng>();
@@ -557,21 +734,39 @@ namespace SimulationOfBusRoute.Presenters
                 updatedPoints.Add(marker.Position);
             }
 
-            GMapPolygon updatedPolyline = new GMapPolygon(updatedPoints, "RoutePolyline");
+            List<GMapPolygon> polylinesList = new List<GMapPolygon>();
 
-            updatedPolyline.Fill = new SolidBrush(Color.Transparent);
-            updatedPolyline.Stroke = new Pen(Color.Blue, 2);
+            int updatedPointsCount = updatedPoints.Count;
 
-            routeLinesOverlay.Polygons.Clear();
-            routeLinesOverlay.Polygons.Add(updatedPolyline);
+            GMapPolygon currPolyline = null;
+
+            Brush currBrush = new SolidBrush(Color.Transparent);
+            Pen currPen = new Pen(Color.Blue, 2);
+
+            routeLinesOverlay.Polygons.Clear(); //удаление старых линий
+
+            for (int i = 0; i < updatedPointsCount - 1; i++)
+            {
+                currPolyline = new GMapPolygon(updatedPoints.GetRange(i, 2), "routePolyline" + i.ToString());
+                currPolyline.Fill = currBrush;
+                currPolyline.Stroke = currPen;
+
+                routeLinesOverlay.Polygons.Add(currPolyline);
+            }
         }
 
         private void _onLaunchBusEditor(object sender, EventArgs e)
         {
-            BusEditor busEditorWindow = new BusEditor();
+            if (mBusEditorPresenter.IsRunning)
+            {
+                return;
+            }
 
-            CBusEditorPresenter busEditorPresenter = new CBusEditorPresenter(mModel, busEditorWindow);
-            busEditorPresenter.Run();
+            mBusEditorPresenter = new CBusEditorPresenter(mModel, new BusEditor());
+
+            Subscribe(mBusEditorPresenter.OnModelChanged);
+
+            mBusEditorPresenter.Run();
         }
 
         private void _onShowStatisticsWindow(object sender, EventArgs e)
@@ -581,16 +776,127 @@ namespace SimulationOfBusRoute.Presenters
             //statisticsWindow.Show();
         }
 
+        private void _onRunSimulation(object sender, EventArgs e)
+        {
+            mModel.CurrState = E_CURRENT_STATE.CS_SIMULATION_IS_RUNNING;
+
+            uint time = 0;
+
+            mSimulationJob = new Task(() =>
+            {
+                while(true)
+                {
+                    while (mIsSimulationPaused)
+                        ;
+
+                    Debug.WriteLine("curr time: {0}", time++);
+                    Thread.Sleep(100);
+                }
+            });
+
+            mSimulationJob.Start();
+            
+            var buttonsList = mView.ButtonsList;
+
+            buttonsList["pauseSimulationButton"].Enabled = true;
+            buttonsList["stopSimulationButton"].Enabled = true;
+        }
+
+        private void _onPauseSimulation(object sender, EventArgs e)
+        {
+            lock (mJobSyncObject)
+            {
+                mIsSimulationPaused = !mIsSimulationPaused;
+
+                mModel.CurrState = E_CURRENT_STATE.CS_SIMULATION_IS_PAUSED;
+            }
+           // mSimulationJob.Pa
+        }
+
+        private void _onStopSimulation(object sender, EventArgs e)
+        {
+        }
+
+        private void _updateViewWithModel(ref IMainFormView view, ref CMainModel model)
+        {
+            if (!model.IsChanged)
+            {
+                return;
+            }
+
+            CBusRoute currRoute = model.CurrBusRoute;
+            List<CRouteNode> routeNodes = currRoute.RouteNodes;
+            TPoint2 tmpPoint;
+
+            GMapControl map = view.Map;
+            GMapOverlay routeNodesOverlay = map.Overlays[1];
+            GMapMarker currMarker = null;
+            PointLatLng currCoordinates;
+
+            ListBox nodesList = view.NodesList;
+
+            string newItemInList;
+
+            int id;
+
+            foreach (CRouteNode routeNode in routeNodes)
+            {
+                id = (int)routeNode.ID;
+
+                tmpPoint = routeNode.Position;
+                currCoordinates = new PointLatLng(tmpPoint.X, tmpPoint.Y);
+
+                switch (routeNode.NodeType)
+                {
+                    case E_ROUTE_NODE_TYPE.RNT_BUS_STATION:
+                        currMarker = new GMarkerGoogle(currCoordinates, GMarkerGoogleType.blue_dot);
+                        break;
+                    case E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION:
+                        currMarker = new GMarkerGoogle(currCoordinates, GMarkerGoogleType.red_dot);
+                        break;
+                    case E_ROUTE_NODE_TYPE.RNT_CROSSROAD:
+                        currMarker = new GMarkerGoogle(currCoordinates, GMarkerGoogleType.yellow_dot);
+                        break;
+                }
+
+                routeNodesOverlay.Markers.Insert(id, currMarker);
+                _updateRouteLines(map, routeNodesOverlay.Markers);
+
+                map.Update();
+
+                newItemInList = string.Format("{0} : ({1:F3};{2:F3})", routeNode.Name, currCoordinates.Lat, currCoordinates.Lng);
+                view.NodesList.Items.Insert(id, newItemInList);
+
+                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
+                view.CurrMarkerIndex = (id);
+            }
+
+            mView.IsPropertyActive = mModel.IsChanged;
+        }
+
         //protected override void _updateModelWithView(ref IBaseModel model, ref IBaseView view)
         //{
-            
-        //}
-
-        //protected override void _updateViewWithModel(ref IBaseView view, ref IBaseModel model)
-        //{
 
         //}
+
+        private void _onModelChanged()
+        {
+            Debug.WriteLine("A state of the model was changed");
+
+            foreach (Action subscribersAction in mSubscribersList)
+            {
+                subscribersAction();
+            }
+        }
 
         #endregion
+
+        public bool IsRunning
+        {
+            get
+            {
+                return mIsRunning;
+            }
+        }
     }
 }

@@ -46,93 +46,113 @@ namespace SimulationOfBusRoute.Models
 
         #region Methods
 
-        public void AddBus(uint startStationIndex, ushort maxNumOfPassengers)
+        public bool AddBus(ushort maxNumOfPassengers, uint startTime, uint alightingTimePerPassenger, uint boardingTimePerPassenger)
         {
-            if (startStationIndex < mRouteNodes.Count)
+            uint newBusID = Convert.ToUInt32(mBuses.Count);
+            
+            mBuses.Add(new CBus(newBusID, maxNumOfPassengers, startTime, alightingTimePerPassenger, boardingTimePerPassenger));
+
+            return true;
+        }
+
+        public bool UpdateBusInfo(uint id, ushort maxNumOfPassengers, uint startTime, uint alightingTimePerPassenger,
+                                  uint boardingTimePerPassenger)
+        {
+            if (id >= mBuses.Count)
             {
-                throw new ArgumentException("Incorrect value of the parameter", "startStationIndex");
+                return false;
             }
 
-            uint newBusID = Convert.ToUInt32(mBuses.Count + 1);
+            CBus currBus = mBuses[(int)id];
 
-            //отладочная информация
-            Debug.Assert(startStationIndex < mRouteNodes.Count);
-            Debug.Assert(newBusID > mBuses.Count);
+            currBus.MaxNumOfPassengers = maxNumOfPassengers;
+            currBus.StartTime = startTime;
+            currBus.AlightingTimePerPassenger = alightingTimePerPassenger;
+            currBus.BoardingTimePerPassenger = boardingTimePerPassenger;
 
-            mBuses.Add(new CBus(newBusID, startStationIndex, mRouteNodes[(int)startStationIndex].Position, maxNumOfPassengers));
+            return true;
         }
 
-        public void AddBusStation(string name, TPoint2 position, ushort startNumOfPassengers,
-                                  ushort intensity, bool isEnding)
+        public bool RemoveBusInfo(uint id)
         {
-            uint newBusStationID = Convert.ToUInt32(mRouteNodes.Count + 1);
+            uint busesCount = (uint)mBuses.Count;
 
-            //отладочная информация
-            Debug.Assert(newBusStationID > mRouteNodes.Count);
+            if (id >= busesCount)
+            {
+                return false;
+            }
 
-            mRouteNodes.Add(new CBusStationNode(newBusStationID, name, position, startNumOfPassengers, intensity, isEnding));
+            mBuses.RemoveAt((int)id);
+
+            //пересчет id автобусов, если был удален автобус из середины списка
+
+            if (id == busesCount - 1) //был удален последний элемент пересчет не требуется
+            {
+                return true;
+            }
+
+            uint idCounter = 0;
+
+            mBuses.ForEach(bus => { bus.ID = idCounter++; bus.Name = "bus" + bus.ID.ToString(); });
+
+            return true;
         }
-
-        public void UpdateBusStationData(uint id, string name, TPoint2 position, ushort startNumOfPassengers,
-                                         ushort intensity, bool isEnding)
+        
+        public bool InsertRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
         {
             if (id > mRouteNodes.Count)
             {
-                throw new ArgumentException("Incorrect value of an argument", "id");
-            }
+                //throw new ArgumentException("Incorrect value of an argument", "id");
 
-            CBusStationNode currBusStation = mRouteNodes[(int)id] as CBusStationNode;
-
-            if (currBusStation == null)
-            {
-                throw new InvalidCastException("Can't cast a base class instance to derived one");
-            }
-
-            currBusStation.Name = name;
-            currBusStation.Position = position;
-            currBusStation.CurrNumOfPassengers = startNumOfPassengers;
-            currBusStation.Intensity = intensity;
-            currBusStation.IsEndingStation = isEnding;
-        }
-
-        public void AddCrossRoad(string name, TPoint2 position, double loadCoefficient)
-        {
-            uint newCrossRoadID = Convert.ToUInt32(mRouteNodes.Count + 1);
-
-            //отладочная информация
-            Debug.Assert(newCrossRoadID > mRouteNodes.Count);
-
-            mRouteNodes.Add(new CCrossRoadNode(newCrossRoadID, name, position, loadCoefficient));
-        }
-
-        public void InsertRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
-        {
-            if (id > mRouteNodes.Count)
-            {
-                throw new ArgumentException("Incorrect value of an argument", "id");
+                return false;
             }
 
             mRouteNodes.Insert((int)id, newRouteNodeValue);
+
+            return true;
         }
 
-        public void UpdateRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
+        public bool UpdateRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
         {
-            //проверка аргументов делается вызывающим кодом
+            if (id > mRouteNodes.Count)
+            {
+                //throw new ArgumentException("Incorrect value of an argument", "id");
+
+                return false;
+            }
+            
             mRouteNodes[(int)id] = newRouteNodeValue;
+
+            return true;
         }
 
-        public void Clear()
+        public bool ClearRouteNodes()
         {
             List<CRouteNode> route = mRouteNodes;
 
             if (route == null || route.Count == 0)
             {
-                return;
+                return false;
             }
 
             route.Clear();
+
+            return true;
         }
 
+        public bool ClearBusesInfo()
+        {
+            List<CBus> buses = mBuses;
+
+            if (buses == null || buses.Count == 0)
+            {
+                return false;
+            }
+
+            buses.Clear();
+
+            return true;
+        }
         public CRouteNode GetRouteNodeByID(uint id)
         {
             if (id >= mRouteNodes.Count)
@@ -157,11 +177,105 @@ namespace SimulationOfBusRoute.Models
 
         public void LoadFromDataBase(SQLiteConnection dbConnection)
         {
-            throw new System.NotImplementedException();
+            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
+            {
+                //чтение таблицы routeNodes
+
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLRouteNodesTableName);
+
+                SQLiteDataReader reader = currCommand.ExecuteReader();
+                
+                string tmpStr;
+
+                uint tmpId = 0;
+                int tmpType;
+
+                foreach(System.Data.Common.DbDataRecord record in reader)
+                {
+                    tmpId = Convert.ToUInt32(record["id"]);
+                    tmpType = Convert.ToInt32(record["type"]);
+                    tmpStr = (string)record["name"];
+
+                    switch (tmpType)
+                    {
+                        case 0: /*RNT_BUS_STATION*/
+                            mRouteNodes.Add(new CBusStationNode(tmpId, tmpStr));
+                            break;
+                        case 1: /*RNT_ENDING_BUS_STATION*/
+                            mRouteNodes.Add(new CBusStationNode(tmpId, tmpStr, true));
+                            break;
+                        case 2: /*RNT_CROSSROAD*/
+                            mRouteNodes.Add(new CCrossRoadNode(tmpId, tmpStr));
+                            break;
+                    }
+
+                    mRouteNodes[mRouteNodes.Count - 1].Position = TPoint2.TryParse((string)record["position"]);
+                }
+
+                reader.Close();
+
+                //чтение данных об остановках
+
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLBusStationNodesTableName);
+                reader = currCommand.ExecuteReader();
+
+                CBusStationNode tmpBusStationNode = null;
+
+                foreach (System.Data.Common.DbDataRecord record in reader)
+                {
+                    tmpId = Convert.ToUInt32(record["id"]);
+
+                    tmpBusStationNode = mRouteNodes[(int)tmpId] as CBusStationNode;
+
+                    //дописать остальные параметры
+                    tmpBusStationNode.Intensity = Convert.ToDouble(reader["intensity"]);
+                    tmpBusStationNode.VelocityOfSpan = Convert.ToDouble(reader["velocityOfSpan"]);
+                }
+
+                reader.Close();
+
+                //чтение данных о перекрестках
+
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLCrossroadNodesTableName);
+                reader = currCommand.ExecuteReader();
+
+                foreach(System.Data.Common.DbDataRecord record in reader)
+                {
+                    tmpId = Convert.ToUInt32(record["id"]);
+
+                    (mRouteNodes[(int)tmpId] as CCrossRoadNode).LoadCoefficient = Convert.ToDouble(reader["loadCoefficient"]);
+                }
+
+                reader.Close();
+
+                //чтение данных об автобусах
+
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLBusesTableName);
+
+                reader = currCommand.ExecuteReader();
+
+                foreach (System.Data.Common.DbDataRecord record in reader)
+                {
+                    tmpId = Convert.ToUInt32(record["id"]);
+
+                    mBuses.Add(new CBus(tmpId, Convert.ToUInt16(reader["maxNumOfPassengers"]), 
+                                        Convert.ToUInt32(reader["startTime"]),
+                                        Convert.ToUInt32(reader["alightingTimePerPassenger"]),
+                                        Convert.ToUInt32(reader["boardingTimePerPassenger"])));
+                }
+
+                reader.Close();
+            }
         }
 
         public void SaveIntoDataBase(SQLiteConnection dbConnection)
         {
+            //пересчет ID для остановок (так как порядок мог быть нарушен из-за удаления/добавления элементов)
+
+            uint currIDCounter = 0;
+
+            mRouteNodes.ForEach(routeNode => { if (routeNode != null) routeNode.ID = currIDCounter++; });
+
             //Сохранение данных о маршруте
 
             //пересоздание таблицы, так как в БД хранится информация только о текущем маршруте
@@ -267,11 +381,27 @@ namespace SimulationOfBusRoute.Models
             }
         }
 
+        public List<CRouteNode> BusStationNodes
+        {
+            get
+            {
+                return mRouteNodes.FindAll(t => t.NodeType != E_ROUTE_NODE_TYPE.RNT_CROSSROAD);
+            }
+        }
+
         public int NumOfNodes
         {
             get
             {
                 return mRouteNodes.Count;
+            }
+        }
+
+        public int NumOfBusStations
+        {
+            get
+            {
+                return mRouteNodes.FindAll(t => t.NodeType != E_ROUTE_NODE_TYPE.RNT_CROSSROAD).Count;
             }
         }
 
