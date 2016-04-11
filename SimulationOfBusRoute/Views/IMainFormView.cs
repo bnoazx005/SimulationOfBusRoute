@@ -47,6 +47,8 @@ namespace SimulationOfBusRoute.Views
 
         bool IsFastSaveAvailable { get; set; }
 
+        string StatusMessage { get; set; }
+
         event EventHandler OnFormInit;
 
         event EventHandler OnFormIsClosing;
@@ -69,9 +71,15 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnRemoveRouteNode;
 
+        event EventHandler OnMoveNode;
+
+        event EventHandler OnSelectNode;
+
         event EventHandler OnOpenBusEditor;
 
         event EventHandler OnShowStatistics;
+
+        event EventHandler OnOpenSimulationSettings;
 
         #endregion
 

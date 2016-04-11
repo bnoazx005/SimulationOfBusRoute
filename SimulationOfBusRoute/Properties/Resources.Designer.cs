@@ -111,6 +111,35 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Добавление.
+        /// </summary>
+        internal static string mAddMode {
+            get {
+                return ResourceManager.GetString("mAddMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mAddNodeButton {
+            get {
+                object obj = ResourceManager.GetObject("mAddNodeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mAddNodeButtonActive {
+            get {
+                object obj = ResourceManager.GetObject("mAddNodeButtonActive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mAddRouteNodeButton {
@@ -149,6 +178,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ошибка!.
+        /// </summary>
+        internal static string mErrorMessageTitle {
+            get {
+                return ResourceManager.GetString("mErrorMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mLoadRouteButton {
@@ -159,12 +197,40 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Перемещение.
+        /// </summary>
+        internal static string mMoveMode {
+            get {
+                return ResourceManager.GetString("mMoveMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mMoveNodeButton {
             get {
                 object obj = ResourceManager.GetObject("mMoveNodeButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mMoveNodeButtonActive {
+            get {
+                object obj = ResourceManager.GetObject("mMoveNodeButtonActive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to moveNodeButton.
+        /// </summary>
+        internal static string mMoveNodeButtonName {
+            get {
+                return ResourceManager.GetString("mMoveNodeButtonName", resourceCulture);
             }
         }
         
@@ -184,6 +250,35 @@ namespace SimulationOfBusRoute.Properties {
         internal static System.Drawing.Bitmap mQuitButton {
             get {
                 object obj = ResourceManager.GetObject("mQuitButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удаление.
+        /// </summary>
+        internal static string mRemoveMode {
+            get {
+                return ResourceManager.GetString("mRemoveMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mRemoveNodeButton {
+            get {
+                object obj = ResourceManager.GetObject("mRemoveNodeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mRemoveNodeButtonActive {
+            get {
+                object obj = ResourceManager.GetObject("mRemoveNodeButtonActive", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -224,6 +319,63 @@ namespace SimulationOfBusRoute.Properties {
             get {
                 object obj = ResourceManager.GetObject("mSaveRouteButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбор.
+        /// </summary>
+        internal static string mSelectionMode {
+            get {
+                return ResourceManager.GetString("mSelectionMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mSelectNodeButton {
+            get {
+                object obj = ResourceManager.GetObject("mSelectNodeButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mSelectNodeButtonActive {
+            get {
+                object obj = ResourceManager.GetObject("mSelectNodeButtonActive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to selectNodeButton.
+        /// </summary>
+        internal static string mSelectNodeButtonName {
+            get {
+                return ResourceManager.GetString("mSelectNodeButtonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mSettingsButton {
+            get {
+                object obj = ResourceManager.GetObject("mSettingsButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Задан неверный временной интервал.
+        /// </summary>
+        internal static string mSettingsIncorrectTimeIntervalErrorMessage {
+            get {
+                return ResourceManager.GetString("mSettingsIncorrectTimeIntervalErrorMessage", resourceCulture);
             }
         }
         
@@ -370,6 +522,15 @@ namespace SimulationOfBusRoute.Properties {
             get {
                 object obj = ResourceManager.GetObject("mStatisticsViewerButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текущий режим: {0}.
+        /// </summary>
+        internal static string mStatusLabelMessage {
+            get {
+                return ResourceManager.GetString("mStatusLabelMessage", resourceCulture);
             }
         }
         

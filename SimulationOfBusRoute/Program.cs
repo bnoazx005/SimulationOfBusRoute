@@ -17,6 +17,7 @@ namespace SimulationOfBusRoute
         static void Main()
         {
             Application.EnableVisualStyles();
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.SetCompatibleTextRenderingDefault(false);
 
             CMainModel model = new CMainModel();

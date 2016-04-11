@@ -44,7 +44,10 @@ namespace SimulationOfBusRoute.Views
             quitButton.Click                += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };
             addRouteNodeButton.Click        += (sender, e) => { if (OnAddRouteNode != null) { OnAddRouteNode(this, EventArgs.Empty); } };
             removeRouteNodeButton.Click     += (sender, e) => { if (OnRemoveRouteNode != null) { OnRemoveRouteNode(this, EventArgs.Empty); } };
+            selectNodeButton.Click          += (sender, e) => { if (OnSelectNode != null) { OnSelectNode(this, EventArgs.Empty); } };
+            moveNodeButton.Click            += (sender, e) => { if (OnMoveNode != null) { OnMoveNode(this, EventArgs.Empty); } };
             busEditorButton.Click           += (sender, e) => { if (OnOpenBusEditor != null) { OnOpenBusEditor(this, EventArgs.Empty); } };
+            simulationSettingsButton.Click  += (sender, e) => { if (OnOpenSimulationSettings != null) { OnOpenSimulationSettings(this, EventArgs.Empty); } };
             statisticsButton.Click          += (sender, e) => { if (OnShowStatistics != null) { OnShowStatistics(this, EventArgs.Empty); } };
             startSimulationButton.Click     += (sender, e) => { if (OnRunSimulation != null) { OnRunSimulation(this, EventArgs.Empty); } };
             pauseSimulationButton.Click     += (sender, e) => { if (OnPauseSimulation != null) { OnPauseSimulation(this, EventArgs.Empty); } };
@@ -52,6 +55,7 @@ namespace SimulationOfBusRoute.Views
             //resetSimulationButton.Click += (sender, e) => { if (On != null) { OnLoadData(this, EventArgs.Empty); } };
             clearMapButtonAlt.Click         += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, EventArgs.Empty); } };
             submitChangesButton.Click       += (sender, e) => { if (OnSubmitProperties != null) { OnSubmitProperties(this, EventArgs.Empty); } };
+            abortChangesButton.Click        += (sender, e) => { if (OnAbortPropertiesChanges != null) { OnAbortPropertiesChanges(this, EventArgs.Empty); } };
             abortChangesButton.Click        += (sender, e) => { if (OnAbortPropertiesChanges != null) { OnAbortPropertiesChanges(this, EventArgs.Empty); } };
 
             //map events
@@ -90,6 +94,9 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnSaveData;
         public event EventHandler OnShowStatistics;
         public event EventHandler OnStopSimulation;
+        public event EventHandler OnMoveNode;
+        public event EventHandler OnSelectNode;
+        public event EventHandler OnOpenSimulationSettings;
 
         public void Display()
         {
@@ -263,12 +270,12 @@ namespace SimulationOfBusRoute.Views
         {
             get
             {
-                return statusInfo1.Text;
+                return statusLabel.Text;
             }
 
             set
             {
-                statusInfo1.Text = value;
+                statusLabel.Text = value;
             }
         }
         
@@ -347,6 +354,19 @@ namespace SimulationOfBusRoute.Views
             set
             {
                 saveDataMenuItem.Enabled = value;
+            }
+        }
+
+        public string StatusMessage
+        {
+            get
+            {
+                return statusLabel.Text;
+            }
+
+            set
+            {
+                statusLabel.Text = value;
             }
         }
 

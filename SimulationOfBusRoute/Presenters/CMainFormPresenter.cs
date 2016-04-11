@@ -19,6 +19,24 @@ using System.Diagnostics;       //TEMP USING SHOULD BE DELETED
 
 namespace SimulationOfBusRoute.Presenters
 {
+    public enum E_CURRENT_STATE
+    {
+        CS_EDITOR_ADD_NODE,
+        CS_EDITOR_REMOVE_NODE,
+        CS_EDITOR_UPDATE_NODE,
+
+        CS_EDITOR_ADDITION_MODE,
+        CS_EDITOR_REMOVE_MODE,
+        CS_EDITOR_SELECTION_MODE,
+        CS_EDITOR_MOVE_MODE,
+
+        CS_SIMULATION_IS_RUNNING,
+        CS_SIMULATION_IS_PAUSED,
+        CS_SIMULATION_IS_STOPPED,
+
+        CS_DEFAULT
+    }
+
     public class CMainFormPresenter : IBasePresenter
     {
         private CMainModel mModel;
@@ -38,7 +56,11 @@ namespace SimulationOfBusRoute.Presenters
 
         private CBusEditorPresenter mBusEditorPresenter;
 
+        private CSimulationSettingsPresenter mSimulationSettingsPresenter;
+
         private List<Action> mSubscribersList;
+
+        private E_CURRENT_STATE mCurrState;
 
         public CMainFormPresenter(CMainModel model, IMainFormView view)
         {
@@ -54,6 +76,10 @@ namespace SimulationOfBusRoute.Presenters
 
             mBusEditorPresenter = new CBusEditorPresenter(mModel, new BusEditor());
 
+            mSimulationSettingsPresenter = new CSimulationSettingsPresenter(mModel, new SimulationSettingsWindow());
+            
+            mCurrState = E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE;
+
             mView.OnFormIsClosing += _onQuit;
             mView.OnFormInit += _onFormInit;
 
@@ -63,10 +89,13 @@ namespace SimulationOfBusRoute.Presenters
             //toolbox events
             mView.OnAddRouteNode += _onAddRouteNode;
             mView.OnRemoveRouteNode += _onRemoveRouteNode;
+            mView.OnSelectNode += _onSelectNode;
+            mView.OnMoveNode += _onMoveNode;
             mView.OnOpenBusEditor += _onLaunchBusEditor;
             mView.OnShowStatistics += _onShowStatisticsWindow;
             mView.OnRunSimulation += _onRunSimulation;
             mView.OnPauseSimulation += _onPauseSimulation;
+            mView.OnOpenSimulationSettings += _onOpenSimulationSettings;
 
             //map events
             mView.OnMapZoomChanged += _onZoomMapChanged;
@@ -87,6 +116,8 @@ namespace SimulationOfBusRoute.Presenters
 
             //привязка к событию изменения модели
             mModel.OnModelChanged += _onModelChanged;
+            
+            Application.ThreadException += _onExceptionWasCaught;
         }
 
         #region Methods
@@ -115,6 +146,8 @@ namespace SimulationOfBusRoute.Presenters
 
             _onClearMap(null, EventArgs.Empty);
             _updateViewWithModel(ref mView, ref mModel);
+
+            _updateViewWithState(ref mView, mCurrState, mCurrState);
             
             //выбирать то окно нода какого типа активна в данный момент
             _activatePropertiesEditor((E_ROUTE_NODE_TYPE)routeNodeType.SelectedValue);
@@ -198,15 +231,10 @@ namespace SimulationOfBusRoute.Presenters
         private void _onAddRouteNode(object sender, EventArgs e)
         {
             IMainFormView view = mView;
-            CMainModel model = mModel;
 
-            Button addRouteNodeButton = view.ButtonsList[Properties.Resources.mAddRouteNodeButtonName];
-            
-            if (model.CurrState != E_CURRENT_STATE.CS_EDITOR_ADD_NODE)
+            if (mCurrState != E_CURRENT_STATE.CS_EDITOR_ADDITION_MODE)
             {
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_ADD_NODE;
-
-                addRouteNodeButton.BackgroundImage = Properties.Resources.mAddRouteNodeButtonActive;
+                _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_ADDITION_MODE);
 
                 view.IsPropertyActive = true;
 
@@ -215,30 +243,43 @@ namespace SimulationOfBusRoute.Presenters
                 return;
             }
 
-            model.CurrState = E_CURRENT_STATE.CS_DEFAULT;
-
-            addRouteNodeButton.BackgroundImage = Properties.Resources.mAddRouteNodeButton;
+            _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE);
         }
 
         private void _onRemoveRouteNode(object sender, EventArgs e)
         {
-            IMainFormView view = mView;
-            CMainModel model = mModel;
-
-            Button removeRouteNodeButton = view.ButtonsList[Properties.Resources.mRemoveRouteNodeButtonName];
-
-            if (model.CurrState != E_CURRENT_STATE.CS_EDITOR_REMOVE_NODE)
+            if (mCurrState != E_CURRENT_STATE.CS_EDITOR_REMOVE_MODE)
             {
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_REMOVE_NODE;
-
-                removeRouteNodeButton.BackgroundImage = Properties.Resources.mRemoveRouteNodeButtonActive;
+                _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_REMOVE_MODE);
 
                 return;
             }
 
-            model.CurrState = E_CURRENT_STATE.CS_DEFAULT;
+            _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE);
+        }
 
-            removeRouteNodeButton.BackgroundImage = Properties.Resources.mRemoveRouteNodeButton;
+        private void _onSelectNode(object sender, EventArgs e)
+        {
+            if (mCurrState != E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE)
+            {
+                _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE);
+
+                return;
+            }
+
+            _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE);
+        }
+
+        private void _onMoveNode(object sender, EventArgs e)
+        {
+            if (mCurrState != E_CURRENT_STATE.CS_EDITOR_MOVE_MODE)
+            {
+                _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_MOVE_MODE);
+
+                return;
+            }
+
+            _updateState(mCurrState, E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE);
         }
 
         private void _onClearMap(object sender, EventArgs e)
@@ -262,8 +303,8 @@ namespace SimulationOfBusRoute.Presenters
 
             //Обновление модели
             model.ClearRoute();
-
-            model.CurrState = E_CURRENT_STATE.CS_DEFAULT;
+            
+            mCurrState = E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE;
         }
 
         private void _onZoomMapChanged(object sender, EventArgs e)
@@ -296,13 +337,11 @@ namespace SimulationOfBusRoute.Presenters
             int currMarkerIndex = view.CurrMarkerIndex;
 
             E_ROUTE_NODE_TYPE routeNodeType = (E_ROUTE_NODE_TYPE)view.RouteNodeTypeProperty.SelectedValue;
-
-            Button currActiveButton = null;
-
+            
             CRouteNode currNode = null;
 
             //добавление маркера на карту
-            if ((e.Button == MouseButtons.Left) && (model.CurrState == E_CURRENT_STATE.CS_EDITOR_ADD_NODE))
+            if ((e.Button == MouseButtons.Left) && (mCurrState == E_CURRENT_STATE.CS_EDITOR_ADDITION_MODE))
             {
                 currCoordinates = map.FromLocalToLatLng(e.X, e.Y);
                 
@@ -345,7 +384,7 @@ namespace SimulationOfBusRoute.Presenters
                 newItemStr.AppendFormat("{0} : ({1:F3};{2:F3})", view.NodeNameProperty, currCoordinates.Lat, currCoordinates.Lng);
                 view.NodesList.Items.Insert(currMarkerIndex + 1, newItemStr.ToString());
 
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
+                //mCurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
                 view.CurrMarkerIndex = (currMarkerIndex + 1);
 
                 view.CurrNodeName = "-";
@@ -353,19 +392,20 @@ namespace SimulationOfBusRoute.Presenters
                 view.RouteNodeTypeProperty.SelectedIndex = (int)E_ROUTE_NODE_TYPE.RNT_BUS_STATION;                
                 view.BusStationNumOfPassengersProperty = 0;
                 view.BusStationIntensityProperty = 0;
-                view.CrossroadLoadProperty = 0.0;
-
-                // обновление представления соответствующей кнопки
-                currActiveButton = view.ButtonsList[Properties.Resources.mAddRouteNodeButtonName];
-                currActiveButton.BackgroundImage = Properties.Resources.mAddRouteNodeButton;
+                view.CrossroadLoadProperty = 0.0;                
             }
             
             //ДОБАВИТЬ ОБНОВЛЕНИЕ МОДЕЛИ ПРИ ПЕРЕМЕЩЕНИИ МАРКЕРА И ОБНОВЛЕНИЕ ПОЛИГОНА МАРШРУТА
-            if ((e.Button == MouseButtons.Left) && (model.CurrState == E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE))
+            if ((e.Button == MouseButtons.Left) && (mCurrState == E_CURRENT_STATE.CS_EDITOR_MOVE_MODE))
             {
                 currCoordinates = map.FromLocalToLatLng(e.X, e.Y);
 
                 busStationMarker = _getCurrMarker() as GMarkerGoogle;
+
+                if (busStationMarker == null)
+                {
+                    return;
+                }
 
                 busStationMarker.Position = currCoordinates;
 
@@ -388,16 +428,13 @@ namespace SimulationOfBusRoute.Presenters
             GMapOverlay routeNodesOverlay = view.Map.Overlays[1];
 
             int currMarkerIndex = -1;
-
-            Button currActiveButton = null;
-
-            if (model.CurrState == E_CURRENT_STATE.CS_DEFAULT)
+            
+            if (mCurrState == E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE)
             {
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
                 view.CurrMarkerIndex = routeNodesOverlay.Markers.IndexOf(item);
             }
 
-            if (e.Button == MouseButtons.Left && model.CurrState == E_CURRENT_STATE.CS_EDITOR_REMOVE_NODE)
+            if (e.Button == MouseButtons.Left && mCurrState == E_CURRENT_STATE.CS_EDITOR_REMOVE_MODE)
             {
                 currMarkerIndex = routeNodesOverlay.Markers.IndexOf(item);
                 routeNodesOverlay.Markers.RemoveAt(currMarkerIndex);
@@ -405,17 +442,13 @@ namespace SimulationOfBusRoute.Presenters
                 //Добавить удаление сведений из модели (обновление модели)
                 model.RemoveRouteNode((uint)currMarkerIndex);
 
-                model.CurrState = E_CURRENT_STATE.CS_DEFAULT;
+                //mCurrState = E_CURRENT_STATE.CS_DEFAULT;
                 
                 //обновление представления
                 view.NodesList.Items.RemoveAt(currMarkerIndex);
                 view.CurrMarkerIndex = -1;
 
-                _updateRouteLines(view.Map, routeNodesOverlay.Markers);
-                
-                // обновление представления соответствующей кнопки
-                currActiveButton = view.ButtonsList[Properties.Resources.mRemoveRouteNodeButtonName];
-                currActiveButton.BackgroundImage = Properties.Resources.mRemoveRouteNodeButton;
+                _updateRouteLines(view.Map, routeNodesOverlay.Markers);                
             }
         }
 
@@ -769,6 +802,18 @@ namespace SimulationOfBusRoute.Presenters
             mBusEditorPresenter.Run();
         }
 
+        private void _onOpenSimulationSettings(object sender, EventArgs e)
+        {
+            if (mSimulationSettingsPresenter.IsRunning)
+            {
+                return;
+            }
+
+            mSimulationSettingsPresenter = new CSimulationSettingsPresenter(mModel, new SimulationSettingsWindow());
+
+            mSimulationSettingsPresenter.Run();
+        }
+
         private void _onShowStatisticsWindow(object sender, EventArgs e)
         {
             //StatisticsWindow statisticsWindow = new StatisticsWindow();
@@ -778,7 +823,7 @@ namespace SimulationOfBusRoute.Presenters
 
         private void _onRunSimulation(object sender, EventArgs e)
         {
-            mModel.CurrState = E_CURRENT_STATE.CS_SIMULATION_IS_RUNNING;
+            mCurrState = E_CURRENT_STATE.CS_SIMULATION_IS_RUNNING;
 
             uint time = 0;
 
@@ -808,7 +853,7 @@ namespace SimulationOfBusRoute.Presenters
             {
                 mIsSimulationPaused = !mIsSimulationPaused;
 
-                mModel.CurrState = E_CURRENT_STATE.CS_SIMULATION_IS_PAUSED;
+                mCurrState = E_CURRENT_STATE.CS_SIMULATION_IS_PAUSED;
             }
            // mSimulationJob.Pa
         }
@@ -867,7 +912,7 @@ namespace SimulationOfBusRoute.Presenters
                 newItemInList = string.Format("{0} : ({1:F3};{2:F3})", routeNode.Name, currCoordinates.Lat, currCoordinates.Lng);
                 view.NodesList.Items.Insert(id, newItemInList);
 
-                model.CurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
+                mCurrState = E_CURRENT_STATE.CS_EDITOR_UPDATE_NODE;
                 view.CurrMarkerIndex = (id);
             }
 
@@ -879,6 +924,61 @@ namespace SimulationOfBusRoute.Presenters
 
         //}
 
+        private void _updateState(E_CURRENT_STATE prevState, E_CURRENT_STATE newState)
+        {
+            if (prevState == newState)
+            {
+                return;
+            }
+
+            mCurrState = newState;
+
+            _updateViewWithState(ref mView, prevState, newState);
+        }
+
+        private void _updateViewWithState(ref IMainFormView view, E_CURRENT_STATE prevState, E_CURRENT_STATE newState)
+        {
+            Dictionary<string, Button> buttons = view.ButtonsList;
+
+            switch (prevState)
+            {
+                case E_CURRENT_STATE.CS_EDITOR_ADDITION_MODE:
+                    buttons[Properties.Resources.mAddRouteNodeButtonName].BackgroundImage = Properties.Resources.mAddNodeButton;
+                    break;
+                case E_CURRENT_STATE.CS_EDITOR_REMOVE_MODE:
+                    buttons[Properties.Resources.mRemoveRouteNodeButtonName].BackgroundImage = Properties.Resources.mRemoveNodeButton;
+                    break;
+                case E_CURRENT_STATE.CS_EDITOR_MOVE_MODE:
+                    buttons[Properties.Resources.mMoveNodeButtonName].BackgroundImage = Properties.Resources.mMoveNodeButton;
+                    break;
+                case E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE:
+                case E_CURRENT_STATE.CS_DEFAULT:
+                    buttons[Properties.Resources.mSelectNodeButtonName].BackgroundImage = Properties.Resources.mSelectNodeButton;
+                    break;
+            }
+
+            switch (newState)
+            {
+                case E_CURRENT_STATE.CS_EDITOR_ADDITION_MODE:
+                    buttons[Properties.Resources.mAddRouteNodeButtonName].BackgroundImage = Properties.Resources.mAddNodeButtonActive;
+                    mView.StatusMessage = string.Format(Properties.Resources.mStatusLabelMessage, Properties.Resources.mAddMode);
+                    break;
+                case E_CURRENT_STATE.CS_EDITOR_REMOVE_MODE:
+                    buttons[Properties.Resources.mRemoveRouteNodeButtonName].BackgroundImage = Properties.Resources.mRemoveNodeButtonActive;
+                    mView.StatusMessage = string.Format(Properties.Resources.mStatusLabelMessage, Properties.Resources.mRemoveMode);
+                    break;
+                case E_CURRENT_STATE.CS_EDITOR_MOVE_MODE:
+                     buttons[Properties.Resources.mMoveNodeButtonName].BackgroundImage = Properties.Resources.mMoveNodeButtonActive;
+                    mView.StatusMessage = string.Format(Properties.Resources.mStatusLabelMessage, Properties.Resources.mMoveMode);
+                    break;
+                case E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE:
+                case E_CURRENT_STATE.CS_DEFAULT:
+                    buttons[Properties.Resources.mSelectNodeButtonName].BackgroundImage = Properties.Resources.mSelectNodeButtonActive;
+                    mView.StatusMessage = string.Format(Properties.Resources.mStatusLabelMessage, Properties.Resources.mSelectionMode);
+                    break;
+            }
+        }
+
         private void _onModelChanged()
         {
             Debug.WriteLine("A state of the model was changed");
@@ -887,6 +987,11 @@ namespace SimulationOfBusRoute.Presenters
             {
                 subscribersAction();
             }
+        }
+
+        private void _onExceptionWasCaught(object sender, ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message, Properties.Resources.mErrorMessageTitle);
         }
 
         #endregion

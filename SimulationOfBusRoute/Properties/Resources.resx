@@ -238,4 +238,55 @@
   <data name="mStopSimulationButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop_simulation_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mMoveNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\move_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mMoveNodeButtonName" xml:space="preserve">
+    <value>moveNodeButton</value>
+  </data>
+  <data name="mSelectNodeButtonName" xml:space="preserve">
+    <value>selectNodeButton</value>
+  </data>
+  <data name="mSelectNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\select_node_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSelectNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\select_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mAddMode" xml:space="preserve">
+    <value>Добавление</value>
+  </data>
+  <data name="mAddNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_node_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mAddNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mMoveMode" xml:space="preserve">
+    <value>Перемещение</value>
+  </data>
+  <data name="mRemoveMode" xml:space="preserve">
+    <value>Удаление</value>
+  </data>
+  <data name="mRemoveNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove_node_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mRemoveNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSelectionMode" xml:space="preserve">
+    <value>Выбор</value>
+  </data>
+  <data name="mSettingsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mStatusLabelMessage" xml:space="preserve">
+    <value>Текущий режим: {0}</value>
+  </data>
+  <data name="mErrorMessageTitle" xml:space="preserve">
+    <value>Ошибка!</value>
+  </data>
+  <data name="mSettingsIncorrectTimeIntervalErrorMessage" xml:space="preserve">
+    <value>Задан неверный временной интервал</value>
+  </data>
 </root>

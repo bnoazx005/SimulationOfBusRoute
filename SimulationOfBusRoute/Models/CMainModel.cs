@@ -6,23 +6,23 @@ using System.Data.SQLite;
 
 namespace SimulationOfBusRoute.Models
 {
-    public enum E_CURRENT_STATE
-    {
-        CS_EDITOR_ADD_NODE,
-        CS_EDITOR_REMOVE_NODE,
-        CS_EDITOR_UPDATE_NODE,
+    //public enum E_CURRENT_STATE
+    //{
+    //    CS_EDITOR_ADD_NODE,
+    //    CS_EDITOR_REMOVE_NODE,
+    //    CS_EDITOR_UPDATE_NODE,
 
-        CS_EDITOR_ADDITION_MODE,
-        CS_EDITOR_REMOVE_MODE,
-        CS_EDITOR_SELECTION_MODE,
-        CS_EDITOR_MOVE_MODE,
+    //    CS_EDITOR_ADDITION_MODE,
+    //    CS_EDITOR_REMOVE_MODE,
+    //    CS_EDITOR_SELECTION_MODE,
+    //    CS_EDITOR_MOVE_MODE,
 
-        CS_SIMULATION_IS_RUNNING,
-        CS_SIMULATION_IS_PAUSED,
-        CS_SIMULATION_IS_STOPPED,
+    //    CS_SIMULATION_IS_RUNNING,
+    //    CS_SIMULATION_IS_PAUSED,
+    //    CS_SIMULATION_IS_STOPPED,
 
-        CS_DEFAULT
-    }
+    //    CS_DEFAULT
+    //}
 
 
     public class CMainModel : IBaseModel
@@ -31,7 +31,7 @@ namespace SimulationOfBusRoute.Models
 
         private string mName;
         
-        private E_CURRENT_STATE mCurrState;
+        //private E_CURRENT_STATE mCurrState;
 
         private CBusRoute mCurrBusRoute;
 
@@ -42,6 +42,14 @@ namespace SimulationOfBusRoute.Models
         public event Action OnModelChanged;
 
         private object mThreadSyncObject;
+
+        private uint mNumOfSimulationSteps;
+
+        private uint mSpeedOfSimulation;
+
+        private TimeSpan mStartTimeOfSimulation;
+
+        private TimeSpan mFinishTimeOfSimulation;
 
         #region Contructors
         
@@ -54,7 +62,7 @@ namespace SimulationOfBusRoute.Models
 
             mThreadSyncObject = new object();
 
-            mCurrState = E_CURRENT_STATE.CS_DEFAULT;
+            //mCurrState = E_CURRENT_STATE.CS_DEFAULT;
         }
 
         #endregion
@@ -256,18 +264,18 @@ namespace SimulationOfBusRoute.Models
             }
         }
         
-        public E_CURRENT_STATE CurrState
-        {
-            get
-            {
-                return mCurrState;
-            }
+        //public E_CURRENT_STATE CurrState
+        //{
+        //    get
+        //    {
+        //        return mCurrState;
+        //    }
 
-            set
-            {
-                mCurrState = value;
-            }
-        }
+        //    set
+        //    {
+        //        mCurrState = value;
+        //    }
+        //}
 
         public CBusRoute CurrBusRoute
         {
@@ -321,6 +329,58 @@ namespace SimulationOfBusRoute.Models
             set
             {
                 mThreadSyncObject = value;
+            }
+        }
+
+        public uint NumOfSimulationSteps
+        {
+            get
+            {
+                return mNumOfSimulationSteps;
+            }
+
+            set
+            {
+                mNumOfSimulationSteps = value;
+            }
+        }
+
+        public uint SpeedOfSimulation
+        {
+            get
+            {
+                return mSpeedOfSimulation;
+            }
+
+            set
+            {
+                mSpeedOfSimulation = value;
+            }
+        }
+
+        public TimeSpan StartTimeOfSimulation
+        {
+            get
+            {
+                return mStartTimeOfSimulation;
+            }
+
+            set
+            {
+                mStartTimeOfSimulation = value;
+            }
+        }
+
+        public TimeSpan FinishTimeOfSimulation
+        {
+            get
+            {
+                return mFinishTimeOfSimulation;
+            }
+
+            set
+            {
+                mFinishTimeOfSimulation = value;
             }
         }
 
