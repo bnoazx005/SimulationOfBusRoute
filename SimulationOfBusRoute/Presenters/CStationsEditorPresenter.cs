@@ -59,6 +59,7 @@ namespace SimulationOfBusRoute.Presenters
                 return;
             }
 
+            //_highlightSyntax();
             new Task(_highlightSyntax).Start();
         }
 
@@ -84,11 +85,11 @@ namespace SimulationOfBusRoute.Presenters
                 textEditor.Invoke((MethodInvoker)(() =>
                 {
                     selectionStart = textEditor.SelectionStart;
-
                     textEditor.SelectAll();
 
                     textEditor.SelectionColor = Color.Black;
                     textEditor.SelectionStart = selectionStart;
+                    textEditor.SelectionLength = 0;
                 }));
 
                 foreach (Match currMatch in matches)
@@ -103,6 +104,7 @@ namespace SimulationOfBusRoute.Presenters
                         textEditor.SelectionColor = Color.Blue;
 
                         textEditor.SelectionStart = selectionStart;
+                        textEditor.SelectionLength = 0;
                         textEditor.SelectionColor = Color.Black;
                     }));
                 }

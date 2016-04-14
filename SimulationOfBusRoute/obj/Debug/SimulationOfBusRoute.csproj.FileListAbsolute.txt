@@ -25,6 +25,8 @@ C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\BusEditableItem.dll
 C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\BusEditableItem.pdb
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.ProgressDialog.resources
-C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.SimulationSettingsWindow.resources
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.StationsEditor.resources
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\MDLParser.dll
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\MDLParser.pdb
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache

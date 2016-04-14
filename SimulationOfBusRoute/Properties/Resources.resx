@@ -275,7 +275,7 @@
     <value>speedOfSimulation</value>
   </data>
   <data name="mDataEditorHighlightingGroup1" xml:space="preserve">
-    <value>case|default|decl</value>
+    <value>case|default|decl|in</value>
   </data>
   <data name="mDataEditorHighlightingGroup2" xml:space="preserve">
     <value />

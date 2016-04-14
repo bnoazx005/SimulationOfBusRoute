@@ -148,7 +148,7 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to case|default|decl.
+        ///   Looks up a localized string similar to case|default|decl|in.
         /// </summary>
         internal static string mDataEditorHighlightingGroup1 {
             get {
