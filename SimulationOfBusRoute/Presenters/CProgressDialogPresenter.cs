@@ -6,26 +6,15 @@ using System.Windows.Forms;
 
 namespace SimulationOfBusRoute.Presenters
 {
-    class CProgressDialogPresenter : IBasePresenter
+    class CProgressDialogPresenter : CBasePresenter<CMainModel, IProgressDialogView>
     {
-        private IProgressDialogView mView;
-
-        private CMainModel mModel;
-
-        private bool mIsRunning;
-
         private Action mCurrTask;
 
         private Task mJob;
 
-        public CProgressDialogPresenter(IProgressDialogView view, CMainModel model)
+        public CProgressDialogPresenter(IProgressDialogView view, CMainModel model):
+            base(model, view)
         {
-            mView = view;
-
-            mModel = model;
-
-            mIsRunning = false;
-
             mJob = new Task(() =>
             {
                 while (true)
@@ -44,7 +33,7 @@ namespace SimulationOfBusRoute.Presenters
 
         #region Methods
 
-        public void Run()
+        public override void Run()
         {
             mIsRunning = true;
 
@@ -56,14 +45,6 @@ namespace SimulationOfBusRoute.Presenters
         #endregion        
 
         #region Properties
-
-        public bool IsRunning
-        {
-            get
-            {
-                return mIsRunning;
-            }
-        }
 
         public Action CurrTask
         {

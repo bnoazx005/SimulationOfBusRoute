@@ -1,15 +1,41 @@
-﻿using SimulationOfBusRoute.Models;
+﻿using System;
+using SimulationOfBusRoute.Models;
 using SimulationOfBusRoute.Views;
 
 
 namespace SimulationOfBusRoute.Presenters
 {
-    //public abstract class CBasePresenter : IBasePresenter
-    //{
-    //    public abstract void Run();
+    public class CBasePresenter <M, V> : IBasePresenter 
+                            where M : class, IBaseModel
+                            where V : class, IBaseView
+    {
+        protected bool mIsRunning;
 
-    //    protected abstract void _updateModelWithView(ref IBaseModel model, ref IBaseView view);
+        protected M mModel;
 
-    //    protected abstract void _updateViewWithModel(ref IBaseView view, ref IBaseModel model);
-    //}
+        protected V mView;
+
+        protected CBasePresenter(M model, V view)
+        {
+            mIsRunning = false;
+
+            mModel = model;
+            mView = view;
+        }
+
+        public virtual void Run()
+        {
+            mIsRunning = true;
+
+            mView.Display();
+        }
+
+        public virtual bool IsRunning
+        {
+            get
+            {
+                return mIsRunning;
+            }
+        }
+    }
 }

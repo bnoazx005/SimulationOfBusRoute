@@ -7,43 +7,20 @@ using System.Windows.Forms;
 
 namespace SimulationOfBusRoute.Presenters
 {
-    class CSimulationSettingsPresenter : IBasePresenter
+    class CSimulationSettingsPresenter : CBasePresenter<CMainModel, ISimulationSettingsView>
     {
-        private bool mIsRunning;
-
-        private CMainModel mModel;
-
-        private ISimulationSettingsView mView;
-
-        public CSimulationSettingsPresenter(CMainModel model, ISimulationSettingsView view)
+        public CSimulationSettingsPresenter(CMainModel model, ISimulationSettingsView view):
+            base(model, view)
         {
-            mView = view;
-            mModel = model;
+            mView.OnFormInit += _onFormInit;
+            mView.OnQuit += _onQuit;
 
             mView.OnAcceptChanges   += _onAcceptChanges;
-            mView.OnDeclineChanges  += _onQuit;
-            mView.OnFormInit        += _onFormInit;
+            mView.OnDeclineChanges  += _onCloseForm;
 
             mView.OnSpeedOfSimulationValueChanged += _onSpeedOfSimulationChanged;
         }
-
-        public void Run()
-        {
-            mIsRunning = true;
-
-            mView.Display();
-
-            mIsRunning = false;
-        }
         
-        public bool IsRunning
-        {
-            get
-            {
-                return mIsRunning;
-            }
-        }
-
         private void _onFormInit(object sender, EventArgs e)
         {
             ISimulationSettingsView view = mView;
@@ -91,14 +68,17 @@ namespace SimulationOfBusRoute.Presenters
             mModel.FinishTimeOfSimulation = view.TimeOfFinish;
 
             //выход
-            _onQuit(sender, e);
+            _onCloseForm(sender, e);
         }
 
-        private void _onQuit(object sender, EventArgs e)
+        private void _onQuit(object sender, FormClosingEventArgs e)
+        {
+            mIsRunning = false;
+        }
+
+        private void _onCloseForm(object sender, EventArgs e)
         {
             mView.Quit();
-
-            mIsRunning = false;
         }
 
         private void _onSpeedOfSimulationChanged(object sender, EventArgs e)

@@ -28,7 +28,7 @@ namespace SimulationOfBusRoute.Views
             //Привязывание событий к элементам интерфейса
 
             Load                            += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, EventArgs.Empty); } };
-            FormClosing                     += (sender, e) => { if (OnFormIsClosing != null) { OnFormIsClosing(this, e); } };
+            FormClosing                     += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };
             KeyDown                         += (sender, e) => { if (OnKeyPressed != null) { OnKeyPressed(this, e); } };
 
             //menu events
@@ -36,12 +36,12 @@ namespace SimulationOfBusRoute.Views
             saveDataMenuItem.Click          += (sender, e) => { if (OnSaveData != null) { OnSaveData(this, EventArgs.Empty); } };
             saveDataAsMenuItem.Click        += (sender, e) => { if (OnSaveData != null) { OnSaveData(this, EventArgs.Empty); } };
             clearRouteMenuItem.Click        += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, EventArgs.Empty); } };
-            quitMenuItem.Click              += (sender, e) => { if (OnQuit != null) { OnQuit(null, EventArgs.Empty); } };
+            quitMenuItem.Click              += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, EventArgs.Empty); } };
 
             //toolbox events
             loadDataButton.Click            += (sender, e) => { if (OnLoadData != null) { OnLoadData(this, EventArgs.Empty); } };
             saveDataButton.Click            += (sender, e) => { if (OnSaveData != null) { OnSaveData(this, EventArgs.Empty); } };
-            quitButton.Click                += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };
+            quitButton.Click                += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(this, EventArgs.Empty); } };
             addRouteNodeButton.Click        += (sender, e) => { if (OnAddRouteNode != null) { OnAddRouteNode(this, EventArgs.Empty); } };
             removeRouteNodeButton.Click     += (sender, e) => { if (OnRemoveRouteNode != null) { OnRemoveRouteNode(this, EventArgs.Empty); } };
             selectNodeButton.Click          += (sender, e) => { if (OnSelectNode != null) { OnSelectNode(this, EventArgs.Empty); } };
@@ -70,9 +70,7 @@ namespace SimulationOfBusRoute.Views
         }
 
         public event EventHandler OnFormInit;
-
-        public event EventHandler OnFormIsClosing;
-
+        
         public event EventHandler<MouseEventArgs> OnMapMouseClick;
         public event EventHandler<KeyEventArgs> OnKeyPressed;
         public event EventHandler OnAbout;
@@ -89,7 +87,8 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnAbortPropertiesChanges;
         public event EventHandler OnPropertiesChanged;
         public event EventHandler OnSubmitProperties;
-        public event EventHandler OnQuit;
+        public event FormClosingEventHandler OnQuit;
+        public event EventHandler OnCloseForm;
         public event EventHandler OnRemoveRouteNode;
         public event EventHandler OnRunSimulation;
         public event EventHandler OnSaveData;
@@ -107,7 +106,7 @@ namespace SimulationOfBusRoute.Views
 
         public void Quit()
         {
-            Application.Exit();
+            Close();
         }
         
         #region Properties

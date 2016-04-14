@@ -12,13 +12,14 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnFormInit;
 
-        event EventHandler<FormClosingEventArgs> OnQuit;
-        event EventHandler<FormClosedEventArgs> OnClose;
+        event FormClosingEventHandler OnQuit;
 
         event EventHandler OnAddMatrix;
 
         event EventHandler OnRemoveMatrix;
 
         event EventHandler OnTimerTick;
+
+        event EventHandler OnCloseForm;
     }
 }

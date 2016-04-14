@@ -37,12 +37,8 @@ namespace SimulationOfBusRoute.Presenters
         CS_DEFAULT
     }
 
-    public class CMainFormPresenter : IBasePresenter
+    public class CMainFormPresenter : CBasePresenter<CMainModel, IMainFormView>
     {
-        private CMainModel mModel;
-
-        private IMainFormView mView;
-
         //возможно стоит определить отдельный класс CSimulator или еще как-то
         //чтобы не торчало лишних методов снаружи
 
@@ -52,8 +48,6 @@ namespace SimulationOfBusRoute.Presenters
 
         private bool mIsSimulationPaused;
         
-        private bool mIsRunning;
-
         private CBusEditorPresenter mBusEditorPresenter;
 
         private CSimulationSettingsPresenter mSimulationSettingsPresenter;
@@ -64,15 +58,12 @@ namespace SimulationOfBusRoute.Presenters
 
         private E_CURRENT_STATE mCurrState;
 
-        public CMainFormPresenter(CMainModel model, IMainFormView view)
+        public CMainFormPresenter(CMainModel model, IMainFormView view):
+            base(model, view)
         {
-            mModel = model;
-            mView = view;
-
             mJobSyncObject = new object();
 
             mIsSimulationPaused = false;
-            mIsRunning = false;
 
             mSubscribersList = new List<Action>();
 
@@ -84,8 +75,8 @@ namespace SimulationOfBusRoute.Presenters
             
             mCurrState = E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE;
 
-            mView.OnFormIsClosing += _onQuit;
             mView.OnFormInit += _onFormInit;
+            mView.OnQuit += _onQuit;
 
             //keyboard events
             mView.OnKeyPressed += _onKeyPressed;
@@ -116,8 +107,8 @@ namespace SimulationOfBusRoute.Presenters
             //menu events
             mView.OnLoadData += _onLoadModelData;
             mView.OnSaveData += _onSaveModelData;
-            mView.OnQuit += _onQuit;
             mView.OnClearMap += _onClearMap;
+            mView.OnCloseForm += _onCloseForm;
 
             //привязка к событию изменения модели
             mModel.OnModelChanged += _onModelChanged;
@@ -157,14 +148,7 @@ namespace SimulationOfBusRoute.Presenters
             //выбирать то окно нода какого типа активна в данный момент
             _activatePropertiesEditor((E_ROUTE_NODE_TYPE)routeNodeType.SelectedValue);
         }
-
-        public void Run()
-        {
-            mIsRunning = true;
-
-            mView.Display();
-        }
-
+        
         public void Subscribe(Action subscribersEvent)
         {
             if (subscribersEvent == null)
@@ -208,11 +192,13 @@ namespace SimulationOfBusRoute.Presenters
             }
         }
         
-        private void _onQuit(object sender, EventArgs e)
+        //вызывается при закрытии формы
+
+        private void _onQuit(object sender, FormClosingEventArgs e)
         {
-            if (!mModel.IsChanged)
+            if (!mModel.IsChanged)  //данные не были изменены, можно сразу закрыть форму
             {
-                mView.Quit();
+                e.Cancel = false;
 
                 return;
             }
@@ -225,12 +211,19 @@ namespace SimulationOfBusRoute.Presenters
             }       
             else if (result == DialogResult.Cancel)
             {
+                e.Cancel = true; //отмена закрытия формы
+
                 return;
             }
 
-            mView.Quit();
-
             mIsRunning = false;
+        }
+
+        // провоцирует закрытие формы
+
+        private void _onCloseForm(object sender, EventArgs e)
+        {
+            mView.Quit();
         }
 
         private void _onAddRouteNode(object sender, EventArgs e)
@@ -1013,14 +1006,6 @@ namespace SimulationOfBusRoute.Presenters
             MessageBox.Show(e.Exception.Message, Properties.Resources.mErrorMessageTitle);
         }
 
-        #endregion
-
-        public bool IsRunning
-        {
-            get
-            {
-                return mIsRunning;
-            }
-        }
+        #endregion        
     }
 }

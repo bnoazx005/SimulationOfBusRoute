@@ -11,6 +11,7 @@ namespace SimulationOfBusRoute.Views
             InitializeComponent();
 
             Load                += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, EventArgs.Empty); } };
+            FormClosing         += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };
 
             acceptButton.Click  += (sender, e) => { if (OnAcceptChanges != null) { OnAcceptChanges(this, EventArgs.Empty); } };
             cancelButton.Click  += (sender, e) => { if (OnDeclineChanges != null) { OnDeclineChanges(this, EventArgs.Empty); } };
@@ -26,6 +27,7 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnDeclineChanges;
         public event EventHandler OnSpeedOfSimulationValueChanged;
         public event EventHandler OnFormInit;
+        public event FormClosingEventHandler OnQuit;
 
         public void Display()
         {

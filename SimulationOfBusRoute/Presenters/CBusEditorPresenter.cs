@@ -8,46 +8,28 @@ using System.Windows.Forms;
 
 namespace SimulationOfBusRoute.Presenters
 {
-    public class CBusEditorPresenter : IBasePresenter
+    public class CBusEditorPresenter : CBasePresenter<CMainModel, IBusEditorView>
     {
-        private CMainModel mModel;
-
-        private IBusEditorView mView;
-
         private static int mBaseColumn;
-
-        private bool mIsRunning;
 
         private List<CVelocity> mBusesVelocitiesList;
 
-        public CBusEditorPresenter(CMainModel model, IBusEditorView view)
+        public CBusEditorPresenter(CMainModel model, IBusEditorView view):
+            base(model, view)
         {
-            mModel = model;
-            mView = view;
-
             mBaseColumn = 0;
-
-            mIsRunning = false;
-
+            
             mView.OnFormInit += _onFormInit;
+            mView.OnQuit += _onQuit;
 
             //toolbox events
-            mView.OnQuit += _onQuit;
             mView.OnClearBusesList += _onClearBusesList;
             mView.OnAddBus += _onAddBus;
+            mView.OnCloseForm += _onCloseForm;
         }
 
         #region Methods
-
-        public void Run()
-        {
-            mIsRunning = true;
-
-            mView.Display();
-
-            mIsRunning = false;
-        }
-
+        
         public void OnModelChanged()
         {
             if (!mIsRunning)
@@ -70,11 +52,14 @@ namespace SimulationOfBusRoute.Presenters
             mView.OnVelocitiesTableValueChanged += _onVelocitiesTableValueChanged;
         }
 
-        private void _onQuit(object sender, EventArgs e)
+        private void _onQuit(object sender, FormClosingEventArgs e)
+        {
+            mIsRunning = false;
+        }
+
+        private void _onCloseForm(object sender, EventArgs e)
         {
             mView.Quit();
-
-            mIsRunning = false;
         }
 
         private void _onAddBus(object sender, EventArgs e)
@@ -275,13 +260,5 @@ namespace SimulationOfBusRoute.Presenters
         }
 
         #endregion
-
-        public bool IsRunning
-        {
-            get
-            {
-                return mIsRunning;
-            }
-        }
     }
 }

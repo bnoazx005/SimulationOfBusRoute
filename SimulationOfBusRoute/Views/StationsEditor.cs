@@ -18,19 +18,18 @@ namespace SimulationOfBusRoute.Views
 
             Load                        += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, EventArgs.Empty); } };
             FormClosing                 += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };
-            FormClosed += (sender, e) => { if (OnClose != null) { OnClose(this, e); } };
 
             editorTimer.Tick            += (sender, e) => { if (OnTimerTick != null) { OnTimerTick(editorTimer, EventArgs.Empty); } };
 
-            quitButton.Click            += (sender, e) => { if (OnQuit != null) { OnQuit(null, EventArgs.Empty as FormClosingEventArgs); } };
+            quitButton.Click            += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, EventArgs.Empty); } };
             addMatrixButton.Click       += (sender, e) => { if (OnAddMatrix != null) { OnAddMatrix(this, EventArgs.Empty); } };
             removeMatrixButton.Click    += (sender, e) => { if (OnRemoveMatrix != null) { OnRemoveMatrix(this, EventArgs.Empty); } };
         }
 
         public event EventHandler OnAddMatrix;
         public event EventHandler OnFormInit;
-        public event EventHandler<FormClosedEventArgs> OnClose;
-        public event EventHandler<FormClosingEventArgs> OnQuit;
+        public event FormClosingEventHandler OnQuit;
+        public event EventHandler OnCloseForm;
         public event EventHandler OnRemoveMatrix;
         public event EventHandler OnTimerTick;
 

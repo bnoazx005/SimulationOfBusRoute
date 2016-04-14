@@ -5,60 +5,33 @@ using System.Windows.Forms;
 
 namespace SimulationOfBusRoute.Presenters
 {
-    class CStationsEditorPresenter : IBasePresenter
+    class CStationsEditorPresenter : CBasePresenter<CMainModel, IStationsEditorView>
     {
-        private bool mIsRunning;
-
-        private CMainModel mModel;
-
-        private IStationsEditorView mView;
-
-        public CStationsEditorPresenter(CMainModel model, IStationsEditorView view)
+        public CStationsEditorPresenter(CMainModel model, IStationsEditorView view):
+            base(model, view)
         {
-            mModel = model;
-
-            mView = view;
-
-            mIsRunning = false;
-
             mView.OnFormInit += _onFormInit;
             mView.OnQuit += _onQuit;
+
             mView.OnAddMatrix += _onAddMatrix;
             mView.OnRemoveMatrix += _onRemoveMatrix;
             mView.OnTimerTick += _onTimerTick;
-            mView.OnClose += _onClose;
+            mView.OnCloseForm += _onCloseForm;
         }
-
-        public void Run()
-        {
-            mIsRunning = true;
-
-            mView.Display();
-        }
-
-        public bool IsRunning
-        {
-            get
-            {
-                return mIsRunning;
-            }
-        }
-
+        
         private void _onFormInit(object sender, EventArgs e)
         {
 
         }
 
         private void _onQuit(object sender, FormClosingEventArgs e)
-        {
-            //mView.Quit();
-            
+        {            
             mIsRunning = false;
         }
 
-        private void _onClose(object sender, FormClosedEventArgs e)
+        private void _onCloseForm(object sender, EventArgs e)
         {
-           
+            mView.Quit();
         }
 
         private void _onAddMatrix(object sender, EventArgs e)
@@ -78,7 +51,7 @@ namespace SimulationOfBusRoute.Presenters
                 return;
             }
 
-            ;
+            System.Diagnostics.Debug.WriteLine("Tick");
         }
     }
 }

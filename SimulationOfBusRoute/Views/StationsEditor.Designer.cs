@@ -254,7 +254,7 @@
             // editorTimer
             // 
             this.editorTimer.Enabled = true;
-            this.editorTimer.Interval = 200;
+            this.editorTimer.Interval = 2500;
             // 
             // StationsEditor
             // 

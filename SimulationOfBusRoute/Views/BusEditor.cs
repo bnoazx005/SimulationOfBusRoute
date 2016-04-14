@@ -16,7 +16,8 @@ namespace SimulationOfBusRoute.Views
         #region Events
 
         public event EventHandler OnFormInit;
-        public event EventHandler OnQuit;
+        public event FormClosingEventHandler OnQuit;
+        public event EventHandler OnCloseForm;
         public event EventHandler OnAddBus;
         public event EventHandler OnClearBusesList;
         public event EventHandler<DataGridViewCellEventArgs> OnVelocitiesTableValueChanged;
@@ -28,19 +29,19 @@ namespace SimulationOfBusRoute.Views
             InitializeComponent();
 
             Load                            += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, EventArgs.Empty); } };
-            FormClosing                     += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };
+            FormClosing                     += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };
 
             //menu events
-            quitMenuItem.Click              += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };
+            quitMenuItem.Click              += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(this, EventArgs.Empty); } };
             clearBusesListMenuItem.Click    += (sender, e) => { if (OnClearBusesList != null) { OnClearBusesList(this, EventArgs.Empty); } };
 
             //toolbox events
-            quitButton.Click                += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };
+            quitButton.Click                += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(this, EventArgs.Empty); } };
             addBusButton.Click              += (sender, e) => { if (OnAddBus != null) { OnAddBus(this, EventArgs.Empty); } };
 
             busesVelocitiesTable.CellValueChanged += (sender, e) => { if (OnVelocitiesTableValueChanged != null) { OnVelocitiesTableValueChanged(sender, e); } };
         }
-
+        
         public void Display()
         {
             Show();

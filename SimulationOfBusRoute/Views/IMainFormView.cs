@@ -50,9 +50,7 @@ namespace SimulationOfBusRoute.Views
         string StatusMessage { get; set; }
 
         event EventHandler OnFormInit;
-
-        event EventHandler OnFormIsClosing;
-
+        
         #region KeyboardEvents
 
         event EventHandler<KeyEventArgs> OnKeyPressed;
@@ -118,7 +116,9 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnSaveData;
 
-        event EventHandler OnQuit;
+        event FormClosingEventHandler OnQuit;
+
+        event EventHandler OnCloseForm;
 
         event EventHandler OnAbout;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 
 namespace SimulationOfBusRoute.Views
@@ -22,5 +23,7 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnDeclineChanges;
 
         event EventHandler OnFormInit;
+
+        event FormClosingEventHandler OnQuit;
     }
 }

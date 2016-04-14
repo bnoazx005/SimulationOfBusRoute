@@ -15,7 +15,9 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnFormInit;
 
-        event EventHandler OnQuit;
+        event FormClosingEventHandler OnQuit;
+
+        event EventHandler OnCloseForm;
 
         event EventHandler OnAddBus;
 
