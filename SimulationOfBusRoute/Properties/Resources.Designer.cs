@@ -148,6 +148,33 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to case|default|decl.
+        /// </summary>
+        internal static string mDataEditorHighlightingGroup1 {
+            get {
+                return ResourceManager.GetString("mDataEditorHighlightingGroup1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string mDataEditorHighlightingGroup2 {
+            get {
+                return ResourceManager.GetString("mDataEditorHighlightingGroup2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string mDataEditorHighlightingGroup3 {
+            get {
+                return ResourceManager.GetString("mDataEditorHighlightingGroup3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ошибка!.
         /// </summary>
         internal static string mErrorMessageTitle {

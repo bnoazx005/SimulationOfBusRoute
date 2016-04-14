@@ -1,15 +1,23 @@
 ﻿using SimulationOfBusRoute.Models;
 using SimulationOfBusRoute.Views;
 using System;
+using System.Drawing;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace SimulationOfBusRoute.Presenters
 {
     class CStationsEditorPresenter : CBasePresenter<CMainModel, IStationsEditorView>
     {
+        private object mSyncObject;
+
         public CStationsEditorPresenter(CMainModel model, IStationsEditorView view):
             base(model, view)
         {
+            mSyncObject = new object();
+
             mView.OnFormInit += _onFormInit;
             mView.OnQuit += _onQuit;
 
@@ -51,7 +59,54 @@ namespace SimulationOfBusRoute.Presenters
                 return;
             }
 
-            System.Diagnostics.Debug.WriteLine("Tick");
+            new Task(_highlightSyntax).Start();
+        }
+
+        private void _highlightSyntax()
+        {
+            Regex highlightingGroup1Pattern = new Regex(Properties.Resources.mDataEditorHighlightingGroup1, RegexOptions.Singleline);
+
+            RichTextBox textEditor = mView.TextEditor;
+
+            int startPos = 0;
+            int length = 0;
+            int selectionStart = 0;
+
+            string programText = null;
+
+            //используются асинхронные вызовы методов
+            lock (mSyncObject)
+            {
+                textEditor.Invoke((MethodInvoker)(() => { programText = textEditor.Text; }));
+
+                MatchCollection matches = highlightingGroup1Pattern.Matches(programText);
+
+                textEditor.Invoke((MethodInvoker)(() =>
+                {
+                    selectionStart = textEditor.SelectionStart;
+
+                    textEditor.SelectAll();
+
+                    textEditor.SelectionColor = Color.Black;
+                    textEditor.SelectionStart = selectionStart;
+                }));
+
+                foreach (Match currMatch in matches)
+                {
+                    startPos = currMatch.Index;
+                    length = currMatch.Length;
+
+                    textEditor.Invoke((MethodInvoker)(() => 
+                    {
+                        textEditor.Select(startPos, length);
+
+                        textEditor.SelectionColor = Color.Blue;
+
+                        textEditor.SelectionStart = selectionStart;
+                        textEditor.SelectionColor = Color.Black;
+                    }));
+                }
+            }
         }
     }
 }
