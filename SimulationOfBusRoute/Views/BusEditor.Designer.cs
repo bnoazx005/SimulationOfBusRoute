@@ -239,14 +239,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 656);
-            this.ControlBox = false;
             this.Controls.Add(this.busVelocitiesBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.toolBoxGroup);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
-            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1071, 1674);
             this.MinimumSize = new System.Drawing.Size(1071, 674);
             this.Name = "BusEditor";

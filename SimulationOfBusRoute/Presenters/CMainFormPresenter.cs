@@ -58,6 +58,8 @@ namespace SimulationOfBusRoute.Presenters
 
         private CSimulationSettingsPresenter mSimulationSettingsPresenter;
 
+        private CStationsEditorPresenter mStationsEditorPresenter;
+
         private List<Action> mSubscribersList;
 
         private E_CURRENT_STATE mCurrState;
@@ -77,6 +79,8 @@ namespace SimulationOfBusRoute.Presenters
             mBusEditorPresenter = new CBusEditorPresenter(mModel, new BusEditor());
 
             mSimulationSettingsPresenter = new CSimulationSettingsPresenter(mModel, new SimulationSettingsWindow());
+
+            mStationsEditorPresenter = new CStationsEditorPresenter(mModel, new StationsEditor());
             
             mCurrState = E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE;
 
@@ -92,6 +96,7 @@ namespace SimulationOfBusRoute.Presenters
             mView.OnSelectNode += _onSelectNode;
             mView.OnMoveNode += _onMoveNode;
             mView.OnOpenBusEditor += _onLaunchBusEditor;
+            mView.OnOpenStationsEditor += _onLaunchStationsEditor;
             mView.OnShowStatistics += _onShowStatisticsWindow;
             mView.OnRunSimulation += _onRunSimulation;
             mView.OnPauseSimulation += _onPauseSimulation;
@@ -800,6 +805,20 @@ namespace SimulationOfBusRoute.Presenters
             Subscribe(mBusEditorPresenter.OnModelChanged);
 
             mBusEditorPresenter.Run();
+        }
+
+        private void _onLaunchStationsEditor(object sender, EventArgs e)
+        {
+            if (mStationsEditorPresenter.IsRunning)
+            {
+                return;
+            }
+
+            mStationsEditorPresenter = new CStationsEditorPresenter(mModel, new StationsEditor());
+
+            //Subscribe(mBusEditorPresenter.OnModelChanged);
+
+            mStationsEditorPresenter.Run();
         }
 
         private void _onOpenSimulationSettings(object sender, EventArgs e)

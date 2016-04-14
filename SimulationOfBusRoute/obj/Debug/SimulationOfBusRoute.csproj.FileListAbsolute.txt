@@ -27,3 +27,4 @@ C:\Users\Ildar\documents\visual studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.ProgressDialog.resources
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.csprojResolveAssemblyReference.cache
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.SimulationSettingsWindow.resources
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Debug\SimulationOfBusRoute.Views.StationsEditor.resources

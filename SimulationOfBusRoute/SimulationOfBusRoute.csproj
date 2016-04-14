@@ -82,6 +82,7 @@
     <Compile Include="Presenters\CBusEditorPresenter.cs" />
     <Compile Include="Presenters\CProgressDialogPresenter.cs" />
     <Compile Include="Presenters\CSimulationSettingsPresenter.cs" />
+    <Compile Include="Presenters\CStationsEditorPresenter.cs" />
     <Compile Include="Utils\CGMapImageMarker.cs" />
     <Compile Include="Utils\CHelper.cs" />
     <Compile Include="Utils\CVelocity.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Views\IProgressDialogView.cs" />
     <Compile Include="Views\IBusEditorView.cs" />
     <Compile Include="Views\ISimulationSettingsView.cs" />
+    <Compile Include="Views\IStationsEditorView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +126,12 @@
     </Compile>
     <Compile Include="Views\SimulationSettingsWindow.Designer.cs">
       <DependentUpon>SimulationSettingsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StationsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\StationsEditor.Designer.cs">
+      <DependentUpon>StationsEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\StatisticsWindow.cs">
       <SubType>Form</SubType>
@@ -157,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SimulationSettingsWindow.resx">
       <DependentUpon>SimulationSettingsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StationsEditor.resx">
+      <DependentUpon>StationsEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\StatisticsWindow.resx">
       <DependentUpon>StatisticsWindow.cs</DependentUpon>

@@ -281,29 +281,29 @@ namespace SimulationOfBusRoute.Models
             //пересоздание таблицы, так как в БД хранится информация только о текущем маршруте
             //Properties.Resources.mSQLQueryClearTable содержит параметр имени таблицы, которую надо удалить
 
-            using (SQLiteCommand currComand = new SQLiteCommand(dbConnection))
+            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
             {
-                currComand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLRouteNodesTableName);
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLRouteNodesTableName);
+                currCommand.ExecuteNonQuery();
 
                 //создание таблицы routeNodes
-                currComand.CommandText = Properties.Resources.mSQLQueryCreateRouteNodesTable;
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = Properties.Resources.mSQLQueryCreateRouteNodesTable;
+                currCommand.ExecuteNonQuery();
 
-                currComand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLBusStationNodesTableName);
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLBusStationNodesTableName);
+                currCommand.ExecuteNonQuery();
 
                 //создание таблицы busStationNodes
-                currComand.CommandText = Properties.Resources.mSQLQueryCreateBusStationNodesTable;
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = Properties.Resources.mSQLQueryCreateBusStationNodesTable;
+                currCommand.ExecuteNonQuery();
 
                 //аналогичная операция для таблицы с информацией о перекрестках
-                currComand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLCrossroadNodesTableName);
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLCrossroadNodesTableName);
+                currCommand.ExecuteNonQuery();
 
                 //создание таблицы crossroadNodes
-                currComand.CommandText = Properties.Resources.mSQLQueryCreateCrossroadNodesTable;
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = Properties.Resources.mSQLQueryCreateCrossroadNodesTable;
+                currCommand.ExecuteNonQuery();
 
                 foreach (CRouteNode currRouteNode in mRouteNodes)
                 {
@@ -312,11 +312,11 @@ namespace SimulationOfBusRoute.Models
 
                 //Сохранение данных об автобусах
 
-                currComand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLBusesTableName);
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLBusesTableName);
+                currCommand.ExecuteNonQuery();
 
-                currComand.CommandText = Properties.Resources.mSQLQueryCreateBusesTable;
-                currComand.ExecuteNonQuery();
+                currCommand.CommandText = Properties.Resources.mSQLQueryCreateBusesTable;
+                currCommand.ExecuteNonQuery();
 
                 foreach (CBus currBus in mBuses)
                 {

@@ -77,6 +77,8 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnOpenBusEditor;
 
+        event EventHandler OnOpenStationsEditor;
+
         event EventHandler OnShowStatistics;
 
         event EventHandler OnOpenSimulationSettings;

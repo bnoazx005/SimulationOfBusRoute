@@ -28,6 +28,7 @@ namespace SimulationOfBusRoute.Views
             InitializeComponent();
 
             Load                            += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, EventArgs.Empty); } };
+            FormClosing                     += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };
 
             //menu events
             quitMenuItem.Click              += (sender, e) => { if (OnQuit != null) { OnQuit(this, EventArgs.Empty); } };

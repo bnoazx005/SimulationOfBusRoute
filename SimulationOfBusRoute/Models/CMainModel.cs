@@ -206,6 +206,41 @@ namespace SimulationOfBusRoute.Models
 
             mCurrBusRoute.LoadFromDataBase(dbConnection);
 
+            //чтение настроек моделирования
+            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
+            {
+                //чтение таблицы settings
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLSettingsTableName);
+
+                SQLiteDataReader reader = currCommand.ExecuteReader();
+
+                string name;
+                string value;
+                
+                foreach (System.Data.Common.DbDataRecord record in reader)
+                {
+                    name = (string)record["name"];
+                    value = (string)record["value"];
+
+                    if (name == Properties.Resources.mStartTimeOfSimulationOption)
+                    {
+                        mStartTimeOfSimulation = TimeSpan.Parse(value);
+                    }
+                    else if (name == Properties.Resources.mFinishTimeOfSimulationOption)
+                    {
+                        mFinishTimeOfSimulation = TimeSpan.Parse(value);
+                    }
+                    else if (name == Properties.Resources.mSpeedOfSimulationOption)
+                    {
+                        mSpeedOfSimulation = uint.Parse(value);
+                    }
+                }
+                
+                reader.Close();
+            }
+
+            mNumOfSimulationSteps = (uint)mFinishTimeOfSimulation.Subtract(mStartTimeOfSimulation).TotalSeconds;
+
             dbConnection.Close();
             dbConnection.Dispose();
 
@@ -227,6 +262,35 @@ namespace SimulationOfBusRoute.Models
             dbConnection.Open();
 
             mCurrBusRoute.SaveIntoDataBase(dbConnection);
+
+            //сохранение настроек моделирования
+            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
+            {
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLSettingsTableName);
+                currCommand.ExecuteNonQuery();
+
+                //создание таблицы settings
+                currCommand.CommandText = Properties.Resources.mSQLQueryCreateSettingsTable;
+                currCommand.ExecuteNonQuery();
+
+                //добавление данных в таблицу settings
+                currCommand.CommandText = Properties.Resources.mSQLQueryInsertSettings;
+                
+                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mStartTimeOfSimulationOption);
+                currCommand.Parameters.AddWithValue("@value", mStartTimeOfSimulation.ToString());
+
+                currCommand.ExecuteNonQuery();
+
+                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mFinishTimeOfSimulationOption);
+                currCommand.Parameters.AddWithValue("@value", mFinishTimeOfSimulation.ToString());
+
+                currCommand.ExecuteNonQuery();
+
+                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mSpeedOfSimulationOption);
+                currCommand.Parameters.AddWithValue("@value", mSpeedOfSimulation.ToString());
+
+                currCommand.ExecuteNonQuery();
+            }
 
             dbConnection.Close();
             dbConnection.Dispose();

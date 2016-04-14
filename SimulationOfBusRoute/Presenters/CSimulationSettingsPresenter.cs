@@ -49,7 +49,7 @@ namespace SimulationOfBusRoute.Presenters
             ISimulationSettingsView view = mView;
             CMainModel model = mModel;
 
-            int speedOfSimulation = (int)(view.MaxSpeedOfSimulation + model.SpeedOfSimulation);
+            int speedOfSimulation = (int)(view.MaxSpeedOfSimulation - model.SpeedOfSimulation);
 
             view.SpeedOfSimulation = speedOfSimulation;
             view.SpeedOfSimulationTrackBar = speedOfSimulation;

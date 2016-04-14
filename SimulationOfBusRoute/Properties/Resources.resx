@@ -117,42 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="stop_simulation_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stop_simulation_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="mSQLQueryInsertBusStationNode" xml:space="preserve">
     <value>INSERT INTO busStationNodes (id, currNumOfPassengers, intensity, velocityOfSpan) VALUES (@id, @currNumOfPassengers, @intensity, @velocityOfSpan)</value>
   </data>
-  <data name="pause_simulation_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pause_simulation_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mAddRouteNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_station_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bus_editor_button_active" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bus_editor_button_active.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="start_simulation_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\start_simulation_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="mSQLBusesTableName" xml:space="preserve">
     <value>buses</value>
-  </data>
-  <data name="button_pics" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_pics.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reset_simulation_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reset_simulation_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mSQLBusStationNodesTableName" xml:space="preserve">
     <value>busStationNodes</value>
   </data>
   <data name="mSQLQueryCreateCrossroadNodesTable" xml:space="preserve">
     <value>CREATE TABLE IF NOT EXISTS crossroadNodes (id INTEGER, loadCoefficient REAL, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);</value>
-  </data>
-  <data name="statistics_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\statistics_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mSQLQueryInsertRouteNode" xml:space="preserve">
     <value>INSERT INTO routeNodes (id, name, position, type) VALUES(@id, @name, @position, @type)</value>
@@ -162,9 +141,6 @@
   </data>
   <data name="mSQLQueryInsertCrossroadNode" xml:space="preserve">
     <value>INSERT INTO crossroadNodes (id, loadCoefficient) VALUES (@id, @loadCoefficient)</value>
-  </data>
-  <data name="mAddRouteNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_station_button_active.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mSQLQueryCreateBusesTable" xml:space="preserve">
     <value>CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, maxNumOfPassengers INTEGER, startTime INTEGER, alightingTimePerPassenger INTEGER, boardingTimePerPassenger INTEGER);</value>
@@ -193,17 +169,8 @@
   <data name="mRemoveRouteNodeButtonName" xml:space="preserve">
     <value>removeRouteNodeButton</value>
   </data>
-  <data name="mRemoveRouteNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\remove_station_button_active.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="mAddBusButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_bus_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mRemoveRouteNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\remove_station_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="statistics_button_active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\statistics_button_active.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mAddRouteNodeButtonName" xml:space="preserve">
     <value>addRouteNodeButton</value>
@@ -288,5 +255,23 @@
   </data>
   <data name="mSettingsIncorrectTimeIntervalErrorMessage" xml:space="preserve">
     <value>Задан неверный временной интервал</value>
+  </data>
+  <data name="mSQLQueryCreateSettingsTable" xml:space="preserve">
+    <value>CREATE TABLE IF NOT EXISTS settings(name TEXT PRIMARY KEY, value TEXT);</value>
+  </data>
+  <data name="mSQLQueryInsertSettings" xml:space="preserve">
+    <value>INSERT INTO settings(name, value) VALUES(@name, @value)</value>
+  </data>
+  <data name="mSQLSettingsTableName" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="mFinishTimeOfSimulationOption" xml:space="preserve">
+    <value>finishTimeOfSimulation</value>
+  </data>
+  <data name="mStartTimeOfSimulationOption" xml:space="preserve">
+    <value>startTimeOfSimulation</value>
+  </data>
+  <data name="mSpeedOfSimulationOption" xml:space="preserve">
+    <value>speedOfSimulation</value>
   </data>
 </root>

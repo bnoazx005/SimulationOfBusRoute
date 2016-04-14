@@ -44,6 +44,8 @@ namespace SimulationOfBusRoute.Presenters
             mIsRunning = true;
 
             mView.Display();
+
+            mIsRunning = false;
         }
 
         public void OnModelChanged()

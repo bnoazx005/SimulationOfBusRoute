@@ -47,6 +47,7 @@ namespace SimulationOfBusRoute.Views
             selectNodeButton.Click          += (sender, e) => { if (OnSelectNode != null) { OnSelectNode(this, EventArgs.Empty); } };
             moveNodeButton.Click            += (sender, e) => { if (OnMoveNode != null) { OnMoveNode(this, EventArgs.Empty); } };
             busEditorButton.Click           += (sender, e) => { if (OnOpenBusEditor != null) { OnOpenBusEditor(this, EventArgs.Empty); } };
+            stationsEditorButton.Click      += (sender, e) => { if (OnOpenStationsEditor != null) { OnOpenStationsEditor(this, EventArgs.Empty); } };
             simulationSettingsButton.Click  += (sender, e) => { if (OnOpenSimulationSettings != null) { OnOpenSimulationSettings(this, EventArgs.Empty); } };
             statisticsButton.Click          += (sender, e) => { if (OnShowStatistics != null) { OnShowStatistics(this, EventArgs.Empty); } };
             startSimulationButton.Click     += (sender, e) => { if (OnRunSimulation != null) { OnRunSimulation(this, EventArgs.Empty); } };
@@ -97,6 +98,7 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnMoveNode;
         public event EventHandler OnSelectNode;
         public event EventHandler OnOpenSimulationSettings;
+        public event EventHandler OnOpenStationsEditor;
 
         public void Display()
         {
