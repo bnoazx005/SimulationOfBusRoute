@@ -1,4 +1,5 @@
-﻿using SimulationOfBusRoute.Utils;
+﻿using MDLParser.Data;
+using SimulationOfBusRoute.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -51,6 +52,8 @@ namespace SimulationOfBusRoute.Models
 
         private TimeSpan mFinishTimeOfSimulation;
 
+        private CMatricesList mMatricesOfIntensitiesList;
+
         #region Contructors
         
         public CMainModel()
@@ -62,7 +65,7 @@ namespace SimulationOfBusRoute.Models
 
             mThreadSyncObject = new object();
 
-            //mCurrState = E_CURRENT_STATE.CS_DEFAULT;
+            mMatricesOfIntensitiesList = null;
         }
 
         #endregion
@@ -445,6 +448,26 @@ namespace SimulationOfBusRoute.Models
             set
             {
                 mFinishTimeOfSimulation = value;
+            }
+        }
+
+        public CMatricesList MatricesOfIntensitiesList
+        {
+            get
+            {
+                return mMatricesOfIntensitiesList;
+            }
+
+            set
+            { 
+                mMatricesOfIntensitiesList = value;
+
+                mIsChanged = true;
+
+                if (OnModelChanged != null)
+                {
+                    OnModelChanged();
+                }
             }
         }
 

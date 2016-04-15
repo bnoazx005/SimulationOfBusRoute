@@ -193,6 +193,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to decl {{{0}    time : Time;{0}    beta : Matrix({1}, {2});{0}}}.
+        /// </summary>
+        internal static string mHeaderTemplateForStationsEditor {
+            get {
+                return ResourceManager.GetString("mHeaderTemplateForStationsEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mLoadRouteButton {
@@ -543,6 +552,24 @@ namespace SimulationOfBusRoute.Properties {
         internal static string mStartTimeOfSimulationOption {
             get {
                 return ResourceManager.GetString("mStartTimeOfSimulationOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to case (&lt;please, type in a condition here&gt;) {{{0}    {1} = [{2}];{0}}}.
+        /// </summary>
+        internal static string mStationsEditorCaseTemplate {
+            get {
+                return ResourceManager.GetString("mStationsEditorCaseTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to default {{{0}    {1} = [{2}];{0}}}.
+        /// </summary>
+        internal static string mStationsEditorDefaultProgramTemplate {
+            get {
+                return ResourceManager.GetString("mStationsEditorDefaultProgramTemplate", resourceCulture);
             }
         }
         

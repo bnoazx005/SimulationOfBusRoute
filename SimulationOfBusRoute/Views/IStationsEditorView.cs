@@ -10,8 +10,6 @@ namespace SimulationOfBusRoute.Views
 
         RichTextBox TextEditor { get; set; }
 
-        ListBox CasesList { get; set; }
-
         event EventHandler OnFormInit;
 
         event FormClosingEventHandler OnQuit;

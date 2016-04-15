@@ -283,4 +283,13 @@
   <data name="mDataEditorHighlightingGroup3" xml:space="preserve">
     <value />
   </data>
+  <data name="mHeaderTemplateForStationsEditor" xml:space="preserve">
+    <value>decl {{{0}    time : Time;{0}    beta : Matrix({1}, {2});{0}}}</value>
+  </data>
+  <data name="mStationsEditorCaseTemplate" xml:space="preserve">
+    <value>case (&lt;please, type in a condition here&gt;) {{{0}    {1} = [{2}];{0}}}</value>
+  </data>
+  <data name="mStationsEditorDefaultProgramTemplate" xml:space="preserve">
+    <value>default {{{0}    {1} = [{2}];{0}}}</value>
+  </data>
 </root>
