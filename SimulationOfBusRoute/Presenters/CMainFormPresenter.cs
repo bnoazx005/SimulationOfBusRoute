@@ -52,7 +52,7 @@ namespace SimulationOfBusRoute.Presenters
 
         private CSimulationSettingsPresenter mSimulationSettingsPresenter;
 
-        private CStationsEditorPresenter mStationsEditorPresenter;
+        private CDataEditorPresenter mDataEditorPresenter;
 
         private List<Action> mSubscribersList;
 
@@ -71,7 +71,7 @@ namespace SimulationOfBusRoute.Presenters
 
             mSimulationSettingsPresenter = new CSimulationSettingsPresenter(mModel, new SimulationSettingsWindow());
 
-            mStationsEditorPresenter = new CStationsEditorPresenter(mModel, new StationsEditor());
+            mDataEditorPresenter = new CDataEditorPresenter(mModel, new DataEditor());
             
             mCurrState = E_CURRENT_STATE.CS_EDITOR_SELECTION_MODE;
 
@@ -87,7 +87,7 @@ namespace SimulationOfBusRoute.Presenters
             mView.OnSelectNode += _onSelectNode;
             mView.OnMoveNode += _onMoveNode;
             mView.OnOpenBusEditor += _onLaunchBusEditor;
-            mView.OnOpenStationsEditor += _onLaunchStationsEditor;
+            mView.OnOpenStationsEditor += _onLaunchDataEditor;
             mView.OnShowStatistics += _onShowStatisticsWindow;
             mView.OnRunSimulation += _onRunSimulation;
             mView.OnPauseSimulation += _onPauseSimulation;
@@ -795,23 +795,23 @@ namespace SimulationOfBusRoute.Presenters
 
             mBusEditorPresenter = new CBusEditorPresenter(mModel, new BusEditor());
 
-            Subscribe(mBusEditorPresenter.OnModelChanged);
+            //Subscribe(mBusEditorPresenter.OnModelChanged);
 
             mBusEditorPresenter.Run();
         }
 
-        private void _onLaunchStationsEditor(object sender, EventArgs e)
+        private void _onLaunchDataEditor(object sender, EventArgs e)
         {
-            if (mStationsEditorPresenter.IsRunning)
+            if (mDataEditorPresenter.IsRunning)
             {
                 return;
             }
 
-            mStationsEditorPresenter = new CStationsEditorPresenter(mModel, new StationsEditor());
+            mDataEditorPresenter = new CDataEditorPresenter(mModel, new DataEditor());
 
-            //Subscribe(mBusEditorPresenter.OnModelChanged);
+            Subscribe(mDataEditorPresenter.OnModelChanged);
 
-            mStationsEditorPresenter.Run();
+            mDataEditorPresenter.Run();
         }
 
         private void _onOpenSimulationSettings(object sender, EventArgs e)

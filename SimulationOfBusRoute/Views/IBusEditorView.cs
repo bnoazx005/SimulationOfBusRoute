@@ -10,9 +10,7 @@ namespace SimulationOfBusRoute.Views
         TableLayoutPanel BusLayoutPanel { get; set; }
 
         List<BusEditableItem.BusEditableItem> BusEditableNodes { get; set; }
-
-        DataGridView BusesVelocitiesTable { get; set; }
-
+        
         event EventHandler OnFormInit;
 
         event FormClosingEventHandler OnQuit;
@@ -22,7 +20,5 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnAddBus;
 
         event EventHandler OnClearBusesList;
-
-        event EventHandler<DataGridViewCellEventArgs> OnVelocitiesTableValueChanged;
     }
 }

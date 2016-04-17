@@ -54,8 +54,14 @@ namespace SimulationOfBusRoute.Models
 
         private CMatricesList mMatricesOfIntensitiesList;
 
+        private CMatricesList mBusesVelocitiesList;
+
+        private string mStationsEditorCode;
+
+        private string mBusesVelocitiesEditorCode;
+
         #region Contructors
-        
+
         public CMainModel()
         {
             mCurrBusRoute = new CBusRoute(0);
@@ -66,7 +72,11 @@ namespace SimulationOfBusRoute.Models
             mThreadSyncObject = new object();
 
             mMatricesOfIntensitiesList = null;
-        }
+            mBusesVelocitiesList = null;
+
+            mStationsEditorCode = string.Empty;
+            mBusesVelocitiesEditorCode = string.Empty;
+    }
 
         #endregion
 
@@ -240,6 +250,28 @@ namespace SimulationOfBusRoute.Models
                 }
                 
                 reader.Close();
+
+                //чтение таблицы textData
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLTextDataTableName);
+
+                reader = currCommand.ExecuteReader();
+                
+                foreach (System.Data.Common.DbDataRecord record in reader)
+                {
+                    name = (string)record["name"];
+                    value = (string)record["value"];
+
+                    if (name == Properties.Resources.mMatricesOfIntensitiesName)
+                    {
+                        mStationsEditorCode = value;
+                    }
+                    else if (name == Properties.Resources.mBusesVelocitiesName)
+                    {
+                        mBusesVelocitiesEditorCode = value;
+                    }
+                }
+
+                reader.Close();
             }
 
             mNumOfSimulationSteps = (uint)mFinishTimeOfSimulation.Subtract(mStartTimeOfSimulation).TotalSeconds;
@@ -291,6 +323,23 @@ namespace SimulationOfBusRoute.Models
 
                 currCommand.Parameters.AddWithValue("@name", Properties.Resources.mSpeedOfSimulationOption);
                 currCommand.Parameters.AddWithValue("@value", mSpeedOfSimulation.ToString());
+
+                currCommand.ExecuteNonQuery();
+
+                //таблица textData
+                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLTextDataTableName);
+                currCommand.ExecuteNonQuery();
+                
+                currCommand.CommandText = Properties.Resources.mSQLCreateTextDataTable;
+                currCommand.ExecuteNonQuery();
+                
+                currCommand.CommandText = Properties.Resources.mSQLQueryInsertTextData;
+
+                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mMatricesOfIntensitiesName);
+                currCommand.Parameters.AddWithValue("@value", mStationsEditorCode);
+
+                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mBusesVelocitiesName);
+                currCommand.Parameters.AddWithValue("@value", mBusesVelocitiesEditorCode);
 
                 currCommand.ExecuteNonQuery();
             }
@@ -468,6 +517,52 @@ namespace SimulationOfBusRoute.Models
                 {
                     OnModelChanged();
                 }
+            }
+        }
+
+        public CMatricesList BusesVelocitiesList
+        {
+            get
+            {
+                return mBusesVelocitiesList;
+            }
+
+            set
+            {
+                mBusesVelocitiesList = value;
+
+                mIsChanged = true;
+
+                if (OnModelChanged != null)
+                {
+                    OnModelChanged();
+                }
+            }
+        }
+
+        public string StationsEditorCode
+        {
+            get
+            {
+                return mStationsEditorCode;
+            }
+
+            set
+            {
+                mStationsEditorCode = value;
+            }
+        }
+
+        public string BusesVelocitiesEditorCode
+        {
+            get
+            {
+                return mBusesVelocitiesEditorCode;
+            }
+
+            set
+            {
+                mBusesVelocitiesEditorCode = value;
             }
         }
 

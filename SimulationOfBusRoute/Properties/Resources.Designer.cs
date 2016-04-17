@@ -148,6 +148,34 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to decl {{{0}    time : Time;{0}    v : Vector({1});{0}}}.
+        /// </summary>
+        internal static string mBusesVelocitiesHeaderTemplate {
+            get {
+                return ResourceManager.GetString("mBusesVelocitiesHeaderTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to busesVelocitiesCode.
+        /// </summary>
+        internal static string mBusesVelocitiesName {
+            get {
+                return ResourceManager.GetString("mBusesVelocitiesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mCopyButton {
+            get {
+                object obj = ResourceManager.GetObject("mCopyButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to case|default|decl|in.
         /// </summary>
         internal static string mDataEditorHighlightingGroup1 {
@@ -157,7 +185,7 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Time|Matrix|Vector.
         /// </summary>
         internal static string mDataEditorHighlightingGroup2 {
             get {
@@ -193,21 +221,21 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to decl {{{0}    time : Time;{0}    beta : Matrix({1}, {2});{0}}}.
-        /// </summary>
-        internal static string mHeaderTemplateForStationsEditor {
-            get {
-                return ResourceManager.GetString("mHeaderTemplateForStationsEditor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mLoadRouteButton {
             get {
                 object obj = ResourceManager.GetObject("mLoadRouteButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to matrixOfIntensitiesCode.
+        /// </summary>
+        internal static string mMatricesOfIntensitiesName {
+            get {
+                return ResourceManager.GetString("mMatricesOfIntensitiesName", resourceCulture);
             }
         }
         
@@ -252,6 +280,16 @@ namespace SimulationOfBusRoute.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mPasteButton {
+            get {
+                object obj = ResourceManager.GetObject("mPasteButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mPauseSimulationButton {
             get {
                 object obj = ResourceManager.GetObject("mPauseSimulationButton", resourceCulture);
@@ -265,6 +303,16 @@ namespace SimulationOfBusRoute.Properties {
         internal static System.Drawing.Bitmap mQuitButton {
             get {
                 object obj = ResourceManager.GetObject("mQuitButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mRedoButton {
+            get {
+                object obj = ResourceManager.GetObject("mRedoButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -402,6 +450,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS textData(name TEXT, value TEXT);.
+        /// </summary>
+        internal static string mSQLCreateTextDataTable {
+            get {
+                return ResourceManager.GetString("mSQLCreateTextDataTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to crossroadNodes.
         /// </summary>
         internal static string mSQLCrossroadNodesTableName {
@@ -510,6 +567,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO textData(name, value) VALUES (@name, @value).
+        /// </summary>
+        internal static string mSQLQueryInsertTextData {
+            get {
+                return ResourceManager.GetString("mSQLQueryInsertTextData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to routeNodes.
         /// </summary>
         internal static string mSQLRouteNodesTableName {
@@ -537,6 +603,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to textData.
+        /// </summary>
+        internal static string mSQLTextDataTableName {
+            get {
+                return ResourceManager.GetString("mSQLTextDataTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mStartSimulationButton {
@@ -552,6 +627,15 @@ namespace SimulationOfBusRoute.Properties {
         internal static string mStartTimeOfSimulationOption {
             get {
                 return ResourceManager.GetString("mStartTimeOfSimulationOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to decl {{{0}    time : Time;{0}    beta : Matrix({1}, {2});{0}}}.
+        /// </summary>
+        internal static string mStationsDataHeaderTemplate {
+            get {
+                return ResourceManager.GetString("mStationsDataHeaderTemplate", resourceCulture);
             }
         }
         
@@ -598,6 +682,16 @@ namespace SimulationOfBusRoute.Properties {
         internal static System.Drawing.Bitmap mStopSimulationButton {
             get {
                 object obj = ResourceManager.GetObject("mStopSimulationButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mUndoButton {
+            get {
+                object obj = ResourceManager.GetObject("mUndoButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -30,15 +30,15 @@ namespace SimulationOfBusRoute.Presenters
 
         #region Methods
         
-        public void OnModelChanged()
-        {
-            if (!mIsRunning)
-            {
-                return;
-            }
+        //public void OnModelChanged()
+        //{
+        //    if (!mIsRunning)
+        //    {
+        //        return;
+        //    }
 
-            _updateBusesVelocitiesData(mView.BusesVelocitiesTable, mModel);
-        }
+        //    _updateBusesVelocitiesData(mView.BusesVelocitiesTable, mModel);
+        //}
 
         private void _onFormInit(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace SimulationOfBusRoute.Presenters
             _updateViewWithModel(ref mView, ref mModel);
 
             //привязка сделана после обновления, чтобы не гонять данные между моделью и представлением
-            mView.OnVelocitiesTableValueChanged += _onVelocitiesTableValueChanged;
+           // mView.OnVelocitiesTableValueChanged += _onVelocitiesTableValueChanged;
         }
 
         private void _onQuit(object sender, FormClosingEventArgs e)
@@ -201,7 +201,7 @@ namespace SimulationOfBusRoute.Presenters
                 layoutPanel.Controls.Add(currEditableItem, mBaseColumn, i);             
             }
 
-            _updateBusesVelocitiesData(view.BusesVelocitiesTable, mModel);
+            //_updateBusesVelocitiesData(view.BusesVelocitiesTable, mModel);
         }
 
         private void _updateBusesVelocitiesData(DataGridView table, CMainModel model)

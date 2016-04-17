@@ -85,7 +85,7 @@
     <Compile Include="Presenters\CBusEditorPresenter.cs" />
     <Compile Include="Presenters\CProgressDialogPresenter.cs" />
     <Compile Include="Presenters\CSimulationSettingsPresenter.cs" />
-    <Compile Include="Presenters\CStationsEditorPresenter.cs" />
+    <Compile Include="Presenters\CDataEditorPresenter.cs" />
     <Compile Include="Utils\CGMapImageMarker.cs" />
     <Compile Include="Utils\CHelper.cs" />
     <Compile Include="Utils\CVelocity.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="Views\IProgressDialogView.cs" />
     <Compile Include="Views\IBusEditorView.cs" />
     <Compile Include="Views\ISimulationSettingsView.cs" />
-    <Compile Include="Views\IStationsEditorView.cs" />
+    <Compile Include="Views\IDataEditorView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,11 +130,11 @@
     <Compile Include="Views\SimulationSettingsWindow.Designer.cs">
       <DependentUpon>SimulationSettingsWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\StationsEditor.cs">
+    <Compile Include="Views\DataEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\StationsEditor.Designer.cs">
-      <DependentUpon>StationsEditor.cs</DependentUpon>
+    <Compile Include="Views\DataEditor.Designer.cs">
+      <DependentUpon>DataEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\StatisticsWindow.cs">
       <SubType>Form</SubType>
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="Views\SimulationSettingsWindow.resx">
       <DependentUpon>SimulationSettingsWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\StationsEditor.resx">
-      <DependentUpon>StationsEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Views\DataEditor.resx">
+      <DependentUpon>DataEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\StatisticsWindow.resx">
       <DependentUpon>StatisticsWindow.cs</DependentUpon>
@@ -292,6 +292,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\remove_node_button_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets')" />

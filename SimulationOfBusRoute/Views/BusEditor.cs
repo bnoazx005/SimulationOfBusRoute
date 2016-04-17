@@ -39,7 +39,7 @@ namespace SimulationOfBusRoute.Views
             quitButton.Click                += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(this, EventArgs.Empty); } };
             addBusButton.Click              += (sender, e) => { if (OnAddBus != null) { OnAddBus(this, EventArgs.Empty); } };
 
-            busesVelocitiesTable.CellValueChanged += (sender, e) => { if (OnVelocitiesTableValueChanged != null) { OnVelocitiesTableValueChanged(sender, e); } };
+            //busesVelocitiesTable.CellValueChanged += (sender, e) => { if (OnVelocitiesTableValueChanged != null) { OnVelocitiesTableValueChanged(sender, e); } };
         }
         
         public void Display()
@@ -80,18 +80,18 @@ namespace SimulationOfBusRoute.Views
             }
         }
 
-        public DataGridView BusesVelocitiesTable
-        {
-            get
-            {
-                return busesVelocitiesTable;
-            }
+        //public DataGridView BusesVelocitiesTable
+        //{
+        //    get
+        //    {
+        //        return busesVelocitiesTable;
+        //    }
 
-            set
-            {
-                busesVelocitiesTable = value;
-            }
-        }
+        //    set
+        //    {
+        //        busesVelocitiesTable = value;
+        //    }
+        //}
 
         #endregion
        
