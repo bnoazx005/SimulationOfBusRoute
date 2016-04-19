@@ -33,3 +33,5 @@ C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\NLog.config
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\NLog.dll
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\NLog.xml
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\ScintillaNET.dll
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\ScintillaNET.xml

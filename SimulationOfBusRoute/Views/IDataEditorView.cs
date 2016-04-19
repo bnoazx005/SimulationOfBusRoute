@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScintillaNET;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -7,13 +8,13 @@ namespace SimulationOfBusRoute.Views
 {
     interface IDataEditorView : IBaseView
     {
-        RichTextBox StationsEditorHeaderText { get; set; }
+        Scintilla StationsEditorHeaderText { get; set; }
 
-        RichTextBox StationsEditorText { get; set; }
+        Scintilla StationsEditorText { get; set; }
 
-        RichTextBox BusVelocitiesHeaderText { get; set; }
+        Scintilla BusVelocitiesHeaderText { get; set; }
 
-        RichTextBox BusVelocitiesEditorText { get; set; }
+        Scintilla BusVelocitiesEditorText { get; set; }
 
         bool CanRedoText { get; }
 
