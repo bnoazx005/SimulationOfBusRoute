@@ -228,25 +228,24 @@ namespace SimulationOfBusRoute.Models
                     tmpBusStationNode = mRouteNodes[(int)tmpId] as CBusStationNode;
 
                     //дописать остальные параметры
-                    tmpBusStationNode.Intensity = Convert.ToDouble(reader["intensity"]);
                     tmpBusStationNode.VelocityOfSpan = Convert.ToDouble(reader["velocityOfSpan"]);
                 }
 
                 reader.Close();
 
-                //чтение данных о перекрестках
+                ////чтение данных о перекрестках
 
-                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLCrossroadNodesTableName);
-                reader = currCommand.ExecuteReader();
+                //currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLCrossroadNodesTableName);
+                //reader = currCommand.ExecuteReader();
 
-                foreach(System.Data.Common.DbDataRecord record in reader)
-                {
-                    tmpId = Convert.ToUInt32(record["id"]);
+                //foreach(System.Data.Common.DbDataRecord record in reader)
+                //{
+                //    tmpId = Convert.ToUInt32(record["id"]);
 
-                    (mRouteNodes[(int)tmpId] as CCrossRoadNode).LoadCoefficient = Convert.ToDouble(reader["loadCoefficient"]);
-                }
+                //    (mRouteNodes[(int)tmpId] as CCrossRoadNode).LoadCoefficient = Convert.ToDouble(reader["loadCoefficient"]);
+                //}
 
-                reader.Close();
+                //reader.Close();
 
                 //чтение данных об автобусах
 

@@ -6,9 +6,6 @@ namespace SimulationOfBusRoute.Models
 {
     public class CCrossRoadNode : CRouteNode
     {
-        //ТИП под вопросом может это должен быть вещественный коэффициент
-        double mLoadCoefficient;
-
         #region Constructors
 
         public CCrossRoadNode(uint id, string name):
@@ -16,10 +13,9 @@ namespace SimulationOfBusRoute.Models
         {
         }
 
-        public CCrossRoadNode(uint id, string name, TPoint2 position, double loadCoeff):
+        public CCrossRoadNode(uint id, string name, TPoint2 position):
             base(id, name, position)
         {
-            mLoadCoefficient = loadCoeff;
         }
 
         #endregion
@@ -49,7 +45,6 @@ namespace SimulationOfBusRoute.Models
                 currCommand.CommandText = Properties.Resources.mSQLQueryInsertCrossroadNode;
 
                 currCommand.Parameters.AddWithValue("@id", mIndex);
-                currCommand.Parameters.AddWithValue("@loadCoefficient", mLoadCoefficient);
 
                 currCommand.ExecuteNonQuery();
             }
@@ -66,20 +61,7 @@ namespace SimulationOfBusRoute.Models
                 return E_ROUTE_NODE_TYPE.RNT_CROSSROAD;
             }
         }
-
-        public double LoadCoefficient
-        {
-            get
-            {
-                return mLoadCoefficient;
-            }
-
-            set
-            {
-                mLoadCoefficient = value;
-            }
-        }     
-
+        
         #endregion
     }
 }

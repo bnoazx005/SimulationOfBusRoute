@@ -20,17 +20,11 @@ namespace SimulationOfBusRoute.Views
         bool IsPropertyActive { get; set; }
 
         bool IsBusStationPropertiesActive { get; set; }
-
-        bool IsCrossroadPropertiesActive { get; set; }
-
+        
         string NodeNameProperty { get; set; }
 
         double BusStationNumOfPassengersProperty { get; set; }
-
-        double BusStationIntensityProperty { get; set; }
-
-        double CrossroadLoadProperty { get; set; }
-
+        
         ComboBox RouteNodeTypeProperty { get; set; }
 
         string CurrNodeName { get; set; }

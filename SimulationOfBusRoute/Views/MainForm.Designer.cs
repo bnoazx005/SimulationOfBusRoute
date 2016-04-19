@@ -42,14 +42,9 @@
             this.clearMapButtonAlt = new System.Windows.Forms.Button();
             this.abortChangesButton = new System.Windows.Forms.Button();
             this.submitChangesButton = new System.Windows.Forms.Button();
-            this.crossroadProperties = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.crossroadLoadProperty = new System.Windows.Forms.NumericUpDown();
             this.stationProperties = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.stationNumOfPassengersProperty = new System.Windows.Forms.NumericUpDown();
-            this.stationIntensityProperty = new System.Windows.Forms.NumericUpDown();
             this.typeOfNodeProperty = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.nodeNameProperty = new System.Windows.Forms.TextBox();
@@ -98,11 +93,8 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.stationsListGroupBox.SuspendLayout();
-            this.crossroadProperties.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.crossroadLoadProperty)).BeginInit();
             this.stationProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stationNumOfPassengersProperty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stationIntensityProperty)).BeginInit();
             this.toolboxGroupBox.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -230,7 +222,6 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.abortChangesButton);
             this.splitContainer1.Panel2.Controls.Add(this.submitChangesButton);
-            this.splitContainer1.Panel2.Controls.Add(this.crossroadProperties);
             this.splitContainer1.Panel2.Controls.Add(this.stationProperties);
             this.splitContainer1.Panel2.Controls.Add(this.typeOfNodeProperty);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
@@ -280,7 +271,7 @@
             // 
             // abortChangesButton
             // 
-            this.abortChangesButton.Location = new System.Drawing.Point(133, 173);
+            this.abortChangesButton.Location = new System.Drawing.Point(133, 146);
             this.abortChangesButton.Name = "abortChangesButton";
             this.abortChangesButton.Size = new System.Drawing.Size(125, 27);
             this.abortChangesButton.TabIndex = 15;
@@ -289,60 +280,20 @@
             // 
             // submitChangesButton
             // 
-            this.submitChangesButton.Location = new System.Drawing.Point(3, 173);
+            this.submitChangesButton.Location = new System.Drawing.Point(3, 146);
             this.submitChangesButton.Name = "submitChangesButton";
             this.submitChangesButton.Size = new System.Drawing.Size(124, 27);
             this.submitChangesButton.TabIndex = 14;
             this.submitChangesButton.Text = "Потвердить";
             this.submitChangesButton.UseVisualStyleBackColor = true;
             // 
-            // crossroadProperties
-            // 
-            this.crossroadProperties.Controls.Add(this.label6);
-            this.crossroadProperties.Controls.Add(this.crossroadLoadProperty);
-            this.crossroadProperties.Location = new System.Drawing.Point(3, 100);
-            this.crossroadProperties.Name = "crossroadProperties";
-            this.crossroadProperties.Size = new System.Drawing.Size(255, 35);
-            this.crossroadProperties.TabIndex = 13;
-            this.crossroadProperties.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 8);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 17);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Коэф-т загрузки:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // crossroadLoadProperty
-            // 
-            this.crossroadLoadProperty.DecimalPlaces = 2;
-            this.crossroadLoadProperty.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.crossroadLoadProperty.Location = new System.Drawing.Point(143, 6);
-            this.crossroadLoadProperty.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.crossroadLoadProperty.Name = "crossroadLoadProperty";
-            this.crossroadLoadProperty.Size = new System.Drawing.Size(112, 22);
-            this.crossroadLoadProperty.TabIndex = 8;
-            // 
             // stationProperties
             // 
             this.stationProperties.Controls.Add(this.label4);
-            this.stationProperties.Controls.Add(this.label5);
             this.stationProperties.Controls.Add(this.stationNumOfPassengersProperty);
-            this.stationProperties.Controls.Add(this.stationIntensityProperty);
             this.stationProperties.Location = new System.Drawing.Point(3, 104);
             this.stationProperties.Name = "stationProperties";
-            this.stationProperties.Size = new System.Drawing.Size(255, 63);
+            this.stationProperties.Size = new System.Drawing.Size(255, 36);
             this.stationProperties.TabIndex = 12;
             this.stationProperties.Visible = false;
             // 
@@ -355,16 +306,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Кол-во пассажиров:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(131, 17);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Скорость притока:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // stationNumOfPassengersProperty
             // 
@@ -383,24 +324,6 @@
             this.stationNumOfPassengersProperty.Name = "stationNumOfPassengersProperty";
             this.stationNumOfPassengersProperty.Size = new System.Drawing.Size(112, 22);
             this.stationNumOfPassengersProperty.TabIndex = 8;
-            // 
-            // stationIntensityProperty
-            // 
-            this.stationIntensityProperty.DecimalPlaces = 2;
-            this.stationIntensityProperty.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.stationIntensityProperty.Location = new System.Drawing.Point(143, 34);
-            this.stationIntensityProperty.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.stationIntensityProperty.Name = "stationIntensityProperty";
-            this.stationIntensityProperty.Size = new System.Drawing.Size(112, 22);
-            this.stationIntensityProperty.TabIndex = 9;
             // 
             // typeOfNodeProperty
             // 
@@ -800,13 +723,9 @@
             this.splitContainer1.ResumeLayout(false);
             this.stationsListGroupBox.ResumeLayout(false);
             this.stationsListGroupBox.PerformLayout();
-            this.crossroadProperties.ResumeLayout(false);
-            this.crossroadProperties.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.crossroadLoadProperty)).EndInit();
             this.stationProperties.ResumeLayout(false);
             this.stationProperties.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stationNumOfPassengersProperty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stationIntensityProperty)).EndInit();
             this.toolboxGroupBox.ResumeLayout(false);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -853,19 +772,14 @@
         private System.Windows.Forms.Label currNodeName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox nodeNameProperty;
-        private System.Windows.Forms.NumericUpDown stationIntensityProperty;
         private System.Windows.Forms.NumericUpDown stationNumOfPassengersProperty;
         private System.Windows.Forms.ToolStripMenuItem loadDataMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveDataMenuItem;
         private System.Windows.Forms.ComboBox typeOfNodeProperty;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel stationProperties;
-        private System.Windows.Forms.Panel crossroadProperties;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown crossroadLoadProperty;
         private System.Windows.Forms.Button abortChangesButton;
         private System.Windows.Forms.Button submitChangesButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;

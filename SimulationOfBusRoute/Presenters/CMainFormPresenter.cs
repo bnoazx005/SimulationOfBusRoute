@@ -388,9 +388,7 @@ namespace SimulationOfBusRoute.Presenters
                 view.CurrNodeName = "-";
                 view.NodeNameProperty = "";
                 view.RouteNodeTypeProperty.SelectedIndex = (int)E_ROUTE_NODE_TYPE.RNT_BUS_STATION;                
-                view.BusStationNumOfPassengersProperty = 0;
-                view.BusStationIntensityProperty = 0;
-                view.CrossroadLoadProperty = 0.0;                
+                view.BusStationNumOfPassengersProperty = 0;      
             }
             
             //ДОБАВИТЬ ОБНОВЛЕНИЕ МОДЕЛИ ПРИ ПЕРЕМЕЩЕНИИ МАРКЕРА И ОБНОВЛЕНИЕ ПОЛИГОНА МАРШРУТА
@@ -458,16 +456,10 @@ namespace SimulationOfBusRoute.Presenters
             {
                 case E_ROUTE_NODE_TYPE.RNT_BUS_STATION:
                 case E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION:
-
                     view.IsBusStationPropertiesActive = true;
-                    view.IsCrossroadPropertiesActive = false;
-
                     break;
-                case E_ROUTE_NODE_TYPE.RNT_CROSSROAD:
-
-                    view.IsCrossroadPropertiesActive = true;
+                case E_ROUTE_NODE_TYPE.RNT_CROSSROAD:                    
                     view.IsBusStationPropertiesActive = false;
-
                     break;
             }
         }
@@ -556,19 +548,18 @@ namespace SimulationOfBusRoute.Presenters
                 case E_ROUTE_NODE_TYPE.RNT_BUS_STATION:
 
                     tmpNode = new CBusStationNode((uint)currMarkerIndex, view.NodeNameProperty, new TPoint2(currPosition.Lat, currPosition.Lng),
-                                                  view.BusStationNumOfPassengersProperty, view.BusStationIntensityProperty, false);
+                                                  view.BusStationNumOfPassengersProperty, false);
 
                     break;
                 case E_ROUTE_NODE_TYPE.RNT_ENDING_BUS_STATION:
 
                     tmpNode = new CBusStationNode((uint)currMarkerIndex, view.NodeNameProperty, new TPoint2(currPosition.Lat, currPosition.Lng),
-                                                  view.BusStationNumOfPassengersProperty, view.BusStationIntensityProperty, true);
+                                                  view.BusStationNumOfPassengersProperty, true);
 
                     break;
                 case E_ROUTE_NODE_TYPE.RNT_CROSSROAD:
 
-                    tmpNode = new CCrossRoadNode((uint)currMarkerIndex, view.NodeNameProperty, new TPoint2(currPosition.Lat, currPosition.Lng),
-                                                 view.CrossroadLoadProperty);
+                    tmpNode = new CCrossRoadNode((uint)currMarkerIndex, view.NodeNameProperty, new TPoint2(currPosition.Lat, currPosition.Lng));
 
                     break;
             }
@@ -615,7 +606,6 @@ namespace SimulationOfBusRoute.Presenters
                                                                 (int)E_ROUTE_NODE_TYPE.RNT_BUS_STATION;
 
                     mView.BusStationNumOfPassengersProperty = tmpBusStationNode.CurrNumOfPassengers;
-                    mView.BusStationIntensityProperty = tmpBusStationNode.Intensity;
 
                     break;
                 case E_ROUTE_NODE_TYPE.RNT_CROSSROAD:
@@ -625,7 +615,6 @@ namespace SimulationOfBusRoute.Presenters
                     mView.NodeNameProperty = tmpCrossRoadNode.Name;
                     mView.CurrNodeName = tmpCrossRoadNode.Name;
                     mView.RouteNodeTypeProperty.SelectedIndex = (int)E_ROUTE_NODE_TYPE.RNT_CROSSROAD;
-                    mView.CrossroadLoadProperty = tmpCrossRoadNode.LoadCoefficient;
 
                     break;
             }

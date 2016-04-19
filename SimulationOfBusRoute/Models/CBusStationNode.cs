@@ -7,9 +7,7 @@ namespace SimulationOfBusRoute.Models
     public class CBusStationNode : CRouteNode
     {
         private double mCurrNumOfPassengers;
-
-        private double mIntensity;
-
+        
         private bool mIsEndingStation;
 
         private double mVelocityOfSpan;
@@ -20,9 +18,7 @@ namespace SimulationOfBusRoute.Models
             base(id, name)
         {
             mCurrNumOfPassengers = 0.0;
-
-            mIntensity = 0.0;
-
+            
             mVelocityOfSpan = 0.0;
         }
 
@@ -30,22 +26,17 @@ namespace SimulationOfBusRoute.Models
             base(id, name)
         {
             mCurrNumOfPassengers = 0.0;
-
-            mIntensity = 0.0;
-
+            
             mVelocityOfSpan = 0.0;
 
             mIsEndingStation = isEndingStation;
         }
 
-        public CBusStationNode(uint id, string name, TPoint2 position, double startNumOfPassengers, 
-                               double intensity, bool isEnding):
+        public CBusStationNode(uint id, string name, TPoint2 position, double startNumOfPassengers, bool isEnding):
             base(id, name, position)
         {
             mCurrNumOfPassengers = startNumOfPassengers;
-
-            mIntensity = intensity;
-
+            
             mIsEndingStation = isEnding;
         }
 
@@ -55,7 +46,6 @@ namespace SimulationOfBusRoute.Models
 
         public override void LoadFromDataBase(SQLiteConnection dbConnection)
         {
-
         }
 
         public override void SaveIntoDataBase(SQLiteConnection dbConnection)
@@ -85,7 +75,6 @@ namespace SimulationOfBusRoute.Models
 
                 currCommand.Parameters.AddWithValue("@id", mIndex);
                 currCommand.Parameters.AddWithValue("@currNumOfPassengers", mCurrNumOfPassengers);
-                currCommand.Parameters.AddWithValue("@intensity", mIntensity);
                 currCommand.Parameters.AddWithValue("@velocityOfSpan", mVelocityOfSpan);
 
                 currCommand.ExecuteNonQuery();
@@ -116,20 +105,7 @@ namespace SimulationOfBusRoute.Models
                 mCurrNumOfPassengers = value;
             }
         }
-
-        public double Intensity
-        {
-            get
-            {
-                return mIntensity;
-            }
-
-            set
-            {
-                mIntensity = value;
-            }
-        }
-
+        
         public double VelocityOfSpan
         {
             get

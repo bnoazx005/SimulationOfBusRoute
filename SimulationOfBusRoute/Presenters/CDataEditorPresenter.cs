@@ -1,9 +1,11 @@
 ﻿using MDLParser.Data;
 using MDLParser.Lexer;
 using MDLParser.Parser;
+using NLog;
 using SimulationOfBusRoute.Models;
 using SimulationOfBusRoute.Views;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -18,9 +20,13 @@ namespace SimulationOfBusRoute.Presenters
 
         private Task[] mJobList;
 
+        private static Logger mClassLogger;
+
         public CDataEditorPresenter(CMainModel model, IDataEditorView view):
             base(model, view)
         {
+            mClassLogger = LogManager.GetCurrentClassLogger();
+
             mSyncObject = new object();
 
             mJobList = new Task[4];
@@ -31,7 +37,14 @@ namespace SimulationOfBusRoute.Presenters
             mView.OnTimerTick += _onTimerTick;
             mView.OnCloseForm += _onCloseForm;
 
+            mView.OnUndoChanges += _onUndoChanges;
+            mView.OnRedoChanges += _onRedoChanges;
+            mView.OnCutText     += _onCutText;
+            mView.OnCopyText    += _onCopyText;
+            mView.OnPasteText   += _onPasteText;
             mView.OnCompileData += _onCompileData;
+
+            mView.OnMouseButtonPressed += _onMouseButtonPressed;
         }
 
         public void OnModelChanged()
@@ -58,14 +71,16 @@ namespace SimulationOfBusRoute.Presenters
             mJobList[0] = new Task(_highlightSyntax, mView.StationsEditorHeaderText);
             mJobList[1] = new Task(_highlightSyntax, mView.BusVelocitiesHeaderText);
 
-            mJobList[0].Start();
-            mJobList[1].Start();
+           // mJobList[0].Start();
+           // mJobList[1].Start();
         }
         
         private void _onFormInit(object sender, EventArgs e)
         {
             CMainModel model = mModel;
             IDataEditorView view = mView;
+
+            Dictionary<string, Button> buttons = view.ButtonsList;
 
             //обновление представления
             int numOfBusStations = model.CurrNumOfStations;
@@ -86,14 +101,16 @@ namespace SimulationOfBusRoute.Presenters
                                                                    numOfBusStations);
 
                 view.StationsEditorText.Text = model.StationsEditorCode;
+
+                //view.ButtonsList[""]
             }
 
             //подсветка синтаксиса для заголовков
             mJobList[0] = new Task(_highlightSyntax, mView.StationsEditorHeaderText);
             mJobList[1] = new Task(_highlightSyntax, mView.BusVelocitiesHeaderText);
 
-            mJobList[0].Start();
-            mJobList[1].Start();
+           // mJobList[0].Start();
+           // mJobList[1].Start();
         }
 
         private void _onQuit(object sender, FormClosingEventArgs e)
@@ -106,13 +123,14 @@ namespace SimulationOfBusRoute.Presenters
 
         private void _onCloseForm(object sender, EventArgs e)
         {
-            foreach (Task currTask in mJobList)
-            {
-                if (currTask != null)
-                {
-                    currTask.Wait();
-                }
-            }
+            //ВОССТАНОВИТЬ ПОСЛЕ ПОЧИНКИ ПОДСВЕТКИ
+            //foreach (Task currTask in mJobList)
+            //{
+            //    if (currTask != null)
+            //    {
+            //        currTask.Wait();
+            //    }
+            //}
 
             mView.Quit();
         }
@@ -128,11 +146,11 @@ namespace SimulationOfBusRoute.Presenters
             {
                 case 0:         //stations' editor
                     mJobList[2] = new Task(_highlightSyntax, mView.StationsEditorText);
-                    mJobList[2].Start();
+                   // mJobList[2].Start();
                     break;
                 case 1:         //buses velocities' editor
                     mJobList[3] = new Task(_highlightSyntax, mView.BusVelocitiesEditorText);
-                    mJobList[3].Start();
+                    //mJobList[3].Start();
                     break;
             }
         }
@@ -152,6 +170,7 @@ namespace SimulationOfBusRoute.Presenters
             int startPos = 0;
             int length = 0;
             int selectionStart = 0;
+            int selectionLength = 0;
 
             string programText = null;
 
@@ -166,11 +185,13 @@ namespace SimulationOfBusRoute.Presenters
                 textEditor.Invoke((MethodInvoker)(() =>
                 {
                     selectionStart = textEditor.SelectionStart;
+                    selectionLength = textEditor.SelectionLength;
+
                     textEditor.SelectAll();
 
                     textEditor.SelectionColor = Color.Black;
                     textEditor.SelectionStart = selectionStart;
-                    textEditor.SelectionLength = 0;
+                    textEditor.SelectionLength = selectionLength;
                 }));
 
                 //group1
@@ -186,7 +207,7 @@ namespace SimulationOfBusRoute.Presenters
                         textEditor.SelectionColor = Color.Blue;
 
                         textEditor.SelectionStart = selectionStart;
-                        textEditor.SelectionLength = 0;
+                        textEditor.SelectionLength = selectionLength;
                         textEditor.SelectionColor = Color.Black;
                     }));
                 }
@@ -204,7 +225,7 @@ namespace SimulationOfBusRoute.Presenters
                         textEditor.SelectionColor = Color.CornflowerBlue;
                        
                         textEditor.SelectionStart = selectionStart;
-                        textEditor.SelectionLength = 0;
+                        textEditor.SelectionLength = selectionLength;
                         textEditor.SelectionColor = Color.Black;
                     }));
                 }
@@ -278,6 +299,91 @@ namespace SimulationOfBusRoute.Presenters
 
             exceptionLabel.Text = "Данные успешно скомпилированны";
             exceptionLabel.ForeColor = Color.Green;
+        }
+
+        private void _onUndoChanges(object sender, EventArgs e)
+        {
+            lock(mSyncObject)
+            {
+                switch (mView.CurrSelectedEditorIndex)
+                {
+                    case 0: //stations' data editor
+                        mView.StationsEditorText.Undo();
+                        break;
+                    case 1:
+                        mView.BusVelocitiesEditorText.Undo();
+                        break;
+                }
+            }
+        }
+
+        private void _onRedoChanges(object sender, EventArgs e)
+        {
+            lock (mSyncObject)
+            {
+                switch (mView.CurrSelectedEditorIndex)
+                {
+                    case 0: //stations' data editor
+                        mView.StationsEditorText.Redo();
+                        break;
+                    case 1:
+                        mView.BusVelocitiesEditorText.Redo();
+                        break;
+                }
+            }
+        }
+
+        private void _onMouseButtonPressed(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void _onCutText(object sender, EventArgs e)
+        {
+            lock (mSyncObject)
+            {
+                switch (mView.CurrSelectedEditorIndex)
+                {
+                    case 0: //stations' data editor
+                        mView.StationsEditorText.Cut();
+                        break;
+                    case 1:
+                        mView.BusVelocitiesEditorText.Cut();
+                        break;
+                }
+            }
+        }
+
+        private void _onCopyText(object sender, EventArgs e)
+        {
+            lock (mSyncObject)
+            {
+                switch (mView.CurrSelectedEditorIndex)
+                {
+                    case 0: //stations' data editor
+                        mView.StationsEditorText.Copy();
+                        break;
+                    case 1:
+                        mView.BusVelocitiesEditorText.Copy();
+                        break;
+                }
+            }
+        }
+
+        private void _onPasteText(object sender, EventArgs e)
+        {
+            lock (mSyncObject)
+            {
+                switch (mView.CurrSelectedEditorIndex)
+                {
+                    case 0: //stations' data editor
+                        mView.StationsEditorText.Paste();
+                        break;
+                    case 1:
+                        mView.BusVelocitiesEditorText.Paste();
+                        break;
+                }
+            }
         }
     }
 }

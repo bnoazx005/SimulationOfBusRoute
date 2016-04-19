@@ -60,12 +60,16 @@
             this.busVelocitiesEditorTab = new System.Windows.Forms.TabPage();
             this.busVelocitiesEditorText = new System.Windows.Forms.RichTextBox();
             this.busVelocitiesHeaderText = new System.Windows.Forms.RichTextBox();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.scintilla1 = new ScintillaNET.Scintilla();
             this.menu.SuspendLayout();
             this.toolBoxGroup.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.editorTabs.SuspendLayout();
             this.stationsDataEditorTab.SuspendLayout();
             this.busVelocitiesEditorTab.SuspendLayout();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -297,6 +301,7 @@
             // stationsDataEditorTab
             // 
             this.stationsDataEditorTab.BackColor = System.Drawing.SystemColors.Control;
+            this.stationsDataEditorTab.Controls.Add(this.scintilla1);
             this.stationsDataEditorTab.Controls.Add(this.stationsDataEditorText);
             this.stationsDataEditorTab.Controls.Add(this.stationsEditorHeaderText);
             this.stationsDataEditorTab.Location = new System.Drawing.Point(4, 25);
@@ -372,6 +377,29 @@
             this.busVelocitiesHeaderText.TabIndex = 3;
             this.busVelocitiesHeaderText.Text = "decl {\n    time : Time;\n    beta: Matrix(4, 4);\n}";
             // 
+            // contextMenu
+            // 
+            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(218, 30);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(217, 26);
+            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
+            // 
+            // scintilla1
+            // 
+            this.scintilla1.Location = new System.Drawing.Point(416, 55);
+            this.scintilla1.Name = "scintilla1";
+            this.scintilla1.Size = new System.Drawing.Size(200, 100);
+            this.scintilla1.TabIndex = 2;
+            this.scintilla1.Text = "scintilla1";
+            this.scintilla1.UseTabs = false;
+            // 
             // DataEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -392,6 +420,7 @@
             this.editorTabs.ResumeLayout(false);
             this.stationsDataEditorTab.ResumeLayout(false);
             this.busVelocitiesEditorTab.ResumeLayout(false);
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,5 +459,8 @@
         private System.Windows.Forms.ToolStripMenuItem compileDataMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpMenuGroup;
         private System.Windows.Forms.ToolStripMenuItem docsMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private ScintillaNET.Scintilla scintilla1;
     }
 }

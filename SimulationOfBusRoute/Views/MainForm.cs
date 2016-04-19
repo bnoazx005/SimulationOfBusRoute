@@ -201,19 +201,6 @@ namespace SimulationOfBusRoute.Views
                 stationNumOfPassengersProperty.Value = Convert.ToDecimal(value);
             }
         }
-
-        public double BusStationIntensityProperty
-        {
-            get
-            {
-                return Convert.ToDouble(stationIntensityProperty.Value);
-            }
-
-            set
-            {
-                stationIntensityProperty.Value = Convert.ToDecimal(value);
-            }
-        }
         
         public bool IsPropertyActive
         {
@@ -238,32 +225,6 @@ namespace SimulationOfBusRoute.Views
             set
             {
                 stationProperties.Visible = value;
-            }
-        }
-
-        public bool IsCrossroadPropertiesActive
-        {
-            get
-            {
-                return crossroadProperties.Visible;
-            }
-
-            set
-            {
-                crossroadProperties.Visible = value;
-            }
-        }
-
-        public double CrossroadLoadProperty
-        {
-            get
-            {
-                return Convert.ToDouble(crossroadLoadProperty.Value);
-            }
-
-            set
-            {
-                crossroadLoadProperty.Value = Convert.ToDecimal(value);
             }
         }
 

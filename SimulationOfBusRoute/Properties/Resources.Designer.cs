@@ -477,7 +477,7 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS busStationNodes (id INTEGER, currNumOfPassengers REAL, intensity REAL, velocityOfSpan REAL, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);.
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS busStationNodes (id INTEGER, currNumOfPassengers REAL, velocityOfSpan REAL, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);.
         /// </summary>
         internal static string mSQLQueryCreateBusStationNodesTable {
             get {
@@ -486,7 +486,7 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS crossroadNodes (id INTEGER, loadCoefficient REAL, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);.
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS crossroadNodes (id INTEGER, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);.
         /// </summary>
         internal static string mSQLQueryCreateCrossroadNodesTable {
             get {
@@ -531,7 +531,7 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO busStationNodes (id, currNumOfPassengers, intensity, velocityOfSpan) VALUES (@id, @currNumOfPassengers, @intensity, @velocityOfSpan).
+        ///   Looks up a localized string similar to INSERT INTO busStationNodes (id, currNumOfPassengers, velocityOfSpan) VALUES (@id, @currNumOfPassengers, @velocityOfSpan).
         /// </summary>
         internal static string mSQLQueryInsertBusStationNode {
             get {
@@ -540,7 +540,7 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO crossroadNodes (id, loadCoefficient) VALUES (@id, @loadCoefficient).
+        ///   Looks up a localized string similar to INSERT INTO crossroadNodes (id) VALUES (@id).
         /// </summary>
         internal static string mSQLQueryInsertCrossroadNode {
             get {
