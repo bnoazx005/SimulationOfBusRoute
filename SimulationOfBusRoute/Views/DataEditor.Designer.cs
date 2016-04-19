@@ -55,13 +55,14 @@
             this.editorTimer = new System.Windows.Forms.Timer(this.components);
             this.editorTabs = new System.Windows.Forms.TabControl();
             this.stationsDataEditorTab = new System.Windows.Forms.TabPage();
+            this.stationsDataEditorText = new System.Windows.Forms.RichTextBox();
+            this.stationsEditorHeaderText = new System.Windows.Forms.RichTextBox();
             this.busVelocitiesEditorTab = new System.Windows.Forms.TabPage();
+            this.busVelocitiesEditorText = new System.Windows.Forms.RichTextBox();
+            this.busVelocitiesHeaderText = new System.Windows.Forms.RichTextBox();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.stationsEditorHeaderText = new ScintillaNET.Scintilla();
-            this.stationsDataEditorText = new ScintillaNET.Scintilla();
-            this.busVelocitiesHeaderText = new ScintillaNET.Scintilla();
-            this.busVelocitiesEditorText = new ScintillaNET.Scintilla();
+            this.scintilla1 = new ScintillaNET.Scintilla();
             this.menu.SuspendLayout();
             this.toolBoxGroup.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -300,6 +301,7 @@
             // stationsDataEditorTab
             // 
             this.stationsDataEditorTab.BackColor = System.Drawing.SystemColors.Control;
+            this.stationsDataEditorTab.Controls.Add(this.scintilla1);
             this.stationsDataEditorTab.Controls.Add(this.stationsDataEditorText);
             this.stationsDataEditorTab.Controls.Add(this.stationsEditorHeaderText);
             this.stationsDataEditorTab.Location = new System.Drawing.Point(4, 25);
@@ -308,6 +310,33 @@
             this.stationsDataEditorTab.Size = new System.Drawing.Size(856, 397);
             this.stationsDataEditorTab.TabIndex = 0;
             this.stationsDataEditorTab.Text = "Редактор матриц интенсивности";
+            // 
+            // stationsDataEditorText
+            // 
+            this.stationsDataEditorText.AcceptsTab = true;
+            this.stationsDataEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stationsDataEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stationsDataEditorText.Location = new System.Drawing.Point(3, 103);
+            this.stationsDataEditorText.Name = "stationsDataEditorText";
+            this.stationsDataEditorText.Size = new System.Drawing.Size(850, 288);
+            this.stationsDataEditorText.TabIndex = 0;
+            this.stationsDataEditorText.Text = "case(<condition for counter>);\n\nmatrix(\n[[],\n [],\n...\n []]\n);";
+            // 
+            // stationsEditorHeaderText
+            // 
+            this.stationsEditorHeaderText.AcceptsTab = true;
+            this.stationsEditorHeaderText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stationsEditorHeaderText.BackColor = System.Drawing.SystemColors.Window;
+            this.stationsEditorHeaderText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stationsEditorHeaderText.Location = new System.Drawing.Point(3, 6);
+            this.stationsEditorHeaderText.Name = "stationsEditorHeaderText";
+            this.stationsEditorHeaderText.ReadOnly = true;
+            this.stationsEditorHeaderText.Size = new System.Drawing.Size(850, 96);
+            this.stationsEditorHeaderText.TabIndex = 1;
+            this.stationsEditorHeaderText.Text = "decl {\n    time : Time;\n    beta: Matrix(4, 4);\n}";
             // 
             // busVelocitiesEditorTab
             // 
@@ -320,6 +349,33 @@
             this.busVelocitiesEditorTab.Size = new System.Drawing.Size(856, 397);
             this.busVelocitiesEditorTab.TabIndex = 1;
             this.busVelocitiesEditorTab.Text = "Редактор скоростей автобусов";
+            // 
+            // busVelocitiesEditorText
+            // 
+            this.busVelocitiesEditorText.AcceptsTab = true;
+            this.busVelocitiesEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.busVelocitiesEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.busVelocitiesEditorText.Location = new System.Drawing.Point(3, 103);
+            this.busVelocitiesEditorText.Name = "busVelocitiesEditorText";
+            this.busVelocitiesEditorText.Size = new System.Drawing.Size(850, 288);
+            this.busVelocitiesEditorText.TabIndex = 2;
+            this.busVelocitiesEditorText.Text = "case(<condition for counter>);\n\nmatrix(\n[[],\n [],\n...\n []]\n);";
+            // 
+            // busVelocitiesHeaderText
+            // 
+            this.busVelocitiesHeaderText.AcceptsTab = true;
+            this.busVelocitiesHeaderText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.busVelocitiesHeaderText.BackColor = System.Drawing.SystemColors.Window;
+            this.busVelocitiesHeaderText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.busVelocitiesHeaderText.Location = new System.Drawing.Point(3, 6);
+            this.busVelocitiesHeaderText.Name = "busVelocitiesHeaderText";
+            this.busVelocitiesHeaderText.ReadOnly = true;
+            this.busVelocitiesHeaderText.Size = new System.Drawing.Size(850, 96);
+            this.busVelocitiesHeaderText.TabIndex = 3;
+            this.busVelocitiesHeaderText.Text = "decl {\n    time : Time;\n    beta: Matrix(4, 4);\n}";
             // 
             // contextMenu
             // 
@@ -335,48 +391,14 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(217, 26);
             this.toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
-            // stationsEditorHeaderText
+            // scintilla1
             // 
-            this.stationsEditorHeaderText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.stationsEditorHeaderText.Location = new System.Drawing.Point(3, 3);
-            this.stationsEditorHeaderText.Name = "stationsEditorHeaderText";
-            this.stationsEditorHeaderText.Size = new System.Drawing.Size(850, 94);
-            this.stationsEditorHeaderText.TabIndex = 2;
-            // 
-            // stationsDataEditorText
-            // 
-            this.stationsDataEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.stationsDataEditorText.Location = new System.Drawing.Point(3, 103);
-            this.stationsDataEditorText.Margins.Left = 20;
-            this.stationsDataEditorText.Name = "stationsDataEditorText";
-            this.stationsDataEditorText.Size = new System.Drawing.Size(850, 291);
-            this.stationsDataEditorText.TabIndex = 3;
-            this.stationsDataEditorText.WrapIndentMode = ScintillaNET.WrapIndentMode.Same;
-            this.stationsDataEditorText.WrapMode = ScintillaNET.WrapMode.Whitespace;
-            // 
-            // busVelocitiesHeaderText
-            // 
-            this.busVelocitiesHeaderText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.busVelocitiesHeaderText.Location = new System.Drawing.Point(3, 3);
-            this.busVelocitiesHeaderText.Name = "busVelocitiesHeaderText";
-            this.busVelocitiesHeaderText.Size = new System.Drawing.Size(850, 94);
-            this.busVelocitiesHeaderText.TabIndex = 3;
-            this.busVelocitiesHeaderText.UseTabs = false;
-            // 
-            // busVelocitiesEditorText
-            // 
-            this.busVelocitiesEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.busVelocitiesEditorText.Location = new System.Drawing.Point(3, 103);
-            this.busVelocitiesEditorText.Name = "busVelocitiesEditorText";
-            this.busVelocitiesEditorText.Size = new System.Drawing.Size(850, 291);
-            this.busVelocitiesEditorText.TabIndex = 4;
-            this.busVelocitiesEditorText.UseTabs = false;
+            this.scintilla1.Location = new System.Drawing.Point(416, 55);
+            this.scintilla1.Name = "scintilla1";
+            this.scintilla1.Size = new System.Drawing.Size(200, 100);
+            this.scintilla1.TabIndex = 2;
+            this.scintilla1.Text = "scintilla1";
+            this.scintilla1.UseTabs = false;
             // 
             // DataEditor
             // 
@@ -422,6 +444,10 @@
         private System.Windows.Forms.TabControl editorTabs;
         private System.Windows.Forms.TabPage stationsDataEditorTab;
         private System.Windows.Forms.TabPage busVelocitiesEditorTab;
+        private System.Windows.Forms.RichTextBox stationsDataEditorText;
+        private System.Windows.Forms.RichTextBox stationsEditorHeaderText;
+        private System.Windows.Forms.RichTextBox busVelocitiesEditorText;
+        private System.Windows.Forms.RichTextBox busVelocitiesHeaderText;
         private System.Windows.Forms.ToolStripMenuItem pasteTextMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cutTextMenuItem;
         private System.Windows.Forms.Button redoChangesButton;
@@ -435,9 +461,6 @@
         private System.Windows.Forms.ToolStripMenuItem docsMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private ScintillaNET.Scintilla stationsEditorHeaderText;
-        private ScintillaNET.Scintilla stationsDataEditorText;
-        private ScintillaNET.Scintilla busVelocitiesHeaderText;
-        private ScintillaNET.Scintilla busVelocitiesEditorText;
+        private ScintillaNET.Scintilla scintilla1;
     }
 }

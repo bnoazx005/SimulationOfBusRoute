@@ -1,5 +1,4 @@
-﻿using ScintillaNET;
-using SimulationOfBusRoute.Utils;
+﻿using SimulationOfBusRoute.Utils;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -72,7 +71,7 @@ namespace SimulationOfBusRoute.Views
 
         #region Properties
 
-        public Scintilla StationsEditorHeaderText
+        public RichTextBox StationsEditorHeaderText
         {
             get
             {
@@ -85,7 +84,7 @@ namespace SimulationOfBusRoute.Views
             }
         }
 
-        public Scintilla StationsEditorText
+        public RichTextBox StationsEditorText
         {
             get
             {
@@ -98,7 +97,7 @@ namespace SimulationOfBusRoute.Views
             }
         }
 
-        public Scintilla BusVelocitiesHeaderText
+        public RichTextBox BusVelocitiesHeaderText
         {
             get
             {
@@ -111,7 +110,7 @@ namespace SimulationOfBusRoute.Views
             }
         }
 
-        public Scintilla BusVelocitiesEditorText
+        public RichTextBox BusVelocitiesEditorText
         {
             get
             {
