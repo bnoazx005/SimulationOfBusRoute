@@ -109,8 +109,8 @@ namespace SimulationOfBusRoute.Presenters
             mJobList[0] = new Task(_highlightSyntax, mView.StationsEditorHeaderText);
             mJobList[1] = new Task(_highlightSyntax, mView.BusVelocitiesHeaderText);
 
-           // mJobList[0].Start();
-           // mJobList[1].Start();
+            // mJobList[0].Start();
+            // mJobList[1].Start();            
         }
 
         private void _onQuit(object sender, FormClosingEventArgs e)
@@ -280,12 +280,16 @@ namespace SimulationOfBusRoute.Presenters
                 exceptionLabel.Text = parserException.Message;
                 exceptionLabel.ForeColor = Color.Red;
 
+                mClassLogger.Info(parserException.Message);
+
                 return;
             }
             catch (CUndexpectedTokenException tokenException)
             {
                 exceptionLabel.Text = tokenException.Message;
                 exceptionLabel.ForeColor = Color.Red;
+
+                mClassLogger.Info(tokenException.Message);
 
                 return;
             }
@@ -294,11 +298,15 @@ namespace SimulationOfBusRoute.Presenters
                 exceptionLabel.Text = symbTableException.Message;
                 exceptionLabel.ForeColor = Color.Red;
 
+                mClassLogger.Info(symbTableException.Message);
+
                 return;
             }
 
             exceptionLabel.Text = "Данные успешно скомпилированны";
             exceptionLabel.ForeColor = Color.Green;
+
+            mClassLogger.Info("Данные успешно скомпилированны");
         }
 
         private void _onUndoChanges(object sender, EventArgs e)
