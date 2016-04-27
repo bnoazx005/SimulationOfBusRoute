@@ -73,26 +73,6 @@ namespace SimulationOfBusRoute.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bus_editor_button {
-            get {
-                object obj = ResourceManager.GetObject("bus_editor_button", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bus_editor_button_active {
-            get {
-                object obj = ResourceManager.GetObject("bus_editor_button_active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap mAddBusButton {
             get {
                 object obj = ResourceManager.GetObject("mAddBusButton", resourceCulture);
@@ -139,6 +119,16 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mBusEditorButton {
+            get {
+                object obj = ResourceManager.GetObject("mBusEditorButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автобус № {0}.
         /// </summary>
         internal static string mBusesHeaderInEditor {
@@ -171,6 +161,26 @@ namespace SimulationOfBusRoute.Properties {
         internal static System.Drawing.Bitmap mCopyButton {
             get {
                 object obj = ResourceManager.GetObject("mCopyButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mCutButton {
+            get {
+                object obj = ResourceManager.GetObject("mCutButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mDataEditorButton {
+            get {
+                object obj = ResourceManager.GetObject("mDataEditorButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

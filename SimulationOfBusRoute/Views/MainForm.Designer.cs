@@ -230,9 +230,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Enabled = false;
-            this.splitContainer1.Panel2MinSize = 125;
+            this.splitContainer1.Panel2MinSize = 190;
             this.splitContainer1.Size = new System.Drawing.Size(263, 519);
-            this.splitContainer1.SplitterDistance = 242;
+            this.splitContainer1.SplitterDistance = 324;
             this.splitContainer1.TabIndex = 0;
             // 
             // stationsListGroupBox
@@ -243,7 +243,7 @@
             this.stationsListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stationsListGroupBox.Location = new System.Drawing.Point(0, 0);
             this.stationsListGroupBox.Name = "stationsListGroupBox";
-            this.stationsListGroupBox.Size = new System.Drawing.Size(261, 240);
+            this.stationsListGroupBox.Size = new System.Drawing.Size(261, 322);
             this.stationsListGroupBox.TabIndex = 0;
             this.stationsListGroupBox.TabStop = false;
             this.stationsListGroupBox.Text = "Список узлов:";
@@ -255,14 +255,14 @@
             this.routeNodesList.ItemHeight = 16;
             this.routeNodesList.Location = new System.Drawing.Point(3, 18);
             this.routeNodesList.Name = "routeNodesList";
-            this.routeNodesList.Size = new System.Drawing.Size(255, 192);
+            this.routeNodesList.Size = new System.Drawing.Size(255, 274);
             this.routeNodesList.TabIndex = 4;
             // 
             // clearMapButtonAlt
             // 
             this.clearMapButtonAlt.AutoSize = true;
             this.clearMapButtonAlt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.clearMapButtonAlt.Location = new System.Drawing.Point(3, 210);
+            this.clearMapButtonAlt.Location = new System.Drawing.Point(3, 292);
             this.clearMapButtonAlt.Name = "clearMapButtonAlt";
             this.clearMapButtonAlt.Size = new System.Drawing.Size(255, 27);
             this.clearMapButtonAlt.TabIndex = 3;
@@ -456,6 +456,7 @@
             // 
             this.stationsEditorButton.BackColor = System.Drawing.SystemColors.Control;
             this.stationsEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.stationsEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mDataEditorButton;
             this.stationsEditorButton.Location = new System.Drawing.Point(470, 21);
             this.stationsEditorButton.Name = "stationsEditorButton";
             this.stationsEditorButton.Size = new System.Drawing.Size(39, 38);
@@ -512,9 +513,9 @@
             // 
             // busEditorButton
             // 
-            this.busEditorButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.busEditorButton.BackColor = System.Drawing.SystemColors.Control;
             this.busEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.busEditorButton.Image = ((System.Drawing.Image)(resources.GetObject("busEditorButton.Image")));
+            this.busEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mBusEditorButton;
             this.busEditorButton.Location = new System.Drawing.Point(425, 21);
             this.busEditorButton.Name = "busEditorButton";
             this.busEditorButton.Size = new System.Drawing.Size(39, 38);

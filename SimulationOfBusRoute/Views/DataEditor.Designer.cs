@@ -55,13 +55,13 @@
             this.editorTimer = new System.Windows.Forms.Timer(this.components);
             this.editorTabs = new System.Windows.Forms.TabControl();
             this.stationsDataEditorTab = new System.Windows.Forms.TabPage();
+            this.stationsDataEditorText = new System.Windows.Forms.RichTextBox();
+            this.stationsEditorHeaderText = new System.Windows.Forms.RichTextBox();
             this.busVelocitiesEditorTab = new System.Windows.Forms.TabPage();
+            this.busVelocitiesEditorText = new System.Windows.Forms.RichTextBox();
+            this.busVelocitiesHeaderText = new System.Windows.Forms.RichTextBox();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.stationsEditorHeaderText = new System.Windows.Forms.RichTextBox();
-            this.stationsDataEditorText = new System.Windows.Forms.RichTextBox();
-            this.busVelocitiesHeaderText = new System.Windows.Forms.RichTextBox();
-            this.busVelocitiesEditorText = new System.Windows.Forms.RichTextBox();
             this.menu.SuspendLayout();
             this.toolBoxGroup.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -235,6 +235,7 @@
             // 
             this.cutTextButton.BackColor = System.Drawing.SystemColors.Control;
             this.cutTextButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cutTextButton.Image = global::SimulationOfBusRoute.Properties.Resources.mCutButton;
             this.cutTextButton.Location = new System.Drawing.Point(216, 21);
             this.cutTextButton.Name = "cutTextButton";
             this.cutTextButton.Size = new System.Drawing.Size(39, 38);
@@ -309,31 +310,17 @@
             this.stationsDataEditorTab.TabIndex = 0;
             this.stationsDataEditorTab.Text = "Редактор матриц интенсивности";
             // 
-            // busVelocitiesEditorTab
+            // stationsDataEditorText
             // 
-            this.busVelocitiesEditorTab.BackColor = System.Drawing.SystemColors.Control;
-            this.busVelocitiesEditorTab.Controls.Add(this.busVelocitiesEditorText);
-            this.busVelocitiesEditorTab.Controls.Add(this.busVelocitiesHeaderText);
-            this.busVelocitiesEditorTab.Location = new System.Drawing.Point(4, 25);
-            this.busVelocitiesEditorTab.Name = "busVelocitiesEditorTab";
-            this.busVelocitiesEditorTab.Padding = new System.Windows.Forms.Padding(3);
-            this.busVelocitiesEditorTab.Size = new System.Drawing.Size(856, 397);
-            this.busVelocitiesEditorTab.TabIndex = 1;
-            this.busVelocitiesEditorTab.Text = "Редактор скоростей автобусов";
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(218, 30);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(217, 26);
-            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
+            this.stationsDataEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stationsDataEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stationsDataEditorText.Location = new System.Drawing.Point(3, 99);
+            this.stationsDataEditorText.Name = "stationsDataEditorText";
+            this.stationsDataEditorText.Size = new System.Drawing.Size(850, 295);
+            this.stationsDataEditorText.TabIndex = 5;
+            this.stationsDataEditorText.Text = "";
             // 
             // stationsEditorHeaderText
             // 
@@ -348,17 +335,29 @@
             this.stationsEditorHeaderText.TabIndex = 4;
             this.stationsEditorHeaderText.Text = "";
             // 
-            // stationsDataEditorText
+            // busVelocitiesEditorTab
             // 
-            this.stationsDataEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.busVelocitiesEditorTab.BackColor = System.Drawing.SystemColors.Control;
+            this.busVelocitiesEditorTab.Controls.Add(this.busVelocitiesEditorText);
+            this.busVelocitiesEditorTab.Controls.Add(this.busVelocitiesHeaderText);
+            this.busVelocitiesEditorTab.Location = new System.Drawing.Point(4, 25);
+            this.busVelocitiesEditorTab.Name = "busVelocitiesEditorTab";
+            this.busVelocitiesEditorTab.Padding = new System.Windows.Forms.Padding(3);
+            this.busVelocitiesEditorTab.Size = new System.Drawing.Size(856, 397);
+            this.busVelocitiesEditorTab.TabIndex = 1;
+            this.busVelocitiesEditorTab.Text = "Редактор скоростей автобусов";
+            // 
+            // busVelocitiesEditorText
+            // 
+            this.busVelocitiesEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.stationsDataEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.stationsDataEditorText.Location = new System.Drawing.Point(3, 99);
-            this.stationsDataEditorText.Name = "stationsDataEditorText";
-            this.stationsDataEditorText.Size = new System.Drawing.Size(850, 295);
-            this.stationsDataEditorText.TabIndex = 5;
-            this.stationsDataEditorText.Text = "";
+            this.busVelocitiesEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.busVelocitiesEditorText.Location = new System.Drawing.Point(3, 100);
+            this.busVelocitiesEditorText.Name = "busVelocitiesEditorText";
+            this.busVelocitiesEditorText.Size = new System.Drawing.Size(850, 294);
+            this.busVelocitiesEditorText.TabIndex = 6;
+            this.busVelocitiesEditorText.Text = "";
             // 
             // busVelocitiesHeaderText
             // 
@@ -373,17 +372,19 @@
             this.busVelocitiesHeaderText.TabIndex = 5;
             this.busVelocitiesHeaderText.Text = "";
             // 
-            // busVelocitiesEditorText
+            // contextMenu
             // 
-            this.busVelocitiesEditorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.busVelocitiesEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.busVelocitiesEditorText.Location = new System.Drawing.Point(3, 100);
-            this.busVelocitiesEditorText.Name = "busVelocitiesEditorText";
-            this.busVelocitiesEditorText.Size = new System.Drawing.Size(850, 294);
-            this.busVelocitiesEditorText.TabIndex = 6;
-            this.busVelocitiesEditorText.Text = "";
+            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(218, 30);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(217, 26);
+            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
             // DataEditor
             // 

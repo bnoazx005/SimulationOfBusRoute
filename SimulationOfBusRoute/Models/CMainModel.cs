@@ -337,6 +337,10 @@ namespace SimulationOfBusRoute.Models
 
                 currCommand.Parameters.AddWithValue("@name", Properties.Resources.mMatricesOfIntensitiesName);
                 currCommand.Parameters.AddWithValue("@value", mStationsEditorCode);
+                
+                currCommand.ExecuteNonQuery();
+
+                currCommand.CommandText = Properties.Resources.mSQLQueryInsertTextData;
 
                 currCommand.Parameters.AddWithValue("@name", Properties.Resources.mBusesVelocitiesName);
                 currCommand.Parameters.AddWithValue("@value", mBusesVelocitiesEditorCode);

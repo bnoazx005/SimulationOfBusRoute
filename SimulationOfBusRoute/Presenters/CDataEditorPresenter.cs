@@ -145,11 +145,11 @@ namespace SimulationOfBusRoute.Presenters
             switch(mView.CurrSelectedEditorIndex)
             {
                 case 0:         //stations' editor
-                    mJobList[2] = new Task(_highlightSyntax, mView.StationsEditorText);
-                   // mJobList[2].Start();
+                    //mJobList[2] = new Task(_highlightSyntax, mView.StationsEditorText);
+                    //mJobList[2].Start();
                     break;
                 case 1:         //buses velocities' editor
-                    mJobList[3] = new Task(_highlightSyntax, mView.BusVelocitiesEditorText);
+                    //mJobList[3] = new Task(_highlightSyntax, mView.BusVelocitiesEditorText);
                     //mJobList[3].Start();
                     break;
             }

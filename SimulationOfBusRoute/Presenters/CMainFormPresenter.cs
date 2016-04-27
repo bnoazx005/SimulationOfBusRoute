@@ -112,8 +112,6 @@ namespace SimulationOfBusRoute.Presenters
 
             //привязка к событию изменения модели
             mModel.OnModelChanged += _onModelChanged;
-            
-            Application.ThreadException += _onExceptionWasCaught;
         }
 
         #region Methods
@@ -639,13 +637,6 @@ namespace SimulationOfBusRoute.Presenters
                     }
                 });
 
-                //connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
-
-                //using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
-                //{
-                //    mModel.SaveIntoDataBase(new SQLiteConnection(connectionString));
-                //}
-
                 return;
             }
 
@@ -690,6 +681,17 @@ namespace SimulationOfBusRoute.Presenters
 
         private void _onLoadModelData(object sender, EventArgs e)
         {
+            //если модель была изменена, то первоначально вызвать предложение о сохранении
+            if (mModel.IsChanged)
+            {
+                DialogResult messageBoxResult = MessageBox.Show("Test", "Test", MessageBoxButtons.YesNoCancel);
+
+                if (messageBoxResult == DialogResult.Yes)
+                {
+                    _onSaveModelData(null, EventArgs.Empty);
+                }
+            }
+
             OpenFileDialog openFileDialog = mView.OpenFileDialog;
 
             DialogResult openDialogCallResult = openFileDialog.ShowDialog();
@@ -754,24 +756,30 @@ namespace SimulationOfBusRoute.Presenters
                 updatedPoints.Add(marker.Position);
             }
 
-            List<GMapPolygon> polylinesList = new List<GMapPolygon>();
+            //List<GMapPolygon> polylinesList = new List<GMapPolygon>();
+            List<GMapRoute> routeList = new List<GMapRoute>();
 
             int updatedPointsCount = updatedPoints.Count;
 
-            GMapPolygon currPolyline = null;
+            GMapRoute currRoute = null;
 
-            Brush currBrush = new SolidBrush(Color.Transparent);
-            Pen currPen = new Pen(Color.Blue, 2);
+            //Brush currBrush = new SolidBrush(Color.Transparent);
+            //Pen currPen = new Pen(Color.Blue, 2);
 
-            routeLinesOverlay.Polygons.Clear(); //удаление старых линий
+            //routeLinesOverlay.Polygons.Clear(); //удаление старых линий
 
+            routeLinesOverlay.Routes.Clear(); //удаление старых линий
+            
             for (int i = 0; i < updatedPointsCount - 1; i++)
             {
-                currPolyline = new GMapPolygon(updatedPoints.GetRange(i, 2), "routePolyline" + i.ToString());
-                currPolyline.Fill = currBrush;
-                currPolyline.Stroke = currPen;
+                currRoute = new GMapRoute(updatedPoints.GetRange(i, 2), "route" + i.ToString());
+                //currRoute.Fill = currBrush;
+                //currRoute.Stroke = currPen;
+                currRoute.Stroke.Width = 2;
+                currRoute.Stroke.Color = Color.Blue;
 
-                routeLinesOverlay.Polygons.Add(currPolyline);
+                //routeLinesOverlay.Polygons.Add(currRoute);
+                routeLinesOverlay.Routes.Add(currRoute);
             }
         }
 
@@ -989,12 +997,7 @@ namespace SimulationOfBusRoute.Presenters
                 subscribersAction();
             }
         }
-
-        private void _onExceptionWasCaught(object sender, ThreadExceptionEventArgs e)
-        {
-            MessageBox.Show(e.Exception.Message, Properties.Resources.mErrorMessageTitle);
-        }
-
+        
         #endregion        
     }
 }
