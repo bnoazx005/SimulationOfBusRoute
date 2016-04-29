@@ -139,7 +139,7 @@
     <value>INSERT INTO crossroadNodes (id) VALUES (@id)</value>
   </data>
   <data name="mSQLQueryCreateBusesTable" xml:space="preserve">
-    <value>CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, maxNumOfPassengers INTEGER, startTime INTEGER, alightingTimePerPassenger INTEGER, boardingTimePerPassenger INTEGER);</value>
+    <value>CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, maxNumOfPassengers INTEGER, startTime REAL, alightingTimePerPassenger REAL, boardingTimePerPassenger REAL);</value>
   </data>
   <data name="mSQLQueryCreateBusStationNodesTable" xml:space="preserve">
     <value>CREATE TABLE IF NOT EXISTS busStationNodes (id INTEGER, currNumOfPassengers REAL, velocityOfSpan REAL, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);</value>

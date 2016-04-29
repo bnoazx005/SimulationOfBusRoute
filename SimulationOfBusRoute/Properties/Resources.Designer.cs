@@ -478,7 +478,7 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, maxNumOfPassengers INTEGER, startTime INTEGER, alightingTimePerPassenger INTEGER, boardingTimePerPassenger INTEGER);.
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, maxNumOfPassengers INTEGER, startTime REAL, alightingTimePerPassenger REAL, boardingTimePerPassenger REAL);.
         /// </summary>
         internal static string mSQLQueryCreateBusesTable {
             get {
