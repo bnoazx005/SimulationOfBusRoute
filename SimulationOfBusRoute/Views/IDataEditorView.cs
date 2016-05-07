@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace SimulationOfBusRoute.Views
 {
-    interface IDataEditorView : IBaseView
+    public interface IDataEditorView : IBaseView
     {
         RichTextBox StationsEditorHeaderText { get; set; }
 

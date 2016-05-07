@@ -42,15 +42,10 @@
             this.clearMapButtonAlt = new System.Windows.Forms.Button();
             this.abortChangesButton = new System.Windows.Forms.Button();
             this.submitChangesButton = new System.Windows.Forms.Button();
-            this.stationProperties = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.stationNumOfPassengersProperty = new System.Windows.Forms.NumericUpDown();
             this.typeOfNodeProperty = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.nodeNameProperty = new System.Windows.Forms.TextBox();
-            this.currNodeName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.toolboxGroupBox = new System.Windows.Forms.GroupBox();
             this.simulationSettingsButton = new System.Windows.Forms.Button();
             this.moveNodeButton = new System.Windows.Forms.Button();
@@ -93,8 +88,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.stationsListGroupBox.SuspendLayout();
-            this.stationProperties.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stationNumOfPassengersProperty)).BeginInit();
             this.toolboxGroupBox.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -222,17 +215,14 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.abortChangesButton);
             this.splitContainer1.Panel2.Controls.Add(this.submitChangesButton);
-            this.splitContainer1.Panel2.Controls.Add(this.stationProperties);
             this.splitContainer1.Panel2.Controls.Add(this.typeOfNodeProperty);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.nodeNameProperty);
-            this.splitContainer1.Panel2.Controls.Add(this.currNodeName);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Enabled = false;
-            this.splitContainer1.Panel2MinSize = 190;
+            this.splitContainer1.Panel2MinSize = 120;
             this.splitContainer1.Size = new System.Drawing.Size(263, 519);
-            this.splitContainer1.SplitterDistance = 324;
+            this.splitContainer1.SplitterDistance = 392;
             this.splitContainer1.TabIndex = 0;
             // 
             // stationsListGroupBox
@@ -243,7 +233,7 @@
             this.stationsListGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stationsListGroupBox.Location = new System.Drawing.Point(0, 0);
             this.stationsListGroupBox.Name = "stationsListGroupBox";
-            this.stationsListGroupBox.Size = new System.Drawing.Size(261, 322);
+            this.stationsListGroupBox.Size = new System.Drawing.Size(261, 390);
             this.stationsListGroupBox.TabIndex = 0;
             this.stationsListGroupBox.TabStop = false;
             this.stationsListGroupBox.Text = "Список узлов:";
@@ -255,14 +245,14 @@
             this.routeNodesList.ItemHeight = 16;
             this.routeNodesList.Location = new System.Drawing.Point(3, 18);
             this.routeNodesList.Name = "routeNodesList";
-            this.routeNodesList.Size = new System.Drawing.Size(255, 274);
+            this.routeNodesList.Size = new System.Drawing.Size(255, 342);
             this.routeNodesList.TabIndex = 4;
             // 
             // clearMapButtonAlt
             // 
             this.clearMapButtonAlt.AutoSize = true;
             this.clearMapButtonAlt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.clearMapButtonAlt.Location = new System.Drawing.Point(3, 292);
+            this.clearMapButtonAlt.Location = new System.Drawing.Point(3, 360);
             this.clearMapButtonAlt.Name = "clearMapButtonAlt";
             this.clearMapButtonAlt.Size = new System.Drawing.Size(255, 27);
             this.clearMapButtonAlt.TabIndex = 3;
@@ -271,7 +261,7 @@
             // 
             // abortChangesButton
             // 
-            this.abortChangesButton.Location = new System.Drawing.Point(133, 146);
+            this.abortChangesButton.Location = new System.Drawing.Point(133, 75);
             this.abortChangesButton.Name = "abortChangesButton";
             this.abortChangesButton.Size = new System.Drawing.Size(125, 27);
             this.abortChangesButton.TabIndex = 15;
@@ -280,50 +270,12 @@
             // 
             // submitChangesButton
             // 
-            this.submitChangesButton.Location = new System.Drawing.Point(3, 146);
+            this.submitChangesButton.Location = new System.Drawing.Point(3, 75);
             this.submitChangesButton.Name = "submitChangesButton";
             this.submitChangesButton.Size = new System.Drawing.Size(124, 27);
             this.submitChangesButton.TabIndex = 14;
             this.submitChangesButton.Text = "Потвердить";
             this.submitChangesButton.UseVisualStyleBackColor = true;
-            // 
-            // stationProperties
-            // 
-            this.stationProperties.Controls.Add(this.label4);
-            this.stationProperties.Controls.Add(this.stationNumOfPassengersProperty);
-            this.stationProperties.Location = new System.Drawing.Point(3, 104);
-            this.stationProperties.Name = "stationProperties";
-            this.stationProperties.Size = new System.Drawing.Size(255, 36);
-            this.stationProperties.TabIndex = 12;
-            this.stationProperties.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 17);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Кол-во пассажиров:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // stationNumOfPassengersProperty
-            // 
-            this.stationNumOfPassengersProperty.DecimalPlaces = 2;
-            this.stationNumOfPassengersProperty.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.stationNumOfPassengersProperty.Location = new System.Drawing.Point(143, 6);
-            this.stationNumOfPassengersProperty.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.stationNumOfPassengersProperty.Name = "stationNumOfPassengersProperty";
-            this.stationNumOfPassengersProperty.Size = new System.Drawing.Size(112, 22);
-            this.stationNumOfPassengersProperty.TabIndex = 8;
             // 
             // typeOfNodeProperty
             // 
@@ -331,15 +283,15 @@
             this.typeOfNodeProperty.Items.AddRange(new object[] {
             "Остановка",
             "Перекресток"});
-            this.typeOfNodeProperty.Location = new System.Drawing.Point(145, 70);
+            this.typeOfNodeProperty.Location = new System.Drawing.Point(83, 36);
             this.typeOfNodeProperty.Name = "typeOfNodeProperty";
-            this.typeOfNodeProperty.Size = new System.Drawing.Size(113, 24);
+            this.typeOfNodeProperty.Size = new System.Drawing.Size(175, 24);
             this.typeOfNodeProperty.TabIndex = 11;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 70);
+            this.label3.Location = new System.Drawing.Point(6, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
             this.label3.TabIndex = 10;
@@ -348,38 +300,20 @@
             // 
             // nodeNameProperty
             // 
-            this.nodeNameProperty.Location = new System.Drawing.Point(145, 42);
+            this.nodeNameProperty.Location = new System.Drawing.Point(83, 8);
             this.nodeNameProperty.Name = "nodeNameProperty";
-            this.nodeNameProperty.Size = new System.Drawing.Size(113, 22);
+            this.nodeNameProperty.Size = new System.Drawing.Size(175, 22);
             this.nodeNameProperty.TabIndex = 5;
-            // 
-            // currNodeName
-            // 
-            this.currNodeName.AutoSize = true;
-            this.currNodeName.Location = new System.Drawing.Point(143, 12);
-            this.currNodeName.Name = "currNodeName";
-            this.currNodeName.Size = new System.Drawing.Size(13, 17);
-            this.currNodeName.TabIndex = 2;
-            this.currNodeName.Text = "-";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 42);
+            this.label2.Location = new System.Drawing.Point(6, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Название:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Текущий объект:";
             // 
             // toolboxGroupBox
             // 
@@ -410,7 +344,7 @@
             // 
             this.simulationSettingsButton.BackColor = System.Drawing.SystemColors.Control;
             this.simulationSettingsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.simulationSettingsButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSettingsButton;
+            this.simulationSettingsButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSettingsButtonImage;
             this.simulationSettingsButton.Location = new System.Drawing.Point(745, 21);
             this.simulationSettingsButton.Name = "simulationSettingsButton";
             this.simulationSettingsButton.Size = new System.Drawing.Size(39, 38);
@@ -420,7 +354,7 @@
             // moveNodeButton
             // 
             this.moveNodeButton.BackColor = System.Drawing.SystemColors.Control;
-            this.moveNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mMoveNodeButton;
+            this.moveNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mMoveNodeButtonImage;
             this.moveNodeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.moveNodeButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.moveNodeButton.Location = new System.Drawing.Point(330, 21);
@@ -432,7 +366,7 @@
             // selectNodeButton
             // 
             this.selectNodeButton.BackColor = System.Drawing.SystemColors.Control;
-            this.selectNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mSelectNodeButtonActive;
+            this.selectNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mSelectNodeButtonActiveImage;
             this.selectNodeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.selectNodeButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.selectNodeButton.Location = new System.Drawing.Point(195, 21);
@@ -445,7 +379,7 @@
             // 
             this.quitButton.BackColor = System.Drawing.SystemColors.Control;
             this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButton;
+            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
             this.quitButton.Location = new System.Drawing.Point(100, 21);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(39, 38);
@@ -456,7 +390,7 @@
             // 
             this.stationsEditorButton.BackColor = System.Drawing.SystemColors.Control;
             this.stationsEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.stationsEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mDataEditorButton;
+            this.stationsEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mDataEditorButtonImage;
             this.stationsEditorButton.Location = new System.Drawing.Point(470, 21);
             this.stationsEditorButton.Name = "stationsEditorButton";
             this.stationsEditorButton.Size = new System.Drawing.Size(39, 38);
@@ -468,7 +402,7 @@
             this.statisticsButton.BackColor = System.Drawing.SystemColors.Control;
             this.statisticsButton.Enabled = false;
             this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.statisticsButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButton;
+            this.statisticsButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButtonImage;
             this.statisticsButton.Location = new System.Drawing.Point(515, 21);
             this.statisticsButton.Name = "statisticsButton";
             this.statisticsButton.Size = new System.Drawing.Size(39, 38);
@@ -480,7 +414,7 @@
             this.stopSimulationButton.BackColor = System.Drawing.SystemColors.Control;
             this.stopSimulationButton.Enabled = false;
             this.stopSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.stopSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStopSimulationButton;
+            this.stopSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStopSimulationButtonImage;
             this.stopSimulationButton.Location = new System.Drawing.Point(700, 21);
             this.stopSimulationButton.Name = "stopSimulationButton";
             this.stopSimulationButton.Size = new System.Drawing.Size(39, 38);
@@ -490,7 +424,7 @@
             // pauseSimulationButton
             // 
             this.pauseSimulationButton.BackColor = System.Drawing.SystemColors.Control;
-            this.pauseSimulationButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mPauseSimulationButton;
+            this.pauseSimulationButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mPauseSimulationButtonImage;
             this.pauseSimulationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pauseSimulationButton.Enabled = false;
             this.pauseSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -504,7 +438,7 @@
             // 
             this.startSimulationButton.BackColor = System.Drawing.SystemColors.Control;
             this.startSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.startSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStartSimulationButton;
+            this.startSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStartSimulationButtonImage;
             this.startSimulationButton.Location = new System.Drawing.Point(610, 21);
             this.startSimulationButton.Name = "startSimulationButton";
             this.startSimulationButton.Size = new System.Drawing.Size(39, 38);
@@ -515,7 +449,7 @@
             // 
             this.busEditorButton.BackColor = System.Drawing.SystemColors.Control;
             this.busEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.busEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mBusEditorButton;
+            this.busEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mBusEditorButtonImage;
             this.busEditorButton.Location = new System.Drawing.Point(425, 21);
             this.busEditorButton.Name = "busEditorButton";
             this.busEditorButton.Size = new System.Drawing.Size(39, 38);
@@ -525,7 +459,7 @@
             // removeRouteNodeButton
             // 
             this.removeRouteNodeButton.BackColor = System.Drawing.SystemColors.Control;
-            this.removeRouteNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mRemoveNodeButton;
+            this.removeRouteNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mRemoveNodeButtonImage;
             this.removeRouteNodeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.removeRouteNodeButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.removeRouteNodeButton.Location = new System.Drawing.Point(285, 21);
@@ -537,7 +471,7 @@
             // addRouteNodeButton
             // 
             this.addRouteNodeButton.BackColor = System.Drawing.SystemColors.Control;
-            this.addRouteNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mAddNodeButton;
+            this.addRouteNodeButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mAddNodeButtonImage;
             this.addRouteNodeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.addRouteNodeButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.addRouteNodeButton.ImageKey = "(none)";
@@ -551,7 +485,7 @@
             // 
             this.saveDataButton.BackColor = System.Drawing.SystemColors.Control;
             this.saveDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.saveDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSaveRouteButton;
+            this.saveDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSaveRouteButtonImage;
             this.saveDataButton.Location = new System.Drawing.Point(55, 21);
             this.saveDataButton.Name = "saveDataButton";
             this.saveDataButton.Size = new System.Drawing.Size(39, 38);
@@ -562,7 +496,7 @@
             // 
             this.loadDataButton.BackColor = System.Drawing.SystemColors.Control;
             this.loadDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.loadDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mLoadRouteButton;
+            this.loadDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mLoadRouteButtonImage;
             this.loadDataButton.Location = new System.Drawing.Point(10, 21);
             this.loadDataButton.Name = "loadDataButton";
             this.loadDataButton.Size = new System.Drawing.Size(39, 38);
@@ -724,9 +658,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.stationsListGroupBox.ResumeLayout(false);
             this.stationsListGroupBox.PerformLayout();
-            this.stationProperties.ResumeLayout(false);
-            this.stationProperties.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stationNumOfPassengersProperty)).EndInit();
             this.toolboxGroupBox.ResumeLayout(false);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -770,17 +701,12 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button clearMapButtonAlt;
         private System.Windows.Forms.ListBox routeNodesList;
-        private System.Windows.Forms.Label currNodeName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox nodeNameProperty;
-        private System.Windows.Forms.NumericUpDown stationNumOfPassengersProperty;
         private System.Windows.Forms.ToolStripMenuItem loadDataMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveDataMenuItem;
         private System.Windows.Forms.ComboBox typeOfNodeProperty;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel stationProperties;
         private System.Windows.Forms.Button abortChangesButton;
         private System.Windows.Forms.Button submitChangesButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;

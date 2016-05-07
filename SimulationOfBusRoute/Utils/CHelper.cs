@@ -1,4 +1,4 @@
-﻿using SimulationOfBusRoute.Models;
+﻿using SimulationOfBusRoute.Models.Implementations;
 using SimulationOfBusRoute.Presenters;
 using SimulationOfBusRoute.Views;
 using System;
@@ -6,12 +6,12 @@ using System;
 
 namespace SimulationOfBusRoute.Utils
 {
-    public static class CHelper
+    public static class CBackgroundJobHelper
     {
-        public static void BackgroundModelOperation(ref CMainModel model, string infoMessage, Action job)
+        public static void BackgroundModelOperation(ref CDataManager model, string infoMessage, Action job)
         {
             ProgressDialog progressDialogView = new ProgressDialog();
-            CProgressDialogPresenter progressDialogPresenter = new CProgressDialogPresenter(progressDialogView, model);
+            CProgressDialogPresenter progressDialogPresenter = new CProgressDialogPresenter(model, progressDialogView);
 
             progressDialogPresenter.Text = infoMessage;
 

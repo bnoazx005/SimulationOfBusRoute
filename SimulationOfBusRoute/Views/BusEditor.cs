@@ -38,8 +38,6 @@ namespace SimulationOfBusRoute.Views
             //toolbox events
             quitButton.Click                += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(this, EventArgs.Empty); } };
             addBusButton.Click              += (sender, e) => { if (OnAddBus != null) { OnAddBus(this, EventArgs.Empty); } };
-
-            //busesVelocitiesTable.CellValueChanged += (sender, e) => { if (OnVelocitiesTableValueChanged != null) { OnVelocitiesTableValueChanged(sender, e); } };
         }
         
         public void Display()
@@ -79,19 +77,6 @@ namespace SimulationOfBusRoute.Views
                 mBusEditableNodesList = value;
             }
         }
-
-        //public DataGridView BusesVelocitiesTable
-        //{
-        //    get
-        //    {
-        //        return busesVelocitiesTable;
-        //    }
-
-        //    set
-        //    {
-        //        busesVelocitiesTable = value;
-        //    }
-        //}
 
         #endregion
        

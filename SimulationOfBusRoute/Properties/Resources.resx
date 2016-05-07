@@ -117,32 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="mSQLQueryInsertBusStationNode" xml:space="preserve">
-    <value>INSERT INTO busStationNodes (id, currNumOfPassengers, velocityOfSpan) VALUES (@id, @currNumOfPassengers, @velocityOfSpan)</value>
-  </data>
   <data name="mSQLBusesTableName" xml:space="preserve">
     <value>buses</value>
   </data>
   <data name="mSQLBusStationNodesTableName" xml:space="preserve">
     <value>busStationNodes</value>
   </data>
-  <data name="mSQLQueryCreateCrossroadNodesTable" xml:space="preserve">
-    <value>CREATE TABLE IF NOT EXISTS crossroadNodes (id INTEGER, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);</value>
-  </data>
   <data name="mSQLQueryInsertRouteNode" xml:space="preserve">
-    <value>INSERT INTO routeNodes (id, name, position, type) VALUES(@id, @name, @position, @type)</value>
+    <value>INSERT OR REPLACE INTO routeNodes (id, name, position, type) VALUES(@id, @name, @position, @type)</value>
   </data>
   <data name="mSQLQueryDropTable" xml:space="preserve">
     <value>DROP TABLE IF EXISTS {0}</value>
   </data>
-  <data name="mSQLQueryInsertCrossroadNode" xml:space="preserve">
-    <value>INSERT INTO crossroadNodes (id) VALUES (@id)</value>
-  </data>
   <data name="mSQLQueryCreateBusesTable" xml:space="preserve">
-    <value>CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, maxNumOfPassengers INTEGER, startTime REAL, alightingTimePerPassenger REAL, boardingTimePerPassenger REAL);</value>
-  </data>
-  <data name="mSQLQueryCreateBusStationNodesTable" xml:space="preserve">
-    <value>CREATE TABLE IF NOT EXISTS busStationNodes (id INTEGER, currNumOfPassengers REAL, velocityOfSpan REAL, FOREIGN KEY(id) REFERENCES routeNodes(id) ON DELETE CASCADE ON UPDATE CASCADE);</value>
+    <value>CREATE TABLE IF NOT EXISTS buses (id INTEGER PRIMARY KEY, name TEXT, maxCapacity INTEGER, startTime INTEGER, alightingTimePerPassenger INTEGER, boardingTimePerPassenger INTEGER);</value>
   </data>
   <data name="mSQLRouteNodesTableName" xml:space="preserve">
     <value>routeNodes</value>
@@ -157,14 +145,10 @@
     <value>crossroadNodes</value>
   </data>
   <data name="mSQLQueryInsertBus" xml:space="preserve">
-    <value>INSERT INTO buses (id, name, maxNumOfPassengers, startTime, alightingTimePerPassenger, boardingTimePerPassenger) VALUES(@id, @name, @maxNumOfPassengers, @startTime, @alightingTimePerPassenger, @boardingTimePerPassenger)</value>
+    <value>INSERT OR REPLACE INTO buses (id, name, maxCapacity, startTime, alightingTimePerPassenger, boardingTimePerPassenger) VALUES(@id, @name, @maxCapacity, @startTime, @alightingTimePerPassenger, @boardingTimePerPassenger)</value>
   </data>
   <data name="mRemoveRouteNodeButtonName" xml:space="preserve">
     <value>removeRouteNodeButton</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mAddBusButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_bus_button.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mAddRouteNodeButtonName" xml:space="preserve">
     <value>addRouteNodeButton</value>
@@ -172,34 +156,35 @@
   <data name="mSQLQueryCreateRouteNodesTable" xml:space="preserve">
     <value>CREATE TABLE IF NOT EXISTS routeNodes (id INTEGER PRIMARY KEY, name TEXT, position TEXT, type INTEGER);</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Animation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Animation.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mLoadRouteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mLoadRouteButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\load_route_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mQuitButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mQuitButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quit_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mSaveRouteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mSaveRouteButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save_route_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mMoveNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mMoveNodeButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\move_node_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mPauseSimulationButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mPauseSimulationButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pause_simulation_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mStartSimulationButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mStartSimulationButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\start_simulation_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mStatisticsViewerButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mStatisticsViewerButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\statistics_viewer_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mStopSimulationButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mStopSimulationButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop_simulation_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mMoveNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mMoveNodeButtonActiveImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\move_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mMoveNodeButtonName" xml:space="preserve">
@@ -208,19 +193,19 @@
   <data name="mSelectNodeButtonName" xml:space="preserve">
     <value>selectNodeButton</value>
   </data>
-  <data name="mSelectNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mSelectNodeButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\select_node_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mSelectNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mSelectNodeButtonActiveImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\select_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mAddMode" xml:space="preserve">
     <value>Добавление</value>
   </data>
-  <data name="mAddNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mAddNodeButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_node_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mAddNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mAddNodeButtonActiveImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mMoveMode" xml:space="preserve">
@@ -229,16 +214,16 @@
   <data name="mRemoveMode" xml:space="preserve">
     <value>Удаление</value>
   </data>
-  <data name="mRemoveNodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mRemoveNodeButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\remove_node_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mRemoveNodeButtonActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mRemoveNodeButtonActiveImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\remove_node_button_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mSelectionMode" xml:space="preserve">
     <value>Выбор</value>
   </data>
-  <data name="mSettingsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mSettingsButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mStatusLabelMessage" xml:space="preserve">
@@ -250,14 +235,14 @@
   <data name="mSettingsIncorrectTimeIntervalErrorMessage" xml:space="preserve">
     <value>Задан неверный временной интервал</value>
   </data>
-  <data name="mSQLQueryCreateSettingsTable" xml:space="preserve">
-    <value>CREATE TABLE IF NOT EXISTS settings(name TEXT PRIMARY KEY, value TEXT);</value>
+  <data name="mSQLQueryCreateOptionsTable" xml:space="preserve">
+    <value>CREATE TABLE IF NOT EXISTS options(name TEXT PRIMARY KEY, type INTEGER);</value>
   </data>
-  <data name="mSQLQueryInsertSettings" xml:space="preserve">
-    <value>INSERT INTO settings(name, value) VALUES(@name, @value)</value>
+  <data name="mSQLQueryInsertOption" xml:space="preserve">
+    <value>INSERT OR REPLACE INTO options(name, type) VALUES(@name, @type)</value>
   </data>
-  <data name="mSQLSettingsTableName" xml:space="preserve">
-    <value>settings</value>
+  <data name="mSQLOptionsTableName" xml:space="preserve">
+    <value>options</value>
   </data>
   <data name="mFinishTimeOfSimulationOption" xml:space="preserve">
     <value>finishTimeOfSimulation</value>
@@ -289,40 +274,85 @@
   <data name="mMatricesOfIntensitiesName" xml:space="preserve">
     <value>matrixOfIntensitiesCode</value>
   </data>
-  <data name="mSQLCreateTextDataTable" xml:space="preserve">
-    <value>CREATE TABLE IF NOT EXISTS textData(name TEXT, value TEXT);</value>
-  </data>
-  <data name="mSQLQueryInsertTextData" xml:space="preserve">
-    <value>INSERT INTO textData(name, value) VALUES (@name, @value)</value>
-  </data>
-  <data name="mSQLTextDataTableName" xml:space="preserve">
-    <value>textData</value>
-  </data>
   <data name="mBusesVelocitiesHeaderTemplate" xml:space="preserve">
     <value>decl {{{0}    time : Time;{0}    v : Vector({1});{0}}}</value>
   </data>
   <data name="mStationsDataHeaderTemplate" xml:space="preserve">
     <value>decl {{{0}    time : Time;{0}    beta : Matrix({1}, {2});{0}}}</value>
   </data>
-  <data name="mCopyButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mCopyButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\copy_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mPasteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mPasteButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paste_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mRedoButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mRedoButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redo_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mUndoButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mUndoButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\undo_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mBusEditorButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mBusEditorButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bus_editor_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mCutButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mCutButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cut_text_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mDataEditorButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="mDataEditorButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\data_editor_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSQLiteConnectionString" xml:space="preserve">
+    <value>Data Source = {0}; Version = 3;</value>
+  </data>
+  <data name="mAddBusButtonImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_bus_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mOptionsFinishTimeOfSimulation" xml:space="preserve">
+    <value>FinishTimeOfSimulation</value>
+  </data>
+  <data name="mOptionsNumOfSimulationSteps" xml:space="preserve">
+    <value>NumOfSimulationSteps</value>
+  </data>
+  <data name="mOptionsProjectFilename" xml:space="preserve">
+    <value>ProjectFilename</value>
+  </data>
+  <data name="mOptionsStartTimeOfSimulation" xml:space="preserve">
+    <value>StartTimeOfSimulation</value>
+  </data>
+  <data name="mOptionsStationsEditorCode" xml:space="preserve">
+    <value>stationsEditorCode</value>
+  </data>
+  <data name="mOptionsVelocitiesEditorCode" xml:space="preserve">
+    <value>velocitiesEditorCode</value>
+  </data>
+  <data name="mSQLDeleteAllRecords" xml:space="preserve">
+    <value>DELETE FROM {0}</value>
+  </data>
+  <data name="mSQLBoolOptionsTableName" xml:space="preserve">
+    <value>boolOptions</value>
+  </data>
+  <data name="mSQLCreateBoolOptionsTable" xml:space="preserve">
+    <value>CREATE TABLE IF NOT EXISTS boolOptions(name TEXT PRIMARY KEY, value INTEGER, FOREIGN KEY(name) REFERENCES options(name) ON DELETE CASCADE ON UPDATE CASCADE);</value>
+  </data>
+  <data name="mSQLCreateDoubleOptionsTable" xml:space="preserve">
+    <value>CREATE TABLE IF NOT EXISTS doubleOptions(name TEXT PRIMARY KEY, value REAL, FOREIGN KEY(name) REFERENCES options(name) ON DELETE CASCADE ON UPDATE CASCADE);</value>
+  </data>
+  <data name="mSQLCreateIntOptionsTable" xml:space="preserve">
+    <value>CREATE TABLE IF NOT EXISTS intOptions(name TEXT PRIMARY KEY, value INTEGER, FOREIGN KEY(name) REFERENCES options(name) ON DELETE CASCADE ON UPDATE CASCADE);</value>
+  </data>
+  <data name="mSQLCreateStrOptionsTable" xml:space="preserve">
+    <value>CREATE TABLE IF NOT EXISTS stringOptions(name TEXT PRIMARY KEY, value TEXT, FOREIGN KEY(name) REFERENCES options(name) ON DELETE CASCADE ON UPDATE CASCADE);</value>
+  </data>
+  <data name="mSQLDoubleOptionsTableName" xml:space="preserve">
+    <value>doubleOptions</value>
+  </data>
+  <data name="mSQLIntOptionsTableName" xml:space="preserve">
+    <value>intOptions</value>
+  </data>
+  <data name="mSQLQueryInsertTOption" xml:space="preserve">
+    <value>INSERT OR REPLACE INTO {0}(name, value) VALUES(@name, @value)</value>
+  </data>
+  <data name="mSQLStrOptionsTableName" xml:space="preserve">
+    <value>stringOptions</value>
   </data>
 </root>

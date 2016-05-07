@@ -86,12 +86,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presenters\CBusEditorPresenter.cs" />
+    <Compile Include="Models\Implementations\CBus.cs" />
+    <Compile Include="Models\Implementations\CBusRoute.cs" />
+    <Compile Include="Models\Implementations\CDataManagerHelper.cs" />
+    <Compile Include="Models\Implementations\CSqLiteOptionsDataMapper.cs" />
+    <Compile Include="Models\Implementations\ModelExceptions.cs" />
+    <Compile Include="Models\Implementations\RouteNodeSpecifications.cs" />
+    <Compile Include="Models\Implementations\CSpecification.cs" />
+    <Compile Include="Models\Implementations\CBaseModel.cs" />
+    <Compile Include="Models\Implementations\CBaseListStorage.cs" />
+    <Compile Include="Models\Implementations\CBusesListStorage.cs" />
+    <Compile Include="Models\Implementations\CBusStation.cs" />
+    <Compile Include="Models\Implementations\CDataManager.cs" />
+    <Compile Include="Models\Implementations\COptionsList.cs" />
+    <Compile Include="Models\Implementations\CRouteNode.cs" />
+    <Compile Include="Models\Implementations\CRouteNodesListStorage.cs" />
+    <Compile Include="Models\Implementations\CSqLiteBusDataMapper.cs" />
+    <Compile Include="Models\Implementations\CSqLiteDataMapper.cs" />
+    <Compile Include="Models\Implementations\CSqLiteRouteNodesDataMapper.cs" />
+    <Compile Include="Models\Implementations\CTimer.cs" />
+    <Compile Include="Models\Implementations\CUtilityNode.cs" />
+    <Compile Include="Models\Interfaces\IBaseModel.cs" />
+    <Compile Include="Models\Interfaces\IBaseStorage.cs" />
+    <Compile Include="Models\Interfaces\IDataMapper.cs" />
+    <Compile Include="Models\Interfaces\ISpecification.cs" />
+    <Compile Include="Models\Interfaces\IUpdatable.cs" />
+    <Compile Include="Presenters\BusEditorPresenter\CBusEditorPresenter.cs" />
     <Compile Include="Presenters\CProgressDialogPresenter.cs" />
-    <Compile Include="Presenters\CSimulationSettingsPresenter.cs" />
-    <Compile Include="Presenters\CDataEditorPresenter.cs" />
+    <Compile Include="Presenters\SimulationSettingsPresenter\CSimulationSettingsPresenter.cs" />
+    <Compile Include="Presenters\DataEditorPresenter\CDataEditorPresenter.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormAddNodeState.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormMoveNodeState.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormRemoveNodeState.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormSelectNodeState.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormState.cs" />
+    <Compile Include="Utils\CEnumHelper.cs" />
     <Compile Include="Utils\CGMapImageMarker.cs" />
     <Compile Include="Utils\CHelper.cs" />
+    <Compile Include="Utils\CPointLatLngHelper.cs" />
     <Compile Include="Utils\CVelocity.cs" />
     <Compile Include="Utils\Exceptions.cs" />
     <Compile Include="Views\BusEditor.cs">
@@ -110,15 +142,9 @@
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\CBus.cs" />
-    <Compile Include="Models\CBusRoute.cs" />
-    <Compile Include="Models\CBusStationNode.cs" />
-    <Compile Include="Models\CCrossRoadNode.cs" />
     <Compile Include="Models\CMainModel.cs" />
-    <Compile Include="Models\CRouteNode.cs" />
-    <Compile Include="Models\IBaseModel.cs" />
     <Compile Include="Presenters\CBasePresenter.cs" />
-    <Compile Include="Presenters\CMainFormPresenter.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormPresenter.cs" />
     <Compile Include="Presenters\IBasePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +346,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\data_editor_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_bus_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net40\System.Data.SQLite.Core.targets')" />

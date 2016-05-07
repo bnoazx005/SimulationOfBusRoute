@@ -18,17 +18,11 @@ namespace SimulationOfBusRoute.Views
         ListBox NodesList { get; set; }
 
         bool IsPropertyActive { get; set; }
-
-        bool IsBusStationPropertiesActive { get; set; }
-        
+                
         string NodeNameProperty { get; set; }
-
-        double BusStationNumOfPassengersProperty { get; set; }
-        
+                
         ComboBox RouteNodeTypeProperty { get; set; }
-
-        string CurrNodeName { get; set; }
-
+        
         Dictionary<string, Button> ButtonsList { get; set; }
 
         int CurrMarkerIndex { get; set; }

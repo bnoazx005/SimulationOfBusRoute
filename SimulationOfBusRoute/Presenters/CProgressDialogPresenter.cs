@@ -1,18 +1,19 @@
-﻿using SimulationOfBusRoute.Models;
+﻿using SimulationOfBusRoute.Models.Implementations;
 using SimulationOfBusRoute.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace SimulationOfBusRoute.Presenters
 {
-    class CProgressDialogPresenter : CBasePresenter<CMainModel, IProgressDialogView>
+    public class CProgressDialogPresenter : CBasePresenter<CDataManager, IProgressDialogView>
     {
         private Action mCurrTask;
 
         private Task mJob;
 
-        public CProgressDialogPresenter(IProgressDialogView view, CMainModel model):
+        public CProgressDialogPresenter(CDataManager model, IProgressDialogView view):
             base(model, view)
         {
             mJob = new Task(() =>

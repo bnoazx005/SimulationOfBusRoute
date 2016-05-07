@@ -1,575 +1,576 @@
-﻿using MDLParser.Data;
-using SimulationOfBusRoute.Utils;
-using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
+﻿//using MDLParser.Data;
+//using SimulationOfBusRoute.Models.Interfaces;
+//using SimulationOfBusRoute.Utils;
+//using System;
+//using System.Collections.Generic;
+//using System.Data.SQLite;
 
 
-namespace SimulationOfBusRoute.Models
-{
-    //public enum E_CURRENT_STATE
-    //{
-    //    CS_EDITOR_ADD_NODE,
-    //    CS_EDITOR_REMOVE_NODE,
-    //    CS_EDITOR_UPDATE_NODE,
+//namespace SimulationOfBusRoute.Models
+//{
+//    //public enum E_CURRENT_STATE
+//    //{
+//    //    CS_EDITOR_ADD_NODE,
+//    //    CS_EDITOR_REMOVE_NODE,
+//    //    CS_EDITOR_UPDATE_NODE,
 
-    //    CS_EDITOR_ADDITION_MODE,
-    //    CS_EDITOR_REMOVE_MODE,
-    //    CS_EDITOR_SELECTION_MODE,
-    //    CS_EDITOR_MOVE_MODE,
+//    //    CS_EDITOR_ADDITION_MODE,
+//    //    CS_EDITOR_REMOVE_MODE,
+//    //    CS_EDITOR_SELECTION_MODE,
+//    //    CS_EDITOR_MOVE_MODE,
 
-    //    CS_SIMULATION_IS_RUNNING,
-    //    CS_SIMULATION_IS_PAUSED,
-    //    CS_SIMULATION_IS_STOPPED,
+//    //    CS_SIMULATION_IS_RUNNING,
+//    //    CS_SIMULATION_IS_PAUSED,
+//    //    CS_SIMULATION_IS_STOPPED,
 
-    //    CS_DEFAULT
-    //}
+//    //    CS_DEFAULT
+//    //}
 
 
-    public class CMainModel : IBaseModel
-    {
-        private uint mIndex;
+//    public class CMainModel : IBaseModel
+//    {
+//        private uint mIndex;
 
-        private string mName;
+//        private string mName;
         
-        //private E_CURRENT_STATE mCurrState;
+//        //private E_CURRENT_STATE mCurrState;
 
-        private CBusRoute mCurrBusRoute;
+//       // private CBusRoute mCurrBusRoute;
 
-        private byte mCurrNumOfEndingStations;
+//       // private byte mCurrNumOfEndingStations;
 
-        private bool mIsChanged;
+//        //private bool mIsChanged;
 
-        public event Action OnModelChanged;
+//       // public event Action OnModelChanged;
 
-        private object mThreadSyncObject;
+//        //private object mThreadSyncObject;
 
-        private uint mNumOfSimulationSteps;
+//        private uint mNumOfSimulationSteps;
 
-        private uint mSpeedOfSimulation;
+//        private uint mSpeedOfSimulation;
 
-        private TimeSpan mStartTimeOfSimulation;
+//        private TimeSpan mStartTimeOfSimulation;
 
-        private TimeSpan mFinishTimeOfSimulation;
+//        private TimeSpan mFinishTimeOfSimulation;
 
-        private CMatricesList mMatricesOfIntensitiesList;
+//        private CMatricesList mMatricesOfIntensitiesList;
 
-        private CMatricesList mBusesVelocitiesList;
+//        private CMatricesList mBusesVelocitiesList;
 
-        private string mStationsEditorCode;
+//        private string mStationsEditorCode;
 
-        private string mBusesVelocitiesEditorCode;
+//        private string mBusesVelocitiesEditorCode;
 
-        #region Contructors
+//        #region Contructors
 
-        public CMainModel()
-        {
-            mCurrBusRoute = new CBusRoute(0);
-            mCurrNumOfEndingStations = 0;
+//        public CMainModel()
+//        {
+//            //mCurrBusRoute = new CBusRoute(0);
+//            //mCurrNumOfEndingStations = 0;
 
-            mIsChanged = false;
+//            //mIsChanged = false;
 
-            mThreadSyncObject = new object();
+//            //mThreadSyncObject = new object();
 
-            mMatricesOfIntensitiesList = null;
-            mBusesVelocitiesList = null;
+//            mMatricesOfIntensitiesList = null;
+//            mBusesVelocitiesList = null;
 
-            mStationsEditorCode = string.Empty;
-            mBusesVelocitiesEditorCode = string.Empty;
-    }
+//            mStationsEditorCode = string.Empty;
+//            mBusesVelocitiesEditorCode = string.Empty;
+//    }
 
-        #endregion
+//        #endregion
 
-        #region Methods
+//        #region Methods
 
-        public void ClearRoute()
-        {
-            CBusRoute route = mCurrBusRoute;
+//        //public void ClearRoute()
+//        //{
+//        //    CBusRoute route = mCurrBusRoute;
 
-            if (route == null)
-            {
-                return;
-            }
+//        //    if (route == null)
+//        //    {
+//        //        return;
+//        //    }
 
-            mIsChanged = route.ClearRouteNodes();
+//        //    mIsChanged = route.ClearRouteNodes();
 
-            if (mIsChanged && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void InsertRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
-        {
-            mIsChanged = mCurrBusRoute.InsertRouteNodeByID(id, newRouteNodeValue);
+//        //public void InsertRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
+//        //{
+//        //    mIsChanged = mCurrBusRoute.InsertRouteNodeByID(id, newRouteNodeValue);
 
-            if (mIsChanged && newRouteNodeValue != null && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && newRouteNodeValue != null && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void UpdateRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
-        {
-            mIsChanged = mCurrBusRoute.UpdateRouteNodeByID(id, newRouteNodeValue);
+//        //public void UpdateRouteNodeByID(uint id, CRouteNode newRouteNodeValue)
+//        //{
+//        //    mIsChanged = mCurrBusRoute.UpdateRouteNodeByID(id, newRouteNodeValue);
 
-            if (mIsChanged && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void RemoveRouteNode(uint id)
-        {
-            mIsChanged = mCurrBusRoute.RemoveRouteNode(id);
+//        //public void RemoveRouteNode(uint id)
+//        //{
+//        //    mIsChanged = mCurrBusRoute.RemoveRouteNode(id);
 
-            if (mIsChanged && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public CRouteNode GetRouteNodeByID(uint id)
-        {
-            return mCurrBusRoute.GetRouteNodeByID(id);
-        }
+//        //public CRouteNode GetRouteNodeByID(uint id)
+//        //{
+//        //    return mCurrBusRoute.GetRouteNodeByID(id);
+//        //}
 
-        public void AddBusInfo(ushort maxNumOfPassengers, uint startTime, uint alightingTimePerPassenger,
-                           uint boardingTimePerPassenger)
-        {
-            mIsChanged = mCurrBusRoute.AddBus(maxNumOfPassengers, startTime, alightingTimePerPassenger, boardingTimePerPassenger);
+//        //public void AddBusInfo(ushort maxNumOfPassengers, uint startTime, uint alightingTimePerPassenger,
+//        //                   uint boardingTimePerPassenger)
+//        //{
+//        //    mIsChanged = mCurrBusRoute.AddBus(maxNumOfPassengers, startTime, alightingTimePerPassenger, boardingTimePerPassenger);
 
-            if (mIsChanged && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void UpdateBusInfo(uint id, ushort maxNumOfPassengers, uint startTime, uint alightingTimePerPassenger,
-                                  uint boardingTimePerPassenger)
-        {
-            mIsChanged = mCurrBusRoute.UpdateBusInfo(id, maxNumOfPassengers, startTime, alightingTimePerPassenger, boardingTimePerPassenger);
+//        //public void UpdateBusInfo(uint id, ushort maxNumOfPassengers, uint startTime, uint alightingTimePerPassenger,
+//        //                          uint boardingTimePerPassenger)
+//        //{
+//        //    mIsChanged = mCurrBusRoute.UpdateBusInfo(id, maxNumOfPassengers, startTime, alightingTimePerPassenger, boardingTimePerPassenger);
 
-            if (mIsChanged && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void RemoveBusInfo(uint id)
-        {
-            mIsChanged = mCurrBusRoute.RemoveBusInfo(id);
+//        //public void RemoveBusInfo(uint id)
+//        //{
+//        //    mIsChanged = mCurrBusRoute.RemoveBusInfo(id);
 
-            if (mIsChanged && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void ClearBusesInfo()
-        {
-            CBusRoute route = mCurrBusRoute;
+//        //public void ClearBusesInfo()
+//        //{
+//        //    CBusRoute route = mCurrBusRoute;
 
-            if (route == null)
-            {
-                return;
-            }
+//        //    if (route == null)
+//        //    {
+//        //        return;
+//        //    }
 
-            mIsChanged = route.ClearBusesInfo();
+//        //    mIsChanged = route.ClearBusesInfo();
 
-            if (mIsChanged && OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (mIsChanged && OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void UpdateVelocityOfSpanByIndex(int index, double velocity)
-        {
-            List<CRouteNode> busStations = mCurrBusRoute.BusStationNodes;
+//        //public void UpdateVelocityOfSpanByIndex(int index, double velocity)
+//        //{
+//        //    List<CRouteNode> busStations = mCurrBusRoute.BusStationNodes;
 
-            CBusStationNode currBusStation = busStations[index] as CBusStationNode;
+//        //    CBusStation currBusStation = busStations[index] as CBusStation;
 
-            if (currBusStation == null)
-            {
-                //добавить обработку исключений
-                return;
-            }
+//        //    if (currBusStation == null)
+//        //    {
+//        //        //добавить обработку исключений
+//        //        return;
+//        //    }
 
-            currBusStation.VelocityOfSpan = velocity;
+//        //    currBusStation.VelocityOfSpan = velocity;
 
-            if (OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//        //    if (OnModelChanged != null)
+//        //    {
+//        //        OnModelChanged();
+//        //    }
+//        //}
 
-        public void LoadFromDataBase(SQLiteConnection dbConnection)
-        {
-            if (dbConnection == null)
-            {
-                throw new ArgumentNullException();
-            }
+//        public void LoadFromDataBase(SQLiteConnection dbConnection)
+//        {
+//            if (dbConnection == null)
+//            {
+//                throw new ArgumentNullException();
+//            }
 
-            ClearRoute();
-            ClearBusesInfo();
+//            ClearRoute();
+//            ClearBusesInfo();
 
-            dbConnection.Open();
+//            dbConnection.Open();
 
-            //!!! добавить try для проверки на исключения, чтобы гарантировать загрузку данных
+//            //!!! добавить try для проверки на исключения, чтобы гарантировать загрузку данных
 
-            mCurrBusRoute.LoadFromDataBase(dbConnection);
+//            mCurrBusRoute.LoadFromDataBase(dbConnection);
 
-            //чтение настроек моделирования
-            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
-            {
-                //чтение таблицы settings
-                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLSettingsTableName);
+//            //чтение настроек моделирования
+//            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
+//            {
+//                //чтение таблицы settings
+//                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLSettingsTableName);
 
-                SQLiteDataReader reader = currCommand.ExecuteReader();
+//                SQLiteDataReader reader = currCommand.ExecuteReader();
 
-                string name;
-                string value;
+//                string name;
+//                string value;
                 
-                foreach (System.Data.Common.DbDataRecord record in reader)
-                {
-                    name = (string)record["name"];
-                    value = (string)record["value"];
+//                foreach (System.Data.Common.DbDataRecord record in reader)
+//                {
+//                    name = (string)record["name"];
+//                    value = (string)record["value"];
 
-                    if (name == Properties.Resources.mStartTimeOfSimulationOption)
-                    {
-                        mStartTimeOfSimulation = TimeSpan.Parse(value);
-                    }
-                    else if (name == Properties.Resources.mFinishTimeOfSimulationOption)
-                    {
-                        mFinishTimeOfSimulation = TimeSpan.Parse(value);
-                    }
-                    else if (name == Properties.Resources.mSpeedOfSimulationOption)
-                    {
-                        mSpeedOfSimulation = uint.Parse(value);
-                    }
-                }
+//                    if (name == Properties.Resources.mStartTimeOfSimulationOption)
+//                    {
+//                        mStartTimeOfSimulation = TimeSpan.Parse(value);
+//                    }
+//                    else if (name == Properties.Resources.mFinishTimeOfSimulationOption)
+//                    {
+//                        mFinishTimeOfSimulation = TimeSpan.Parse(value);
+//                    }
+//                    else if (name == Properties.Resources.mSpeedOfSimulationOption)
+//                    {
+//                        mSpeedOfSimulation = uint.Parse(value);
+//                    }
+//                }
                 
-                reader.Close();
+//                reader.Close();
 
-                //чтение таблицы textData
-                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLTextDataTableName);
+//                //чтение таблицы textData
+//                currCommand.CommandText = string.Format(Properties.Resources.mSQLSimpleSelectQuery, Properties.Resources.mSQLTextDataTableName);
 
-                reader = currCommand.ExecuteReader();
+//                reader = currCommand.ExecuteReader();
                 
-                foreach (System.Data.Common.DbDataRecord record in reader)
-                {
-                    name = (string)record["name"];
-                    value = (string)record["value"];
+//                foreach (System.Data.Common.DbDataRecord record in reader)
+//                {
+//                    name = (string)record["name"];
+//                    value = (string)record["value"];
 
-                    if (name == Properties.Resources.mMatricesOfIntensitiesName)
-                    {
-                        mStationsEditorCode = value;
-                    }
-                    else if (name == Properties.Resources.mBusesVelocitiesName)
-                    {
-                        mBusesVelocitiesEditorCode = value;
-                    }
-                }
+//                    if (name == Properties.Resources.mMatricesOfIntensitiesName)
+//                    {
+//                        mStationsEditorCode = value;
+//                    }
+//                    else if (name == Properties.Resources.mBusesVelocitiesName)
+//                    {
+//                        mBusesVelocitiesEditorCode = value;
+//                    }
+//                }
 
-                reader.Close();
-            }
+//                reader.Close();
+//            }
 
-            mNumOfSimulationSteps = (uint)mFinishTimeOfSimulation.Subtract(mStartTimeOfSimulation).TotalSeconds;
+//            mNumOfSimulationSteps = (uint)mFinishTimeOfSimulation.Subtract(mStartTimeOfSimulation).TotalSeconds;
 
-            dbConnection.Close();
-            dbConnection.Dispose();
+//            dbConnection.Close();
+//            dbConnection.Dispose();
 
-            mIsChanged = true;
+//            mIsChanged = true;
 
-            if (OnModelChanged != null)
-            {
-                OnModelChanged();
-            }
-        }
+//            if (OnModelChanged != null)
+//            {
+//                OnModelChanged();
+//            }
+//        }
 
-        public void SaveIntoDataBase(SQLiteConnection dbConnection)
-        {
-            if ((dbConnection == null) || (mCurrBusRoute == null))
-            {
-                throw new ArgumentNullException();
-            }
+//        public void SaveIntoDataBase(SQLiteConnection dbConnection)
+//        {
+//            if ((dbConnection == null) || (mCurrBusRoute == null))
+//            {
+//                throw new ArgumentNullException();
+//            }
 
-            dbConnection.Open();
+//            dbConnection.Open();
 
-            mCurrBusRoute.SaveIntoDataBase(dbConnection);
+//            mCurrBusRoute.SaveIntoDataBase(dbConnection);
 
-            //сохранение настроек моделирования
-            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
-            {
-                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLSettingsTableName);
-                currCommand.ExecuteNonQuery();
+//            //сохранение настроек моделирования
+//            using (SQLiteCommand currCommand = new SQLiteCommand(dbConnection))
+//            {
+//                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLSettingsTableName);
+//                currCommand.ExecuteNonQuery();
 
-                //создание таблицы settings
-                currCommand.CommandText = Properties.Resources.mSQLQueryCreateSettingsTable;
-                currCommand.ExecuteNonQuery();
+//                //создание таблицы settings
+//                currCommand.CommandText = Properties.Resources.mSQLQueryCreateSettingsTable;
+//                currCommand.ExecuteNonQuery();
 
-                //добавление данных в таблицу settings
-                currCommand.CommandText = Properties.Resources.mSQLQueryInsertSettings;
+//                //добавление данных в таблицу settings
+//                currCommand.CommandText = Properties.Resources.mSQLQueryInsertSettings;
                 
-                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mStartTimeOfSimulationOption);
-                currCommand.Parameters.AddWithValue("@value", mStartTimeOfSimulation.ToString());
+//                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mStartTimeOfSimulationOption);
+//                currCommand.Parameters.AddWithValue("@value", mStartTimeOfSimulation.ToString());
 
-                currCommand.ExecuteNonQuery();
+//                currCommand.ExecuteNonQuery();
 
-                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mFinishTimeOfSimulationOption);
-                currCommand.Parameters.AddWithValue("@value", mFinishTimeOfSimulation.ToString());
+//                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mFinishTimeOfSimulationOption);
+//                currCommand.Parameters.AddWithValue("@value", mFinishTimeOfSimulation.ToString());
 
-                currCommand.ExecuteNonQuery();
+//                currCommand.ExecuteNonQuery();
 
-                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mSpeedOfSimulationOption);
-                currCommand.Parameters.AddWithValue("@value", mSpeedOfSimulation.ToString());
+//                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mSpeedOfSimulationOption);
+//                currCommand.Parameters.AddWithValue("@value", mSpeedOfSimulation.ToString());
 
-                currCommand.ExecuteNonQuery();
+//                currCommand.ExecuteNonQuery();
 
-                //таблица textData
-                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLTextDataTableName);
-                currCommand.ExecuteNonQuery();
+//                //таблица textData
+//                currCommand.CommandText = string.Format(Properties.Resources.mSQLQueryDropTable, Properties.Resources.mSQLTextDataTableName);
+//                currCommand.ExecuteNonQuery();
                 
-                currCommand.CommandText = Properties.Resources.mSQLCreateTextDataTable;
-                currCommand.ExecuteNonQuery();
+//                currCommand.CommandText = Properties.Resources.mSQLCreateTextDataTable;
+//                currCommand.ExecuteNonQuery();
                 
-                currCommand.CommandText = Properties.Resources.mSQLQueryInsertTextData;
+//                currCommand.CommandText = Properties.Resources.mSQLQueryInsertTextData;
 
-                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mMatricesOfIntensitiesName);
-                currCommand.Parameters.AddWithValue("@value", mStationsEditorCode);
+//                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mMatricesOfIntensitiesName);
+//                currCommand.Parameters.AddWithValue("@value", mStationsEditorCode);
                 
-                currCommand.ExecuteNonQuery();
+//                currCommand.ExecuteNonQuery();
 
-                currCommand.CommandText = Properties.Resources.mSQLQueryInsertTextData;
+//                currCommand.CommandText = Properties.Resources.mSQLQueryInsertTextData;
 
-                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mBusesVelocitiesName);
-                currCommand.Parameters.AddWithValue("@value", mBusesVelocitiesEditorCode);
+//                currCommand.Parameters.AddWithValue("@name", Properties.Resources.mBusesVelocitiesName);
+//                currCommand.Parameters.AddWithValue("@value", mBusesVelocitiesEditorCode);
 
-                currCommand.ExecuteNonQuery();
-            }
+//                currCommand.ExecuteNonQuery();
+//            }
 
-            dbConnection.Close();
-            dbConnection.Dispose();
+//            dbConnection.Close();
+//            dbConnection.Dispose();
 
-            mIsChanged = false;
-        }
+//            mIsChanged = false;
+//        }
 
-        #endregion
+//        #endregion
 
-        #region Properties
+//        #region Properties
 
-        public uint ID
-        {
-            get
-            {
-                return mIndex;
-            }
+//        //public uint ID
+//        //{
+//        //    get
+//        //    {
+//        //        return mIndex;
+//        //    }
 
-            set
-            {
-                mIndex = value;
-            }
-        }
+//        //    set
+//        //    {
+//        //        mIndex = value;
+//        //    }
+//        //}
 
-        public string Name
-        {
-            get
-            {
-                return mName;
-            }
+//        //public string Name
+//        //{
+//        //    get
+//        //    {
+//        //        return mName;
+//        //    }
 
-            set
-            {
-                mName = value;
-            }
-        }
+//        //    set
+//        //    {
+//        //        mName = value;
+//        //    }
+//        //}
         
-        //public E_CURRENT_STATE CurrState
-        //{
-        //    get
-        //    {
-        //        return mCurrState;
-        //    }
+//        //public E_CURRENT_STATE CurrState
+//        //{
+//        //    get
+//        //    {
+//        //        return mCurrState;
+//        //    }
 
-        //    set
-        //    {
-        //        mCurrState = value;
-        //    }
-        //}
+//        //    set
+//        //    {
+//        //        mCurrState = value;
+//        //    }
+//        //}
 
-        public CBusRoute CurrBusRoute
-        {
-            get
-            {
-                return mCurrBusRoute;
-            }
-        }
+//        //public CBusRoute CurrBusRoute
+//        //{
+//        //    get
+//        //    {
+//        //        return mCurrBusRoute;
+//        //    }
+//        //}
 
-        public byte CurrNumOfEndingStations
-        {
-            get
-            {
-                return mCurrNumOfEndingStations;
-            }
+//        //public byte CurrNumOfEndingStations
+//        //{
+//        //    get
+//        //    {
+//        //        return mCurrNumOfEndingStations;
+//        //    }
 
-            set
-            {
-                mCurrNumOfEndingStations = value;
-            }
-        }
+//        //    set
+//        //    {
+//        //        mCurrNumOfEndingStations = value;
+//        //    }
+//        //}
 
-        public int CurrNumOfStations
-        {
-            get
-            {
-                return mCurrBusRoute.NumOfBusStations;
-            }
-        }
+//        //public int CurrNumOfStations
+//        //{
+//        //    get
+//        //    {
+//        //        return mCurrBusRoute.NumOfBusStations;
+//        //    }
+//        //}
 
-        public bool IsChanged
-        {
-            get
-            {
-                return mIsChanged;
-            }
+//        //public bool IsChanged
+//        //{
+//        //    get
+//        //    {
+//        //        return mIsChanged;
+//        //    }
 
-            //set
-            //{
-            //    mIsChanged = value;
-            //}
-        }
+//        //    //set
+//        //    //{
+//        //    //    mIsChanged = value;
+//        //    //}
+//        //}
 
-        public object ThreadSyncObject
-        {
-            get
-            {
-                return mThreadSyncObject;
-            }
+//        //public object ThreadSyncObject
+//        //{
+//        //    get
+//        //    {
+//        //        return mThreadSyncObject;
+//        //    }
 
-            set
-            {
-                mThreadSyncObject = value;
-            }
-        }
+//        //    set
+//        //    {
+//        //        mThreadSyncObject = value;
+//        //    }
+//        //}
 
-        public uint NumOfSimulationSteps
-        {
-            get
-            {
-                return mNumOfSimulationSteps;
-            }
+//        public uint NumOfSimulationSteps
+//        {
+//            get
+//            {
+//                return mNumOfSimulationSteps;
+//            }
 
-            set
-            {
-                mNumOfSimulationSteps = value;
-            }
-        }
+//            set
+//            {
+//                mNumOfSimulationSteps = value;
+//            }
+//        }
 
-        public uint SpeedOfSimulation
-        {
-            get
-            {
-                return mSpeedOfSimulation;
-            }
+//        public uint SpeedOfSimulation
+//        {
+//            get
+//            {
+//                return mSpeedOfSimulation;
+//            }
 
-            set
-            {
-                mSpeedOfSimulation = value;
-            }
-        }
+//            set
+//            {
+//                mSpeedOfSimulation = value;
+//            }
+//        }
 
-        public TimeSpan StartTimeOfSimulation
-        {
-            get
-            {
-                return mStartTimeOfSimulation;
-            }
+//        public TimeSpan StartTimeOfSimulation
+//        {
+//            get
+//            {
+//                return mStartTimeOfSimulation;
+//            }
 
-            set
-            {
-                mStartTimeOfSimulation = value;
-            }
-        }
+//            set
+//            {
+//                mStartTimeOfSimulation = value;
+//            }
+//        }
 
-        public TimeSpan FinishTimeOfSimulation
-        {
-            get
-            {
-                return mFinishTimeOfSimulation;
-            }
+//        public TimeSpan FinishTimeOfSimulation
+//        {
+//            get
+//            {
+//                return mFinishTimeOfSimulation;
+//            }
 
-            set
-            {
-                mFinishTimeOfSimulation = value;
-            }
-        }
+//            set
+//            {
+//                mFinishTimeOfSimulation = value;
+//            }
+//        }
 
-        public CMatricesList MatricesOfIntensitiesList
-        {
-            get
-            {
-                return mMatricesOfIntensitiesList;
-            }
+//        public CMatricesList MatricesOfIntensitiesList
+//        {
+//            get
+//            {
+//                return mMatricesOfIntensitiesList;
+//            }
 
-            set
-            { 
-                mMatricesOfIntensitiesList = value;
+//            set
+//            { 
+//                mMatricesOfIntensitiesList = value;
 
-                mIsChanged = true;
+//                mIsChanged = true;
 
-                if (OnModelChanged != null)
-                {
-                    OnModelChanged();
-                }
-            }
-        }
+//                if (OnModelChanged != null)
+//                {
+//                    OnModelChanged();
+//                }
+//            }
+//        }
 
-        public CMatricesList BusesVelocitiesList
-        {
-            get
-            {
-                return mBusesVelocitiesList;
-            }
+//        public CMatricesList BusesVelocitiesList
+//        {
+//            get
+//            {
+//                return mBusesVelocitiesList;
+//            }
 
-            set
-            {
-                mBusesVelocitiesList = value;
+//            set
+//            {
+//                mBusesVelocitiesList = value;
 
-                mIsChanged = true;
+//                mIsChanged = true;
 
-                if (OnModelChanged != null)
-                {
-                    OnModelChanged();
-                }
-            }
-        }
+//                if (OnModelChanged != null)
+//                {
+//                    OnModelChanged();
+//                }
+//            }
+//        }
 
-        public string StationsEditorCode
-        {
-            get
-            {
-                return mStationsEditorCode;
-            }
+//        public string StationsEditorCode
+//        {
+//            get
+//            {
+//                return mStationsEditorCode;
+//            }
 
-            set
-            {
-                mStationsEditorCode = value;
-            }
-        }
+//            set
+//            {
+//                mStationsEditorCode = value;
+//            }
+//        }
 
-        public string BusesVelocitiesEditorCode
-        {
-            get
-            {
-                return mBusesVelocitiesEditorCode;
-            }
+//        public string BusesVelocitiesEditorCode
+//        {
+//            get
+//            {
+//                return mBusesVelocitiesEditorCode;
+//            }
 
-            set
-            {
-                mBusesVelocitiesEditorCode = value;
-            }
-        }
+//            set
+//            {
+//                mBusesVelocitiesEditorCode = value;
+//            }
+//        }
 
-        #endregion
-    }
-}
+//        #endregion
+//    }
+//}

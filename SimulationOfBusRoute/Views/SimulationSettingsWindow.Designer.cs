@@ -32,18 +32,12 @@
             this.simulationSettingsGroup = new System.Windows.Forms.GroupBox();
             this.acceptButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.speedOfSimulationGroup = new System.Windows.Forms.GroupBox();
-            this.speedOfSimulationValue = new System.Windows.Forms.NumericUpDown();
-            this.speedOfSimulationTrackBar = new System.Windows.Forms.TrackBar();
             this.timeSettingsGroup = new System.Windows.Forms.GroupBox();
             this.timeOfFinishValue = new System.Windows.Forms.MaskedTextBox();
             this.timeOfStartValue = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.simulationSettingsGroup.SuspendLayout();
-            this.speedOfSimulationGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.speedOfSimulationValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.speedOfSimulationTrackBar)).BeginInit();
             this.timeSettingsGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,18 +48,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.simulationSettingsGroup.Controls.Add(this.acceptButton);
             this.simulationSettingsGroup.Controls.Add(this.cancelButton);
-            this.simulationSettingsGroup.Controls.Add(this.speedOfSimulationGroup);
             this.simulationSettingsGroup.Controls.Add(this.timeSettingsGroup);
             this.simulationSettingsGroup.Location = new System.Drawing.Point(5, 0);
             this.simulationSettingsGroup.Name = "simulationSettingsGroup";
-            this.simulationSettingsGroup.Size = new System.Drawing.Size(378, 260);
+            this.simulationSettingsGroup.Size = new System.Drawing.Size(378, 164);
             this.simulationSettingsGroup.TabIndex = 0;
             this.simulationSettingsGroup.TabStop = false;
             this.simulationSettingsGroup.Text = "Настройки режима моделирования";
             // 
             // acceptButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(166, 222);
+            this.acceptButton.Location = new System.Drawing.Point(166, 126);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(99, 32);
             this.acceptButton.TabIndex = 3;
@@ -74,55 +67,12 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(271, 222);
+            this.cancelButton.Location = new System.Drawing.Point(271, 126);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(99, 32);
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = true;
-            // 
-            // speedOfSimulationGroup
-            // 
-            this.speedOfSimulationGroup.Controls.Add(this.speedOfSimulationValue);
-            this.speedOfSimulationGroup.Controls.Add(this.speedOfSimulationTrackBar);
-            this.speedOfSimulationGroup.Location = new System.Drawing.Point(6, 135);
-            this.speedOfSimulationGroup.Name = "speedOfSimulationGroup";
-            this.speedOfSimulationGroup.Size = new System.Drawing.Size(364, 81);
-            this.speedOfSimulationGroup.TabIndex = 2;
-            this.speedOfSimulationGroup.TabStop = false;
-            this.speedOfSimulationGroup.Text = "Скорость моделирования:";
-            // 
-            // speedOfSimulationValue
-            // 
-            this.speedOfSimulationValue.Location = new System.Drawing.Point(293, 19);
-            this.speedOfSimulationValue.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.speedOfSimulationValue.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.speedOfSimulationValue.Name = "speedOfSimulationValue";
-            this.speedOfSimulationValue.Size = new System.Drawing.Size(61, 22);
-            this.speedOfSimulationValue.TabIndex = 1;
-            this.speedOfSimulationValue.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // speedOfSimulationTrackBar
-            // 
-            this.speedOfSimulationTrackBar.LargeChange = 3;
-            this.speedOfSimulationTrackBar.Location = new System.Drawing.Point(9, 19);
-            this.speedOfSimulationTrackBar.Minimum = 1;
-            this.speedOfSimulationTrackBar.Name = "speedOfSimulationTrackBar";
-            this.speedOfSimulationTrackBar.Size = new System.Drawing.Size(278, 56);
-            this.speedOfSimulationTrackBar.TabIndex = 0;
-            this.speedOfSimulationTrackBar.Value = 1;
             // 
             // timeSettingsGroup
             // 
@@ -180,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 263);
+            this.ClientSize = new System.Drawing.Size(386, 170);
             this.Controls.Add(this.simulationSettingsGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -190,10 +140,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "[Окно настроек]";
             this.simulationSettingsGroup.ResumeLayout(false);
-            this.speedOfSimulationGroup.ResumeLayout(false);
-            this.speedOfSimulationGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.speedOfSimulationValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.speedOfSimulationTrackBar)).EndInit();
             this.timeSettingsGroup.ResumeLayout(false);
             this.timeSettingsGroup.PerformLayout();
             this.ResumeLayout(false);
@@ -206,9 +152,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox timeSettingsGroup;
-        private System.Windows.Forms.GroupBox speedOfSimulationGroup;
-        private System.Windows.Forms.NumericUpDown speedOfSimulationValue;
-        private System.Windows.Forms.TrackBar speedOfSimulationTrackBar;
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.MaskedTextBox timeOfFinishValue;

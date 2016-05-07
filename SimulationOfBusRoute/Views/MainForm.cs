@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using SimulationOfBusRoute.Utils;
-using SimulationOfBusRoute.Views;
 using GMap.NET.WindowsForms;
 using System.Collections.Generic;
 
@@ -16,14 +15,7 @@ namespace SimulationOfBusRoute.Views
         {
             InitializeComponent();
 
-            mButtonsList = new Dictionary<string, Button>();
-
-            List<Control> buttons = new List<Control>(CControlHelper.FindControlsByType<Button>(Controls));
-            
-            foreach(Control control in buttons)
-            {
-                mButtonsList.Add(control.Name, control as Button);
-            }
+            mButtonsList = Controls.GetControlsDictionaryOfType<Button>();
 
             //Привязывание событий к элементам интерфейса
 
@@ -188,19 +180,6 @@ namespace SimulationOfBusRoute.Views
                 nodeNameProperty.Text = value;
             }
         }
-
-        public double BusStationNumOfPassengersProperty
-        {
-            get
-            {
-                return Convert.ToDouble(stationNumOfPassengersProperty.Value);
-            }
-
-            set
-            {
-                stationNumOfPassengersProperty.Value = Convert.ToDecimal(value);
-            }
-        }
         
         public bool IsPropertyActive
         {
@@ -212,19 +191,6 @@ namespace SimulationOfBusRoute.Views
             set
             {
                 splitContainer1.Panel2.Enabled = value;
-            }
-        }
-
-        public bool IsBusStationPropertiesActive
-        {
-            get
-            {
-                return stationProperties.Visible;
-            }
-
-            set
-            {
-                stationProperties.Visible = value;
             }
         }
 
@@ -267,19 +233,6 @@ namespace SimulationOfBusRoute.Views
             }
         }
         
-        public string CurrNodeName
-        {
-            get
-            {
-                return currNodeName.Text;
-            }
-
-            set
-            {
-                currNodeName.Text = value;
-            }
-        }
-
         public OpenFileDialog OpenFileDialog
         {
             get

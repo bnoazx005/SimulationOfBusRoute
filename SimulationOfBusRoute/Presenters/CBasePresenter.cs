@@ -1,6 +1,5 @@
-﻿using System;
-using SimulationOfBusRoute.Models;
-using SimulationOfBusRoute.Views;
+﻿using SimulationOfBusRoute.Views;
+using SimulationOfBusRoute.Models.Interfaces;
 
 
 namespace SimulationOfBusRoute.Presenters
@@ -30,11 +29,27 @@ namespace SimulationOfBusRoute.Presenters
             mView.Display();
         }
 
-        public virtual bool IsRunning
+        public bool IsRunning
         {
             get
             {
                 return mIsRunning;
+            }
+        }
+
+        public V View
+        {
+            get
+            {
+                return mView;
+            }
+        }
+
+        public M Model
+        {
+            get
+            {
+                return mModel;
             }
         }
     }

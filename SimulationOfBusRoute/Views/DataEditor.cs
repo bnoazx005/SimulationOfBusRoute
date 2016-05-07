@@ -13,15 +13,8 @@ namespace SimulationOfBusRoute.Views
         public DataEditor()
         {
             InitializeComponent();
-
-            mButtonsList = new Dictionary<string, Button>();
-
-            List<Control> buttons = new List<Control>(CControlHelper.FindControlsByType<Button>(Controls));
-
-            foreach (Control control in buttons)
-            {
-                mButtonsList.Add(control.Name, control as Button);
-            }
+            
+            mButtonsList = Controls.GetControlsDictionaryOfType<Button>();
 
             Load                        += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, EventArgs.Empty); } };
             FormClosing                 += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };

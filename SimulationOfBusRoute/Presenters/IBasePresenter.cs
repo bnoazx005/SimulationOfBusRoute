@@ -1,6 +1,4 @@
-﻿
-
-namespace SimulationOfBusRoute.Presenters
+﻿namespace SimulationOfBusRoute.Presenters
 {
     public interface IBasePresenter
     {

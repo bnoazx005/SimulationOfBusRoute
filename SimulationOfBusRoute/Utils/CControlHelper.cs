@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -10,24 +7,50 @@ namespace SimulationOfBusRoute.Utils
 {
     public static class CControlHelper
     {
-        public static IEnumerable<Control> FindControlsByType<T>(Control.ControlCollection collection)
-        {
-            List<Control> resultCollection = new List<Control>();
+        //public static IEnumerable<Control> FindControlsByType<T>(Control.ControlCollection collection)
+        //{
+        //    List<Control> resultCollection = new List<Control>();
             
-            foreach (Control currControl in collection)
+        //    foreach (Control currControl in collection)
+        //    {
+        //        if (currControl.HasChildren)
+        //        {
+        //            resultCollection.AddRange(FindControlsByType<T>(currControl.Controls));
+        //        }
+
+        //        if (currControl.GetType() == typeof(T))
+        //        {                 
+        //            resultCollection.Add(currControl);
+        //        }
+        //    }
+
+        //    return resultCollection;
+        //}
+
+        public static List<Control> ToFlatCollection(this Control.ControlCollection collection)
+        {
+            List<Control> flatCollection = new List<Control>();
+
+            foreach (Control control in collection)
             {
-                if (currControl.HasChildren)
+                if (control.HasChildren)
                 {
-                    resultCollection.AddRange(FindControlsByType<T>(currControl.Controls));
+                    flatCollection.AddRange(control.Controls.ToFlatCollection());
+
+                    continue;
                 }
 
-                if (currControl.GetType() == typeof(T))
-                {                 
-                    resultCollection.Add(currControl);
-                }
+                flatCollection.Add(control);
             }
 
-            return resultCollection;
+            return flatCollection;
+        }
+
+        public static Dictionary<string, T> GetControlsDictionaryOfType<T>(this Control.ControlCollection collection) where T : Control
+        {
+            IEnumerable<T> controlsOfType = collection.ToFlatCollection().OfType<T>();
+
+            return controlsOfType.ToDictionary(t => t.Name);
         }
     }
 }

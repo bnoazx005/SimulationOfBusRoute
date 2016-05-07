@@ -1,5 +1,0 @@
-C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\DataModel\bin\Debug\DataModel.dll
-C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\DataModel\bin\Debug\DataModel.pdb
-C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
-C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\DataModel\obj\Debug\DataModel.dll
-C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\DataModel\obj\Debug\DataModel.pdb

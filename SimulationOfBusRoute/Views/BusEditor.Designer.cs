@@ -107,8 +107,8 @@
             // 
             // addBusButton
             // 
-            this.addBusButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.addBusButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mAddBusButton;
+            this.addBusButton.BackColor = System.Drawing.SystemColors.Control;
+            this.addBusButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mAddBusButtonImage;
             this.addBusButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.addBusButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.addBusButton.Location = new System.Drawing.Point(100, 21);
@@ -121,7 +121,7 @@
             // 
             this.quitButton.BackColor = System.Drawing.SystemColors.Control;
             this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButton;
+            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
             this.quitButton.Location = new System.Drawing.Point(10, 21);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(39, 38);

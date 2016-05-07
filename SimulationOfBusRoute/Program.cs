@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-
-using SimulationOfBusRoute.Models;
-using SimulationOfBusRoute.Presenters;
 using SimulationOfBusRoute.Views;
+using SimulationOfBusRoute.Models.Implementations;
+using SimulationOfBusRoute.Presenters.MainFormPresenter;
 
 
 namespace SimulationOfBusRoute
@@ -20,10 +19,10 @@ namespace SimulationOfBusRoute
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.SetCompatibleTextRenderingDefault(false);
 
-            CMainModel model = new CMainModel();
+            CDataManager dataManager = new CDataManager();
             MainForm view = new MainForm();
 
-            CMainFormPresenter mainViewPresenter = new CMainFormPresenter(model, view);
+            CMainFormPresenter mainViewPresenter = new CMainFormPresenter(dataManager, view);
             mainViewPresenter.Run();
         }
     }

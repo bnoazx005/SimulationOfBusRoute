@@ -1,0 +1,2 @@
+2016-05-07 18:09:47.2113|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
+2016-05-07 18:16:51.0724|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
