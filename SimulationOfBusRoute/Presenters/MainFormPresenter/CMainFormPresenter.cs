@@ -14,7 +14,8 @@ using System.Drawing;
 using SimulationOfBusRoute.Presenters.BusEditorPresenter;
 using SimulationOfBusRoute.Presenters.SimulationSettingsPresenter;
 using SimulationOfBusRoute.Presenters.DataEditorPresenter;
-
+using SimulationOfBusRoute.Models.Implementations.Bus;
+using SimulationOfBusRoute.Presenters.StatisticsViewerPresenter;
 
 namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 {
@@ -35,6 +36,8 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
         private CDataEditorPresenter mDataEditorPresenter;
 
+        private CStatisticsViewerPresenter mStatisticsViewerPresenter;
+
         private List<Action> mSubscribersList;
         
         private CMainFormState mCurrState;
@@ -46,6 +49,12 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
         private CMainFormRemoveNodeState mRemoveNodeState;
 
         private CMainFormMoveNodeState mMoveNodeState;
+
+        private CMainFormStartSimulationState mStartSimulationState;
+
+        private CMainFormStopSimulationState mStopSimulationState;
+
+        private CMainFormPauseSimulationState mPauseSimulationState;
 
         private static Logger mClassLogger;
         
@@ -63,6 +72,8 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mSimulationSettingsPresenter = new CSimulationSettingsPresenter(mModel, new SimulationSettingsWindow());
 
             mDataEditorPresenter = new CDataEditorPresenter(mModel, new DataEditor());
+
+            mStatisticsViewerPresenter = new CStatisticsViewerPresenter(mModel, new StatisticsViewer());
             
             mView.OnFormInit += _onFormInit;
             mView.OnQuit += _onQuit;
@@ -79,7 +90,8 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.OnOpenStationsEditor += _onLaunchDataEditor;
             mView.OnShowStatistics += _onShowStatisticsWindow;
             mView.OnRunSimulation += _onRunSimulation;
-            mView.OnPauseSimulation += _onPauseSimulation;
+            mView.OnStopSimulation += _onStopSimulation;
+            //mView.OnPauseSimulation += _onPauseSimulation;
             mView.OnOpenSimulationSettings += _onOpenSimulationSettings;
 
             //map events
@@ -123,6 +135,21 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mMoveNodeState.OnNeedSubmitProperties += _onSubmitProperties;
             mMoveNodeState.OnNeedUpdateRouteLines += _updateRouteLines;
             mMoveNodeState.OnNeedGetCurrMarker += _getCurrMarker;
+
+            mStartSimulationState = new CMainFormStartSimulationState(this);
+
+            mStartSimulationState.OnNeedSubmitProperties += _onSubmitProperties;
+            mStartSimulationState.OnNeedUpdateRouteLines += _updateRouteLines;
+
+            mStopSimulationState = new CMainFormStopSimulationState(this);
+
+            mStopSimulationState.OnNeedSubmitProperties += _onSubmitProperties;
+            mStopSimulationState.OnNeedUpdateRouteLines += _updateRouteLines;
+
+            mPauseSimulationState = new CMainFormPauseSimulationState(this);
+
+            mPauseSimulationState.OnNeedSubmitProperties += _onSubmitProperties;
+            mPauseSimulationState.OnNeedUpdateRouteLines += _updateRouteLines;
 
             mCurrState = mSelectNodeState;
 
@@ -503,64 +530,6 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             });
 
             mView.IsFastSaveAvailable = true;
-
-            //string connectionString = null;
-            //string filename = mModel.Name;
-
-            //if (filename != null)
-            //{
-            //    //выполняется в фоновом потоке
-
-            //    CHelper.BackgroundModelOperation(ref mModel, "Выполняется сохранение\n данных...", () =>
-            //    {
-            //        connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
-
-            //        using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
-            //        {
-            //            mModel.SaveIntoDataBase(sqliteConnection);
-            //        }
-            //    });
-
-            //    return;
-            //}
-
-            //SaveFileDialog saveDialog = mView.SaveFileDialog;
-
-            //DialogResult saveDialogCallResult = saveDialog.ShowDialog();
-
-            //if (saveDialogCallResult != DialogResult.OK)
-            //{
-            //    return;
-            //}
-
-            //filename = saveDialog.FileName;
-            //mModel.Name = filename;
-
-            //if (!File.Exists(filename))
-            //{
-            //    SQLiteConnection.CreateFile(filename);
-            //}
-
-            ////выполняется в фоновом потоке
-
-            //CHelper.BackgroundModelOperation(ref mModel, "Выполняется сохранение\n данных...", () =>
-            //{
-            //    connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
-
-            //    using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
-            //    {
-            //        mModel.SaveIntoDataBase(sqliteConnection);
-            //    }
-            //});
-
-            ////connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
-
-            ////using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
-            ////{
-            ////    mModel.SaveIntoDataBase(sqliteConnection);
-            ////}
-
-            //mView.IsFastSaveAvailable = true;
         }
 
         private void _onLoadModelData(object sender, EventArgs e)
@@ -585,6 +554,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             }
 
             _onClearMap(null, EventArgs.Empty);
+            mModel.BusesStorage.DeleteAll();
 
             //Loading the data
             string filename = openFileDialog.FileName;
@@ -599,59 +569,6 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.IsFastSaveAvailable = true;
 
             _updateViewWithModel(ref mView, ref mModel);
-
-            ////если модель была изменена, то первоначально вызвать предложение о сохранении
-            //if (mModel.IsChanged)
-            //{
-            //    DialogResult messageBoxResult = MessageBox.Show("Test", "Test", MessageBoxButtons.YesNoCancel);
-
-            //    if (messageBoxResult == DialogResult.Yes)
-            //    {
-            //        _onSaveModelData(null, EventArgs.Empty);
-            //    }
-            //}
-
-            //OpenFileDialog openFileDialog = mView.OpenFileDialog;
-
-            //DialogResult openDialogCallResult = openFileDialog.ShowDialog();
-
-            //if (openDialogCallResult != DialogResult.OK)
-            //{
-            //    return;
-            //}
-
-            //_onClearMap(null, EventArgs.Empty);
-
-            ////загрузка данных в модель
-
-            //CHelper.BackgroundModelOperation(ref mModel, "Выполняется загрузка\n данных...", () =>
-            //{
-            //    string filename = openFileDialog.FileName;
-
-            //    string connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
-
-            //    using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
-            //    {
-            //        mModel.LoadFromDataBase(sqliteConnection);
-            //    }
-
-            //    mModel.Name = openFileDialog.FileName;
-            //});
-
-            ////string filename = openFileDialog.FileName;
-
-            ////string connectionString = string.Format("Data Source = {0}; Version = 3;", filename);
-
-            ////using (SQLiteConnection sqliteConnection = new SQLiteConnection(connectionString))
-            ////{
-            ////    mModel.LoadFromDataBase(sqliteConnection);
-            ////}
-
-            ////mModel.Name = openFileDialog.FileName;
-
-            //mView.IsFastSaveAvailable = true;
-
-            //_updateViewWithModel(ref mView, ref mModel);
         }
 
         private void _onLaunchBusEditor(object sender, EventArgs e)
@@ -663,7 +580,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             mBusEditorPresenter = new CBusEditorPresenter(mModel, new BusEditor());
 
-            //Subscribe(mBusEditorPresenter.OnModelChanged);
+            Subscribe(mBusEditorPresenter.OnModelChanged);
 
             mBusEditorPresenter.Run();
         }
@@ -703,6 +620,18 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
         private void _onRunSimulation(object sender, EventArgs e)
         {
+            mCurrState.StartSimulationMode();
+
+            mModel.CurrBusRouteObject.Build(mView.Map.Overlays[0].Routes);
+            
+            if (mStatisticsViewerPresenter.IsRunning)
+            {
+                return;
+            }
+
+            mStatisticsViewerPresenter = new CStatisticsViewerPresenter(mModel, new StatisticsViewer());
+            mStatisticsViewerPresenter.Run();
+
             //mCurrState = E_CURRENT_STATE.CS_SIMULATION_IS_RUNNING;
 
             //uint time = 0;
@@ -720,7 +649,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             //});
 
             //mSimulationJob.Start();
-            
+
             //var buttonsList = mView.ButtonsList;
 
             //buttonsList["pauseSimulationButton"].Enabled = true;
@@ -740,6 +669,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
         private void _onStopSimulation(object sender, EventArgs e)
         {
+            mCurrState.StopSimulationMode();
         }
 
         private void _updateViewWithModel(ref IMainFormView view, ref CDataManager model)
@@ -820,7 +750,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
                 updatedPoints.Add(marker.Position);
             }
 
-            List<GMapRoute> routeList = new List<GMapRoute>();
+            List<PointLatLng> routeList = new List<PointLatLng>();
 
             int updatedPointsCount = updatedPoints.Count;
 
@@ -830,12 +760,22 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             for (int i = 0; i < updatedPointsCount - 1; i++)
             {
-                currRoute = new GMapRoute(updatedPoints.GetRange(i, 2), "route" + i.ToString());
+                currRoute = new GMapRoute(updatedPoints.GetRange(i, 2), "span " + i.ToString());
                 currRoute.Stroke.Width = 2;
                 currRoute.Stroke.Color = Color.Blue;
 
                 routeLinesOverlay.Routes.Add(currRoute);
             }
+
+            //a closuring of route
+            routeList.Add(updatedPoints[updatedPointsCount - 1]);
+            routeList.Add(updatedPoints[0]);
+
+            currRoute = new GMapRoute(routeList, "end");
+            currRoute.Stroke.Width = 2;
+            currRoute.Stroke.Color = Color.Blue;
+
+            routeLinesOverlay.Routes.Add(currRoute);
         }
 
         #endregion
@@ -869,6 +809,30 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             get
             {
                 return mMoveNodeState;
+            }
+        }
+
+        public CMainFormStartSimulationState StartSimulationState
+        {
+            get
+            {
+                return mStartSimulationState;
+            }
+        }
+
+        public CMainFormStopSimulationState StopSimulationState
+        {
+            get
+            {
+                return mStopSimulationState;
+            }
+        }
+
+        public CMainFormPauseSimulationState PauseSimulationState
+        {
+            get
+            {
+                return mPauseSimulationState;
             }
         }
     }

@@ -187,21 +187,7 @@ namespace SimulationOfBusRoute.Models.Implementations
         {
             return mEntitiesList.AsQueryable().Where(specification.ToExpression()).ToList();
         }
-
-        /// <summary>
-        /// Method stores entities' data into a file system. A way of it depends on implementation of IDataMapper interface.
-        /// </summary>
-        /// <param name="filename">A name of file in file system, where should be saved entities' data</param>
-
-        public abstract void SaveIntoFile(string filename);
-
-        /// <summary>
-        /// Method loads entities' data from a file. A way of it depends on implementation of IDataMapper interface.
-        /// </summary>
-        /// <param name="filename">A name of file in file system, where entities' data are placed</param>
-
-        public abstract void LoadFromFile(string filename);
-
+        
         /// <summary>
         /// Method recomputes identifiers of entities in specified range.
         /// </summary>

@@ -115,9 +115,6 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             }
 
             busStationsOverlay.Markers.Insert(currMarkerIndex + 1, busStationMarker);
-            _onNeedUpdateRouteLines(map, busStationsOverlay.Markers);
-
-            map.Update();
 
             //model.InsertRouteNodeByID((uint)(currMarkerIndex + 1), currNode); 
 
@@ -132,6 +129,10 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             
             view.NodeNameProperty = "";
             view.RouteNodeTypeProperty.SelectedIndex = (int)CRouteNode.E_ROUTE_NODE_TYPE.RNT_BUS_STATION;
+
+            _onNeedUpdateRouteLines(map, busStationsOverlay.Markers);
+
+            map.Update();
         }
 
         /// <summary>

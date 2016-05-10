@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SimulationOfBusRoute.Models.Implementations.Bus;
+using System;
+using System.Collections.Generic;
 
 
 namespace SimulationOfBusRoute.Models.Implementations
@@ -69,6 +71,15 @@ namespace SimulationOfBusRoute.Models.Implementations
             {
                 dataManager.OptionsList = optionsDataMapper.Load(0);
             }
+
+            COptionsList options = dataManager.OptionsList;
+
+            TimeSpan finishTime = TimeSpan.Parse(options.GetStringParam(Properties.Resources.mOptionsFinishTimeOfSimulation));
+            TimeSpan startTime = TimeSpan.Parse(options.GetStringParam(Properties.Resources.mOptionsStartTimeOfSimulation));
+
+            TimeSpan diffTime = finishTime.Subtract(startTime);
+            
+            options.AddIntParam(Properties.Resources.mOptionsNumOfSimulationSteps, (int)diffTime.TotalSeconds);
         }
     }
 }

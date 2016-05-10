@@ -82,9 +82,5 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             mContext.SetState(mContext.RemoveNodeState);
         }
-
-        public override void SelectNodeMode()
-        {
-        }
     }
 }

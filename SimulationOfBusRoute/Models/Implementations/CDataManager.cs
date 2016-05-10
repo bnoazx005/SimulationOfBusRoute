@@ -12,6 +12,8 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         private COptionsList mOptionsList;
 
+        private CBusRoute mCurrBusRoute;
+
         private bool mIsModified;
 
         public CDataManager():
@@ -117,6 +119,19 @@ namespace SimulationOfBusRoute.Models.Implementations
                 mOptionsList = value;
 
                 _onDataStateChanged();
+            }
+        }
+
+        public CBusRoute CurrBusRouteObject
+        {
+            get
+            {
+                if (mCurrBusRoute == null)
+                {
+                    mCurrBusRoute = new CBusRoute(this);
+                }
+
+                return mCurrBusRoute;
             }
         }
 

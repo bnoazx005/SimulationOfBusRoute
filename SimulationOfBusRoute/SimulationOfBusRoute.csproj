@@ -83,10 +83,18 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Implementations\CBus.cs" />
+    <Compile Include="Models\Implementations\Bus\CBus.cs" />
+    <Compile Include="Models\Implementations\Bus\CBusAlightingState.cs" />
+    <Compile Include="Models\Implementations\Bus\CBusArrivedState.cs" />
+    <Compile Include="Models\Implementations\Bus\CBusBoardingState.cs" />
+    <Compile Include="Models\Implementations\Bus\CBusDeparturingState.cs" />
+    <Compile Include="Models\Implementations\Bus\CBusOnWayState.cs" />
+    <Compile Include="Models\Implementations\Bus\CBusState.cs" />
+    <Compile Include="Models\Implementations\Bus\CBusWaitingState.cs" />
     <Compile Include="Models\Implementations\CBusRoute.cs" />
     <Compile Include="Models\Implementations\CDataManagerHelper.cs" />
     <Compile Include="Models\Implementations\CSqLiteOptionsDataMapper.cs" />
@@ -113,6 +121,9 @@
     <Compile Include="Models\Interfaces\IUpdatable.cs" />
     <Compile Include="Presenters\BusEditorPresenter\CBusEditorPresenter.cs" />
     <Compile Include="Presenters\CProgressDialogPresenter.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormPauseSimulationState.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormStartSimulationState.cs" />
+    <Compile Include="Presenters\MainFormPresenter\CMainFormStopSimulationStatecs.cs" />
     <Compile Include="Presenters\SimulationSettingsPresenter\CSimulationSettingsPresenter.cs" />
     <Compile Include="Presenters\DataEditorPresenter\CDataEditorPresenter.cs" />
     <Compile Include="Presenters\MainFormPresenter\CMainFormAddNodeState.cs" />
@@ -120,11 +131,11 @@
     <Compile Include="Presenters\MainFormPresenter\CMainFormRemoveNodeState.cs" />
     <Compile Include="Presenters\MainFormPresenter\CMainFormSelectNodeState.cs" />
     <Compile Include="Presenters\MainFormPresenter\CMainFormState.cs" />
+    <Compile Include="Presenters\StatisticsViewerPresenter\CStatisticsViewerPresenter.cs" />
     <Compile Include="Utils\CEnumHelper.cs" />
     <Compile Include="Utils\CGMapImageMarker.cs" />
-    <Compile Include="Utils\CHelper.cs" />
+    <Compile Include="Utils\CBackgroundJobHelper.cs" />
     <Compile Include="Utils\CPointLatLngHelper.cs" />
-    <Compile Include="Utils\CVelocity.cs" />
     <Compile Include="Utils\Exceptions.cs" />
     <Compile Include="Views\BusEditor.cs">
       <SubType>Form</SubType>
@@ -136,6 +147,7 @@
     <Compile Include="Views\IBusEditorView.cs" />
     <Compile Include="Views\ISimulationSettingsView.cs" />
     <Compile Include="Views\IDataEditorView.cs" />
+    <Compile Include="Views\IStatisticsViewerView.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +178,12 @@
     <Compile Include="Views\DataEditor.Designer.cs">
       <DependentUpon>DataEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\StatisticsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\StatisticsViewer.Designer.cs">
+      <DependentUpon>StatisticsViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatisticsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,8 +191,6 @@
       <DependentUpon>StatisticsWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\CControlHelper.cs" />
-    <Compile Include="Utils\TPoint2.cs" />
-    <Compile Include="Utils\TVector2.cs" />
     <Compile Include="Views\IBaseView.cs" />
     <Compile Include="Views\IMainFormView.cs" />
     <EmbeddedResource Include="Views\BusEditor.resx">
@@ -201,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DataEditor.resx">
       <DependentUpon>DataEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StatisticsViewer.resx">
+      <DependentUpon>StatisticsViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\StatisticsWindow.resx">
       <DependentUpon>StatisticsWindow.cs</DependentUpon>

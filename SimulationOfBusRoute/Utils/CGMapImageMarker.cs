@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace SimulationOfBusRoute.Utils
 {
-    class CGMapImageMarker : GMapMarker
+    public class CGMapImageMarker : GMapMarker
     {
         private Image mImage;
 

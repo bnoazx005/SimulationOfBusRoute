@@ -39,11 +39,11 @@ namespace SimulationOfBusRoute.Views
             selectNodeButton.Click          += (sender, e) => { if (OnSelectNode != null) { OnSelectNode(this, EventArgs.Empty); } };
             moveNodeButton.Click            += (sender, e) => { if (OnMoveNode != null) { OnMoveNode(this, EventArgs.Empty); } };
             busEditorButton.Click           += (sender, e) => { if (OnOpenBusEditor != null) { OnOpenBusEditor(this, EventArgs.Empty); } };
-            stationsEditorButton.Click      += (sender, e) => { if (OnOpenStationsEditor != null) { OnOpenStationsEditor(this, EventArgs.Empty); } };
+            dataEditorButton.Click      += (sender, e) => { if (OnOpenStationsEditor != null) { OnOpenStationsEditor(this, EventArgs.Empty); } };
             simulationSettingsButton.Click  += (sender, e) => { if (OnOpenSimulationSettings != null) { OnOpenSimulationSettings(this, EventArgs.Empty); } };
             statisticsButton.Click          += (sender, e) => { if (OnShowStatistics != null) { OnShowStatistics(this, EventArgs.Empty); } };
             startSimulationButton.Click     += (sender, e) => { if (OnRunSimulation != null) { OnRunSimulation(this, EventArgs.Empty); } };
-            pauseSimulationButton.Click     += (sender, e) => { if (OnPauseSimulation != null) { OnPauseSimulation(this, EventArgs.Empty); } };
+            //pauseSimulationButton.Click     += (sender, e) => { if (OnPauseSimulation != null) { OnPauseSimulation(this, EventArgs.Empty); } };
             stopSimulationButton.Click      += (sender, e) => { if (OnStopSimulation != null) { OnStopSimulation(this, EventArgs.Empty); } };
             //resetSimulationButton.Click += (sender, e) => { if (On != null) { OnLoadData(this, EventArgs.Empty); } };
             clearMapButtonAlt.Click         += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, EventArgs.Empty); } };
@@ -73,7 +73,7 @@ namespace SimulationOfBusRoute.Views
         public event MarkerClick OnMarkerSelected;
         public event EventHandler OnOpenBusEditor;
         public event EventHandler OnOpenDocs;
-        public event EventHandler OnPauseSimulation;
+        //public event EventHandler OnPauseSimulation;
         public event EventHandler OnNodeSelectionChanged;
         public event EventHandler OnNodeTypeChanged;
         public event EventHandler OnAbortPropertiesChanges;
@@ -102,20 +102,7 @@ namespace SimulationOfBusRoute.Views
         }
         
         #region Properties
-
-        public TPoint2 CurrCursorPosition
-        {
-            get
-            {
-                return new TPoint2(mainMap.Position.Lat, mainMap.Position.Lng);
-            }
-
-            set
-            {
-                mainMap.Position = new GMap.NET.PointLatLng(value.X, value.Y);
-            }
-        }
-
+        
         public int MapZoomValue
         {
             get

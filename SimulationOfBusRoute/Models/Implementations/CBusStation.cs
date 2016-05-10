@@ -1,4 +1,5 @@
 ﻿using GMap.NET;
+using SimulationOfBusRoute.Models.Implementations.Bus;
 using SimulationOfBusRoute.Models.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ namespace SimulationOfBusRoute.Models.Implementations
 {
     public class CBusStation : CRouteNode, IUpdatable
     {
-        public Action<CBusStation> OnGetData;
+        public event Action<CBusStation> OnGetData;
 
         public enum E_BUS_STATION_TYPE
         {
@@ -28,11 +29,15 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         private double[] mIntensityVector;
 
-        private double mNextSpanTravelTime;
+        private uint mNextSpanTravelTime;
 
         private static Random mRandomObject;
 
         private Queue<CBus> mBusQueue;
+
+        private static CBusRoute mCurrBusRouteObject;
+
+        private int mBusStationId;
 
         public CBusStation(E_BUS_STATION_TYPE type, int id, string name, PointLatLng position):
             base(id, name, position)
@@ -60,6 +65,8 @@ namespace SimulationOfBusRoute.Models.Implementations
 
             mIntensityVector = null;
 
+            mBusStationId = -1;
+
             mRandomObject = new Random();
 
             mBusQueue = new Queue<CBus>();
@@ -67,45 +74,64 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         #region Methods
 
+        private static NLog.Logger mLogger = NLog.LogManager.GetCurrentClassLogger();
+        
         public void AttachBus(CBus bus)
         {
             if (mBusQueue.Contains(bus))
             {
+                mLogger.Debug("bus {0} tries to attach again", bus.ID);
+
                 return;
             }
 
             mBusQueue.Enqueue(bus);
+
+            mLogger.Debug("bus {0} attached at {1}", bus.ID, bus.CurrStation.BusStationId);
         }
 
         public void DettachBus()
         {
             if (mBusQueue.Count >= 1)
             {
+                CBus departuringBus = mBusQueue.Peek();
                 mBusQueue.Dequeue();
+
+                mLogger.Debug("bus {0} dettached at {1}", departuringBus.ID, departuringBus.CurrStation.BusStationId);
 
                 if (mBusQueue.Count >= 1)
                 {
                     CBus bus = mBusQueue.Peek();
-                    //bus.UnlockBus();
+                    bus.UnlockBus(departuringBus.CurrDepartureTime);
+
+                    mLogger.Debug("bus {0} was unclocked", bus.ID);
                 }
             }
         }
 
-        //public void ReceiveData(CBusRoute route)
-        //{
-
-        //}
-
-        public override void Verify()
+        public void InitData(CBusRoute route)
         {
-        }
+            int numOfStations = route.NumOfStations;
 
+            mPassengersDistributionByGroups = new double[numOfStations];
+            mCurrNumOfPassengers = 0;
+        }
+             
         public void Update(uint time, uint dt)
         {
             if (mPassengersDistributionByGroups == null)
             {
                 return;
             }
+
+            //Updating the station's data
+            CBusRoute busRouteObject = mCurrBusRouteObject;
+            int id = mBusStationId;
+
+            mIntensityVector = mCurrBusRouteObject.PassengersIntensities.GetData(mReactionTime)[id];
+
+            mNextSpanTravelTime = (uint)Math.Ceiling(busRouteObject.SpansDisntancesVector[id] / 
+                                                     busRouteObject.VelocitiesOfSpans.GetData(mReactionTime)[0][id]);
 
             int numOfStations = mPassengersDistributionByGroups.Length;
 
@@ -123,6 +149,44 @@ namespace SimulationOfBusRoute.Models.Implementations
             }
 
             mReactionTime += 60;
+        }
+
+        //public uint[] GetPassengers(uint busCapacity)
+        //{
+        //    throw new NotImplementedException();
+        //    return null;
+        //}
+
+        public int GetPassenger()
+        {
+            int passengersGroupsCount = mPassengersDistributionByGroups.Length;
+            int groupSample;
+            
+            if (mCurrNumOfPassengers == 0)
+            {
+                return -1;
+            }
+
+            //#region DebugTest
+
+            //groupSample = 0;
+            //while (mPassengersDistributionByGroups[groupSample] < 1.0)
+            //{
+            //    groupSample++;
+            //}
+
+            //#endregion
+
+            do
+            {
+                groupSample = mRandomObject.Next(0, passengersGroupsCount);
+            }
+            while (mPassengersDistributionByGroups[groupSample] < 1.0);
+
+            mPassengersDistributionByGroups[groupSample] -= 1.0;
+            mCurrNumOfPassengers--;
+
+            return groupSample;
         }
 
         #endregion
@@ -185,7 +249,7 @@ namespace SimulationOfBusRoute.Models.Implementations
             }
         }
 
-        public double NextSpanDuration
+        public double NextSpanTravelTime
         {
             get
             {
@@ -198,6 +262,40 @@ namespace SimulationOfBusRoute.Models.Implementations
             get
             {
                 return (mBusQueue.Count == 0);
+            }
+        }
+
+        public int BusStationId
+        {
+            get
+            {
+                return mBusStationId;
+            }
+
+            set
+            {
+                mBusStationId = value;
+            }
+        }
+
+        public static CBusRoute CurrBusRouteObject
+        {
+            get
+            {
+                return mCurrBusRouteObject;
+            }
+
+            set
+            {
+                mCurrBusRouteObject = value;
+            }
+        }
+
+        public double[] PassengersDistributionByGroups
+        {
+            get
+            {
+                return mPassengersDistributionByGroups;
             }
         }
     }

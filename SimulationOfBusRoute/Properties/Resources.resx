@@ -244,15 +244,6 @@
   <data name="mSQLOptionsTableName" xml:space="preserve">
     <value>options</value>
   </data>
-  <data name="mFinishTimeOfSimulationOption" xml:space="preserve">
-    <value>finishTimeOfSimulation</value>
-  </data>
-  <data name="mStartTimeOfSimulationOption" xml:space="preserve">
-    <value>startTimeOfSimulation</value>
-  </data>
-  <data name="mSpeedOfSimulationOption" xml:space="preserve">
-    <value>speedOfSimulation</value>
-  </data>
   <data name="mDataEditorHighlightingGroup1" xml:space="preserve">
     <value>case|default|decl|in</value>
   </data>
@@ -354,5 +345,17 @@
   </data>
   <data name="mSQLStrOptionsTableName" xml:space="preserve">
     <value>stringOptions</value>
+  </data>
+  <data name="mStartSimulationButtonName" xml:space="preserve">
+    <value>startSimulationButton</value>
+  </data>
+  <data name="mStopSimulationButtonName" xml:space="preserve">
+    <value>stopSimulationButton</value>
+  </data>
+  <data name="mBusEditorButtonName" xml:space="preserve">
+    <value>busEditorButton</value>
+  </data>
+  <data name="mDataEditorButtonName" xml:space="preserve">
+    <value>dataEditorButton</value>
   </data>
 </root>

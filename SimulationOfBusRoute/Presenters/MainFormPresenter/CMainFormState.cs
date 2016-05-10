@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System;
 using GMap.NET.ObjectModel;
+using SimulationOfBusRoute.Views;
+using System.Collections.Generic;
 
 
 namespace SimulationOfBusRoute.Presenters.MainFormPresenter
@@ -23,13 +25,36 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
         public virtual void OnMapMouseClick(object sender, MouseEventArgs e) { }
 
-        public abstract void SelectNodeMode();
+        public virtual void SelectNodeMode() { }
 
-        public abstract void AddNodeMode();
+        public virtual void AddNodeMode() { }
 
-        public abstract void RemoveNodeMode();
+        public virtual void RemoveNodeMode() { }
 
-        public abstract void MoveNodeMode();
+        public virtual void MoveNodeMode() { }
+
+        public virtual void StartSimulationMode()
+        {
+            IMainFormView view = mContext.View;
+
+            Dictionary<string, Button> buttons = view.ButtonsList;
+
+            buttons[Properties.Resources.mStartSimulationButtonName].Image = Properties.Resources.mPauseSimulationButtonImage;
+            buttons[Properties.Resources.mStopSimulationButtonName].Enabled = true;
+
+            buttons[Properties.Resources.mAddRouteNodeButtonName].Enabled = false;
+            buttons[Properties.Resources.mRemoveRouteNodeButtonName].Enabled = false;
+            buttons[Properties.Resources.mSelectNodeButtonName].Enabled = false;
+            buttons[Properties.Resources.mMoveNodeButtonName].Enabled = false;
+            buttons[Properties.Resources.mBusEditorButtonName].Enabled = false;
+            buttons[Properties.Resources.mDataEditorButtonName].Enabled = false;
+
+            mContext.SetState(mContext.StartSimulationState);
+        }
+
+        public virtual void StopSimulationMode() { }
+
+        public virtual void PauseSimulationMode() { }
 
         protected void _onNeedSumbitProperties()
         {

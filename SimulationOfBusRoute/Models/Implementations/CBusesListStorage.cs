@@ -1,4 +1,7 @@
-﻿namespace SimulationOfBusRoute.Models.Implementations
+﻿using SimulationOfBusRoute.Models.Implementations.Bus;
+
+
+namespace SimulationOfBusRoute.Models.Implementations
 {
     public class CBusesListStorage : CBaseListStorage<CBus>
     {
@@ -7,34 +10,12 @@
         {
         }
 
-        #region Methods
-
-        /// <summary>
-        /// Method loads data from a specified file (SqLite data base).
-        /// </summary>
-        /// <param name="filename">A name of a file</param>
-
-        public override void LoadFromFile(string filename)
+        public int NumOfBuses
         {
-            using (CSqLiteBusDataMapper dataMapper = new CSqLiteBusDataMapper(string.Format(Properties.Resources.mSQLiteConnectionString, filename)))
+            get
             {
-                //mEntitiesList = dataMapper.LoadAll();
+                return mEntitiesList.Count;
             }
         }
-
-        /// <summary>
-        /// Method stores data into a specified file (SqLite data base).
-        /// </summary>
-        /// <param name="filename">A name of a file</param>
-
-        public override void SaveIntoFile(string filename)
-        {
-            using (CSqLiteBusDataMapper dataMapper = new CSqLiteBusDataMapper(string.Format(Properties.Resources.mSQLiteConnectionString, filename)))
-            {
-                //dataMapper.SaveAll(mEntitiesList);
-            }
-        }
-
-        #endregion
     }
 }

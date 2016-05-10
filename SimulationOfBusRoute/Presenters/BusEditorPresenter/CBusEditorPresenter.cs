@@ -1,4 +1,5 @@
 ﻿using SimulationOfBusRoute.Models.Implementations;
+using SimulationOfBusRoute.Models.Implementations.Bus;
 using SimulationOfBusRoute.Views;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,17 @@ namespace SimulationOfBusRoute.Presenters.BusEditorPresenter
         }
 
         #region Methods
-        
+
+        public void OnModelChanged()
+        {
+            if (!mIsRunning)
+            {
+                return;
+            }
+            
+            //_updateViewWithModel(ref mView, ref mModel);
+        }
+
         private void _onFormInit(object sender, EventArgs e)
         {
             IBusEditorView view = mView;
@@ -127,7 +138,7 @@ namespace SimulationOfBusRoute.Presenters.BusEditorPresenter
             CBus busEntity = mModel.BusesStorage.GetById(id);
 
             busEntity.MaxBusCapacity = currBusItem.MaxNumOfPassengers;
-            busEntity.TimeOfStart = currBusItem.TimeOfStart;
+            busEntity.TimeOfStart = currBusItem.TimeOfStart * 60;
             busEntity.AlightingTimePerPassenger = currBusItem.AlightingTimePerPassenger;
             busEntity.BoardingTimePerPassenger = currBusItem.BoardingTimePerPassenger;
         }
@@ -172,7 +183,7 @@ namespace SimulationOfBusRoute.Presenters.BusEditorPresenter
                 currEditableItem = new BusEditableItem.BusEditableItem();
 
                 currEditableItem.MaxNumOfPassengers = currBus.MaxBusCapacity;
-                currEditableItem.TimeOfStart = currBus.TimeOfStart;
+                currEditableItem.TimeOfStart = currBus.TimeOfStart / 60;
                 currEditableItem.AlightingTimePerPassenger = currBus.AlightingTimePerPassenger;
                 currEditableItem.BoardingTimePerPassenger = currBus.BoardingTimePerPassenger;
 

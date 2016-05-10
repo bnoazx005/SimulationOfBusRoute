@@ -11,9 +11,41 @@ namespace SimulationOfBusRoute.Models.Implementations
         }
     }
 
-    public class CInvalidRouteConfiguration : Exception
+    public class CInvalidRouteConfigurationException : Exception
     {
-        public CInvalidRouteConfiguration(string message) :
+        public CInvalidRouteConfigurationException(string message) :
+            base(message)
+        {
+        }
+    }
+
+    public class CInvalidStartRouteNodeException : CInvalidRouteConfigurationException
+    {
+        public CInvalidStartRouteNodeException(string message):
+            base(message)
+        {
+        }
+    }
+
+    public class CInvalidEndRouteNodeException : CInvalidRouteConfigurationException
+    {
+        public CInvalidEndRouteNodeException(string message) :
+            base(message)
+        {
+        }
+    }
+
+    public class CNotCompiledDataException : Exception
+    {
+        public CNotCompiledDataException(string message):
+            base(message)
+        {
+        }
+    }
+
+    public class CIncorrectNumOfBusesException : Exception
+    {
+        public CIncorrectNumOfBusesException(string message):
             base(message)
         {
         }

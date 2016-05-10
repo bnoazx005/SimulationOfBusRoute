@@ -111,7 +111,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             mContext.SetState(mContext.SelectNodeState);
         }
-
+        
         protected GMapMarker _onNeedGetCurrMarker()
         {
             if (OnNeedGetCurrMarker != null)

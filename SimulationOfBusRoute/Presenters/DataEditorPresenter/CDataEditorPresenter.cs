@@ -57,14 +57,18 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             //headers' generation for the editors
             lock (mSyncObject)
             {
-                view.BusVelocitiesHeaderText.Text = string.Format(Properties.Resources.mBusesVelocitiesHeaderTemplate,
-                                                                  '\n',
-                                                                  numOfSpans);
+                if (view.BusVelocitiesHeaderText.InvokeRequired || view.StationsEditorHeaderText.InvokeRequired)
+                {
+                    view.BusVelocitiesHeaderText.Invoke((MethodInvoker)(() =>
+                    {
+                        _generateHeaders(numOfBusStations/*, numOfSpans*/);
+                    }));
+                }
+                else
+                {
+                    _generateHeaders(numOfBusStations/*, numOfSpans*/);
+                }
 
-                view.StationsEditorHeaderText.Text = string.Format(Properties.Resources.mStationsDataHeaderTemplate,
-                                                                   '\n',
-                                                                   numOfBusStations,
-                                                                   numOfBusStations);
             }
             
             //mJobList[0] = new Task(_highlightSyntax, mView.StationsEditorHeaderText);
@@ -85,25 +89,30 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
 
             //Updating the view
             int numOfBusStations = model.RouteNodesStorage.NumOfBusStations;
-            int numOfSpans = Math.Max(0, numOfBusStations - 1);
+            //int numOfSpans = Math.Max(0, numOfBusStations - 1);
 
             //headers' generation for the editors
             lock (mSyncObject)
             {
-                view.BusVelocitiesHeaderText.Text = string.Format(Properties.Resources.mBusesVelocitiesHeaderTemplate,
-                                                                  '\n',
-                                                                  numOfSpans);
+                if (view.BusVelocitiesHeaderText.InvokeRequired || view.StationsEditorHeaderText.InvokeRequired)
+                {
+                    view.BusVelocitiesHeaderText.Invoke((MethodInvoker)(() =>
+                    {
+                        _generateHeaders(numOfBusStations/*, numOfSpans*/);
+                        
+                        view.BusVelocitiesEditorText.Text = options.GetStringParam(Properties.Resources.mOptionsVelocitiesEditorCode);
 
-                view.BusVelocitiesEditorText.Text = options.GetStringParam(Properties.Resources.mOptionsVelocitiesEditorCode);
+                        view.StationsEditorText.Text = options.GetStringParam(Properties.Resources.mOptionsStationsEditorCode);
+                    }));
+                }
+                else
+                {
+                    _generateHeaders(numOfBusStations/*, numOfSpans*/);
 
-                view.StationsEditorHeaderText.Text = string.Format(Properties.Resources.mStationsDataHeaderTemplate,
-                                                                   '\n',
-                                                                   numOfBusStations,
-                                                                   numOfBusStations);
+                    view.BusVelocitiesEditorText.Text = options.GetStringParam(Properties.Resources.mOptionsVelocitiesEditorCode);
 
-                view.StationsEditorText.Text = options.GetStringParam(Properties.Resources.mOptionsStationsEditorCode);
-
-                //view.ButtonsList[""]
+                    view.StationsEditorText.Text = options.GetStringParam(Properties.Resources.mOptionsStationsEditorCode);
+                }
             }
 
             ////подсветка синтаксиса для заголовков
@@ -237,79 +246,81 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
 
         private void _onCompileData(object sender, EventArgs e)
         {
-            //IDataEditorView view = mView;
+            IDataEditorView view = mView;
 
-            //ToolStripStatusLabel exceptionLabel = view.MessageText;
+            ToolStripStatusLabel exceptionLabel = view.MessageText;
 
-            //try
-            //{
-            //    string programCode = null;
+            try
+            {
+                string programCode = null;
 
-            //    CLexer lexer = null;
-            //    CParser parser = null;
+                CLexer lexer = null;
+                CParser parser = null;
 
-            //    int currSelectedEditorIndex = view.CurrSelectedEditorIndex;
+                int currSelectedEditorIndex = view.CurrSelectedEditorIndex;
 
-            //    lock (mSyncObject)
-            //    {
-            //        switch (currSelectedEditorIndex)
-            //        {
-            //            case 0: //stations' data editor
-            //                programCode = view.StationsEditorHeaderText.Text + view.StationsEditorText.Text;
-            //                break;
-            //            case 1: //buses velocities' editor
-            //                programCode = view.BusVelocitiesHeaderText.Text + view.BusVelocitiesEditorText.Text;
-            //                break;
-            //            default:
-            //                return;
-            //        }
-            //    }
+                lock (mSyncObject)
+                {
+                    switch (currSelectedEditorIndex)
+                    {
+                        case 0: //stations' data editor
+                            programCode = view.StationsEditorHeaderText.Text + view.StationsEditorText.Text;
+                            break;
+                        case 1: //buses velocities' editor
+                            programCode = view.BusVelocitiesHeaderText.Text + view.BusVelocitiesEditorText.Text;
+                            break;
+                        default:
+                            return;
+                    }
+                }
 
-            //    lexer = new CLexer(programCode);
-            //    parser = new CParser(lexer);
+                lexer = new CLexer(programCode);
+                parser = new CParser(lexer);
 
-            //    switch (currSelectedEditorIndex)
-            //    {
-            //        case 0: //stations' data editor
-            //            mModel.MatricesOfIntensitiesList = CDataBuilder.Compile(parser.Parse());
-            //            break;
-            //        case 1: //buses velocities' editor
-            //            mModel.BusesVelocitiesList = CDataBuilder.Compile(parser.Parse());
-            //            break;
-            //    }           
-            //}
-            //catch (CParserException parserException)
-            //{
-            //    exceptionLabel.Text = parserException.Message;
-            //    exceptionLabel.ForeColor = Color.Red;
+                CBusRoute busRouteObject = mModel.CurrBusRouteObject;
 
-            //    mClassLogger.Info(parserException.Message);
+                switch (currSelectedEditorIndex)
+                {
+                    case 0: //stations' data editor
+                        busRouteObject.PassengersIntensities = CDataBuilder.Compile(parser.Parse());
+                        break;
+                    case 1: //buses velocities' editor
+                        busRouteObject.VelocitiesOfSpans = CDataBuilder.Compile(parser.Parse());
+                        break;
+                }
+            }
+            catch (CParserException parserException)
+            {
+                exceptionLabel.Text = parserException.Message;
+                exceptionLabel.ForeColor = Color.Red;
 
-            //    return;
-            //}
-            //catch (CUndexpectedTokenException tokenException)
-            //{
-            //    exceptionLabel.Text = tokenException.Message;
-            //    exceptionLabel.ForeColor = Color.Red;
+                mClassLogger.Info(parserException.Message);
 
-            //    mClassLogger.Info(tokenException.Message);
+                return;
+            }
+            catch (CUndexpectedTokenException tokenException)
+            {
+                exceptionLabel.Text = tokenException.Message;
+                exceptionLabel.ForeColor = Color.Red;
 
-            //    return;
-            //}
-            //catch (CSymbolTableException symbTableException)
-            //{
-            //    exceptionLabel.Text = symbTableException.Message;
-            //    exceptionLabel.ForeColor = Color.Red;
+                mClassLogger.Info(tokenException.Message);
 
-            //    mClassLogger.Info(symbTableException.Message);
+                return;
+            }
+            catch (CSymbolTableException symbTableException)
+            {
+                exceptionLabel.Text = symbTableException.Message;
+                exceptionLabel.ForeColor = Color.Red;
 
-            //    return;
-            //}
+                mClassLogger.Info(symbTableException.Message);
 
-            //exceptionLabel.Text = "Данные успешно скомпилированны";
-            //exceptionLabel.ForeColor = Color.Green;
+                return;
+            }
 
-            //mClassLogger.Info("Данные успешно скомпилированны");
+            exceptionLabel.Text = "Данные успешно скомпилированны";
+            exceptionLabel.ForeColor = Color.Green;
+
+            mClassLogger.Info("Data is sucessfully compiled");
         }
 
         private void _onUndoChanges(object sender, EventArgs e)
@@ -395,6 +406,20 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
                         break;
                 }
             }
+        }
+
+        private void _generateHeaders(int numOfBusStations/*, int numOfSpans*/)
+        {
+            IDataEditorView view = mView;
+
+            view.BusVelocitiesHeaderText.Text = string.Format(Properties.Resources.mBusesVelocitiesHeaderTemplate,
+                                                              '\n',
+                                                              numOfBusStations/*numOfSpans*/);
+
+            view.StationsEditorHeaderText.Text = string.Format(Properties.Resources.mStationsDataHeaderTemplate,
+                                                               '\n',
+                                                               numOfBusStations,
+                                                               numOfBusStations);
         }
     }
 }

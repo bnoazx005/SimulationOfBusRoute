@@ -9,8 +9,6 @@ namespace SimulationOfBusRoute.Views
 {
     public interface IMainFormView : IBaseView
     {
-        TPoint2 CurrCursorPosition { get; set; } //положение курсора в географических координатах (широта, долгота)
-
         int MapZoomValue { get; set; }
 
         GMapControl Map { get; set; }
@@ -49,7 +47,7 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnRunSimulation;
 
-        event EventHandler OnPauseSimulation;
+        //event EventHandler OnPauseSimulation;
 
         event EventHandler OnStopSimulation;
 

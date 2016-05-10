@@ -33,3 +33,4 @@ C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\NLog.dll
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\NLog.xml
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.Views.DataEditor.resources
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.Views.StatisticsViewer.resources

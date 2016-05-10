@@ -21,8 +21,8 @@ namespace SimulationOfBusRoute.Models.Implementations
         }
 
         #region Methods
-        
-        public abstract void Verify();
+
+        public virtual void Verify() { }
 
         #endregion
 

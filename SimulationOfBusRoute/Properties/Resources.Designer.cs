@@ -129,6 +129,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to busEditorButton.
+        /// </summary>
+        internal static string mBusEditorButtonName {
+            get {
+                return ResourceManager.GetString("mBusEditorButtonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автобус № {0}.
         /// </summary>
         internal static string mBusesHeaderInEditor {
@@ -186,6 +195,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dataEditorButton.
+        /// </summary>
+        internal static string mDataEditorButtonName {
+            get {
+                return ResourceManager.GetString("mDataEditorButtonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to case|default|decl|in.
         /// </summary>
         internal static string mDataEditorHighlightingGroup1 {
@@ -218,15 +236,6 @@ namespace SimulationOfBusRoute.Properties {
         internal static string mErrorMessageTitle {
             get {
                 return ResourceManager.GetString("mErrorMessageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to finishTimeOfSimulation.
-        /// </summary>
-        internal static string mFinishTimeOfSimulationOption {
-            get {
-                return ResourceManager.GetString("mFinishTimeOfSimulationOption", resourceCulture);
             }
         }
         
@@ -487,15 +496,6 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to speedOfSimulation.
-        /// </summary>
-        internal static string mSpeedOfSimulationOption {
-            get {
-                return ResourceManager.GetString("mSpeedOfSimulationOption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to boolOptions.
         /// </summary>
         internal static string mSQLBoolOptionsTableName {
@@ -722,11 +722,11 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to startTimeOfSimulation.
+        ///   Looks up a localized string similar to startSimulationButton.
         /// </summary>
-        internal static string mStartTimeOfSimulationOption {
+        internal static string mStartSimulationButtonName {
             get {
-                return ResourceManager.GetString("mStartTimeOfSimulationOption", resourceCulture);
+                return ResourceManager.GetString("mStartSimulationButtonName", resourceCulture);
             }
         }
         
@@ -783,6 +783,15 @@ namespace SimulationOfBusRoute.Properties {
             get {
                 object obj = ResourceManager.GetObject("mStopSimulationButtonImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to stopSimulationButton.
+        /// </summary>
+        internal static string mStopSimulationButtonName {
+            get {
+                return ResourceManager.GetString("mStopSimulationButtonName", resourceCulture);
             }
         }
         

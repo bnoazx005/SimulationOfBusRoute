@@ -25,9 +25,5 @@ namespace SimulationOfBusRoute.Models.Interfaces
         T GetBySpecification(ISpecification<T> specification);
 
         List<T> GetAllBySpecification(ISpecification<T> specification);
-
-        void SaveIntoFile(string filename);
-
-        void LoadFromFile(string filename);
     }
 }
