@@ -1,9 +1,47 @@
 ﻿using SimulationOfBusRoute.Models.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace SimulationOfBusRoute.Models.Implementations.Bus
 {
+    public struct TBusTableEntity
+    {
+        [DisplayName("№ Автобуса")]
+        public int ID { get; set; }
+
+        [DisplayName("Тек. № остановки")]
+        public int CurrStationId { get; set; }
+
+        [DisplayName("Тек. вместимость")]
+        public uint CurrBusCapacity { get; set; }
+        
+        [DisplayName("Время прибытия")]
+        public uint CurrArrivalTime { get; set; }
+
+        [DisplayName("Время отбытия")]
+        public uint CurrDepartureTime { get; set; }
+
+        [DisplayName("Кол-во вышедших пассажиров")]
+        public uint CurrNumOfExcurrentPassengers { get; set; }
+
+        [DisplayName("Кол-во вошедших пассажиров")]
+        public uint CurrNumOfIncomingPassengers { get; set; }
+
+        [DisplayName("Распределение пассажиров")]
+        public uint[] PassengersDistributionByGroups { get; set; }
+
+        [DisplayName("№ Автобуса")]
+        public uint[] TotalNumOfTransportedPassengers { get; set; }
+
+        [DisplayName("Время высадки пассажира (сек.)")]
+        public byte AlightingTimePerPassenger { get; set; }
+        
+        [DisplayName("Время посадки пассажира (сек.)")]
+        public byte BoardingTimePerPassenger { get; set; }
+    }
+
     public class CBus : CBaseModel, IUpdatable
     {
         public event Action<CBus> OnGetData;
@@ -125,6 +163,12 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
             mTotalNumOfTransportedPassengers = new uint[numOfStations];
 
             mCurrBusCapacity = mMaxBusCapacity;
+
+            mReactionTime = mTimeOfStart;
+
+            mCurrArrivalTime = 0;
+
+            mCurrDepartureTime = 0;
         }
 
         public void UnlockBus(uint time)
@@ -138,6 +182,25 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
             {
                 OnGetData(this);
             }
+        }
+
+        public TBusTableEntity ToTableEntity()
+        {
+            TBusTableEntity currMappedEntity = new TBusTableEntity();
+
+            currMappedEntity.ID = mID;
+            currMappedEntity.CurrArrivalTime = mCurrArrivalTime;
+            currMappedEntity.CurrDepartureTime = mCurrDepartureTime;
+            currMappedEntity.CurrNumOfExcurrentPassengers = mCurrNumOfExcurrentPassengers;
+            currMappedEntity.CurrNumOfIncomingPassengers = mCurrNumOfIncomingPassengers;
+            currMappedEntity.CurrStationId = mCurrStation.BusStationId;
+            currMappedEntity.CurrBusCapacity = mCurrBusCapacity;
+            currMappedEntity.PassengersDistributionByGroups = mPassengersDistributionByGroups;
+            currMappedEntity.TotalNumOfTransportedPassengers = mTotalNumOfTransportedPassengers;
+            currMappedEntity.AlightingTimePerPassenger = mAlightingTimePerPassenger;
+            currMappedEntity.BoardingTimePerPassenger = mBoardingTimePerPassenger;
+
+            return currMappedEntity;
         }
 
         #endregion

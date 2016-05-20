@@ -44,7 +44,7 @@ namespace SimulationOfBusRoute.Views
             statisticsButton.Click          += (sender, e) => { if (OnShowStatistics != null) { OnShowStatistics(this, EventArgs.Empty); } };
             startSimulationButton.Click     += (sender, e) => { if (OnRunSimulation != null) { OnRunSimulation(this, EventArgs.Empty); } };
             //pauseSimulationButton.Click     += (sender, e) => { if (OnPauseSimulation != null) { OnPauseSimulation(this, EventArgs.Empty); } };
-            stopSimulationButton.Click      += (sender, e) => { if (OnStopSimulation != null) { OnStopSimulation(this, EventArgs.Empty); } };
+            //stopSimulationButton.Click      += (sender, e) => { if (OnStopSimulation != null) { OnStopSimulation(this, EventArgs.Empty); } };
             //resetSimulationButton.Click += (sender, e) => { if (On != null) { OnLoadData(this, EventArgs.Empty); } };
             clearMapButtonAlt.Click         += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, EventArgs.Empty); } };
             submitChangesButton.Click       += (sender, e) => { if (OnSubmitProperties != null) { OnSubmitProperties(this, EventArgs.Empty); } };

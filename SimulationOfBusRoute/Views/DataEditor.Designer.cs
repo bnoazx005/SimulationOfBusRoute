@@ -190,8 +190,9 @@
             // redoChangesButton
             // 
             this.redoChangesButton.BackColor = System.Drawing.SystemColors.Control;
+            this.redoChangesButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mRedoButtonImage;
+            this.redoChangesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.redoChangesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.redoChangesButton.Image = global::SimulationOfBusRoute.Properties.Resources.mRedoButtonImage;
             this.redoChangesButton.Location = new System.Drawing.Point(134, 21);
             this.redoChangesButton.Name = "redoChangesButton";
             this.redoChangesButton.Size = new System.Drawing.Size(39, 38);
@@ -201,8 +202,9 @@
             // undoChangesButton
             // 
             this.undoChangesButton.BackColor = System.Drawing.SystemColors.Control;
+            this.undoChangesButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mUndoButtonImage;
+            this.undoChangesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.undoChangesButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.undoChangesButton.Image = global::SimulationOfBusRoute.Properties.Resources.mUndoButtonImage;
             this.undoChangesButton.Location = new System.Drawing.Point(89, 21);
             this.undoChangesButton.Name = "undoChangesButton";
             this.undoChangesButton.Size = new System.Drawing.Size(39, 38);
@@ -212,8 +214,9 @@
             // copyTextButton
             // 
             this.copyTextButton.BackColor = System.Drawing.SystemColors.Control;
+            this.copyTextButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mCopyButtonImage;
+            this.copyTextButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.copyTextButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.copyTextButton.Image = global::SimulationOfBusRoute.Properties.Resources.mCopyButtonImage;
             this.copyTextButton.Location = new System.Drawing.Point(261, 21);
             this.copyTextButton.Name = "copyTextButton";
             this.copyTextButton.Size = new System.Drawing.Size(39, 38);
@@ -223,8 +226,9 @@
             // pasteTextButton
             // 
             this.pasteTextButton.BackColor = System.Drawing.SystemColors.Control;
+            this.pasteTextButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mPasteButtonImage;
+            this.pasteTextButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pasteTextButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pasteTextButton.Image = global::SimulationOfBusRoute.Properties.Resources.mPasteButtonImage;
             this.pasteTextButton.Location = new System.Drawing.Point(306, 21);
             this.pasteTextButton.Name = "pasteTextButton";
             this.pasteTextButton.Size = new System.Drawing.Size(39, 38);
@@ -234,8 +238,9 @@
             // cutTextButton
             // 
             this.cutTextButton.BackColor = System.Drawing.SystemColors.Control;
+            this.cutTextButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mCutButtonImage;
+            this.cutTextButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.cutTextButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cutTextButton.Image = global::SimulationOfBusRoute.Properties.Resources.mCutButtonImage;
             this.cutTextButton.Location = new System.Drawing.Point(216, 21);
             this.cutTextButton.Name = "cutTextButton";
             this.cutTextButton.Size = new System.Drawing.Size(39, 38);
@@ -245,8 +250,9 @@
             // quitButton
             // 
             this.quitButton.BackColor = System.Drawing.SystemColors.Control;
+            this.quitButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
+            this.quitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
             this.quitButton.Location = new System.Drawing.Point(10, 21);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(39, 38);
@@ -256,8 +262,9 @@
             // generateDataButton
             // 
             this.generateDataButton.BackColor = System.Drawing.SystemColors.Control;
+            this.generateDataButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mStartSimulationButtonImage;
+            this.generateDataButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.generateDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.generateDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStartSimulationButtonImage;
             this.generateDataButton.Location = new System.Drawing.Point(391, 21);
             this.generateDataButton.Name = "generateDataButton";
             this.generateDataButton.Size = new System.Drawing.Size(39, 38);

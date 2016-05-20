@@ -250,6 +250,8 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
 
             ToolStripStatusLabel exceptionLabel = view.MessageText;
 
+            int currEditorIdx = 0;
+
             try
             {
                 string programCode = null;
@@ -257,41 +259,29 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
                 CLexer lexer = null;
                 CParser parser = null;
 
-                int currSelectedEditorIndex = view.CurrSelectedEditorIndex;
+                CBusRoute busRouteObject = mModel.CurrBusRouteObject;
+                                
+                //try to compile stations data
+                programCode = view.StationsEditorHeaderText.Text + view.StationsEditorText.Text;
+                
+                lexer = new CLexer(programCode);
+                parser = new CParser(lexer);
+                
+                busRouteObject.PassengersIntensities = CDataBuilder.Compile(parser.Parse());
 
-                lock (mSyncObject)
-                {
-                    switch (currSelectedEditorIndex)
-                    {
-                        case 0: //stations' data editor
-                            programCode = view.StationsEditorHeaderText.Text + view.StationsEditorText.Text;
-                            break;
-                        case 1: //buses velocities' editor
-                            programCode = view.BusVelocitiesHeaderText.Text + view.BusVelocitiesEditorText.Text;
-                            break;
-                        default:
-                            return;
-                    }
-                }
+                //if the last try was sucessully complited
+                currEditorIdx = 1;
+
+                programCode = view.BusVelocitiesHeaderText.Text + view.BusVelocitiesEditorText.Text;
 
                 lexer = new CLexer(programCode);
                 parser = new CParser(lexer);
 
-                CBusRoute busRouteObject = mModel.CurrBusRouteObject;
-
-                switch (currSelectedEditorIndex)
-                {
-                    case 0: //stations' data editor
-                        busRouteObject.PassengersIntensities = CDataBuilder.Compile(parser.Parse());
-                        break;
-                    case 1: //buses velocities' editor
-                        busRouteObject.VelocitiesOfSpans = CDataBuilder.Compile(parser.Parse());
-                        break;
-                }
+                busRouteObject.VelocitiesOfSpans = CDataBuilder.Compile(parser.Parse());
             }
             catch (CParserException parserException)
             {
-                exceptionLabel.Text = parserException.Message;
+                exceptionLabel.Text = parserException.Message + currEditorIdx;
                 exceptionLabel.ForeColor = Color.Red;
 
                 mClassLogger.Info(parserException.Message);
@@ -300,7 +290,7 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             }
             catch (CUndexpectedTokenException tokenException)
             {
-                exceptionLabel.Text = tokenException.Message;
+                exceptionLabel.Text = tokenException.Message + currEditorIdx;
                 exceptionLabel.ForeColor = Color.Red;
 
                 mClassLogger.Info(tokenException.Message);
@@ -309,7 +299,7 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             }
             catch (CSymbolTableException symbTableException)
             {
-                exceptionLabel.Text = symbTableException.Message;
+                exceptionLabel.Text = symbTableException.Message + currEditorIdx;
                 exceptionLabel.ForeColor = Color.Red;
 
                 mClassLogger.Info(symbTableException.Message);
@@ -317,7 +307,7 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
                 return;
             }
 
-            exceptionLabel.Text = "Данные успешно скомпилированны";
+            exceptionLabel.Text = "Данные успешно скомпилированы";
             exceptionLabel.ForeColor = Color.Green;
 
             mClassLogger.Info("Data is sucessfully compiled");

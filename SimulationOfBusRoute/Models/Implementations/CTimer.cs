@@ -64,24 +64,7 @@ namespace SimulationOfBusRoute.Models.Implementations
 
             mCurrTime += mDeltaTime;
         }
-
-        /// <summary>
-        /// Method does nothing for CTimer class.
-        /// In debug mode method checks up a state of mCurrState member. 
-        /// </summary>
-
-        public override void Verify()
-        {
-            #if DEBUG
-
-            if (mCurrTime >= uint.MaxValue)
-            {
-                throw new ArgumentOutOfRangeException("mCurrTime", "A value has reached its maximum. The next step will destroy valid logic of the timer");
-            }
-
-            #endif
-        }
-
+        
         /// <summary>
         /// Methods tries to notify all subscribers of the class.
         /// A subscriber can get a notification if its reaction time equals to current inner time of the timer.

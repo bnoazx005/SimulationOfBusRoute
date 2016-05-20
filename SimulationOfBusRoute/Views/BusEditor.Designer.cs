@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearBusesListMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +49,7 @@
             // 
             this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileMenuItem,
+            this.actionMenuItem,
             this.helpMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
@@ -57,14 +57,14 @@
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip";
             // 
-            // fileMenuItem
+            // actionMenuItem
             // 
-            this.fileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.actionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clearBusesListMenuItem,
             this.quitMenuItem});
-            this.fileMenuItem.Name = "fileMenuItem";
-            this.fileMenuItem.Size = new System.Drawing.Size(57, 24);
-            this.fileMenuItem.Text = "Файл";
+            this.actionMenuItem.Name = "actionMenuItem";
+            this.actionMenuItem.Size = new System.Drawing.Size(86, 24);
+            this.actionMenuItem.Text = "Действие";
             // 
             // clearBusesListMenuItem
             // 
@@ -120,8 +120,9 @@
             // quitButton
             // 
             this.quitButton.BackColor = System.Drawing.SystemColors.Control;
+            this.quitButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
+            this.quitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
             this.quitButton.Location = new System.Drawing.Point(10, 21);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(39, 38);
@@ -189,7 +190,7 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem fileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem actionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openDocsMenuItem;

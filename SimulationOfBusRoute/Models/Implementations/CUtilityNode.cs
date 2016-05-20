@@ -20,14 +20,6 @@ namespace SimulationOfBusRoute.Models.Implementations
         {
         }
 
-        /// <summary>
-        /// Method does nothing.
-        /// </summary>
-
-        public override void Verify()
-        { 
-        }
-
         public override E_ROUTE_NODE_TYPE NodeType
         {
             get

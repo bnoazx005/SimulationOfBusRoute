@@ -14,8 +14,8 @@ using System.Drawing;
 using SimulationOfBusRoute.Presenters.BusEditorPresenter;
 using SimulationOfBusRoute.Presenters.SimulationSettingsPresenter;
 using SimulationOfBusRoute.Presenters.DataEditorPresenter;
-using SimulationOfBusRoute.Models.Implementations.Bus;
 using SimulationOfBusRoute.Presenters.StatisticsViewerPresenter;
+
 
 namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 {
@@ -50,11 +50,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
         private CMainFormMoveNodeState mMoveNodeState;
 
-        private CMainFormStartSimulationState mStartSimulationState;
-
-        private CMainFormStopSimulationState mStopSimulationState;
-
-        private CMainFormPauseSimulationState mPauseSimulationState;
+        private CMainFormComputationsState mComputationsState;
 
         private static Logger mClassLogger;
         
@@ -90,7 +86,6 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.OnOpenStationsEditor += _onLaunchDataEditor;
             mView.OnShowStatistics += _onShowStatisticsWindow;
             mView.OnRunSimulation += _onRunSimulation;
-            mView.OnStopSimulation += _onStopSimulation;
             //mView.OnPauseSimulation += _onPauseSimulation;
             mView.OnOpenSimulationSettings += _onOpenSimulationSettings;
 
@@ -136,21 +131,11 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mMoveNodeState.OnNeedUpdateRouteLines += _updateRouteLines;
             mMoveNodeState.OnNeedGetCurrMarker += _getCurrMarker;
 
-            mStartSimulationState = new CMainFormStartSimulationState(this);
+            mComputationsState = new CMainFormComputationsState(this);
 
-            mStartSimulationState.OnNeedSubmitProperties += _onSubmitProperties;
-            mStartSimulationState.OnNeedUpdateRouteLines += _updateRouteLines;
-
-            mStopSimulationState = new CMainFormStopSimulationState(this);
-
-            mStopSimulationState.OnNeedSubmitProperties += _onSubmitProperties;
-            mStopSimulationState.OnNeedUpdateRouteLines += _updateRouteLines;
-
-            mPauseSimulationState = new CMainFormPauseSimulationState(this);
-
-            mPauseSimulationState.OnNeedSubmitProperties += _onSubmitProperties;
-            mPauseSimulationState.OnNeedUpdateRouteLines += _updateRouteLines;
-
+            mComputationsState.OnNeedSubmitProperties += _onSubmitProperties;
+            mComputationsState.OnNeedUpdateRouteLines += _updateRouteLines;
+            
             mCurrState = mSelectNodeState;
 
             mClassLogger = LogManager.GetCurrentClassLogger();
@@ -620,9 +605,17 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
         private void _onRunSimulation(object sender, EventArgs e)
         {
-            mCurrState.StartSimulationMode();
+            mCurrState.ComputationsMode();
 
-            mModel.CurrBusRouteObject.Build(mView.Map.Overlays[0].Routes);
+            try
+            {
+                mModel.CurrBusRouteObject.Build(mView.Map.Overlays[0].Routes);
+            }
+            catch (Exception exception)
+            {
+                Application.OnThreadException(exception);
+                return;
+            }
             
             if (mStatisticsViewerPresenter.IsRunning)
             {
@@ -632,46 +625,9 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mStatisticsViewerPresenter = new CStatisticsViewerPresenter(mModel, new StatisticsViewer());
             mStatisticsViewerPresenter.Run();
 
-            //mCurrState = E_CURRENT_STATE.CS_SIMULATION_IS_RUNNING;
-
-            //uint time = 0;
-
-            //mSimulationJob = new Task(() =>
-            //{
-            //    while(true)
-            //    {
-            //        while (mIsSimulationPaused)
-            //            ;
-
-            //        Debug.WriteLine("curr time: {0}", time++);
-            //        Thread.Sleep(100);
-            //    }
-            //});
-
-            //mSimulationJob.Start();
-
-            //var buttonsList = mView.ButtonsList;
-
-            //buttonsList["pauseSimulationButton"].Enabled = true;
-            //buttonsList["stopSimulationButton"].Enabled = true;
+            SetState(mSelectNodeState);
         }
-
-        private void _onPauseSimulation(object sender, EventArgs e)
-        {
-            //lock (mJobSyncObject)
-            //{
-            //    mIsSimulationPaused = !mIsSimulationPaused;
-
-            //    mCurrState = E_CURRENT_STATE.CS_SIMULATION_IS_PAUSED;
-            //}
-           // mSimulationJob.Pa
-        }
-
-        private void _onStopSimulation(object sender, EventArgs e)
-        {
-            mCurrState.StopSimulationMode();
-        }
-
+        
         private void _updateViewWithModel(ref IMainFormView view, ref CDataManager model)
         {
             if (!model.IsModified)
@@ -812,27 +768,11 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             }
         }
 
-        public CMainFormStartSimulationState StartSimulationState
+        public CMainFormComputationsState ComputationsState
         {
             get
             {
-                return mStartSimulationState;
-            }
-        }
-
-        public CMainFormStopSimulationState StopSimulationState
-        {
-            get
-            {
-                return mStopSimulationState;
-            }
-        }
-
-        public CMainFormPauseSimulationState PauseSimulationState
-        {
-            get
-            {
-                return mPauseSimulationState;
+                return mComputationsState;
             }
         }
     }

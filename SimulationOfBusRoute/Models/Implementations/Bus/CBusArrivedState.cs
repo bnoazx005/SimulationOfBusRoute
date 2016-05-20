@@ -40,8 +40,6 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
 
             context.CurrNumOfExcurrentPassengers = 0;
             context.CurrNumOfIncomingPassengers = 0;
-
-            Debug.Assert(context.CurrArrivalTime >= context.CurrDepartureTime);
             
             mContext.SetState(mContext.AlightingState);
             mContext.Update(time, dt);

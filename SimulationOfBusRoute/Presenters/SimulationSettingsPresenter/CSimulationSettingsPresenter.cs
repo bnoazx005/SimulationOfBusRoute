@@ -57,6 +57,11 @@ namespace SimulationOfBusRoute.Presenters.SimulationSettingsPresenter
                 Application.OnThreadException(ex);
                 return;
             }
+            catch (FormatException ex)
+            {
+                Application.OnThreadException(ex);
+                return;
+            }
 
             options.AddStringParam(Properties.Resources.mOptionsStartTimeOfSimulation, view.TimeOfStart.ToString());
             options.AddStringParam(Properties.Resources.mOptionsFinishTimeOfSimulation, view.TimeOfFinish.ToString());

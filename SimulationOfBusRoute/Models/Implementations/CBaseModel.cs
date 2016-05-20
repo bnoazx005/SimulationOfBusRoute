@@ -19,13 +19,7 @@ namespace SimulationOfBusRoute.Models.Implementations
             mID = id;
             mName = name;
         }
-
-        #region Methods
-
-        public virtual void Verify() { }
-
-        #endregion
-
+        
         #region Properties
 
         public int ID

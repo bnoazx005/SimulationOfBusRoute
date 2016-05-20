@@ -58,18 +58,18 @@
             // 
             // acceptButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(166, 126);
+            this.acceptButton.Location = new System.Drawing.Point(138, 126);
             this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(99, 32);
+            this.acceptButton.Size = new System.Drawing.Size(114, 32);
             this.acceptButton.TabIndex = 3;
             this.acceptButton.Text = "Потвердить";
             this.acceptButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(271, 126);
+            this.cancelButton.Location = new System.Drawing.Point(258, 126);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(99, 32);
+            this.cancelButton.Size = new System.Drawing.Size(112, 32);
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = true;

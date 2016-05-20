@@ -2,13 +2,11 @@
 using System.Windows.Forms;
 using System;
 using GMap.NET.ObjectModel;
-using SimulationOfBusRoute.Views;
-using System.Collections.Generic;
 
 
 namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 {
-    public abstract class CMainFormState
+    public class CMainFormState
     {
         public event EventHandler OnNeedSubmitProperties;
 
@@ -33,28 +31,10 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
         public virtual void MoveNodeMode() { }
 
-        public virtual void StartSimulationMode()
+        public virtual void ComputationsMode()
         {
-            IMainFormView view = mContext.View;
-
-            Dictionary<string, Button> buttons = view.ButtonsList;
-
-            buttons[Properties.Resources.mStartSimulationButtonName].Image = Properties.Resources.mPauseSimulationButtonImage;
-            buttons[Properties.Resources.mStopSimulationButtonName].Enabled = true;
-
-            buttons[Properties.Resources.mAddRouteNodeButtonName].Enabled = false;
-            buttons[Properties.Resources.mRemoveRouteNodeButtonName].Enabled = false;
-            buttons[Properties.Resources.mSelectNodeButtonName].Enabled = false;
-            buttons[Properties.Resources.mMoveNodeButtonName].Enabled = false;
-            buttons[Properties.Resources.mBusEditorButtonName].Enabled = false;
-            buttons[Properties.Resources.mDataEditorButtonName].Enabled = false;
-
-            mContext.SetState(mContext.StartSimulationState);
-        }
-
-        public virtual void StopSimulationMode() { }
-
-        public virtual void PauseSimulationMode() { }
+            mContext.SetState(mContext.ComputationsState);
+        }     
 
         protected void _onNeedSumbitProperties()
         {

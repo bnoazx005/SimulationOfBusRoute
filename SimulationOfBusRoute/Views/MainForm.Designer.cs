@@ -52,8 +52,6 @@
             this.selectNodeButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
             this.dataEditorButton = new System.Windows.Forms.Button();
-            this.statisticsButton = new System.Windows.Forms.Button();
-            this.stopSimulationButton = new System.Windows.Forms.Button();
             this.startSimulationButton = new System.Windows.Forms.Button();
             this.busEditorButton = new System.Windows.Forms.Button();
             this.removeRouteNodeButton = new System.Windows.Forms.Button();
@@ -77,6 +75,7 @@
             this.OpenDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.statisticsButton = new System.Windows.Forms.Button();
             this.zoomGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomBar)).BeginInit();
             this.mapGroupBox.SuspendLayout();
@@ -324,7 +323,6 @@
             this.toolboxGroupBox.Controls.Add(this.quitButton);
             this.toolboxGroupBox.Controls.Add(this.dataEditorButton);
             this.toolboxGroupBox.Controls.Add(this.statisticsButton);
-            this.toolboxGroupBox.Controls.Add(this.stopSimulationButton);
             this.toolboxGroupBox.Controls.Add(this.startSimulationButton);
             this.toolboxGroupBox.Controls.Add(this.busEditorButton);
             this.toolboxGroupBox.Controls.Add(this.removeRouteNodeButton);
@@ -341,9 +339,10 @@
             // simulationSettingsButton
             // 
             this.simulationSettingsButton.BackColor = System.Drawing.SystemColors.Control;
+            this.simulationSettingsButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mSettingsButtonImage;
+            this.simulationSettingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.simulationSettingsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.simulationSettingsButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSettingsButtonImage;
-            this.simulationSettingsButton.Location = new System.Drawing.Point(700, 21);
+            this.simulationSettingsButton.Location = new System.Drawing.Point(655, 21);
             this.simulationSettingsButton.Name = "simulationSettingsButton";
             this.simulationSettingsButton.Size = new System.Drawing.Size(39, 38);
             this.simulationSettingsButton.TabIndex = 16;
@@ -376,8 +375,9 @@
             // quitButton
             // 
             this.quitButton.BackColor = System.Drawing.SystemColors.Control;
+            this.quitButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
+            this.quitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
             this.quitButton.Location = new System.Drawing.Point(100, 21);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(39, 38);
@@ -387,43 +387,21 @@
             // dataEditorButton
             // 
             this.dataEditorButton.BackColor = System.Drawing.SystemColors.Control;
+            this.dataEditorButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mDataEditorButtonImage;
+            this.dataEditorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.dataEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dataEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mDataEditorButtonImage;
             this.dataEditorButton.Location = new System.Drawing.Point(470, 21);
             this.dataEditorButton.Name = "dataEditorButton";
             this.dataEditorButton.Size = new System.Drawing.Size(39, 38);
             this.dataEditorButton.TabIndex = 12;
             this.dataEditorButton.UseVisualStyleBackColor = false;
             // 
-            // statisticsButton
-            // 
-            this.statisticsButton.BackColor = System.Drawing.SystemColors.Control;
-            this.statisticsButton.Enabled = false;
-            this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.statisticsButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButtonImage;
-            this.statisticsButton.Location = new System.Drawing.Point(515, 21);
-            this.statisticsButton.Name = "statisticsButton";
-            this.statisticsButton.Size = new System.Drawing.Size(39, 38);
-            this.statisticsButton.TabIndex = 9;
-            this.statisticsButton.UseVisualStyleBackColor = false;
-            // 
-            // stopSimulationButton
-            // 
-            this.stopSimulationButton.BackColor = System.Drawing.SystemColors.Control;
-            this.stopSimulationButton.Enabled = false;
-            this.stopSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.stopSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStopSimulationButtonImage;
-            this.stopSimulationButton.Location = new System.Drawing.Point(655, 21);
-            this.stopSimulationButton.Name = "stopSimulationButton";
-            this.stopSimulationButton.Size = new System.Drawing.Size(39, 38);
-            this.stopSimulationButton.TabIndex = 8;
-            this.stopSimulationButton.UseVisualStyleBackColor = false;
-            // 
             // startSimulationButton
             // 
             this.startSimulationButton.BackColor = System.Drawing.SystemColors.Control;
+            this.startSimulationButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mStartSimulationButtonImage;
+            this.startSimulationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.startSimulationButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.startSimulationButton.Image = global::SimulationOfBusRoute.Properties.Resources.mStartSimulationButtonImage;
             this.startSimulationButton.Location = new System.Drawing.Point(610, 21);
             this.startSimulationButton.Name = "startSimulationButton";
             this.startSimulationButton.Size = new System.Drawing.Size(39, 38);
@@ -433,8 +411,9 @@
             // busEditorButton
             // 
             this.busEditorButton.BackColor = System.Drawing.SystemColors.Control;
+            this.busEditorButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mBusEditorButtonImage;
+            this.busEditorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.busEditorButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.busEditorButton.Image = global::SimulationOfBusRoute.Properties.Resources.mBusEditorButtonImage;
             this.busEditorButton.Location = new System.Drawing.Point(425, 21);
             this.busEditorButton.Name = "busEditorButton";
             this.busEditorButton.Size = new System.Drawing.Size(39, 38);
@@ -469,8 +448,9 @@
             // saveDataButton
             // 
             this.saveDataButton.BackColor = System.Drawing.SystemColors.Control;
+            this.saveDataButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mSaveRouteButtonImage;
+            this.saveDataButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.saveDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSaveRouteButtonImage;
             this.saveDataButton.Location = new System.Drawing.Point(55, 21);
             this.saveDataButton.Name = "saveDataButton";
             this.saveDataButton.Size = new System.Drawing.Size(39, 38);
@@ -480,8 +460,9 @@
             // loadDataButton
             // 
             this.loadDataButton.BackColor = System.Drawing.SystemColors.Control;
+            this.loadDataButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mLoadRouteButtonImage;
+            this.loadDataButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.loadDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.loadDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mLoadRouteButtonImage;
             this.loadDataButton.Location = new System.Drawing.Point(10, 21);
             this.loadDataButton.Name = "loadDataButton";
             this.loadDataButton.Size = new System.Drawing.Size(39, 38);
@@ -612,6 +593,19 @@
             this.saveFileDialog.DefaultExt = "data";
             this.saveFileDialog.Filter = "Model data (*.data)|*.data|All Files (*.*)|*.*";
             // 
+            // statisticsButton
+            // 
+            this.statisticsButton.BackColor = System.Drawing.SystemColors.Control;
+            this.statisticsButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButtonImage;
+            this.statisticsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.statisticsButton.Enabled = false;
+            this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.statisticsButton.Location = new System.Drawing.Point(515, 21);
+            this.statisticsButton.Name = "statisticsButton";
+            this.statisticsButton.Size = new System.Drawing.Size(39, 38);
+            this.statisticsButton.TabIndex = 9;
+            this.statisticsButton.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -671,9 +665,7 @@
         private System.Windows.Forms.Button removeRouteNodeButton;
         private System.Windows.Forms.Button addRouteNodeButton;
         private System.Windows.Forms.Button busEditorButton;
-        private System.Windows.Forms.Button stopSimulationButton;
         private System.Windows.Forms.Button startSimulationButton;
-        private System.Windows.Forms.Button statisticsButton;
         private System.Windows.Forms.ToolStripMenuItem clearRouteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simulationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startSimulationMenuItem;
@@ -701,5 +693,6 @@
         private System.Windows.Forms.Button moveNodeButton;
         private System.Windows.Forms.Button selectNodeButton;
         private System.Windows.Forms.Button simulationSettingsButton;
+        private System.Windows.Forms.Button statisticsButton;
     }
 }

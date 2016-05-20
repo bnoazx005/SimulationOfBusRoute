@@ -604,3 +604,97 @@
 2016-05-10 11:09:17.0194|DEBUG|SimulationOfBusRoute.Models.Implementations.CBusStation|bus 0 attached at 27
 2016-05-10 11:09:17.0194|DEBUG|SimulationOfBusRoute.Models.Implementations.CBusStation|bus 1 attached at 27
 2016-05-10 11:09:41.5411|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
+2016-05-11 16:33:16.7465|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
+2016-05-15 22:27:14.8766|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
+2016-05-15 22:32:42.6346|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
+2016-05-15 22:32:48.7139|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
+2016-05-15 22:33:46.0028|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
+2016-05-15 22:34:01.8005|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8005|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8005|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8005|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8005|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8005|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8005|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8162|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8318|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8474|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8630|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8787|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:01.8787|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
+2016-05-15 22:34:04.3788|INFO|SimulationOfBusRoute.Presenters.DataEditorPresenter.CDataEditorPresenter|Data is sucessfully compiled
+2016-05-19 14:51:14.5889|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized

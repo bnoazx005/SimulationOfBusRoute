@@ -31,7 +31,7 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         #region Methods
 
-        public override void Verify()
+        public void Verify()
         {
             if (mBusStations == null || mBusStations.Count == 0)
             {
@@ -134,6 +134,8 @@ namespace SimulationOfBusRoute.Models.Implementations
             {
                 mBusStations[i].NextStation = mBusStations[(i + 1) % numOfStations];
                 mBusStations[i].BusStationId = i;
+
+                mBusStations[i].InitData(this);
             }
 
             List<CBus> buses = mDataManager.BusesStorage.GetAll();

@@ -27,10 +27,7 @@ namespace SimulationOfBusRoute.Models.Implementations
         }
 
         #region Methods
-
-        public override void Verify()
-        {
-        }
+        
 
         /// <summary>
         /// Method stores parameter with specified name and integer value. If that parameter already exists,

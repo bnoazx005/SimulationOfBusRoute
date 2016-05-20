@@ -20,7 +20,7 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
             context.ReactionTime = time + (uint)Math.Ceiling(currStation.NextSpanTravelTime);
 
             currStation.DettachBus();
-
+            
             context.CurrStation = currStation.NextStation;
 
             mContext.SetState(mContext.OnWayState);

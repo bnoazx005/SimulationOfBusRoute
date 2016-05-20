@@ -14,6 +14,8 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         private CBusRoute mCurrBusRoute;
 
+        private CComputationsResults mComputationsResults;
+
         private bool mIsModified;
 
         public CDataManager():
@@ -39,12 +41,7 @@ namespace SimulationOfBusRoute.Models.Implementations
         }
 
         #region Methods
-
-        public override void Verify()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void ResetModelStateFlag()
         {
             mIsModified = false;
@@ -88,7 +85,7 @@ namespace SimulationOfBusRoute.Models.Implementations
                 return mRouteNodesStorage;
             }
         }
-
+        
         public CBusesListStorage BusesStorage
         {
             get
@@ -132,6 +129,19 @@ namespace SimulationOfBusRoute.Models.Implementations
                 }
 
                 return mCurrBusRoute;
+            }
+        }
+
+        public CComputationsResults ComputationsResults
+        {
+            get
+            {
+                if (mComputationsResults == null)
+                {
+                    mComputationsResults = new CComputationsResults();
+                }
+
+                return mComputationsResults;
             }
         }
 

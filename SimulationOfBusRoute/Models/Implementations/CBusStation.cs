@@ -3,9 +3,26 @@ using SimulationOfBusRoute.Models.Implementations.Bus;
 using SimulationOfBusRoute.Models.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+
 
 namespace SimulationOfBusRoute.Models.Implementations
 {
+    public struct TStationTableEntity
+    {
+        [DisplayName("Тек. время")]
+        public uint Time { get; set; }
+
+        [DisplayName("№ остановки")]
+        public int ID { get; set; }
+
+        [DisplayName("Кол-во пассажиров")]
+        public uint CurrNumOfPassengers { get; set; }
+
+        [DisplayName("Распределение пассажиров")]
+        public double[] PassengersDistributionByGroups { get; set; }
+    }
+
     public class CBusStation : CRouteNode, IUpdatable
     {
         public event Action<CBusStation> OnGetData;
@@ -86,8 +103,6 @@ namespace SimulationOfBusRoute.Models.Implementations
             }
 
             mBusQueue.Enqueue(bus);
-
-            mLogger.Debug("bus {0} attached at {1}", bus.ID, bus.CurrStation.BusStationId);
         }
 
         public void DettachBus()
@@ -95,26 +110,33 @@ namespace SimulationOfBusRoute.Models.Implementations
             if (mBusQueue.Count >= 1)
             {
                 CBus departuringBus = mBusQueue.Peek();
+
                 mBusQueue.Dequeue();
-
-                mLogger.Debug("bus {0} dettached at {1}", departuringBus.ID, departuringBus.CurrStation.BusStationId);
-
+                
                 if (mBusQueue.Count >= 1)
                 {
                     CBus bus = mBusQueue.Peek();
                     bus.UnlockBus(departuringBus.CurrDepartureTime);
-
-                    mLogger.Debug("bus {0} was unclocked", bus.ID);
                 }
             }
         }
 
         public void InitData(CBusRoute route)
         {
+            int id = mBusStationId;
             int numOfStations = route.NumOfStations;
 
             mPassengersDistributionByGroups = new double[numOfStations];
             mCurrNumOfPassengers = 0;
+
+            CBusRoute busRouteObject = mCurrBusRouteObject;
+
+            mReactionTime = 60;
+
+            mNextSpanTravelTime = (uint)Math.Ceiling(busRouteObject.SpansDisntancesVector[id] /
+                                                     busRouteObject.VelocitiesOfSpans.GetData(mReactionTime)[0][id]);
+
+            mBusQueue.Clear();
         }
              
         public void Update(uint time, uint dt)
@@ -187,6 +209,18 @@ namespace SimulationOfBusRoute.Models.Implementations
             mCurrNumOfPassengers--;
 
             return groupSample;
+        }
+
+        public TStationTableEntity ToTableEntity()
+        {
+            TStationTableEntity currMappedEntity = new TStationTableEntity();
+
+            currMappedEntity.Time = mReactionTime;
+            currMappedEntity.ID = BusStationId;
+            currMappedEntity.CurrNumOfPassengers = mCurrNumOfPassengers;
+            currMappedEntity.PassengersDistributionByGroups = mPassengersDistributionByGroups;
+
+            return currMappedEntity;
         }
 
         #endregion
