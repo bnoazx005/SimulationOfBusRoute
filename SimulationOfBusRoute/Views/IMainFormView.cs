@@ -24,9 +24,7 @@ namespace SimulationOfBusRoute.Views
         Dictionary<string, Button> ButtonsList { get; set; }
 
         int CurrMarkerIndex { get; set; }
-
-        string StatusLine { get; set; }
-
+        
         OpenFileDialog OpenFileDialog { get; set; }
 
         SaveFileDialog SaveFileDialog { get; set; }
@@ -61,7 +59,7 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnOpenBusEditor;
 
-        event EventHandler OnOpenStationsEditor;
+        event EventHandler OnOpenDataEditor;
 
         event EventHandler OnShowStatistics;
 
@@ -74,7 +72,7 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnMapZoomChanged;
 
         event MarkerClick OnMarkerSelected;
-
+        
         event EventHandler<MouseEventArgs> OnMapMouseClick;
 
         #endregion

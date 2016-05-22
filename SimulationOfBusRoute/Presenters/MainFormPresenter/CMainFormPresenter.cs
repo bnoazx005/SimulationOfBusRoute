@@ -83,7 +83,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.OnSelectNode += _onSelectNode;
             mView.OnMoveNode += _onMoveNode;
             mView.OnOpenBusEditor += _onLaunchBusEditor;
-            mView.OnOpenStationsEditor += _onLaunchDataEditor;
+            mView.OnOpenDataEditor += _onLaunchDataEditor;
             mView.OnShowStatistics += _onShowStatisticsWindow;
             mView.OnRunSimulation += _onRunSimulation;
             //mView.OnPauseSimulation += _onPauseSimulation;
@@ -521,11 +521,17 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
         {
             if (mModel.IsModified)
             {
-                DialogResult messageBoxResult = MessageBox.Show("", "", MessageBoxButtons.YesNoCancel);
+                DialogResult messageBoxResult = MessageBox.Show(Properties.Resources.mPreLoadSaveMessage,
+                                                                Properties.Resources.mWarningMessageTitle,
+                                                                MessageBoxButtons.YesNoCancel);
 
                 if (messageBoxResult == DialogResult.Yes)
                 {
                     _onSaveModelData(null, EventArgs.Empty);
+                }
+                else if (messageBoxResult == DialogResult.Cancel)
+                {
+                    return;
                 }
             }
 

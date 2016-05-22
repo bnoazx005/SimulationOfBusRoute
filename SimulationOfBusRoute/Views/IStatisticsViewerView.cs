@@ -25,6 +25,8 @@ namespace SimulationOfBusRoute.Views
 
         ComboBox BusPlotType { get; set; }
 
+        ComboBox StationPlotType { get; set; }
+
         event EventHandler OnFormInit;
 
         event EventHandler OnFormShown;
@@ -46,5 +48,7 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnStationsListDeselectAllItems;
 
         event EventHandler OnBusPlotTypeChanged;
+
+        event EventHandler OnStationPlotTypeChanged;
     }
 }

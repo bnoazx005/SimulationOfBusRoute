@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 
 namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 {
@@ -26,6 +26,14 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             BPT_INCOMING_PASSENGERS,
             [Description("Число выходящих пассажиров")]
             BPT_EXCURRENT_PASSENGERS,
+        }
+
+        public enum E_STATIONS_PLOT_TYPE
+        {
+            [Description("Число пассажиров")]
+            SPT_PASSENGERS,
+            [Description("Эпюра пассажиропотока")]
+            SPT_TRAFFIC_POWER,
         }
         
         private CComputationsResults mComputationsResults;
@@ -73,6 +81,14 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 
             mView.OnBusPlotTypeChanged += _onBusPlotTypeChanged;
 
+            ComboBox stationPlotType = view.StationPlotType;
+
+            stationPlotType.DisplayMember = "Key";
+            stationPlotType.ValueMember = "Value";
+
+            stationPlotType.DataSource = typeof(E_STATIONS_PLOT_TYPE).ToDescriptionsList();
+
+            mView.OnStationPlotTypeChanged += _onStationPlotTypeChanged;
 
             foreach (CBusStation station in mModel.CurrBusRouteObject.BusStationsList)
             {
@@ -130,20 +146,30 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
                     timer.Tick();
                     statusBar.Invoke((MethodInvoker)(() => operationProgress.Increment(operationProgress.Step)));
                 }
+
+                mBusesTableData = new BindingSource();
+                mBusesTableData.DataSource = mComputationsResults.BusesRecords;
+                
+
+                mStationsTableData = new BindingSource();
+                mStationsTableData.DataSource = mComputationsResults.StationsRecords;
+                
+                Parallel.Invoke(() => view.BusesTable.Invoke((MethodInvoker)(() => view.BusesTable.DataSource = mBusesTableData)),
+                                () => view.StationsTable.Invoke((MethodInvoker)(() => view.StationsTable.DataSource = mStationsTableData)));                
             });
             
-            operationProgress.Value = 0;
+            operationProgress.Value   = 0;
             operationProgress.Visible = false;
-            View.IsComputing = false;
+            View.IsComputing          = false;
 
-            mBusesTableData = new BindingSource();
-            mBusesTableData.DataSource = mComputationsResults.BusesRecords;
-            view.BusesTable.DataSource = mBusesTableData;
+            //mBusesTableData = new BindingSource();
+            //mBusesTableData.DataSource = mComputationsResults.BusesRecords;
+            //view.BusesTable.DataSource = mBusesTableData;
 
-            mStationsTableData = new BindingSource();
-            mStationsTableData.DataSource = mComputationsResults.StationsRecords;
-            view.StationsTable.DataSource = mStationsTableData;
-
+            //mStationsTableData = new BindingSource();
+            //mStationsTableData.DataSource = mComputationsResults.StationsRecords;
+            //view.StationsTable.DataSource = mStationsTableData;
+            
             busesPlot.Invalidate();
             stationsPlot.Invalidate();
 
@@ -311,7 +337,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
                     {
                         Series currBusesPlot = busPlot.Series[entity.ID];
 
-                        currBusesPlot.Points.AddXY(entity.CurrArrivalTime, entity.CurrBusCapacity);
+                        currBusesPlot.Points.AddXY(entity.CurrDepartureTime, entity.CurrBusCapacity);
 
                         currBusesPlot.ChartType = SeriesChartType.StepLine;
                     };
@@ -367,6 +393,109 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
                 {
                     currBusesRecords.ForEach(addDataOntoPlot);
                 }
+            }
+        }
+
+        private void _onStationPlotTypeChanged(object sender, EventArgs e)
+        {
+            E_STATIONS_PLOT_TYPE stationPlotType = (E_STATIONS_PLOT_TYPE)mView.StationPlotType.SelectedValue;
+            
+            switch (stationPlotType)
+            {
+                case E_STATIONS_PLOT_TYPE.SPT_PASSENGERS:
+                    _drawPassengersDataPlot();
+                    break;
+
+                case E_STATIONS_PLOT_TYPE.SPT_TRAFFIC_POWER:
+                    _drawTrafficPowerPlot();
+                    break;
+            }            
+        }
+
+        private void _drawPassengersDataPlot()
+        {
+            IStatisticsViewerView view = mView;
+
+            Chart stationPlot = view.StationsPlot;
+
+            Series currPlot = null;
+            int stationsPlotsCount = stationPlot.Series.Count;
+
+            BindingList<TStationTableEntity> stations = mComputationsResults.StationsRecords;
+            List<TStationTableEntity> currStationRecords = null;
+
+            Action<TStationTableEntity> addDataOntoPlot = (entity) =>
+            {
+                Series currStationPlot = stationPlot.Series[entity.ID];
+
+                currStationPlot.Points.AddXY(entity.Time, entity.CurrNumOfPassengers);
+            };
+
+            for (int i = 0; i < stationsPlotsCount; i++)
+            {
+                currPlot = stationPlot.Series[i];
+
+                currPlot.Points.Clear();
+
+                currStationRecords = stations.Where(t => t.ID == i).ToList();
+
+                if (stationPlot.InvokeRequired)
+                {
+                    stationPlot.Invoke((MethodInvoker)(() => currStationRecords.ForEach(addDataOntoPlot)));
+                }
+                else
+                {
+                    currStationRecords.ForEach(addDataOntoPlot);
+                }
+            }
+        }
+
+        private void _drawTrafficPowerPlot()
+        {
+            IStatisticsViewerView view = mView;
+
+            Chart stationPlot = view.StationsPlot;
+
+            Series currPlot = null;
+            int stationsPlotsCount = stationPlot.Series.Count;
+
+            BindingList<TBusTableEntity> buses = mComputationsResults.BusesRecords;
+            BindingList<TStationTableEntity> stations = mComputationsResults.StationsRecords;
+            List<TBusTableEntity> currBusRecords = null;
+            
+            uint totalNumOfPassengers = 0;
+
+            int numOfSteps = mModel.OptionsList.GetIntParam(Properties.Resources.mOptionsNumOfSimulationSteps);
+            CBusRoute route = mModel.CurrBusRouteObject;
+
+            double elapsedHours = numOfSteps / 3600; //convert seconds to hours
+            double currLength = 0.0;
+            double passengersTrafficPower = 0.0;
+            double currDistance = 0.0;
+
+            for (int i = 0; i < stationsPlotsCount; i++)
+            {
+                totalNumOfPassengers = 0;
+                currDistance = route.SpansDisntancesVector[i];
+
+                currPlot = stationPlot.Series[i];
+                currPlot.ChartType = SeriesChartType.Area;
+
+                currPlot.Points.Clear();
+
+                currBusRecords = buses.Where(entity => entity.CurrStationId == i).ToList();
+
+                currBusRecords.ForEach(entity => 
+                {
+                    totalNumOfPassengers += entity.MaxCapacity - entity.CurrBusCapacity;
+                });
+
+                passengersTrafficPower = totalNumOfPassengers / elapsedHours;
+
+                currPlot.Points.AddXY(currLength, passengersTrafficPower);
+                currPlot.Points.AddXY(currLength + currDistance, passengersTrafficPower);
+                
+                currLength += currDistance;
             }
         }
     }

@@ -371,6 +371,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Текущие данные не были сохранены, сохранить их перед загрузкой новых?.
+        /// </summary>
+        internal static string mPreLoadSaveMessage {
+            get {
+                return ResourceManager.GetString("mPreLoadSaveMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mQuitButtonImage {
@@ -802,6 +811,15 @@ namespace SimulationOfBusRoute.Properties {
             get {
                 object obj = ResourceManager.GetObject("mUndoButtonImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Внимание.
+        /// </summary>
+        internal static string mWarningMessageTitle {
+            get {
+                return ResourceManager.GetString("mWarningMessageTitle", resourceCulture);
             }
         }
     }

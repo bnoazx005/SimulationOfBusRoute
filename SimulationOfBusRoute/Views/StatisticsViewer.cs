@@ -26,6 +26,7 @@ namespace SimulationOfBusRoute.Views
             deselectAllStationItemsButton.Click += (sender, e) => { if (OnStationsListDeselectAllItems != null) { OnStationsListDeselectAllItems(sender, e); } };
 
             busPlotType.SelectedIndexChanged += (sender, e) => { if (OnBusPlotTypeChanged != null) { OnBusPlotTypeChanged(sender, e); } };
+            stationPlotType.SelectedIndexChanged += (sender, e) => { if (OnStationPlotTypeChanged != null) { OnStationPlotTypeChanged(sender, e); } };
         }
 
         public event EventHandler OnCloseForm;
@@ -39,6 +40,7 @@ namespace SimulationOfBusRoute.Views
         public event ItemCheckEventHandler OnStationsListItemChecked;
         public event EventHandler OnFormShown;
         public event EventHandler OnBusPlotTypeChanged;
+        public event EventHandler OnStationPlotTypeChanged;
 
         #region Methods
 
@@ -168,6 +170,19 @@ namespace SimulationOfBusRoute.Views
             set
             {
                 busPlotType = value;
+            }
+        }
+
+        public ComboBox StationPlotType
+        {
+            get
+            {
+                return stationPlotType;
+            }
+
+            set
+            {
+                stationPlotType = value;
             }
         }
     }

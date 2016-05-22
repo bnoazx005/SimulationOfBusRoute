@@ -1,7 +1,7 @@
 ﻿using SimulationOfBusRoute.Models.Interfaces;
 using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 
 namespace SimulationOfBusRoute.Models.Implementations
 {
@@ -75,13 +75,23 @@ namespace SimulationOfBusRoute.Models.Implementations
             uint currTime = mCurrTime;
             uint dt = mDeltaTime;
 
-            foreach (IUpdatable currObject in mUpdatableObjects)
-            {
-                if (currObject.ReactionTime == mCurrTime)
-                {
-                    currObject.Update(currTime, dt);
-                }
-            }
+            //foreach (IUpdatable currObject in mUpdatableObjects)
+            //{
+            //    if (currObject.ReactionTime == mCurrTime)
+            //    {
+            //        currObject.Update(currTime, dt);
+            //    }
+            //}
+
+            List<IUpdatable> objectsShouldBeUpdated = mUpdatableObjects.FindAll(entity => entity.ReactionTime == currTime);
+            objectsShouldBeUpdated.ForEach(_updateObject);
+
+            //Parallel.ForEach(objectsShouldBeUpdated, _updateObject);
+        }
+
+        private void _updateObject(IUpdatable updatableObject)
+        {
+            updatableObject.Update(mCurrTime, mDeltaTime);
         }
 
         #endregion

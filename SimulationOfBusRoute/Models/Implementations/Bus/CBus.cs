@@ -40,6 +40,9 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
         
         [DisplayName("Время посадки пассажира (сек.)")]
         public byte BoardingTimePerPassenger { get; set; }
+        
+        [DisplayName("Макс. вместимость")]
+        public uint MaxCapacity { get; set; }
     }
 
     public class CBus : CBaseModel, IUpdatable
@@ -176,14 +179,6 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
             mCurrState.UnlockBus(time);
         }
 
-        public void Notify()
-        {
-            if (OnGetData != null)
-            {
-                OnGetData(this);
-            }
-        }
-
         public TBusTableEntity ToTableEntity()
         {
             TBusTableEntity currMappedEntity = new TBusTableEntity();
@@ -199,8 +194,17 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
             currMappedEntity.TotalNumOfTransportedPassengers = mTotalNumOfTransportedPassengers;
             currMappedEntity.AlightingTimePerPassenger = mAlightingTimePerPassenger;
             currMappedEntity.BoardingTimePerPassenger = mBoardingTimePerPassenger;
+            currMappedEntity.MaxCapacity = mMaxBusCapacity;
 
             return currMappedEntity;
+        }
+
+        public void Notify()
+        {
+            if (OnGetData != null)
+            {
+                OnGetData(this);
+            }
         }
 
         #endregion
@@ -244,7 +248,7 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
                 mCurrBusCapacity = value;
             }
         }
-
+       
         public byte AlightingTimePerPassenger
         {
             get

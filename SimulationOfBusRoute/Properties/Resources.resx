@@ -358,4 +358,10 @@
   <data name="mDataEditorButtonName" xml:space="preserve">
     <value>dataEditorButton</value>
   </data>
+  <data name="mPreLoadSaveMessage" xml:space="preserve">
+    <value>Текущие данные не были сохранены, сохранить их перед загрузкой новых?</value>
+  </data>
+  <data name="mWarningMessageTitle" xml:space="preserve">
+    <value>Внимание</value>
+  </data>
 </root>
