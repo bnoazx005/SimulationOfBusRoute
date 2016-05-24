@@ -27,6 +27,10 @@ namespace SimulationOfBusRoute.Views
 
         ComboBox StationPlotType { get; set; }
 
+        BindingNavigator BusesDataNavigator { get; set; }
+
+        BindingNavigator StationsDataNavigator { get; set; }
+
         event EventHandler OnFormInit;
 
         event EventHandler OnFormShown;

@@ -27,6 +27,14 @@ namespace SimulationOfBusRoute.Views
 
             busPlotType.SelectedIndexChanged += (sender, e) => { if (OnBusPlotTypeChanged != null) { OnBusPlotTypeChanged(sender, e); } };
             stationPlotType.SelectedIndexChanged += (sender, e) => { if (OnStationPlotTypeChanged != null) { OnStationPlotTypeChanged(sender, e); } };
+
+            busesDataNavigator.AddStandardItems();
+            busesDataNavigator.AddNewItem.Dispose();
+            busesDataNavigator.DeleteItem.Dispose();
+            
+            stationsDataNavigator.AddStandardItems();
+            stationsDataNavigator.AddNewItem.Dispose();
+            stationsDataNavigator.DeleteItem.Dispose();
         }
 
         public event EventHandler OnCloseForm;
@@ -183,6 +191,32 @@ namespace SimulationOfBusRoute.Views
             set
             {
                 stationPlotType = value;
+            }
+        }
+
+        public BindingNavigator BusesDataNavigator
+        {
+            get
+            {
+                return busesDataNavigator;
+            }
+
+            set
+            {
+                busesDataNavigator = value;
+            }
+        }
+        
+        public BindingNavigator StationsDataNavigator
+        {
+            get
+            {
+                return stationsDataNavigator;
+            }
+
+            set
+            {
+                stationsDataNavigator = value;
             }
         }
     }

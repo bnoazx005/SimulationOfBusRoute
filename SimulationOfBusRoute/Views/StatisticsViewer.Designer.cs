@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -58,6 +59,7 @@
             this.busTableGroup = new System.Windows.Forms.GroupBox();
             this.busesTable = new System.Windows.Forms.DataGridView();
             this.busSelectionToolsGroup = new System.Windows.Forms.GroupBox();
+            this.busesDataNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.busGraphs = new System.Windows.Forms.TabPage();
             this.busElementsBox = new System.Windows.Forms.GroupBox();
             this.deselectAllBusItemsButton = new System.Windows.Forms.Button();
@@ -72,6 +74,8 @@
             this.stationsTableGroup = new System.Windows.Forms.GroupBox();
             this.stationsTable = new System.Windows.Forms.DataGridView();
             this.stationsSelectionToolsGroup = new System.Windows.Forms.GroupBox();
+            this.stationsDataNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.stationElements = new System.Windows.Forms.GroupBox();
             this.deselectAllStationItemsButton = new System.Windows.Forms.Button();
@@ -89,6 +93,8 @@
             this.busTable.SuspendLayout();
             this.busTableGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.busesTable)).BeginInit();
+            this.busSelectionToolsGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDataNavigator)).BeginInit();
             this.busGraphs.SuspendLayout();
             this.busElementsBox.SuspendLayout();
             this.busGraphBox.SuspendLayout();
@@ -98,6 +104,9 @@
             this.tabPage1.SuspendLayout();
             this.stationsTableGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stationsTable)).BeginInit();
+            this.stationsSelectionToolsGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsDataNavigator)).BeginInit();
+            this.stationsDataNavigator.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.stationElements.SuspendLayout();
             this.stationGraph.SuspendLayout();
@@ -275,6 +284,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.busesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.busesTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.busesTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -284,6 +294,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.busesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.busesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -311,17 +322,37 @@
             this.busesTable.RowTemplate.Height = 24;
             this.busesTable.Size = new System.Drawing.Size(1060, 445);
             this.busesTable.TabIndex = 0;
+            this.busesTable.VirtualMode = true;
             // 
             // busSelectionToolsGroup
             // 
             this.busSelectionToolsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.busSelectionToolsGroup.Controls.Add(this.busesDataNavigator);
             this.busSelectionToolsGroup.Location = new System.Drawing.Point(3, 3);
             this.busSelectionToolsGroup.Name = "busSelectionToolsGroup";
             this.busSelectionToolsGroup.Size = new System.Drawing.Size(1072, 59);
             this.busSelectionToolsGroup.TabIndex = 0;
             this.busSelectionToolsGroup.TabStop = false;
-            this.busSelectionToolsGroup.Text = "Фильтр";
+            this.busSelectionToolsGroup.Text = "Элементы управления";
+            // 
+            // busesDataNavigator
+            // 
+            this.busesDataNavigator.AddNewItem = null;
+            this.busesDataNavigator.CountItem = null;
+            this.busesDataNavigator.DeleteItem = null;
+            this.busesDataNavigator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.busesDataNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.busesDataNavigator.Location = new System.Drawing.Point(3, 18);
+            this.busesDataNavigator.MoveFirstItem = null;
+            this.busesDataNavigator.MoveLastItem = null;
+            this.busesDataNavigator.MoveNextItem = null;
+            this.busesDataNavigator.MovePreviousItem = null;
+            this.busesDataNavigator.Name = "busesDataNavigator";
+            this.busesDataNavigator.PositionItem = null;
+            this.busesDataNavigator.Size = new System.Drawing.Size(1066, 38);
+            this.busesDataNavigator.TabIndex = 0;
+            this.busesDataNavigator.Text = "bindingNavigator1";
             // 
             // busGraphs
             // 
@@ -480,6 +511,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stationsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.stationsTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -522,12 +554,38 @@
             // 
             this.stationsSelectionToolsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.stationsSelectionToolsGroup.Controls.Add(this.stationsDataNavigator);
             this.stationsSelectionToolsGroup.Location = new System.Drawing.Point(3, 5);
             this.stationsSelectionToolsGroup.Name = "stationsSelectionToolsGroup";
             this.stationsSelectionToolsGroup.Size = new System.Drawing.Size(1072, 59);
             this.stationsSelectionToolsGroup.TabIndex = 2;
             this.stationsSelectionToolsGroup.TabStop = false;
-            this.stationsSelectionToolsGroup.Text = "Фильтр";
+            this.stationsSelectionToolsGroup.Text = "Элементы управления";
+            // 
+            // stationsDataNavigator
+            // 
+            this.stationsDataNavigator.AddNewItem = null;
+            this.stationsDataNavigator.CountItem = null;
+            this.stationsDataNavigator.DeleteItem = null;
+            this.stationsDataNavigator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stationsDataNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.stationsDataNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorSeparator5});
+            this.stationsDataNavigator.Location = new System.Drawing.Point(3, 18);
+            this.stationsDataNavigator.MoveFirstItem = null;
+            this.stationsDataNavigator.MoveLastItem = null;
+            this.stationsDataNavigator.MoveNextItem = null;
+            this.stationsDataNavigator.MovePreviousItem = null;
+            this.stationsDataNavigator.Name = "stationsDataNavigator";
+            this.stationsDataNavigator.PositionItem = null;
+            this.stationsDataNavigator.Size = new System.Drawing.Size(1066, 38);
+            this.stationsDataNavigator.TabIndex = 0;
+            this.stationsDataNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorSeparator5
+            // 
+            this.bindingNavigatorSeparator5.Name = "bindingNavigatorSeparator5";
+            this.bindingNavigatorSeparator5.Size = new System.Drawing.Size(6, 38);
             // 
             // tabPage2
             // 
@@ -651,6 +709,9 @@
             this.busTable.ResumeLayout(false);
             this.busTableGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.busesTable)).EndInit();
+            this.busSelectionToolsGroup.ResumeLayout(false);
+            this.busSelectionToolsGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.busesDataNavigator)).EndInit();
             this.busGraphs.ResumeLayout(false);
             this.busElementsBox.ResumeLayout(false);
             this.busGraphBox.ResumeLayout(false);
@@ -660,6 +721,11 @@
             this.tabPage1.ResumeLayout(false);
             this.stationsTableGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stationsTable)).EndInit();
+            this.stationsSelectionToolsGroup.ResumeLayout(false);
+            this.stationsSelectionToolsGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stationsDataNavigator)).EndInit();
+            this.stationsDataNavigator.ResumeLayout(false);
+            this.stationsDataNavigator.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.stationElements.ResumeLayout(false);
             this.stationGraph.ResumeLayout(false);
@@ -710,5 +776,8 @@
         private System.Windows.Forms.Button deselectAllStationItemsButton;
         private System.Windows.Forms.Button selectAllStationItemsButton;
         private System.Windows.Forms.CheckedListBox stationsList;
+        private System.Windows.Forms.BindingNavigator busesDataNavigator;
+        private System.Windows.Forms.BindingNavigator stationsDataNavigator;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator5;
     }
 }

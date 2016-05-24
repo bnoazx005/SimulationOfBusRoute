@@ -42,6 +42,14 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 
         private BindingSource mStationsTableData;
 
+        private const int mBusesPageSize = 30;
+
+        private const int mStationsPageSize = 30;
+
+        private BindingList<BindingList<TBusTableEntity>> mBusesDataPages;
+
+        private BindingList<BindingList<TStationTableEntity>> mStationsDataPages;
+
         public CStatisticsViewerPresenter(CDataManager model, IStatisticsViewerView view):
             base(model, view)
         {
@@ -58,7 +66,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 
             mView.OnStationsListSelectAllItems   += _onStationsListSelectAllItems;
             mView.OnStationsListDeselectAllItems += _onStationsListDeselectAllItems;
-            
+                        
             mComputationsResults = model.ComputationsResults;
         }
 
@@ -145,22 +153,43 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
                 {
                     timer.Tick();
                     statusBar.Invoke((MethodInvoker)(() => operationProgress.Increment(operationProgress.Step)));
-                }
-
-                mBusesTableData = new BindingSource();
-                mBusesTableData.DataSource = mComputationsResults.BusesRecords;
-                
-
-                mStationsTableData = new BindingSource();
-                mStationsTableData.DataSource = mComputationsResults.StationsRecords;
-                
-                Parallel.Invoke(() => view.BusesTable.Invoke((MethodInvoker)(() => view.BusesTable.DataSource = mBusesTableData)),
-                                () => view.StationsTable.Invoke((MethodInvoker)(() => view.StationsTable.DataSource = mStationsTableData)));                
+                }           
             });
             
             operationProgress.Value   = 0;
             operationProgress.Visible = false;
             View.IsComputing          = false;
+
+            mBusesDataPages = _generatePages(mComputationsResults.BusesRecords, mBusesPageSize);
+
+            mBusesTableData = new BindingSource();
+
+            view.BusesDataNavigator.BindingSource = mBusesTableData;
+
+            mBusesTableData.DataSource = mBusesDataPages;
+            mBusesTableData.PositionChanged += _onBusesDataPositionChanged;
+
+            _onBusesDataPositionChanged(null, EventArgs.Empty);
+
+
+            mStationsDataPages = _generatePages(mComputationsResults.StationsRecords, mStationsPageSize);
+
+            mStationsTableData = new BindingSource();
+
+            view.StationsDataNavigator.BindingSource = mStationsTableData;
+
+            mStationsTableData.DataSource = mStationsDataPages;
+            mStationsTableData.PositionChanged += _onStationsDataPositionChanged;
+
+            _onStationsDataPositionChanged(null, EventArgs.Empty);
+
+            //view.BusesDataNavigator.BindingSource = mBusesTableData;
+            //view.BusesTable.DataSource = mBusesTableData.DataSource;
+            //_initBusesNavigator(view.BusesDataNavigator);
+
+            //view.StationsDataNavigator.BindingSource = mStationsTableData;
+            //view.StationsTable.DataSource = mStationsTableData.DataSource;
+            //_initStationsNavigator(view.StationsDataNavigator);
 
             //mBusesTableData = new BindingSource();
             //mBusesTableData.DataSource = mComputationsResults.BusesRecords;
@@ -169,7 +198,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             //mStationsTableData = new BindingSource();
             //mStationsTableData.DataSource = mComputationsResults.StationsRecords;
             //view.StationsTable.DataSource = mStationsTableData;
-            
+
             busesPlot.Invalidate();
             stationsPlot.Invalidate();
 
@@ -427,6 +456,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             Action<TStationTableEntity> addDataOntoPlot = (entity) =>
             {
                 Series currStationPlot = stationPlot.Series[entity.ID];
+                currStationPlot.ChartType = SeriesChartType.Line;
 
                 currStationPlot.Points.AddXY(entity.Time, entity.CurrNumOfPassengers);
             };
@@ -497,6 +527,126 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
                 
                 currLength += currDistance;
             }
+        }
+
+        private void _initBusesNavigator(BindingNavigator navigator)
+        {
+            ToolStripItem position = navigator.PositionItem;
+
+            int currPageIndex = Convert.ToInt32(position.Text);
+
+            int numOfPages = mComputationsResults.BusesRecords.Count / mBusesPageSize;
+            navigator.CountItem.Text = numOfPages.ToString();
+
+            mBusesTableData.DataSource = mComputationsResults.BusesRecords.ToList().GetRange(currPageIndex * mBusesPageSize, mBusesPageSize);
+        }
+
+        private void _onBusesNagivatorLastPage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _onBusesNavigatorFirstPage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _onBusesNavigatorNextPage(object sender, EventArgs e)
+        {
+            IStatisticsViewerView view = mView;
+
+            BindingNavigator navigator = view.BusesDataNavigator;
+
+            ToolStripItem position = navigator.PositionItem;
+
+            int currPageIndex = Convert.ToInt32(position.Text) + 1;
+
+            position.Text = currPageIndex.ToString();
+
+            mBusesTableData.Position = currPageIndex;
+        }
+
+        private void _onBusesNagivatorPrevPage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _onBusesNagivatorRefresh(object sender, EventArgs e)
+        {
+            IStatisticsViewerView view = mView;
+
+            BindingNavigator navigator = view.BusesDataNavigator;
+            
+            int numOfPages = mComputationsResults.BusesRecords.Count / mBusesPageSize;
+
+            navigator.CountItem.Text = numOfPages.ToString();
+        }
+
+        private void _initStationsNavigator(BindingNavigator navigator)
+        {
+            ToolStripItem position = navigator.PositionItem;
+
+            int currPageIndex = Convert.ToInt32(position.Text);
+
+            int numOfPages = mComputationsResults.BusesRecords.Count / mStationsPageSize;
+
+            mBusesTableData.DataSource = mComputationsResults.StationsRecords.ToList().GetRange(currPageIndex * mStationsPageSize, mStationsPageSize);
+
+            navigator.CountItem.Text = numOfPages.ToString();
+        }
+
+        private void _onStationsNagivatorLastPage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _onStationsNavigatorFirstPage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _onStationsNavigatorNextPage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _onStationsNagivatorPrevPage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void _onStationsNagivatorRefresh(object sender, EventArgs e)
+        {
+        }
+
+        private BindingList<BindingList<T>> _generatePages<T>(BindingList<T> records, int pageSize) where T :struct
+        {
+            BindingList<BindingList<T>> pages = new BindingList<BindingList<T>>();
+
+            int numOfPages = (int)Math.Ceiling(records.Count / (double)mBusesPageSize);
+
+            List<T> recordsList = records.ToList();
+
+            int firstIndex = 0;
+
+            for (int currPage = 1; currPage <= numOfPages; currPage++)
+            {
+                firstIndex = (currPage - 1) * pageSize;
+
+                pages.Add(new BindingList<T>(recordsList.GetRange(firstIndex, Math.Min(records.Count - firstIndex, pageSize))));
+            }
+
+            return pages;
+        }
+
+        private void _onBusesDataPositionChanged(object sender, EventArgs e)
+        {
+            mView.BusesTable.DataSource = mBusesDataPages[mBusesTableData.Position];
+        }
+
+        private void _onStationsDataPositionChanged(object sender, EventArgs e)
+        {
+            mView.StationsTable.DataSource = mStationsDataPages[mStationsTableData.Position];
         }
     }
 }
