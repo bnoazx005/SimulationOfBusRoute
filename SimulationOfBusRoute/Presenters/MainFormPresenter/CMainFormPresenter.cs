@@ -20,16 +20,7 @@ using SimulationOfBusRoute.Presenters.StatisticsViewerPresenter;
 namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 {
     public class CMainFormPresenter : CBasePresenter<CDataManager, IMainFormView>
-    {
-        //возможно стоит определить отдельный класс CSimulator или еще как-то
-        //чтобы не торчало лишних методов снаружи
-
-        private Task mSimulationJob;
-
-        private object mJobSyncObject;
-
-        private bool mIsSimulationPaused;
-        
+    {                
         private CBusEditorPresenter mBusEditorPresenter;
 
         private CSimulationSettingsPresenter mSimulationSettingsPresenter;
@@ -57,10 +48,6 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
         public CMainFormPresenter(CDataManager model, IMainFormView view):
             base(model, view)
         {
-            mJobSyncObject = new object();
-
-            mIsSimulationPaused = false;
-
             mSubscribersList = new List<Action>();
 
             mBusEditorPresenter = new CBusEditorPresenter(mModel, new BusEditor());
@@ -103,6 +90,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             //menu events
             mView.OnLoadData += _onLoadModelData;
             mView.OnSaveData += _onSaveModelData;
+            mView.OnSaveDataAs += _onSaveModelDataAs;
             mView.OnClearMap += _onClearMap;
             mView.OnCloseForm += _onCloseForm;
 
@@ -484,17 +472,24 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             string filename = options.GetStringParam("ProjectFilename");
 
-            if (filename != string.Empty)
+            if (filename == null || filename == string.Empty)
             {
-                //save all data in background mode
-                CBackgroundJobHelper.BackgroundModelOperation(ref mModel, "Выполняется сохранение\n данных...", () =>
-                {
-                    mModel.SaveIntoFile(filename);
-                });
+                _onSaveModelDataAs(sender, e);
 
                 return;
             }
 
+            //save all data in background mode
+            CBackgroundJobHelper.BackgroundModelOperation(ref mModel, "Выполняется сохранение\n данных...", () =>
+            {
+                mModel.SaveIntoFile(filename);
+            });
+        }
+
+        private void _onSaveModelDataAs(object sender, EventArgs e)
+        {
+            COptionsList options = mModel.OptionsList;
+            
             SaveFileDialog saveDialog = mView.SaveFileDialog;
 
             DialogResult saveDialogCallResult = saveDialog.ShowDialog();
@@ -504,7 +499,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
                 return;
             }
 
-            filename = saveDialog.FileName;
+            string filename = saveDialog.FileName;
 
             options.AddStringParam(Properties.Resources.mOptionsProjectFilename, filename);
 

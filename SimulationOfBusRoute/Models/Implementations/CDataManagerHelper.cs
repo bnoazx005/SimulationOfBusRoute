@@ -38,6 +38,8 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         public static void LoadFromFile(this CDataManager dataManager, string filename)
         {
+            dataManager.ResetModelData();
+
             string connectionString = string.Format(Properties.Resources.mSQLiteConnectionString, filename);
 
             //loading the route's nodes

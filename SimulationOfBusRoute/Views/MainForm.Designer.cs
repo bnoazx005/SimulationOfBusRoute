@@ -52,6 +52,7 @@
             this.selectNodeButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
             this.dataEditorButton = new System.Windows.Forms.Button();
+            this.statisticsButton = new System.Windows.Forms.Button();
             this.startSimulationButton = new System.Windows.Forms.Button();
             this.busEditorButton = new System.Windows.Forms.Button();
             this.removeRouteNodeButton = new System.Windows.Forms.Button();
@@ -61,21 +62,20 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDataAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearRouteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.simulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pauseSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openBusEditorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDataEditorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showResultsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.statisticsButton = new System.Windows.Forms.Button();
+            this.clearRouteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomBar)).BeginInit();
             this.mapGroupBox.SuspendLayout();
@@ -396,6 +396,19 @@
             this.dataEditorButton.TabIndex = 12;
             this.dataEditorButton.UseVisualStyleBackColor = false;
             // 
+            // statisticsButton
+            // 
+            this.statisticsButton.BackColor = System.Drawing.SystemColors.Control;
+            this.statisticsButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButtonImage;
+            this.statisticsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.statisticsButton.Enabled = false;
+            this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.statisticsButton.Location = new System.Drawing.Point(515, 21);
+            this.statisticsButton.Name = "statisticsButton";
+            this.statisticsButton.Size = new System.Drawing.Size(39, 38);
+            this.statisticsButton.TabIndex = 9;
+            this.statisticsButton.UseVisualStyleBackColor = false;
+            // 
             // startSimulationButton
             // 
             this.startSimulationButton.BackColor = System.Drawing.SystemColors.Control;
@@ -474,7 +487,7 @@
             this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
-            this.simulationMenuItem,
+            this.actionsMenuItem,
             this.HelpMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
@@ -488,7 +501,6 @@
             this.loadDataMenuItem,
             this.saveDataMenuItem,
             this.saveDataAsMenuItem,
-            this.clearRouteMenuItem,
             this.quitMenuItem});
             this.FileMenuItem.Name = "FileMenuItem";
             this.FileMenuItem.Size = new System.Drawing.Size(57, 24);
@@ -500,25 +512,11 @@
             this.loadDataMenuItem.Size = new System.Drawing.Size(250, 26);
             this.loadDataMenuItem.Text = "Загрузить данные";
             // 
-            // saveDataMenuItem
-            // 
-            this.saveDataMenuItem.Enabled = false;
-            this.saveDataMenuItem.Name = "saveDataMenuItem";
-            this.saveDataMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.saveDataMenuItem.Text = "Сохранить данные";
-            this.saveDataMenuItem.Visible = false;
-            // 
             // saveDataAsMenuItem
             // 
             this.saveDataAsMenuItem.Name = "saveDataAsMenuItem";
             this.saveDataAsMenuItem.Size = new System.Drawing.Size(250, 26);
             this.saveDataAsMenuItem.Text = "Сохранить данные как...";
-            // 
-            // clearRouteMenuItem
-            // 
-            this.clearRouteMenuItem.Name = "clearRouteMenuItem";
-            this.clearRouteMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.clearRouteMenuItem.Text = "Удалить маршрут";
             // 
             // quitMenuItem
             // 
@@ -526,40 +524,42 @@
             this.quitMenuItem.Size = new System.Drawing.Size(250, 26);
             this.quitMenuItem.Text = "Выход";
             // 
-            // simulationMenuItem
+            // actionsMenuItem
             // 
-            this.simulationMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startSimulationMenuItem,
-            this.pauseSimulationMenuItem,
-            this.stopSimulationMenuItem,
-            this.resetSimulationMenuItem});
-            this.simulationMenuItem.Name = "simulationMenuItem";
-            this.simulationMenuItem.Size = new System.Drawing.Size(136, 24);
-            this.simulationMenuItem.Text = "Моделирование";
+            this.actionsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearRouteMenuItem,
+            this.openBusEditorMenuItem,
+            this.openDataEditorMenuItem,
+            this.showResultsMenuItem,
+            this.runSimulationMenuItem});
+            this.actionsMenuItem.Name = "actionsMenuItem";
+            this.actionsMenuItem.Size = new System.Drawing.Size(86, 24);
+            this.actionsMenuItem.Text = "Действие";
             // 
-            // startSimulationMenuItem
+            // openBusEditorMenuItem
             // 
-            this.startSimulationMenuItem.Name = "startSimulationMenuItem";
-            this.startSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.startSimulationMenuItem.Text = "Начать";
+            this.openBusEditorMenuItem.Name = "openBusEditorMenuItem";
+            this.openBusEditorMenuItem.Size = new System.Drawing.Size(349, 26);
+            this.openBusEditorMenuItem.Text = "Открыть редактор автобусов";
             // 
-            // pauseSimulationMenuItem
+            // openDataEditorMenuItem
             // 
-            this.pauseSimulationMenuItem.Name = "pauseSimulationMenuItem";
-            this.pauseSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.pauseSimulationMenuItem.Text = "Пауза";
+            this.openDataEditorMenuItem.Name = "openDataEditorMenuItem";
+            this.openDataEditorMenuItem.Size = new System.Drawing.Size(349, 26);
+            this.openDataEditorMenuItem.Text = "Открыть редактор данных";
             // 
-            // stopSimulationMenuItem
+            // showResultsMenuItem
             // 
-            this.stopSimulationMenuItem.Name = "stopSimulationMenuItem";
-            this.stopSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.stopSimulationMenuItem.Text = "Остановить";
+            this.showResultsMenuItem.Enabled = false;
+            this.showResultsMenuItem.Name = "showResultsMenuItem";
+            this.showResultsMenuItem.Size = new System.Drawing.Size(349, 26);
+            this.showResultsMenuItem.Text = "Просмотреть результаты вычислений";
             // 
-            // resetSimulationMenuItem
+            // runSimulationMenuItem
             // 
-            this.resetSimulationMenuItem.Name = "resetSimulationMenuItem";
-            this.resetSimulationMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.resetSimulationMenuItem.Text = "Сброс";
+            this.runSimulationMenuItem.Name = "runSimulationMenuItem";
+            this.runSimulationMenuItem.Size = new System.Drawing.Size(349, 26);
+            this.runSimulationMenuItem.Text = "Запустить вычисления";
             // 
             // HelpMenuItem
             // 
@@ -593,18 +593,18 @@
             this.saveFileDialog.DefaultExt = "data";
             this.saveFileDialog.Filter = "Model data (*.data)|*.data|All Files (*.*)|*.*";
             // 
-            // statisticsButton
+            // clearRouteMenuItem
             // 
-            this.statisticsButton.BackColor = System.Drawing.SystemColors.Control;
-            this.statisticsButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButtonImage;
-            this.statisticsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.statisticsButton.Enabled = false;
-            this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.statisticsButton.Location = new System.Drawing.Point(515, 21);
-            this.statisticsButton.Name = "statisticsButton";
-            this.statisticsButton.Size = new System.Drawing.Size(39, 38);
-            this.statisticsButton.TabIndex = 9;
-            this.statisticsButton.UseVisualStyleBackColor = false;
+            this.clearRouteMenuItem.Name = "clearRouteMenuItem";
+            this.clearRouteMenuItem.Size = new System.Drawing.Size(349, 26);
+            this.clearRouteMenuItem.Text = "Удалить маршрут";
+            // 
+            // saveDataMenuItem
+            // 
+            this.saveDataMenuItem.Enabled = false;
+            this.saveDataMenuItem.Name = "saveDataMenuItem";
+            this.saveDataMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.saveDataMenuItem.Text = "Сохранить данные";
             // 
             // MainForm
             // 
@@ -666,12 +666,11 @@
         private System.Windows.Forms.Button addRouteNodeButton;
         private System.Windows.Forms.Button busEditorButton;
         private System.Windows.Forms.Button startSimulationButton;
-        private System.Windows.Forms.ToolStripMenuItem clearRouteMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem simulationMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem startSimulationMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pauseSimulationMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stopSimulationMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetSimulationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem actionsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openBusEditorMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openDataEditorMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showResultsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runSimulationMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.GroupBox stationsListGroupBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -680,7 +679,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nodeNameProperty;
         private System.Windows.Forms.ToolStripMenuItem loadDataMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveDataMenuItem;
         private System.Windows.Forms.ComboBox typeOfNodeProperty;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button abortChangesButton;
@@ -694,5 +692,7 @@
         private System.Windows.Forms.Button selectNodeButton;
         private System.Windows.Forms.Button simulationSettingsButton;
         private System.Windows.Forms.Button statisticsButton;
+        private System.Windows.Forms.ToolStripMenuItem clearRouteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveDataMenuItem;
     }
 }

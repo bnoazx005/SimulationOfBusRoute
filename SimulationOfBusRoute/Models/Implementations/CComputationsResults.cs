@@ -1,11 +1,11 @@
 ﻿using SimulationOfBusRoute.Models.Implementations.Bus;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel;
 
 
 namespace SimulationOfBusRoute.Models.Implementations
 { 
-    public class CComputationsResults: CBaseModel
+    public class CComputationsResults: CBaseModel, IDisposable
     {
         private BindingList<TBusTableEntity> mBusesRecords;
 
@@ -14,6 +14,21 @@ namespace SimulationOfBusRoute.Models.Implementations
         public CComputationsResults():
             base(0, "DefaultResults")
         {
+        }
+
+        public void Dispose()
+        {
+            if (mBusesRecords != null)
+            {
+                mBusesRecords.Clear();
+            }
+
+            if (mStationsRecords != null)
+            {
+                mStationsRecords.Clear();
+            }
+
+            GC.SuppressFinalize(this);
         }
 
         public BindingList<TBusTableEntity> BusesRecords

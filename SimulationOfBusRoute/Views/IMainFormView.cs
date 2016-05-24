@@ -47,7 +47,7 @@ namespace SimulationOfBusRoute.Views
 
         //event EventHandler OnPauseSimulation;
 
-        event EventHandler OnStopSimulation;
+        //event EventHandler OnStopSimulation;
 
         event EventHandler OnAddRouteNode;
 
@@ -78,8 +78,7 @@ namespace SimulationOfBusRoute.Views
         #endregion
 
         #region PropertiesEvents
-
-        //УДАЛИТЬ НЕНУЖНЫЕ
+        
         event EventHandler OnNodeSelectionChanged;
 
         event EventHandler OnNodeTypeChanged;
@@ -99,6 +98,8 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnLoadData;
 
         event EventHandler OnSaveData;
+
+        event EventHandler OnSaveDataAs;
 
         event FormClosingEventHandler OnQuit;
 

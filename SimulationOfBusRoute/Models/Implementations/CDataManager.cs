@@ -42,6 +42,31 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         #region Methods
         
+        public void ResetModelData()
+        {
+            mRouteNodesStorage.DeleteAll();
+            mBusesStorage.DeleteAll();
+
+            if (mComputationsResults != null)
+            {
+                mComputationsResults.Dispose();
+            }
+
+            if (mCurrBusRoute != null)
+            {
+                mCurrBusRoute.Dispose();
+            }
+            
+            if (mOptionsList != null)
+            {
+                mOptionsList.Dispose();
+            }            
+
+            mComputationsResults = null;
+            mCurrBusRoute = null;
+            mOptionsList = null;
+        }
+
         public void ResetModelStateFlag()
         {
             mIsModified = false;

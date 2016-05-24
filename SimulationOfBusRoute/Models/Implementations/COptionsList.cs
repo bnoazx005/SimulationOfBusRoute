@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SimulationOfBusRoute.Models.Implementations
 {
-    public class COptionsList : CBaseModel
+    public class COptionsList : CBaseModel, IDisposable
     {
         private Dictionary<string, int> mIntParams;
 
@@ -28,6 +28,15 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         #region Methods
         
+        public void Dispose()
+        {
+            GC.SuppressFinalize(mIntParams);
+            GC.SuppressFinalize(mStringParams);
+            GC.SuppressFinalize(mDoubleParams);
+            GC.SuppressFinalize(mBoolParams);
+
+            GC.SuppressFinalize(this);
+        }
 
         /// <summary>
         /// Method stores parameter with specified name and integer value. If that parameter already exists,

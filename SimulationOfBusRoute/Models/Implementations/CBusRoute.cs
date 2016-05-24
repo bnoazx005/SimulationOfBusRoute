@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace SimulationOfBusRoute.Models.Implementations
 {
-    public class CBusRoute : CBaseModel
+    public class CBusRoute : CBaseModel, IDisposable
     {
         private static CDataManager mDataManager;
 
@@ -30,6 +30,20 @@ namespace SimulationOfBusRoute.Models.Implementations
         }
 
         #region Methods
+
+        public void Dispose()
+        {
+            mPassengersIntensities = null;
+            mVelocitiesOfSpans = null;
+
+            mBusStations.Clear();
+
+            mSpansDistancesVector = null;
+
+            mNumOfStations = 0;
+
+            GC.SuppressFinalize(this);
+        }
 
         public void Verify()
         {
@@ -145,7 +159,7 @@ namespace SimulationOfBusRoute.Models.Implementations
                 bus.InitData(this);
             }
         }
-
+        
         #endregion
 
         public List<CBusStation> BusStationsList
