@@ -14,7 +14,8 @@ namespace SimulationOfBusRoute.Views
             Shown       += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, e); } };
             FormClosing += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };
 
-            quitButton.Click += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, EventArgs.Empty); } };
+            closeFormMenuItem.Click += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, e); } };
+            quitButton.Click        += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, EventArgs.Empty); } };
 
             busesList.ItemCheck    += (sender, e) => { if (OnBusesListItemChecked != null) { OnBusesListItemChecked(sender, e); } };
             stationsList.ItemCheck += (sender, e) => { if (OnStationsListItemChecked != null) { OnStationsListItemChecked(sender, e); } };
@@ -46,7 +47,7 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnStationsListSelectAllItems;
         public event EventHandler OnStationsListDeselectAllItems;
         public event ItemCheckEventHandler OnStationsListItemChecked;
-        public event EventHandler OnFormShown;
+        //public event EventHandler OnFormShown;
         public event EventHandler OnBusPlotTypeChanged;
         public event EventHandler OnStationPlotTypeChanged;
 

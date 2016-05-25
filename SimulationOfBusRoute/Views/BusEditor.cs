@@ -20,7 +20,7 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnCloseForm;
         public event EventHandler OnAddBus;
         public event EventHandler OnClearBusesList;
-        public event EventHandler<DataGridViewCellEventArgs> OnVelocitiesTableValueChanged;
+        //public event EventHandler<DataGridViewCellEventArgs> OnVelocitiesTableValueChanged;
 
         #endregion
 

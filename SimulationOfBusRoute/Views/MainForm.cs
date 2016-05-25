@@ -16,9 +16,7 @@ namespace SimulationOfBusRoute.Views
             InitializeComponent();
 
             mButtonsList = Controls.GetControlsDictionaryOfType<Button>();
-
-            //Привязывание событий к элементам интерфейса
-
+            
             Load                            += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, e); } };
             FormClosing                     += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };
             KeyDown                         += (sender, e) => { if (OnKeyPressed != null) { OnKeyPressed(this, e); } };
@@ -29,6 +27,10 @@ namespace SimulationOfBusRoute.Views
             saveDataAsMenuItem.Click        += (sender, e) => { if (OnSaveDataAs != null) { OnSaveDataAs(this, e); } };
             clearRouteMenuItem.Click        += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, e); } };
             quitMenuItem.Click              += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, e); } };
+            openBusEditorMenuItem.Click     += (sender, e) => { if (OnOpenBusEditor != null) { OnOpenBusEditor(this, e); } };
+            openDataEditorMenuItem.Click    += (sender, e) => { if (OnOpenDataEditor != null) { OnOpenDataEditor(this, e); } };
+            runSimulationMenuItem.Click     += (sender, e) => { if (OnRunSimulation != null) { OnRunSimulation(this, e); } };
+            showResultsMenuItem.Click       += (sender, e) => { if (OnShowResults != null) { OnShowResults(this, e); } };
 
             //toolbox events
             loadDataButton.Click            += (sender, e) => { if (OnLoadData != null) { OnLoadData(this, e); } };
@@ -41,7 +43,7 @@ namespace SimulationOfBusRoute.Views
             busEditorButton.Click           += (sender, e) => { if (OnOpenBusEditor != null) { OnOpenBusEditor(this, e); } };
             dataEditorButton.Click          += (sender, e) => { if (OnOpenDataEditor != null) { OnOpenDataEditor(this, e); } };
             simulationSettingsButton.Click  += (sender, e) => { if (OnOpenSimulationSettings != null) { OnOpenSimulationSettings(this, e); } };
-            statisticsButton.Click          += (sender, e) => { if (OnShowStatistics != null) { OnShowStatistics(this, e); } };
+            showResultsButton.Click          += (sender, e) => { if (OnShowResults != null) { OnShowResults(this, e); } };
             startSimulationButton.Click     += (sender, e) => { if (OnRunSimulation != null) { OnRunSimulation(this, e); } };
             clearMapButtonAlt.Click         += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, e); } };
             submitChangesButton.Click       += (sender, e) => { if (OnSubmitProperties != null) { OnSubmitProperties(this, EventArgs.Empty); } };
@@ -55,7 +57,7 @@ namespace SimulationOfBusRoute.Views
             mainMap.OnMarkerClick           += (item, e) => { if (OnMarkerSelected != null) { OnMarkerSelected(item, e); } };
 
             typeOfNodeProperty.SelectedIndexChanged += (sender, e) => { if (OnNodeTypeChanged != null) { OnNodeTypeChanged(this, e); } };
-            routeNodesList.SelectedIndexChanged += (sender, e) => { if (OnNodeSelectionChanged != null) { OnNodeSelectionChanged(this, e); } };
+            routeNodesList.SelectedIndexChanged     += (sender, e) => { if (OnNodeSelectionChanged != null) { OnNodeSelectionChanged(this, e); } };
         }
 
         public event EventHandler OnFormInit;
@@ -74,14 +76,14 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnNodeSelectionChanged;
         public event EventHandler OnNodeTypeChanged;
         public event EventHandler OnAbortPropertiesChanges;
-        public event EventHandler OnPropertiesChanged;
+        //public event EventHandler OnPropertiesChanged;
         public event EventHandler OnSubmitProperties;
         public event FormClosingEventHandler OnQuit;
         public event EventHandler OnCloseForm;
         public event EventHandler OnRemoveRouteNode;
         public event EventHandler OnRunSimulation;
         public event EventHandler OnSaveData;
-        public event EventHandler OnShowStatistics;
+        public event EventHandler OnShowResults;
         //public event EventHandler OnStopSimulation;
         public event EventHandler OnMoveNode;
         public event EventHandler OnSelectNode;
@@ -254,6 +256,20 @@ namespace SimulationOfBusRoute.Views
             set
             {
                 statusLabel.Text = value;
+            }
+        }
+
+        public bool IsFastResultsViewAvailable
+        {
+            get
+            {
+                return showResultsButton.Enabled;
+            }
+
+            set
+            {
+                showResultsButton.Enabled   = value;
+                showResultsMenuItem.Enabled = value;
             }
         }
 

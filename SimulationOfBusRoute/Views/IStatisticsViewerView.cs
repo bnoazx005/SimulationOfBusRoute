@@ -33,7 +33,7 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnFormInit;
 
-        event EventHandler OnFormShown;
+        //event EventHandler OnFormShown;
 
         event FormClosingEventHandler OnQuit;
 

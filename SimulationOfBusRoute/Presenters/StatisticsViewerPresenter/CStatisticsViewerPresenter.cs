@@ -68,12 +68,12 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             mView.OnStationsListDeselectAllItems += _onStationsListDeselectAllItems;
                         
             mComputationsResults = model.ComputationsResults;
+
+            mView.IsComputing = false;
         }
 
         private void _onFormInit(object sender, EventArgs e)
         {
-            CTimer timer = new CTimer(0, 1);
-
             IStatisticsViewerView view = mView;
 
             Chart stationsPlot = view.StationsPlot;
@@ -81,6 +81,19 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             CheckedListBox stationsList = view.StationsList;
 
             ComboBox busPlotType = view.BusPlotType;
+
+            foreach (CBusStation station in mModel.CurrBusRouteObject.BusStationsList)
+            {
+                var stationSeries = stationsPlot.Series.Add(station.BusStationId.ToString());
+                stationSeries.ChartType = SeriesChartType.Line;
+
+                stationsList.Items.Add(station.BusStationId);
+
+                for (int i = 0; i < stationsList.Items.Count; i++)
+                {
+                    stationsList.SetItemChecked(i, true);
+                }
+            }
 
             busPlotType.DisplayMember = "Key";
             busPlotType.ValueMember = "Value";
@@ -97,68 +110,33 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             stationPlotType.DataSource = typeof(E_STATIONS_PLOT_TYPE).ToDescriptionsList();
 
             mView.OnStationPlotTypeChanged += _onStationPlotTypeChanged;
-
-            foreach (CBusStation station in mModel.CurrBusRouteObject.BusStationsList)
-            {
-                timer.Subscribe(station);
-                //station.InitData(mModel.CurrBusRouteObject);
-                station.OnGetData += _onPrintStation;
-
-                var stationSeries = stationsPlot.Series.Add(station.BusStationId.ToString());
-                stationSeries.ChartType = SeriesChartType.Line;
-
-                stationsList.Items.Add(station.BusStationId);
-
-                for (int i = 0; i < stationsList.Items.Count; i++)
-                {
-                    stationsList.SetItemChecked(i, true);
-                }
-            }
-
+            
             Chart busesPlot = view.BusesPlot;
 
             CheckedListBox busesList = view.BusesList;
-
+            
             foreach (CBus bus in mModel.BusesStorage.GetAll())
             {
-                timer.Subscribe(bus);
-                bus.OnGetData += _onPrintBus;
-
                 var stationSeries = busesPlot.Series.Add(bus.Name + bus.ID);
                 stationSeries.ChartType = SeriesChartType.Line;
 
                 busesList.Items.Add(bus.Name + bus.ID);
-                
+
                 for (int i = 0; i < busesList.Items.Count; i++)
                 {
                     busesList.SetItemChecked(i, true);
                 }
             }
 
-            int numOfSteps = mModel.OptionsList.GetIntParam(Properties.Resources.mOptionsNumOfSimulationSteps);
-
-            ToolStripProgressBar operationProgress = View.OperationProgress;
-            operationProgress.Maximum = numOfSteps;
-            operationProgress.Step = 1;
-            View.IsComputing = true;
-
-            ToolStrip statusBar = operationProgress.GetCurrentParent();
-
-            mComputationsResults.BusesRecords.Clear();
-            mComputationsResults.StationsRecords.Clear();
-
-            CBackgroundJobHelper.BackgroundModelOperation(ref mModel, "Выполняются вычисления...", () =>
+            if (mModel.ComputationsResults.IsEmpty)
             {
-                while (timer.CurrTime < numOfSteps)
-                {
-                    timer.Tick();
-                    statusBar.Invoke((MethodInvoker)(() => operationProgress.Increment(operationProgress.Step)));
-                }           
-            });
-            
-            operationProgress.Value   = 0;
-            operationProgress.Visible = false;
-            View.IsComputing          = false;
+                _computeData();
+            }
+            else
+            {
+                _onBusPlotTypeChanged(null, EventArgs.Empty);
+                _onStationPlotTypeChanged(null, EventArgs.Empty);
+            }
 
             mBusesDataPages = _generatePages(mComputationsResults.BusesRecords, mBusesPageSize);
 
@@ -182,31 +160,60 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             mStationsTableData.PositionChanged += _onStationsDataPositionChanged;
 
             _onStationsDataPositionChanged(null, EventArgs.Empty);
-
-            //view.BusesDataNavigator.BindingSource = mBusesTableData;
-            //view.BusesTable.DataSource = mBusesTableData.DataSource;
-            //_initBusesNavigator(view.BusesDataNavigator);
-
-            //view.StationsDataNavigator.BindingSource = mStationsTableData;
-            //view.StationsTable.DataSource = mStationsTableData.DataSource;
-            //_initStationsNavigator(view.StationsDataNavigator);
-
-            //mBusesTableData = new BindingSource();
-            //mBusesTableData.DataSource = mComputationsResults.BusesRecords;
-            //view.BusesTable.DataSource = mBusesTableData;
-
-            //mStationsTableData = new BindingSource();
-            //mStationsTableData.DataSource = mComputationsResults.StationsRecords;
-            //view.StationsTable.DataSource = mStationsTableData;
-
+            
             busesPlot.Invalidate();
             stationsPlot.Invalidate();
+        }
 
+        private void _computeData()
+        {
+            CTimer timer = new CTimer(0, 1);
+
+            IStatisticsViewerView view = mView;
+
+            Chart stationsPlot = view.StationsPlot;
+            
+            foreach (CBusStation station in mModel.CurrBusRouteObject.BusStationsList)
+            {
+                timer.Subscribe(station);
+                station.OnGetData += _onPrintStation;
+            }
+
+            Chart busesPlot = view.BusesPlot;
+           
+            foreach (CBus bus in mModel.BusesStorage.GetAll())
+            {
+                timer.Subscribe(bus);
+                bus.OnGetData += _onPrintBus;
+            }
+
+            int numOfSteps = mModel.OptionsList.GetIntParam(Properties.Resources.mOptionsNumOfSimulationSteps);
+
+            ToolStripProgressBar operationProgress = View.OperationProgress;
+            operationProgress.Maximum = numOfSteps;
+            operationProgress.Step = 1;
+            View.IsComputing = true;
+
+            ToolStrip statusBar = operationProgress.GetCurrentParent();
+
+            CBackgroundJobHelper.BackgroundModelOperation(ref mModel, "Выполняются вычисления...", () =>
+            {
+                while (timer.CurrTime < numOfSteps)
+                {
+                    timer.Tick();
+                    statusBar.Invoke((MethodInvoker)(() => operationProgress.Increment(operationProgress.Step)));
+                }
+            });
+
+            operationProgress.Value = 0;
+            operationProgress.Visible = false;
+            View.IsComputing = false;
+            
             foreach (CBusStation station in mModel.CurrBusRouteObject.BusStationsList)
             {
                 station.OnGetData -= _onPrintStation;
             }
-            
+
             foreach (CBus bus in mModel.BusesStorage.GetAll())
             {
                 bus.OnGetData -= _onPrintBus;
@@ -401,6 +408,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             }
 
             Series currPlot = null;
+
             int busesPlotsCount = busPlot.Series.Count;
 
             BindingList<TBusTableEntity> buses = mComputationsResults.BusesRecords;

@@ -52,7 +52,7 @@
             this.selectNodeButton = new System.Windows.Forms.Button();
             this.quitButton = new System.Windows.Forms.Button();
             this.dataEditorButton = new System.Windows.Forms.Button();
-            this.statisticsButton = new System.Windows.Forms.Button();
+            this.showResultsButton = new System.Windows.Forms.Button();
             this.startSimulationButton = new System.Windows.Forms.Button();
             this.busEditorButton = new System.Windows.Forms.Button();
             this.removeRouteNodeButton = new System.Windows.Forms.Button();
@@ -62,9 +62,11 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDataAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearRouteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openBusEditorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDataEditorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showResultsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,8 +76,6 @@
             this.OpenDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.clearRouteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomBar)).BeginInit();
             this.mapGroupBox.SuspendLayout();
@@ -322,7 +322,7 @@
             this.toolboxGroupBox.Controls.Add(this.selectNodeButton);
             this.toolboxGroupBox.Controls.Add(this.quitButton);
             this.toolboxGroupBox.Controls.Add(this.dataEditorButton);
-            this.toolboxGroupBox.Controls.Add(this.statisticsButton);
+            this.toolboxGroupBox.Controls.Add(this.showResultsButton);
             this.toolboxGroupBox.Controls.Add(this.startSimulationButton);
             this.toolboxGroupBox.Controls.Add(this.busEditorButton);
             this.toolboxGroupBox.Controls.Add(this.removeRouteNodeButton);
@@ -396,18 +396,18 @@
             this.dataEditorButton.TabIndex = 12;
             this.dataEditorButton.UseVisualStyleBackColor = false;
             // 
-            // statisticsButton
+            // showResultsButton
             // 
-            this.statisticsButton.BackColor = System.Drawing.SystemColors.Control;
-            this.statisticsButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButtonImage;
-            this.statisticsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.statisticsButton.Enabled = false;
-            this.statisticsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.statisticsButton.Location = new System.Drawing.Point(515, 21);
-            this.statisticsButton.Name = "statisticsButton";
-            this.statisticsButton.Size = new System.Drawing.Size(39, 38);
-            this.statisticsButton.TabIndex = 9;
-            this.statisticsButton.UseVisualStyleBackColor = false;
+            this.showResultsButton.BackColor = System.Drawing.SystemColors.Control;
+            this.showResultsButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mStatisticsViewerButtonImage;
+            this.showResultsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.showResultsButton.Enabled = false;
+            this.showResultsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.showResultsButton.Location = new System.Drawing.Point(515, 21);
+            this.showResultsButton.Name = "showResultsButton";
+            this.showResultsButton.Size = new System.Drawing.Size(39, 38);
+            this.showResultsButton.TabIndex = 9;
+            this.showResultsButton.UseVisualStyleBackColor = false;
             // 
             // startSimulationButton
             // 
@@ -512,6 +512,13 @@
             this.loadDataMenuItem.Size = new System.Drawing.Size(250, 26);
             this.loadDataMenuItem.Text = "Загрузить данные";
             // 
+            // saveDataMenuItem
+            // 
+            this.saveDataMenuItem.Enabled = false;
+            this.saveDataMenuItem.Name = "saveDataMenuItem";
+            this.saveDataMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.saveDataMenuItem.Text = "Сохранить данные";
+            // 
             // saveDataAsMenuItem
             // 
             this.saveDataAsMenuItem.Name = "saveDataAsMenuItem";
@@ -535,6 +542,12 @@
             this.actionsMenuItem.Name = "actionsMenuItem";
             this.actionsMenuItem.Size = new System.Drawing.Size(86, 24);
             this.actionsMenuItem.Text = "Действие";
+            // 
+            // clearRouteMenuItem
+            // 
+            this.clearRouteMenuItem.Name = "clearRouteMenuItem";
+            this.clearRouteMenuItem.Size = new System.Drawing.Size(349, 26);
+            this.clearRouteMenuItem.Text = "Удалить маршрут";
             // 
             // openBusEditorMenuItem
             // 
@@ -592,19 +605,6 @@
             // 
             this.saveFileDialog.DefaultExt = "data";
             this.saveFileDialog.Filter = "Model data (*.data)|*.data|All Files (*.*)|*.*";
-            // 
-            // clearRouteMenuItem
-            // 
-            this.clearRouteMenuItem.Name = "clearRouteMenuItem";
-            this.clearRouteMenuItem.Size = new System.Drawing.Size(349, 26);
-            this.clearRouteMenuItem.Text = "Удалить маршрут";
-            // 
-            // saveDataMenuItem
-            // 
-            this.saveDataMenuItem.Enabled = false;
-            this.saveDataMenuItem.Name = "saveDataMenuItem";
-            this.saveDataMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.saveDataMenuItem.Text = "Сохранить данные";
             // 
             // MainForm
             // 
@@ -691,7 +691,7 @@
         private System.Windows.Forms.Button moveNodeButton;
         private System.Windows.Forms.Button selectNodeButton;
         private System.Windows.Forms.Button simulationSettingsButton;
-        private System.Windows.Forms.Button statisticsButton;
+        private System.Windows.Forms.Button showResultsButton;
         private System.Windows.Forms.ToolStripMenuItem clearRouteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveDataMenuItem;
     }

@@ -71,7 +71,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.OnMoveNode += _onMoveNode;
             mView.OnOpenBusEditor += _onLaunchBusEditor;
             mView.OnOpenDataEditor += _onLaunchDataEditor;
-            mView.OnShowStatistics += _onShowStatisticsWindow;
+            mView.OnShowResults += _onShowStatistics;
             mView.OnRunSimulation += _onRunSimulation;
             //mView.OnPauseSimulation += _onPauseSimulation;
             mView.OnOpenSimulationSettings += _onOpenSimulationSettings;
@@ -530,7 +530,9 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
                 }
             }
 
-            OpenFileDialog openFileDialog = mView.OpenFileDialog;
+            IMainFormView view = mView;
+
+            OpenFileDialog openFileDialog = view.OpenFileDialog;
 
             DialogResult openDialogCallResult = openFileDialog.ShowDialog();
 
@@ -552,9 +554,12 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             mModel.Name = openFileDialog.FileName;
             
-            mView.IsFastSaveAvailable = true;
+            view.IsFastSaveAvailable = true;
+            view.IsFastResultsViewAvailable = false;
 
-            _updateViewWithModel(ref mView, ref mModel);
+            mModel.ComputationsResults.ClearData();
+
+            _updateViewWithModel(ref view, ref mModel);
         }
 
         private void _onLaunchBusEditor(object sender, EventArgs e)
@@ -597,16 +602,18 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mSimulationSettingsPresenter.Run();
         }
 
-        private void _onShowStatisticsWindow(object sender, EventArgs e)
+        private void _onShowStatistics(object sender, EventArgs e)
         {
-            //StatisticsWindow statisticsWindow = new StatisticsWindow();
+            mStatisticsViewerPresenter = new CStatisticsViewerPresenter(mModel, new StatisticsViewer());
 
-            //statisticsWindow.Show();
+            mStatisticsViewerPresenter.Run();
         }
 
         private void _onRunSimulation(object sender, EventArgs e)
         {
             mCurrState.ComputationsMode();
+
+            mModel.ComputationsResults.ClearData();
 
             try
             {
@@ -627,6 +634,8 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mStatisticsViewerPresenter.Run();
 
             SetState(mSelectNodeState);
+
+            mView.IsFastResultsViewAvailable = true;
         }
         
         private void _updateViewWithModel(ref IMainFormView view, ref CDataManager model)

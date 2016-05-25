@@ -31,6 +31,19 @@ namespace SimulationOfBusRoute.Models.Implementations
             GC.SuppressFinalize(this);
         }
 
+        public void ClearData()
+        {
+            if (mBusesRecords != null)
+            {
+                mBusesRecords.Clear();
+            }
+
+            if (mStationsRecords != null)
+            {
+                mStationsRecords.Clear();
+            }
+        }
+
         public BindingList<TBusTableEntity> BusesRecords
         {
             get
@@ -54,6 +67,23 @@ namespace SimulationOfBusRoute.Models.Implementations
                 }
 
                 return mStationsRecords;
+            }
+        }
+
+        public bool IsEmpty
+        {
+            get
+            {
+                if (mBusesRecords == null && mStationsRecords == null)
+                {
+                    return true;
+                }
+                else if ((mBusesRecords != null && mBusesRecords.Count > 0) || (mStationsRecords != null && mStationsRecords.Count > 0))
+                {
+                    return false;
+                }
+
+                return mBusesRecords.Count == 0 && mStationsRecords.Count == 0;
             }
         }
     }

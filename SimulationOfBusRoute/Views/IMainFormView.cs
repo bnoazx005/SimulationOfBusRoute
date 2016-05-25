@@ -31,6 +31,8 @@ namespace SimulationOfBusRoute.Views
 
         bool IsFastSaveAvailable { get; set; }
 
+        bool IsFastResultsViewAvailable { get; set; }
+
         string StatusMessage { get; set; }
 
         event EventHandler OnFormInit;
@@ -61,7 +63,7 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnOpenDataEditor;
 
-        event EventHandler OnShowStatistics;
+        event EventHandler OnShowResults;
 
         event EventHandler OnOpenSimulationSettings;
 
@@ -83,7 +85,7 @@ namespace SimulationOfBusRoute.Views
 
         event EventHandler OnNodeTypeChanged;
 
-        event EventHandler OnPropertiesChanged;
+        //event EventHandler OnPropertiesChanged;
 
         event EventHandler OnSubmitProperties;
 
