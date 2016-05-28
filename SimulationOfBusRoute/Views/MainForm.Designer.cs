@@ -124,7 +124,6 @@
             // 
             this.zoomGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.zoomGroupBox.AutoSize = true;
             this.zoomGroupBox.Controls.Add(this.zoomBar);
             this.zoomGroupBox.Location = new System.Drawing.Point(642, 111);
             this.zoomGroupBox.MinimumSize = new System.Drawing.Size(68, 505);
