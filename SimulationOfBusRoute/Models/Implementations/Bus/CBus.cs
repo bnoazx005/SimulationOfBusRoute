@@ -28,13 +28,7 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
 
         [DisplayName("Кол-во вошедших пассажиров")]
         public uint CurrNumOfIncomingPassengers { get; set; }
-
-        [DisplayName("Распределение пассажиров")]
-        public uint[] PassengersDistributionByGroups { get; set; }
-
-        [DisplayName("№ Автобуса")]
-        public uint[] TotalNumOfTransportedPassengers { get; set; }
-
+        
         [DisplayName("Время высадки пассажира (сек.)")]
         public byte AlightingTimePerPassenger { get; set; }
         
@@ -43,6 +37,12 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
         
         [DisplayName("Макс. вместимость")]
         public uint MaxCapacity { get; set; }
+
+        [DisplayName("Распределение пассажиров")]
+        public uint[] PassengersDistributionByGroups { get; set; }
+
+        [DisplayName("№ Автобуса")]
+        public uint[] TotalNumOfTransportedPassengers { get; set; }
     }
 
     public class CBus : CBaseModel, IUpdatable

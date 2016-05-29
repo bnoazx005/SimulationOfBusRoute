@@ -364,4 +364,25 @@
   <data name="mWarningMessageTitle" xml:space="preserve">
     <value>Внимание</value>
   </data>
+  <data name="mBusesPlotCapacityTitle" xml:space="preserve">
+    <value>График зависимости текущей вместимости автобуса от момента времени</value>
+  </data>
+  <data name="mBusesPlotExcurrentPassengersTitle" xml:space="preserve">
+    <value>График зависимости количества выходящих людей из автобуса от момента времени</value>
+  </data>
+  <data name="mBusesPlotIncomingPassengersTitle" xml:space="preserve">
+    <value>График зависимости количества входящих людей из автобуса от момента времени</value>
+  </data>
+  <data name="mBusesPlotTotalTimeTitle" xml:space="preserve">
+    <value>График, отражающий время прибытия автобуса на соотетствующие остановки</value>
+  </data>
+  <data name="mBusesPlotWaitingTimeTitle" xml:space="preserve">
+    <value>График, отражающий время, затраченное на высадку и посадку, автобусом</value>
+  </data>
+  <data name="mStationsPlotPassengersCountTitle" xml:space="preserve">
+    <value>График зависимости количества пассажиров на остановке от момента времени</value>
+  </data>
+  <data name="mStationsPlotPassengersPowerTitle" xml:space="preserve">
+    <value>Эпюра пассажиропотоков</value>
+  </data>
 </root>

@@ -14,6 +14,8 @@ namespace SimulationOfBusRoute.Views
             Shown       += (sender, e) => { if (OnFormInit != null) { OnFormInit(this, e); } };
             FormClosing += (sender, e) => { if (OnQuit != null) { OnQuit(this, e); } };
 
+            saveDataButton.Click    += (sender, e) => { if (OnGenerateReport != null) { OnGenerateReport(sender, e); } };
+
             closeFormMenuItem.Click += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, e); } };
             quitButton.Click        += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(null, EventArgs.Empty); } };
 
@@ -50,6 +52,7 @@ namespace SimulationOfBusRoute.Views
         //public event EventHandler OnFormShown;
         public event EventHandler OnBusPlotTypeChanged;
         public event EventHandler OnStationPlotTypeChanged;
+        public event EventHandler OnGenerateReport;
 
         #region Methods
 
@@ -218,6 +221,19 @@ namespace SimulationOfBusRoute.Views
             set
             {
                 stationsDataNavigator = value;
+            }
+        }
+
+        public SaveFileDialog SaveFileDialogObject
+        {
+            get
+            {
+                return saveFileDialog;
+            }
+
+            set
+            {
+                saveFileDialog = value;
             }
         }
     }

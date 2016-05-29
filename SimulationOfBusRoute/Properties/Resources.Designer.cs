@@ -147,6 +147,51 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to График зависимости текущей вместимости автобуса от момента времени.
+        /// </summary>
+        internal static string mBusesPlotCapacityTitle {
+            get {
+                return ResourceManager.GetString("mBusesPlotCapacityTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to График зависимости количества выходящих людей из автобуса от момента времени.
+        /// </summary>
+        internal static string mBusesPlotExcurrentPassengersTitle {
+            get {
+                return ResourceManager.GetString("mBusesPlotExcurrentPassengersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to График зависимости количества входящих людей из автобуса от момента времени.
+        /// </summary>
+        internal static string mBusesPlotIncomingPassengersTitle {
+            get {
+                return ResourceManager.GetString("mBusesPlotIncomingPassengersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to График, отражающий время прибытия автобуса на соотетствующие остановки.
+        /// </summary>
+        internal static string mBusesPlotTotalTimeTitle {
+            get {
+                return ResourceManager.GetString("mBusesPlotTotalTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to График, отражающий время, затраченное на высадку и посадку, автобусом.
+        /// </summary>
+        internal static string mBusesPlotWaitingTimeTitle {
+            get {
+                return ResourceManager.GetString("mBusesPlotWaitingTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to decl {{{0}    time : Time;{0}    v : Vector({1});{0}}}.
         /// </summary>
         internal static string mBusesVelocitiesHeaderTemplate {
@@ -763,6 +808,24 @@ namespace SimulationOfBusRoute.Properties {
         internal static string mStationsEditorDefaultProgramTemplate {
             get {
                 return ResourceManager.GetString("mStationsEditorDefaultProgramTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to График зависимости количества пассажиров на остановке от момента времени.
+        /// </summary>
+        internal static string mStationsPlotPassengersCountTitle {
+            get {
+                return ResourceManager.GetString("mStationsPlotPassengersCountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Эпюра пассажиропотоков.
+        /// </summary>
+        internal static string mStationsPlotPassengersPowerTitle {
+            get {
+                return ResourceManager.GetString("mStationsPlotPassengersPowerTitle", resourceCulture);
             }
         }
         

@@ -35,12 +35,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.toolboxGroupBox = new System.Windows.Forms.GroupBox();
             this.quitButton = new System.Windows.Forms.Button();
             this.saveDataButton = new System.Windows.Forms.Button();
@@ -84,6 +86,7 @@
             this.stationPlotType = new System.Windows.Forms.ComboBox();
             this.stationGraph = new System.Windows.Forms.GroupBox();
             this.stationPlot = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolboxGroupBox.SuspendLayout();
             this.mainMenu.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -129,8 +132,9 @@
             // quitButton
             // 
             this.quitButton.BackColor = System.Drawing.SystemColors.Control;
+            this.quitButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
+            this.quitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.quitButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.quitButton.Image = global::SimulationOfBusRoute.Properties.Resources.mQuitButtonImage;
             this.quitButton.Location = new System.Drawing.Point(54, 21);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(39, 38);
@@ -140,8 +144,9 @@
             // saveDataButton
             // 
             this.saveDataButton.BackColor = System.Drawing.SystemColors.Control;
+            this.saveDataButton.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.mSaveRouteButtonImage;
+            this.saveDataButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveDataButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.saveDataButton.Image = global::SimulationOfBusRoute.Properties.Resources.mSaveRouteButtonImage;
             this.saveDataButton.Location = new System.Drawing.Point(9, 21);
             this.saveDataButton.Name = "saveDataButton";
             this.saveDataButton.Size = new System.Drawing.Size(39, 38);
@@ -453,6 +458,9 @@
             this.busPlot.Size = new System.Drawing.Size(862, 519);
             this.busPlot.TabIndex = 0;
             this.busPlot.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title1.Name = "Title1";
+            this.busPlot.Titles.Add(title1);
             // 
             // stationsPage
             // 
@@ -684,6 +692,14 @@
             this.stationPlot.Size = new System.Drawing.Size(862, 519);
             this.stationPlot.TabIndex = 0;
             this.stationPlot.Text = "chart1";
+            title2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            title2.Name = "Title1";
+            this.stationPlot.Titles.Add(title2);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "*.xlsx";
+            this.saveFileDialog.Filter = "Excel report (*.xlsx)|*.xlsx|Pdf report (*.pdf)|*.pdf|All Files (*.*)|*.*";
             // 
             // StatisticsViewer
             // 
@@ -779,5 +795,6 @@
         private System.Windows.Forms.BindingNavigator busesDataNavigator;
         private System.Windows.Forms.BindingNavigator stationsDataNavigator;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator5;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

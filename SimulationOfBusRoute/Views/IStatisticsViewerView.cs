@@ -31,6 +31,8 @@ namespace SimulationOfBusRoute.Views
 
         BindingNavigator StationsDataNavigator { get; set; }
 
+        SaveFileDialog SaveFileDialogObject { get; set; }
+
         event EventHandler OnFormInit;
 
         //event EventHandler OnFormShown;
@@ -54,5 +56,7 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnBusPlotTypeChanged;
 
         event EventHandler OnStationPlotTypeChanged;
+
+        event EventHandler OnGenerateReport;
     }
 }

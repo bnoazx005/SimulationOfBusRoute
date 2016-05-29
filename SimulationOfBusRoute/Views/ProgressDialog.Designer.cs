@@ -35,8 +35,8 @@
             // 
             // loadingPicture
             // 
-            this.loadingPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.loadingPicture.Image = global::SimulationOfBusRoute.Properties.Resources.Animation;
+            this.loadingPicture.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.Animation;
+            this.loadingPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.loadingPicture.Location = new System.Drawing.Point(110, 12);
             this.loadingPicture.Name = "loadingPicture";
             this.loadingPicture.Size = new System.Drawing.Size(50, 50);

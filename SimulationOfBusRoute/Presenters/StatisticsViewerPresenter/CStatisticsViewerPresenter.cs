@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 {
@@ -16,7 +16,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
     {
         public enum E_BUS_PLOT_TYPE
         {
-            [Description("Временные характеристики")]
+            [Description("Время прибытия на остановку")]
             BPT_TOTAL_TIME,
             [Description("Время ожидания")]
             BPT_WAITING_TIME,
@@ -66,7 +66,9 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 
             mView.OnStationsListSelectAllItems   += _onStationsListSelectAllItems;
             mView.OnStationsListDeselectAllItems += _onStationsListDeselectAllItems;
-                        
+
+            mView.OnGenerateReport += _onGenerateReport;
+
             mComputationsResults = model.ComputationsResults;
 
             mView.IsComputing = false;
@@ -85,7 +87,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             foreach (CBusStation station in mModel.CurrBusRouteObject.BusStationsList)
             {
                 var stationSeries = stationsPlot.Series.Add(station.BusStationId.ToString());
-                stationSeries.ChartType = SeriesChartType.Line;
+                stationSeries.ChartType = SeriesChartType.Column;
 
                 stationsList.Items.Add(station.BusStationId);
 
@@ -118,7 +120,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             foreach (CBus bus in mModel.BusesStorage.GetAll())
             {
                 var stationSeries = busesPlot.Series.Add(bus.Name + bus.ID);
-                stationSeries.ChartType = SeriesChartType.Line;
+                stationSeries.ChartType = SeriesChartType.Column;
 
                 busesList.Items.Add(bus.Name + bus.ID);
 
@@ -224,18 +226,23 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
         {
             Chart busesPlot = mView.BusesPlot;
 
+            System.Diagnostics.Debug.Assert(bus.CurrBusCapacity <= bus.MaxBusCapacity);
+
             if (busesPlot.InvokeRequired)
             {
                 busesPlot.Invoke((MethodInvoker)(() =>
                 {
-                    busesPlot.Series.FindByName(bus.Name + bus.ID).Points.AddXY(bus.CurrStation.BusStationId, bus.CurrArrivalTime);
-                    busesPlot.Series.FindByName(bus.Name + bus.ID).Points.AddXY(bus.CurrStation.BusStationId, bus.CurrDepartureTime);
+                    busesPlot.Titles[0].Text = Properties.Resources.mBusesPlotTotalTimeTitle;
+
+                    busesPlot.Series.FindByName(bus.Name + bus.ID).Points.AddXY(bus.CurrArrivalTime, bus.CurrStation.BusStationId);
+                    busesPlot.Series.FindByName(bus.Name + bus.ID).Points.AddXY(bus.CurrDepartureTime, bus.CurrStation.BusStationId);
 
                     mComputationsResults.BusesRecords.Add(bus.ToTableEntity());
                 }));
             }
             else
             {
+                busesPlot.Titles[0].Text = Properties.Resources.mBusesPlotTotalTimeTitle;
 
                 busesPlot.Series.FindByName(bus.Name + bus.ID).Points.AddXY(bus.CurrStation.BusStationId, bus.CurrArrivalTime);
                 busesPlot.Series.FindByName(bus.Name + bus.ID).Points.AddXY(bus.CurrStation.BusStationId, bus.CurrDepartureTime);
@@ -252,6 +259,8 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             {
                 stationsPlot.Invoke((MethodInvoker)(() =>
                 {
+                    stationsPlot.Titles[0].Text = Properties.Resources.mStationsPlotPassengersCountTitle;
+
                     stationsPlot.Series.FindByName(station.BusStationId.ToString()).Points.AddXY(station.ReactionTime, station.CurrNumOfPassengers);
 
                     mComputationsResults.StationsRecords.Add(station.ToTableEntity());
@@ -259,6 +268,8 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             }                
             else
             {
+                stationsPlot.Titles[0].Text = Properties.Resources.mStationsPlotPassengersCountTitle;
+
                 stationsPlot.Series.FindByName(station.BusStationId.ToString()).Points.AddXY(station.ReactionTime, station.CurrNumOfPassengers);
 
                 mComputationsResults.StationsRecords.Add(station.ToTableEntity());
@@ -342,19 +353,23 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             {
                 case E_BUS_PLOT_TYPE.BPT_TOTAL_TIME:
 
+                    busPlot.Titles[0].Text = Properties.Resources.mBusesPlotTotalTimeTitle;
+
                     addDataOntoPlot = (entity) =>
                     {
                         Series currBusesPlot = busPlot.Series[entity.ID];
 
-                        currBusesPlot.Points.AddXY(entity.CurrStationId, entity.CurrArrivalTime);
-                        currBusesPlot.Points.AddXY(entity.CurrStationId, entity.CurrDepartureTime);
+                        currBusesPlot.Points.AddXY(entity.CurrArrivalTime, entity.CurrStationId);
+                        currBusesPlot.Points.AddXY(entity.CurrDepartureTime, entity.CurrStationId);
 
-                        currBusesPlot.ChartType = SeriesChartType.Line;
+                        currBusesPlot.ChartType = SeriesChartType.Column;
                     };
 
                     break;
 
                 case E_BUS_PLOT_TYPE.BPT_WAITING_TIME:
+
+                    busPlot.Titles[0].Text = Properties.Resources.mBusesPlotWaitingTimeTitle;
 
                     addDataOntoPlot = (entity) =>
                     {
@@ -369,18 +384,36 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 
                 case E_BUS_PLOT_TYPE.BPT_CAPACITY:
 
+                    busPlot.Titles[0].Text = Properties.Resources.mBusesPlotCapacityTitle;
+
                     addDataOntoPlot = (entity) =>
                     {
                         Series currBusesPlot = busPlot.Series[entity.ID];
+                        DataPointCollection plotPoints = currBusesPlot.Points;
 
-                        currBusesPlot.Points.AddXY(entity.CurrDepartureTime, entity.CurrBusCapacity);
+                        uint numOfIncomingPassengers = entity.CurrNumOfIncomingPassengers;
+                        uint numOfExcurrentPassengers = entity.CurrNumOfExcurrentPassengers;
 
-                        currBusesPlot.ChartType = SeriesChartType.StepLine;
+                        uint prevBusCapacity = entity.CurrBusCapacity + numOfIncomingPassengers - numOfExcurrentPassengers;
+                        uint prevTime = entity.CurrArrivalTime;
+                        System.Diagnostics.Debug.Assert(prevBusCapacity < uint.MaxValue);
+                        plotPoints.AddXY(prevTime, prevBusCapacity);
+
+                        prevTime += entity.AlightingTimePerPassenger * numOfExcurrentPassengers;
+                        prevBusCapacity += entity.CurrNumOfExcurrentPassengers;
+
+                        plotPoints.AddXY(prevTime, prevBusCapacity);
+                        
+                        plotPoints.AddXY(entity.CurrDepartureTime, entity.CurrBusCapacity);
+                        
+                        currBusesPlot.ChartType = SeriesChartType.Column;                            
                     };
 
                     break;
 
                 case E_BUS_PLOT_TYPE.BPT_INCOMING_PASSENGERS:
+
+                    busPlot.Titles[0].Text = Properties.Resources.mBusesPlotIncomingPassengersTitle;
 
                     addDataOntoPlot = (entity) =>
                     {
@@ -394,6 +427,8 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
                     break;
 
                 case E_BUS_PLOT_TYPE.BPT_EXCURRENT_PASSENGERS:
+
+                    busPlot.Titles[0].Text = Properties.Resources.mBusesPlotExcurrentPassengersTitle;
 
                     addDataOntoPlot = (entity) =>
                     {
@@ -455,6 +490,8 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 
             Chart stationPlot = view.StationsPlot;
 
+            stationPlot.Titles[0].Text = Properties.Resources.mStationsPlotPassengersCountTitle;
+
             Series currPlot = null;
             int stationsPlotsCount = stationPlot.Series.Count;
 
@@ -464,7 +501,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             Action<TStationTableEntity> addDataOntoPlot = (entity) =>
             {
                 Series currStationPlot = stationPlot.Series[entity.ID];
-                currStationPlot.ChartType = SeriesChartType.Line;
+                currStationPlot.ChartType = SeriesChartType.Column;
 
                 currStationPlot.Points.AddXY(entity.Time, entity.CurrNumOfPassengers);
             };
@@ -493,6 +530,8 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             IStatisticsViewerView view = mView;
 
             Chart stationPlot = view.StationsPlot;
+
+            stationPlot.Titles[0].Text = Properties.Resources.mStationsPlotPassengersPowerTitle;
 
             Series currPlot = null;
             int stationsPlotsCount = stationPlot.Series.Count;
@@ -548,48 +587,7 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
 
             mBusesTableData.DataSource = mComputationsResults.BusesRecords.ToList().GetRange(currPageIndex * mBusesPageSize, mBusesPageSize);
         }
-
-        private void _onBusesNagivatorLastPage(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _onBusesNavigatorFirstPage(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _onBusesNavigatorNextPage(object sender, EventArgs e)
-        {
-            IStatisticsViewerView view = mView;
-
-            BindingNavigator navigator = view.BusesDataNavigator;
-
-            ToolStripItem position = navigator.PositionItem;
-
-            int currPageIndex = Convert.ToInt32(position.Text) + 1;
-
-            position.Text = currPageIndex.ToString();
-
-            mBusesTableData.Position = currPageIndex;
-        }
-
-        private void _onBusesNagivatorPrevPage(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _onBusesNagivatorRefresh(object sender, EventArgs e)
-        {
-            IStatisticsViewerView view = mView;
-
-            BindingNavigator navigator = view.BusesDataNavigator;
-            
-            int numOfPages = mComputationsResults.BusesRecords.Count / mBusesPageSize;
-
-            navigator.CountItem.Text = numOfPages.ToString();
-        }
-
+        
         private void _initStationsNavigator(BindingNavigator navigator)
         {
             ToolStripItem position = navigator.PositionItem;
@@ -601,30 +599,6 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
             mBusesTableData.DataSource = mComputationsResults.StationsRecords.ToList().GetRange(currPageIndex * mStationsPageSize, mStationsPageSize);
 
             navigator.CountItem.Text = numOfPages.ToString();
-        }
-
-        private void _onStationsNagivatorLastPage(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _onStationsNavigatorFirstPage(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _onStationsNavigatorNextPage(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _onStationsNagivatorPrevPage(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _onStationsNagivatorRefresh(object sender, EventArgs e)
-        {
         }
 
         private BindingList<BindingList<T>> _generatePages<T>(BindingList<T> records, int pageSize) where T :struct
@@ -655,6 +629,37 @@ namespace SimulationOfBusRoute.Presenters.StatisticsViewerPresenter
         private void _onStationsDataPositionChanged(object sender, EventArgs e)
         {
             mView.StationsTable.DataSource = mStationsDataPages[mStationsTableData.Position];
+        }
+
+        private void _onGenerateReport(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = mView.SaveFileDialogObject;
+
+            DialogResult result = saveFileDialog.ShowDialog();
+
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+
+            string filename = saveFileDialog.FileName;
+
+            CBaseReportFile report = null;
+
+            if (filename.EndsWith(".xlsx"))
+            {
+                report = new CXLSXReportFile(filename);
+            }
+            else if (filename.EndsWith(".pdf"))
+            {
+                report = new CPDFReportFile(filename);
+            }
+
+            CBackgroundJobHelper.BackgroundModelOperation(ref mModel, "Выполняется генерация\n отчета...", () =>
+            {
+                report.WriteData(mModel);
+                report.Close();
+            });
         }
     }
 }
