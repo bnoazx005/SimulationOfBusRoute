@@ -36,7 +36,10 @@ namespace SimulationOfBusRoute.Models.Implementations
             mPassengersIntensities = null;
             mVelocitiesOfSpans = null;
 
-            mBusStations.Clear();
+            if (mBusStations != null)
+            {
+                mBusStations.Clear();
+            }
 
             mSpansDistancesVector = null;
 

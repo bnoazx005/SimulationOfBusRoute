@@ -64,6 +64,11 @@ namespace SimulationOfBusRoute.Models.Implementations
 
             mCurrTime += mDeltaTime;
         }
+
+        public void Reset()
+        {
+            mCurrTime = 0;
+        }
         
         /// <summary>
         /// Methods tries to notify all subscribers of the class.

@@ -48,7 +48,7 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         private uint mNextSpanTravelTime;
 
-        private static Random mRandomObject;
+        private static Random mRandomGenerator;
 
         private Queue<CBus> mBusQueue;
 
@@ -84,7 +84,7 @@ namespace SimulationOfBusRoute.Models.Implementations
 
             mBusStationId = -1;
 
-            mRandomObject = new Random();
+            mRandomGenerator = new Random();
 
             mBusQueue = new Queue<CBus>();
         }
@@ -173,11 +173,35 @@ namespace SimulationOfBusRoute.Models.Implementations
             mReactionTime += 60;
         }
 
-        //public uint[] GetPassengers(uint busCapacity)
-        //{
-        //    throw new NotImplementedException();
-        //    return null;
-        //}
+        public uint[] GetPassengers(uint busCapacity)
+        {
+            int passengersGroupsCount = mPassengersDistributionByGroups.Length;
+            int groupSample;
+
+            uint[] mIncomingPassengersDistribution = new uint[passengersGroupsCount];
+
+            if (mCurrNumOfPassengers == 0)
+            {
+                return mIncomingPassengersDistribution;
+            }
+
+            while (busCapacity > 0 && mCurrNumOfPassengers > 0)
+            {
+                do
+                {
+                    groupSample = mRandomGenerator.Next(0, passengersGroupsCount);
+                }
+                while (mPassengersDistributionByGroups[groupSample] < 1.0);
+
+                mPassengersDistributionByGroups[groupSample] -= 1.0;
+                mIncomingPassengersDistribution[groupSample] += 1;
+
+                busCapacity--;
+                mCurrNumOfPassengers--;
+            }
+
+            return mIncomingPassengersDistribution;
+        }
 
         public int GetPassenger()
         {
@@ -201,7 +225,7 @@ namespace SimulationOfBusRoute.Models.Implementations
 
             do
             {
-                groupSample = mRandomObject.Next(0, passengersGroupsCount);
+                groupSample = mRandomGenerator.Next(0, passengersGroupsCount);
             }
             while (mPassengersDistributionByGroups[groupSample] < 1.0);
 

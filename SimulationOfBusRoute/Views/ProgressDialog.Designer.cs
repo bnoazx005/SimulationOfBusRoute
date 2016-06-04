@@ -35,11 +35,12 @@
             // 
             // loadingPicture
             // 
-            this.loadingPicture.BackgroundImage = global::SimulationOfBusRoute.Properties.Resources.Animation;
             this.loadingPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loadingPicture.Image = global::SimulationOfBusRoute.Properties.Resources.Animation;
             this.loadingPicture.Location = new System.Drawing.Point(110, 12);
             this.loadingPicture.Name = "loadingPicture";
-            this.loadingPicture.Size = new System.Drawing.Size(50, 50);
+            this.loadingPicture.Size = new System.Drawing.Size(48, 48);
+            this.loadingPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.loadingPicture.TabIndex = 0;
             this.loadingPicture.TabStop = false;
             // 

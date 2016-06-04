@@ -14,7 +14,7 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
         {
             CBus context = mContext;
             CBusStation currStation = context.CurrStation;
-
+            
             int currStationId = currStation.BusStationId;
 
             if (currStation.NodeType == CRouteNode.E_ROUTE_NODE_TYPE.RNT_FINAL_BUS_STATION)
@@ -46,15 +46,36 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
                 return; //there is no place for the rest passengers
             }
 
-            int passengerGroup = currStation.GetPassenger();
-            
-            context.CurrBusCapacity = Math.Max(context.CurrBusCapacity - 1, 0);
+            uint[] incomingPassengersVec = currStation.GetPassengers(currBusCapacity);
 
-            context.PassengersDistribution[passengerGroup] += 1;
-            context.CurrNumOfIncomingPassengers += 1;
+            int incomingPassengersVecLength = incomingPassengersVec.Length;
 
-            context.CurrDepartureTime += context.BoardingTimePerPassenger;
-            Debug.Assert(mContext.CurrDepartureTime >= time);
+            uint numOfIncomingPassengers = 0;
+            uint currGroupValue = 0;
+
+            uint[] currPassengers = context.PassengersDistribution;
+
+            for (int i = 0; i < incomingPassengersVecLength; i++)
+            {
+                currGroupValue = incomingPassengersVec[i];
+
+                numOfIncomingPassengers += currGroupValue;
+                currPassengers[i] += currGroupValue;
+            }
+
+            context.CurrBusCapacity = Math.Max(currBusCapacity - numOfIncomingPassengers, 0);
+            context.CurrNumOfIncomingPassengers = numOfIncomingPassengers;
+
+            context.CurrDepartureTime += numOfIncomingPassengers * context.BoardingTimePerPassenger;
+
+            context.SetState(context.DeparturingState);
+
+            if (context.CurrDepartureTime == context.ReactionTime)
+            {
+                Update(time, dt);
+                return;
+            }
+
             context.ReactionTime = context.CurrDepartureTime;
         }
     }
