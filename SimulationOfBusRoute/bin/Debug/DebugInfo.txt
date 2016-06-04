@@ -711,3 +711,4 @@
 2016-06-04 16:38:49.7686|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
 2016-06-04 16:38:49.7686|DEBUG|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|A state of the model was changed
 2016-06-04 16:38:50.8469|INFO|SimulationOfBusRoute.Presenters.DataEditorPresenter.CDataEditorPresenter|Data is sucessfully compiled
+2016-06-04 16:51:22.2903|INFO|SimulationOfBusRoute.Presenters.MainFormPresenter.CMainFormPresenter|Main form was sucessfully initialized
