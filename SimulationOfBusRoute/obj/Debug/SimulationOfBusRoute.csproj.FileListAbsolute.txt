@@ -57,3 +57,5 @@ C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\SimulationOfBusRoute.exe.CodeAnalysisLog.xml
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Debug\SimulationOfBusRoute.exe.lastcodeanalysissucceeded
