@@ -140,8 +140,6 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
         
         public void Update(uint time, uint dt)
         {
-            if (time == 1531)
-                ;
             mCurrState.Update(time, dt);
         }
 

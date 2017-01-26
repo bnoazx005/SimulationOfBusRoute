@@ -285,6 +285,15 @@ namespace SimulationOfBusRoute.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .\help\SimulationOfBusRouteHelp.chm.
+        /// </summary>
+        internal static string mHelpSource {
+            get {
+                return ResourceManager.GetString("mHelpSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap mLoadRouteButtonImage {

@@ -38,6 +38,7 @@ namespace SimulationOfBusRoute.Views
             pasteTextMenuItem.Click     += (sender, e) => { if (OnPasteText != null) { OnPasteText(pasteTextMenuItem, EventArgs.Empty); } };
             cutTextMenuItem.Click       += (sender, e) => { if (OnCutText != null) { OnCutText(cutTextMenuItem, EventArgs.Empty); } };
             compileDataMenuItem.Click   += (sender, e) => { if (OnCompileData != null) { OnCompileData(compileDataMenuItem, EventArgs.Empty); } };
+            docsMenuItem.Click          += (sender, e) => { if (OnOpenDocs != null) { OnOpenDocs(this, e); } };
         }
         
         public event EventHandler OnFormInit;
@@ -51,6 +52,7 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnPasteText;
         public event MouseEventHandler OnMouseButtonPressed;
         public event EventHandler OnCompileData;
+        public event EventHandler OnOpenDocs;
 
         public void Display()
         {

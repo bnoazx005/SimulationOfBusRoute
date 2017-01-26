@@ -31,6 +31,8 @@ namespace SimulationOfBusRoute.Views
             openDataEditorMenuItem.Click    += (sender, e) => { if (OnOpenDataEditor != null) { OnOpenDataEditor(this, e); } };
             runSimulationMenuItem.Click     += (sender, e) => { if (OnRunSimulation != null) { OnRunSimulation(this, e); } };
             showResultsMenuItem.Click       += (sender, e) => { if (OnShowResults != null) { OnShowResults(this, e); } };
+            aboutMenuItem.Click             += (sender, e) => { if (OnAbout != null) { OnAbout(this, e); } };
+            openDocsMenuItem.Click          += (sender, e) => { if (OnOpenDocs != null) { OnOpenDocs(this, e); } };
 
             //toolbox events
             loadDataButton.Click            += (sender, e) => { if (OnLoadData != null) { OnLoadData(this, e); } };
@@ -48,14 +50,13 @@ namespace SimulationOfBusRoute.Views
             clearMapButtonAlt.Click         += (sender, e) => { if (OnClearMap != null) { OnClearMap(this, e); } };
             submitChangesButton.Click       += (sender, e) => { if (OnSubmitProperties != null) { OnSubmitProperties(this, EventArgs.Empty); } };
             abortChangesButton.Click        += (sender, e) => { if (OnAbortPropertiesChanges != null) { OnAbortPropertiesChanges(this, e); } };
-            abortChangesButton.Click        += (sender, e) => { if (OnAbortPropertiesChanges != null) { OnAbortPropertiesChanges(this, e); } };
 
             //map events
             zoomBar.Scroll                  += (sender, e) => { if (OnMapZoomChanged != null) { OnMapZoomChanged(this, e); } };
             mainMap.OnMapZoomChanged        += () => { if (OnMapZoomChanged != null) { OnMapZoomChanged(null, EventArgs.Empty); } };
             mainMap.MouseClick              += (sender, e) => { if (OnMapMouseClick != null) { OnMapMouseClick(this, e); } };
             mainMap.OnMarkerClick           += (item, e) => { if (OnMarkerSelected != null) { OnMarkerSelected(item, e); } };
-
+            
             typeOfNodeProperty.SelectedIndexChanged += (sender, e) => { if (OnNodeTypeChanged != null) { OnNodeTypeChanged(this, e); } };
             routeNodesList.SelectedIndexChanged     += (sender, e) => { if (OnNodeSelectionChanged != null) { OnNodeSelectionChanged(this, e); } };
         }

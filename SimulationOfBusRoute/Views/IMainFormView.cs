@@ -34,7 +34,7 @@ namespace SimulationOfBusRoute.Views
         bool IsFastResultsViewAvailable { get; set; }
 
         string StatusMessage { get; set; }
-
+        
         event EventHandler OnFormInit;
         
         #region KeyboardEvents

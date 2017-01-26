@@ -32,7 +32,8 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             mJobList = new Task[4];
 
             mView.OnFormInit += _onFormInit;
-            mView.OnQuit += _onQuit;
+            mView.OnQuit     += _onQuit;
+            mView.OnOpenDocs += _onOpenDocs;
 
             mView.OnTimerTick += _onTimerTick;
             mView.OnCloseForm += _onCloseForm;
@@ -251,7 +252,7 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             ToolStripStatusLabel exceptionLabel = view.MessageText;
 
             int currEditorIdx = 0;
-
+            
             try
             {
                 string programCode = null;
@@ -278,10 +279,13 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
                 parser = new CParser(lexer);
 
                 busRouteObject.VelocitiesOfSpans = CDataBuilder.Compile(parser.Parse());
-            }
+            }         
             catch (CParserException parserException)
             {
-                exceptionLabel.Text = parserException.Message + currEditorIdx;
+                exceptionLabel.Text = string.Format("({0}) : {1}", 
+                                                    currEditorIdx == 0 ? "Редактор матриц интенсивностей" : "Редактор скоростей автобусов",
+                                                    parserException.Message);
+
                 exceptionLabel.ForeColor = Color.Red;
 
                 mClassLogger.Info(parserException.Message);
@@ -290,7 +294,10 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             }
             catch (CUndexpectedTokenException tokenException)
             {
-                exceptionLabel.Text = tokenException.Message + currEditorIdx;
+                exceptionLabel.Text = string.Format("({0}) : {1}",
+                                                    currEditorIdx == 0 ? "Редактор матриц интенсивностей" : "Редактор скоростей автобусов",
+                                                    tokenException.Message);
+
                 exceptionLabel.ForeColor = Color.Red;
 
                 mClassLogger.Info(tokenException.Message);
@@ -299,7 +306,10 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             }
             catch (CSymbolTableException symbTableException)
             {
-                exceptionLabel.Text = symbTableException.Message + currEditorIdx;
+                exceptionLabel.Text = string.Format("({0}) : {1}",
+                                                    currEditorIdx == 0 ? "Редактор матриц интенсивностей" : "Редактор скоростей автобусов",
+                                                    symbTableException.Message);
+
                 exceptionLabel.ForeColor = Color.Red;
 
                 mClassLogger.Info(symbTableException.Message);
@@ -410,6 +420,11 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
                                                                '\n',
                                                                numOfBusStations,
                                                                numOfBusStations);
+        }
+
+        private void _onOpenDocs(object sender, EventArgs e)
+        {
+            Help.ShowHelp(sender as Control, Properties.Resources.mHelpSource, HelpNavigator.Topic, "/DataEditorInterface.htm");
         }
     }
 }

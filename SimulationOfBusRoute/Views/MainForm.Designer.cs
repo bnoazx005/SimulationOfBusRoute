@@ -72,10 +72,11 @@
             this.showResultsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runSimulationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDocsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.zoomGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoomBar)).BeginInit();
             this.mapGroupBox.SuspendLayout();
@@ -576,23 +577,23 @@
             // HelpMenuItem
             // 
             this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutMenuItem,
-            this.OpenDocsMenuItem});
+            this.aboutMenuItem,
+            this.openDocsMenuItem});
             this.HelpMenuItem.Name = "HelpMenuItem";
             this.HelpMenuItem.Size = new System.Drawing.Size(81, 24);
             this.HelpMenuItem.Text = "Помощь";
             // 
-            // AboutMenuItem
+            // aboutMenuItem
             // 
-            this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(185, 26);
-            this.AboutMenuItem.Text = "О программе";
+            this.aboutMenuItem.Name = "aboutMenuItem";
+            this.aboutMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.aboutMenuItem.Text = "О программе";
             // 
-            // OpenDocsMenuItem
+            // openDocsMenuItem
             // 
-            this.OpenDocsMenuItem.Name = "OpenDocsMenuItem";
-            this.OpenDocsMenuItem.Size = new System.Drawing.Size(185, 26);
-            this.OpenDocsMenuItem.Text = "Документация";
+            this.openDocsMenuItem.Name = "openDocsMenuItem";
+            this.openDocsMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.openDocsMenuItem.Text = "Документация";
             // 
             // openFileDialog
             // 
@@ -604,6 +605,11 @@
             // 
             this.saveFileDialog.DefaultExt = "data";
             this.saveFileDialog.Filter = "Model data (*.data)|*.data|All Files (*.*)|*.*";
+            // 
+            // helpProvider
+            // 
+            this.helpProvider.HelpNamespace = "C:\\Users\\Ildar\\Documents\\Visual Studio 2015\\Projects\\SimulationOfBusRoute\\Simulat" +
+    "ionOfBusRoute\\SimulationOfBusRouteHelp.chm";
             // 
             // MainForm
             // 
@@ -658,8 +664,8 @@
         private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem OpenDocsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openDocsMenuItem;
         private System.Windows.Forms.Button saveDataButton;
         private System.Windows.Forms.Button removeRouteNodeButton;
         private System.Windows.Forms.Button addRouteNodeButton;
@@ -693,5 +699,6 @@
         private System.Windows.Forms.Button showResultsButton;
         private System.Windows.Forms.ToolStripMenuItem clearRouteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveDataMenuItem;
+        private System.Windows.Forms.HelpProvider helpProvider;
     }
 }

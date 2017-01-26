@@ -19,6 +19,7 @@ namespace SimulationOfBusRoute.Presenters.BusEditorPresenter
             
             mView.OnFormInit += _onFormInit;
             mView.OnQuit += _onQuit;
+            mView.OnOpenDocs += _onOpenDocs;
 
             //toolbox events
             mView.OnClearBusesList += _onClearBusesList;
@@ -201,6 +202,11 @@ namespace SimulationOfBusRoute.Presenters.BusEditorPresenter
 
                 layoutPanel.Controls.Add(currEditableItem, mBaseColumn, i);
             }
+        }
+
+        private void _onOpenDocs(object sender, EventArgs e)
+        {
+            Help.ShowHelp(sender as Control, Properties.Resources.mHelpSource, HelpNavigator.Topic, "/BusEditorInterface.htm");
         }
 
         #endregion
