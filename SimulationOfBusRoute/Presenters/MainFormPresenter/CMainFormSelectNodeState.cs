@@ -25,7 +25,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             view.IsPropertyActive = true;
 
-            _onNeedSumbitProperties();//mContext.OnSubmitChanges();//ADD submit changes function call here
+            _onNeedSumbitProperties();
 
             mContext.SetState(mContext.AddNodeState);
         }

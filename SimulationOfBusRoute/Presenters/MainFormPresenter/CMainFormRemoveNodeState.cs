@@ -26,7 +26,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             view.IsPropertyActive = true;
 
-            _onNeedSumbitProperties();//mContext.OnSubmitChanges();//ADD submit changes function call here
+            _onNeedSumbitProperties();
 
             mContext.SetState(mContext.AddNodeState);
         }
@@ -76,12 +76,11 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             currMarkerIndex = routeNodesOverlay.Markers.IndexOf(item);
             routeNodesOverlay.Markers.RemoveAt(currMarkerIndex);
-
-            //Добавить удаление сведений из модели (обновление модели)
+            
             CRouteNodesListStorage routeNodesStorage = model.RouteNodesStorage;
             routeNodesStorage.Delete(routeNodesStorage.GetById(currMarkerIndex));
             
-            //обновление представления
+            //update the view
             view.NodesList.Items.RemoveAt(currMarkerIndex);
             view.CurrMarkerIndex = -1;
 

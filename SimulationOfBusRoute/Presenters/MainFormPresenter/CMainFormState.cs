@@ -51,7 +51,5 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
                 OnNeedUpdateRouteLines(map, markers);
             }
         }
-        
-        //void ComputationsMode(CMainFormPresenter context);
     }
 }

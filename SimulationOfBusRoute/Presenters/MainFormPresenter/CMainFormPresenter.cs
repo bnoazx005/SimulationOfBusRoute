@@ -72,7 +72,6 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.OnOpenDataEditor += _onLaunchDataEditor;
             mView.OnShowResults += _onShowStatistics;
             mView.OnRunSimulation += _onRunSimulation;
-            //mView.OnPauseSimulation += _onPauseSimulation;
             mView.OnOpenSimulationSettings += _onOpenSimulationSettings;
 
             //map events
@@ -95,7 +94,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.OnAbout      += _onShowAbout;
             mView.OnOpenDocs   += _onOpenDocs;
 
-            //привязка к событию изменения модели
+            //model's events
             mModel.OnDataChanged += _onModelChanged;
 
             //States' initialization
@@ -149,8 +148,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             map.Overlays.Add(new GMapOverlay("Nodes"));
             
             ComboBox routeNodeType = mView.RouteNodeTypeProperty;
-
-            //привязка перечисления типов узлов к элементу Combobox
+            
             routeNodeType.DisplayMember = "Key";
             routeNodeType.ValueMember = "Value";
             routeNodeType.DataSource = typeof(CRouteNode.E_ROUTE_NODE_TYPE).ToDescriptionsList();
@@ -193,15 +191,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
         }
 
         private void _onKeyPressed(object sender, KeyEventArgs e)
-        {
-            //MessageBox.Show("Pressed" + e.KeyValue.ToString());
-            // mModel.AddBusStation(TPoint2.mNullPoint, 42, 3);
-
-            //if (e.KeyCode == Keys.C) //временное решение, будет переделано позже
-            //{
-            //    mView.Map.Position = new PointLatLng(56.855079, 53.239444);               
-            //}
-            
+        {            
             if (e.KeyCode == Keys.D1 && e.Control)
             {
                 mCurrState.SelectNodeMode();
@@ -223,7 +213,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             }
         }
         
-        //вызывается при закрытии формы
+        //occurs when the main form is closed
         private void _onQuit(object sender, FormClosingEventArgs e)
         {
             if (!mModel.IsModified)  //data wasn't changed, we can close this window
@@ -248,8 +238,6 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             mIsRunning = false;
         }
-
-        // провоцирует закрытие формы
 
         private void _onCloseForm(object sender, EventArgs e)
         {

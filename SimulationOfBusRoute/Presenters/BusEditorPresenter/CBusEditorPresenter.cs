@@ -34,9 +34,7 @@ namespace SimulationOfBusRoute.Presenters.BusEditorPresenter
             if (!mIsRunning)
             {
                 return;
-            }
-            
-            //_updateViewWithModel(ref mView, ref mModel);
+            }            
         }
 
         private void _onFormInit(object sender, EventArgs e)
@@ -107,10 +105,7 @@ namespace SimulationOfBusRoute.Presenters.BusEditorPresenter
             int indexOfItem = busEditableNodes.IndexOf(currItem);
 
             busLayoutPanel.Controls.Remove(currItem);
-
-            //busLayoutPanel.RowStyles.RemoveAt(indexOfItem);
-            //busLayoutPanel.RowCount = busLayoutPanel.RowStyles.Count;
-
+            
             busEditableNodes.RemoveAt(indexOfItem);
 
             currItem.Dispose();

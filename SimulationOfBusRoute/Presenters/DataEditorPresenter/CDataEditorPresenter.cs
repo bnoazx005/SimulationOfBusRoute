@@ -71,12 +71,6 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
                 }
 
             }
-            
-            //mJobList[0] = new Task(_highlightSyntax, mView.StationsEditorHeaderText);
-            //mJobList[1] = new Task(_highlightSyntax, mView.BusVelocitiesHeaderText);
-
-           // mJobList[0].Start();
-           // mJobList[1].Start();
         }
         
         private void _onFormInit(object sender, EventArgs e)
@@ -114,14 +108,7 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
 
                     view.StationsEditorText.Text = options.GetStringParam(Properties.Resources.mOptionsStationsEditorCode);
                 }
-            }
-
-            ////подсветка синтаксиса для заголовков
-            //mJobList[0] = new Task(_highlightSyntax, mView.StationsEditorHeaderText);
-            //mJobList[1] = new Task(_highlightSyntax, mView.BusVelocitiesHeaderText);
-
-            // mJobList[0].Start();
-            // mJobList[1].Start();            
+            }          
         }
 
         private void _onQuit(object sender, FormClosingEventArgs e)
@@ -136,15 +123,6 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
 
         private void _onCloseForm(object sender, EventArgs e)
         {
-            //ВОССТАНОВИТЬ ПОСЛЕ ПОЧИНКИ ПОДСВЕТКИ
-            //foreach (Task currTask in mJobList)
-            //{
-            //    if (currTask != null)
-            //    {
-            //        currTask.Wait();
-            //    }
-            //}
-
             mView.Quit();
         }
         
@@ -154,97 +132,8 @@ namespace SimulationOfBusRoute.Presenters.DataEditorPresenter
             {
                 return;
             }
-
-            switch(mView.CurrSelectedEditorIndex)
-            {
-                case 0:         //stations' editor
-                    //mJobList[2] = new Task(_highlightSyntax, mView.StationsEditorText);
-                    //mJobList[2].Start();
-                    break;
-                case 1:         //buses velocities' editor
-                    //mJobList[3] = new Task(_highlightSyntax, mView.BusVelocitiesEditorText);
-                    //mJobList[3].Start();
-                    break;
-            }
         }
-
-        private void _highlightSyntax(object textEditorObj)
-        {
-            RichTextBox textEditor = textEditorObj as RichTextBox;
-
-            if (textEditor == null)
-            {
-                return;
-            }
-
-            Regex highlightingGroup1Pattern = new Regex(Properties.Resources.mDataEditorHighlightingGroup1, RegexOptions.Singleline);
-            Regex highlightingGroup2Pattern = new Regex(Properties.Resources.mDataEditorHighlightingGroup2, RegexOptions.Singleline);
-
-            int startPos = 0;
-            int length = 0;
-            int selectionStart = 0;
-            int selectionLength = 0;
-
-            string programText = null;
-
-            //используются асинхронные вызовы методов
-            lock (mSyncObject)
-            {
-                textEditor.Invoke((MethodInvoker)(() => { programText = textEditor.Text; }));
-
-                MatchCollection matchesOfFirstGroup = highlightingGroup1Pattern.Matches(programText);
-                MatchCollection matchesOfSecondGroup = highlightingGroup2Pattern.Matches(programText);
-
-                textEditor.Invoke((MethodInvoker)(() =>
-                {
-                    selectionStart = textEditor.SelectionStart;
-                    selectionLength = textEditor.SelectionLength;
-
-                    textEditor.SelectAll();
-
-                    textEditor.SelectionColor = Color.Black;
-                    textEditor.SelectionStart = selectionStart;
-                    textEditor.SelectionLength = selectionLength;
-                }));
-
-                //group1
-                foreach (Match currMatch in matchesOfFirstGroup)
-                {
-                    startPos = currMatch.Index;
-                    length = currMatch.Length;
-
-                    textEditor.Invoke((MethodInvoker)(() =>
-                    {
-                        textEditor.Select(startPos, length);
-
-                        textEditor.SelectionColor = Color.Blue;
-
-                        textEditor.SelectionStart = selectionStart;
-                        textEditor.SelectionLength = selectionLength;
-                        textEditor.SelectionColor = Color.Black;
-                    }));
-                }
-
-                //group2
-                foreach (Match currMatch in matchesOfSecondGroup)
-                {
-                    startPos = currMatch.Index;
-                    length = currMatch.Length;
-
-                    textEditor.Invoke((MethodInvoker)(() =>
-                    {
-                        textEditor.Select(startPos, length);
-
-                        textEditor.SelectionColor = Color.CornflowerBlue;
-                       
-                        textEditor.SelectionStart = selectionStart;
-                        textEditor.SelectionLength = selectionLength;
-                        textEditor.SelectionColor = Color.Black;
-                    }));
-                }
-            }
-        }
-
+        
         private void _onCompileData(object sender, EventArgs e)
         {
             IDataEditorView view = mView;

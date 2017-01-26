@@ -28,7 +28,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             view.IsPropertyActive = true;
 
-            _onNeedSumbitProperties();//mContext.OnSubmitChanges();//ADD submit changes function call here
+            _onNeedSumbitProperties();
 
             mContext.SetState(mContext.SelectNodeState);
         }
@@ -44,14 +44,14 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             view.IsPropertyActive = true;
 
-            _onNeedSumbitProperties();//mContext.OnSubmitChanges();//ADD submit changes function call here
+            _onNeedSumbitProperties();
 
             mContext.SetState(mContext.MoveNodeState);
         }
 
         public override void OnMapMouseClick(object sender, MouseEventArgs e)
         {
-            _onNeedSumbitProperties(); //попытка сохранить значения для предыдущего узла, перед созданием нового
+            _onNeedSumbitProperties(); 
 
             IMainFormView view = mContext.View;
             CDataManager model = mContext.Model;
@@ -73,12 +73,9 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
                 return;
             }
 
-            //добавление маркера на карту
+            //add a new marker onto the map
             currCoordinates = map.FromLocalToLatLng(e.X, e.Y);
-
-            //в зависимости от типа узла создать маркер нужного вида и создать объект нового узла
-            //В будущем ЗАМЕНИТЬ GoogleMarker на свой ImageMarker
-
+            
             switch (routeNodeType)
             {
                 case CRouteNode.E_ROUTE_NODE_TYPE.RNT_INITIAL_BUS_STATION:
@@ -115,9 +112,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             }
 
             busStationsOverlay.Markers.Insert(currMarkerIndex + 1, busStationMarker);
-
-            //model.InsertRouteNodeByID((uint)(currMarkerIndex + 1), currNode); 
-
+            
             CRouteNodesListStorage routeNodesStorage = model.RouteNodesStorage;
             routeNodesStorage.InsertAfter(routeNodesStorage.GetById(currMarkerIndex), currNode);
 
@@ -156,7 +151,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             view.IsPropertyActive = false;
 
-            _onNeedSumbitProperties();//mContext.OnSubmitChanges();//ADD submit changes function call here
+            _onNeedSumbitProperties();
 
             mContext.SetState(mContext.RemoveNodeState);
         }
@@ -172,7 +167,7 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 
             view.IsPropertyActive = true;
 
-            _onNeedSumbitProperties();//mContext.OnSubmitChanges();//ADD submit changes function call here
+            _onNeedSumbitProperties();
 
             mContext.SetState(mContext.SelectNodeState);
         }
