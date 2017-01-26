@@ -46,11 +46,7 @@ namespace SimulationOfBusRoute.Views
         #region ToolboxEvents
 
         event EventHandler OnRunSimulation;
-
-        //event EventHandler OnPauseSimulation;
-
-        //event EventHandler OnStopSimulation;
-
+        
         event EventHandler OnAddRouteNode;
 
         event EventHandler OnRemoveRouteNode;
@@ -84,9 +80,7 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnNodeSelectionChanged;
 
         event EventHandler OnNodeTypeChanged;
-
-        //event EventHandler OnPropertiesChanged;
-
+        
         event EventHandler OnSubmitProperties;
 
         event EventHandler OnAbortPropertiesChanges;

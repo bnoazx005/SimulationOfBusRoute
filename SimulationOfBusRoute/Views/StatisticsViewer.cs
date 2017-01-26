@@ -49,7 +49,6 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnStationsListSelectAllItems;
         public event EventHandler OnStationsListDeselectAllItems;
         public event ItemCheckEventHandler OnStationsListItemChecked;
-        //public event EventHandler OnFormShown;
         public event EventHandler OnBusPlotTypeChanged;
         public event EventHandler OnStationPlotTypeChanged;
         public event EventHandler OnGenerateReport;

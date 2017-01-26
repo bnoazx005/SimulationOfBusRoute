@@ -21,7 +21,6 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnAddBus;
         public event EventHandler OnClearBusesList;
         public event EventHandler OnOpenDocs;
-        //public event EventHandler<DataGridViewCellEventArgs> OnVelocitiesTableValueChanged;
 
         #endregion
 

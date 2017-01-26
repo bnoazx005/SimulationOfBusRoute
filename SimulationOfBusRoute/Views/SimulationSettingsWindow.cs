@@ -15,17 +15,10 @@ namespace SimulationOfBusRoute.Views
 
             acceptButton.Click  += (sender, e) => { if (OnAcceptChanges != null) { OnAcceptChanges(this, EventArgs.Empty); } };
             cancelButton.Click  += (sender, e) => { if (OnDeclineChanges != null) { OnDeclineChanges(this, EventArgs.Empty); } };
-
-            //speedOfSimulationTrackBar.ValueChanged += 
-            //        (sender, e) => { if (OnSpeedOfSimulationValueChanged != null) { OnSpeedOfSimulationValueChanged(this, EventArgs.Empty); } };
-
-            //speedOfSimulationValue.ValueChanged += 
-            //        (sender, e) => { if (OnSpeedOfSimulationValueChanged != null) { OnSpeedOfSimulationValueChanged(null, EventArgs.Empty); } };
         }
 
         public event EventHandler OnAcceptChanges;
         public event EventHandler OnDeclineChanges;
-        //public event EventHandler OnSpeedOfSimulationValueChanged;
         public event EventHandler OnFormInit;
         public event FormClosingEventHandler OnQuit;
 
@@ -40,41 +33,7 @@ namespace SimulationOfBusRoute.Views
         }
 
         #region Properties
-
-        //public int SpeedOfSimulationTrackBar
-        //{
-        //    get
-        //    {
-        //        return speedOfSimulationTrackBar.Value;
-        //    }
-
-        //    set
-        //    {
-        //        speedOfSimulationTrackBar.Value = value;
-        //    }
-        //}
-
-        //public int MaxSpeedOfSimulation
-        //{
-        //    get
-        //    {
-        //        return speedOfSimulationTrackBar.Maximum;
-        //    }
-        //}
-
-        //public int SpeedOfSimulation
-        //{
-        //    get
-        //    {
-        //        return Convert.ToInt32(speedOfSimulationValue.Value);
-        //    }
-
-        //    set
-        //    {
-        //        speedOfSimulationValue.Value = value;
-        //    }
-        //}
-
+                
         public TimeSpan TimeOfStart
         {
             get

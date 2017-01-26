@@ -34,9 +34,7 @@ namespace SimulationOfBusRoute.Views
         SaveFileDialog SaveFileDialogObject { get; set; }
 
         event EventHandler OnFormInit;
-
-        //event EventHandler OnFormShown;
-
+        
         event FormClosingEventHandler OnQuit;
 
         event EventHandler OnCloseForm;

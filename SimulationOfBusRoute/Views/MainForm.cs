@@ -73,11 +73,9 @@ namespace SimulationOfBusRoute.Views
         public event MarkerClick OnMarkerSelected;
         public event EventHandler OnOpenBusEditor;
         public event EventHandler OnOpenDocs;
-        //public event EventHandler OnPauseSimulation;
         public event EventHandler OnNodeSelectionChanged;
         public event EventHandler OnNodeTypeChanged;
         public event EventHandler OnAbortPropertiesChanges;
-        //public event EventHandler OnPropertiesChanged;
         public event EventHandler OnSubmitProperties;
         public event FormClosingEventHandler OnQuit;
         public event EventHandler OnCloseForm;
@@ -85,7 +83,6 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnRunSimulation;
         public event EventHandler OnSaveData;
         public event EventHandler OnShowResults;
-        //public event EventHandler OnStopSimulation;
         public event EventHandler OnMoveNode;
         public event EventHandler OnSelectNode;
         public event EventHandler OnOpenSimulationSettings;
