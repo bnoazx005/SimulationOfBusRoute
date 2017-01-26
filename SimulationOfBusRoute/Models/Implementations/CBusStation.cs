@@ -212,17 +212,7 @@ namespace SimulationOfBusRoute.Models.Implementations
             {
                 return -1;
             }
-
-            //#region DebugTest
-
-            //groupSample = 0;
-            //while (mPassengersDistributionByGroups[groupSample] < 1.0)
-            //{
-            //    groupSample++;
-            //}
-
-            //#endregion
-
+            
             do
             {
                 groupSample = mRandomGenerator.Next(0, passengersGroupsCount);
@@ -290,15 +280,7 @@ namespace SimulationOfBusRoute.Models.Implementations
                 mNextStation = value;
             }
         }
-
-        //public double[] PassengersDistributionByGroups
-        //{
-        //    get
-        //    {
-        //        return mPassengersDistributionByGroups;
-        //    }            
-        //}
-
+        
         public uint CurrNumOfPassengers
         {
             get

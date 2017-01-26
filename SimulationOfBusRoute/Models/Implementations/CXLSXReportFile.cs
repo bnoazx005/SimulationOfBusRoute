@@ -115,10 +115,7 @@ namespace SimulationOfBusRoute.Models.Implementations
             BindingList<TStationTableEntity> stationsRecords = results.StationsRecords;
 
             TStationTableEntity currStation;
-
-            //int passengersDistributionGroupsLength;
-            //double[] passengersDistribution = null;
-
+            
             headers = typeof(TStationTableEntity).ToPropertiesDictonary();
 
             currRow = stations.CreateRow(0);
@@ -136,14 +133,6 @@ namespace SimulationOfBusRoute.Models.Implementations
                 currRow.CreateCell(0).SetCellValue(currStation.Time);
                 currRow.CreateCell(1).SetCellValue(currStation.ID);
                 currRow.CreateCell(2).SetCellValue(currStation.CurrNumOfPassengers);
-
-                //passengersDistributionGroupsLength = currStation.PassengersDistributionByGroups.Length;
-                //passengersDistribution = currStation.PassengersDistributionByGroups;
-
-                //for (int j = 0; j < passengersDistributionGroupsLength; j++)
-                //{
-                //    currRow.CreateCell(3 + j).SetCellValue(passengersDistribution[j]);
-                //}
             }
         }
     }

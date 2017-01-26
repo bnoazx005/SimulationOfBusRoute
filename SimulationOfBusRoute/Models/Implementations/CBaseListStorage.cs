@@ -37,11 +37,6 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         public virtual void Insert(T entity)
         {
-            //if (entity == null)
-            //{
-            //    throw new ArgumentNullException("entity", "Method's parameter cannot equal to null");
-            //}
-
             if (mEntitiesList.Contains(entity))
             {
                 return;
@@ -66,11 +61,6 @@ namespace SimulationOfBusRoute.Models.Implementations
 
         public virtual void InsertAfter(T pointer, T entity)
         {
-            //if (entity == null)
-            //{
-            //    throw new ArgumentNullException("entity", "Method's parameter cannot equal to null");
-            //}
-
             if (pointer == null || !mEntitiesList.Contains(pointer)) //there is no specified entity
             {
                 Insert(entity);
@@ -149,7 +139,6 @@ namespace SimulationOfBusRoute.Models.Implementations
             if (id < 0)
             {
                 return default(T);
-                /*throw new ArgumentOutOfRangeException("id", "An identifier has negative value")*/;
             }
 
             return mEntitiesList[id];

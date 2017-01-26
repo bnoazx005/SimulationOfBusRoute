@@ -19,12 +19,9 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
 
             if (currStation.NodeType == CRouteNode.E_ROUTE_NODE_TYPE.RNT_FINAL_BUS_STATION)
             {
-                //Debug.Assert(mContext.CurrDepartureTime >= time);
                 context.CurrDepartureTime = time;
                 context.CurrNumOfIncomingPassengers = 0;
-
-                //context.ReactionTime = time + 1;
-
+                
                 context.SetState(context.DeparturingState);
                 context.Update(time, dt);
 
@@ -35,11 +32,8 @@ namespace SimulationOfBusRoute.Models.Implementations.Bus
 
             if (currBusCapacity == 0 || currStation.CurrNumOfPassengers == 0)
             {
-                //Debug.Assert(mContext.CurrDepartureTime >= time);
                 context.CurrDepartureTime = time;
-
-                //context.ReactionTime = time + 1;
-                
+                                
                 context.SetState(context.DeparturingState);
                 context.Update(time, dt);
 

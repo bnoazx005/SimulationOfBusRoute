@@ -7,26 +7,6 @@ namespace SimulationOfBusRoute.Utils
 {
     public static class CControlHelper
     {
-        //public static IEnumerable<Control> FindControlsByType<T>(Control.ControlCollection collection)
-        //{
-        //    List<Control> resultCollection = new List<Control>();
-            
-        //    foreach (Control currControl in collection)
-        //    {
-        //        if (currControl.HasChildren)
-        //        {
-        //            resultCollection.AddRange(FindControlsByType<T>(currControl.Controls));
-        //        }
-
-        //        if (currControl.GetType() == typeof(T))
-        //        {                 
-        //            resultCollection.Add(currControl);
-        //        }
-        //    }
-
-        //    return resultCollection;
-        //}
-
         public static List<Control> ToFlatCollection(this Control.ControlCollection collection)
         {
             List<Control> flatCollection = new List<Control>();
