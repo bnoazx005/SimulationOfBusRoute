@@ -81,7 +81,7 @@
             this.helpMenuGroup});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(869, 28);
+            this.menu.Size = new System.Drawing.Size(1034, 28);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -166,8 +166,8 @@
             // docsMenuItem
             // 
             this.docsMenuItem.Name = "docsMenuItem";
-            this.docsMenuItem.Size = new System.Drawing.Size(142, 26);
-            this.docsMenuItem.Text = "Справка";
+            this.docsMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.docsMenuItem.Text = "Документация";
             // 
             // toolBoxGroup
             // 
@@ -182,7 +182,7 @@
             this.toolBoxGroup.Controls.Add(this.generateDataButton);
             this.toolBoxGroup.Location = new System.Drawing.Point(2, 30);
             this.toolBoxGroup.Name = "toolBoxGroup";
-            this.toolBoxGroup.Size = new System.Drawing.Size(864, 68);
+            this.toolBoxGroup.Size = new System.Drawing.Size(1029, 68);
             this.toolBoxGroup.TabIndex = 2;
             this.toolBoxGroup.TabStop = false;
             this.toolBoxGroup.Text = "Панель инструментов";
@@ -276,9 +276,9 @@
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exceptionLabel});
-            this.statusBar.Location = new System.Drawing.Point(0, 533);
+            this.statusBar.Location = new System.Drawing.Point(0, 619);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(869, 22);
+            this.statusBar.Size = new System.Drawing.Size(1034, 22);
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "statusStrip1";
             // 
@@ -302,7 +302,7 @@
             this.editorTabs.Location = new System.Drawing.Point(2, 104);
             this.editorTabs.Name = "editorTabs";
             this.editorTabs.SelectedIndex = 0;
-            this.editorTabs.Size = new System.Drawing.Size(864, 426);
+            this.editorTabs.Size = new System.Drawing.Size(1029, 512);
             this.editorTabs.TabIndex = 4;
             // 
             // stationsDataEditorTab
@@ -313,7 +313,7 @@
             this.stationsDataEditorTab.Location = new System.Drawing.Point(4, 25);
             this.stationsDataEditorTab.Name = "stationsDataEditorTab";
             this.stationsDataEditorTab.Padding = new System.Windows.Forms.Padding(3);
-            this.stationsDataEditorTab.Size = new System.Drawing.Size(856, 397);
+            this.stationsDataEditorTab.Size = new System.Drawing.Size(1021, 483);
             this.stationsDataEditorTab.TabIndex = 0;
             this.stationsDataEditorTab.Text = "Редактор матриц интенсивности";
             // 
@@ -325,7 +325,7 @@
             this.stationsDataEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.stationsDataEditorText.Location = new System.Drawing.Point(3, 99);
             this.stationsDataEditorText.Name = "stationsDataEditorText";
-            this.stationsDataEditorText.Size = new System.Drawing.Size(850, 295);
+            this.stationsDataEditorText.Size = new System.Drawing.Size(1015, 381);
             this.stationsDataEditorText.TabIndex = 5;
             this.stationsDataEditorText.Text = "";
             // 
@@ -338,7 +338,7 @@
             this.stationsEditorHeaderText.Location = new System.Drawing.Point(3, 3);
             this.stationsEditorHeaderText.Name = "stationsEditorHeaderText";
             this.stationsEditorHeaderText.ReadOnly = true;
-            this.stationsEditorHeaderText.Size = new System.Drawing.Size(850, 96);
+            this.stationsEditorHeaderText.Size = new System.Drawing.Size(1015, 96);
             this.stationsEditorHeaderText.TabIndex = 4;
             this.stationsEditorHeaderText.Text = "";
             // 
@@ -350,7 +350,7 @@
             this.busVelocitiesEditorTab.Location = new System.Drawing.Point(4, 25);
             this.busVelocitiesEditorTab.Name = "busVelocitiesEditorTab";
             this.busVelocitiesEditorTab.Padding = new System.Windows.Forms.Padding(3);
-            this.busVelocitiesEditorTab.Size = new System.Drawing.Size(856, 397);
+            this.busVelocitiesEditorTab.Size = new System.Drawing.Size(1021, 483);
             this.busVelocitiesEditorTab.TabIndex = 1;
             this.busVelocitiesEditorTab.Text = "Редактор скоростей автобусов";
             // 
@@ -362,7 +362,7 @@
             this.busVelocitiesEditorText.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.busVelocitiesEditorText.Location = new System.Drawing.Point(3, 100);
             this.busVelocitiesEditorText.Name = "busVelocitiesEditorText";
-            this.busVelocitiesEditorText.Size = new System.Drawing.Size(850, 294);
+            this.busVelocitiesEditorText.Size = new System.Drawing.Size(1015, 380);
             this.busVelocitiesEditorText.TabIndex = 6;
             this.busVelocitiesEditorText.Text = "";
             // 
@@ -375,7 +375,7 @@
             this.busVelocitiesHeaderText.Location = new System.Drawing.Point(3, 3);
             this.busVelocitiesHeaderText.Name = "busVelocitiesHeaderText";
             this.busVelocitiesHeaderText.ReadOnly = true;
-            this.busVelocitiesHeaderText.Size = new System.Drawing.Size(850, 96);
+            this.busVelocitiesHeaderText.Size = new System.Drawing.Size(1015, 96);
             this.busVelocitiesHeaderText.TabIndex = 5;
             this.busVelocitiesHeaderText.Text = "";
             // 
@@ -397,12 +397,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 555);
+            this.ClientSize = new System.Drawing.Size(1034, 641);
             this.Controls.Add(this.editorTabs);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.toolBoxGroup);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
+            this.MinimumSize = new System.Drawing.Size(1052, 688);
             this.Name = "DataEditor";
             this.Text = "Моделирование пассажирских перевозок [Редактор данных]";
             this.menu.ResumeLayout(false);

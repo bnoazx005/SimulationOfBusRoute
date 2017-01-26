@@ -6,7 +6,6 @@ using GMap.NET.MapProviders;
 using GMap.NET;
 using System.Collections.Generic;
 using SimulationOfBusRoute.Utils;
-using System.Threading.Tasks;
 using SimulationOfBusRoute.Models.Implementations;
 using NLog;
 using GMap.NET.WindowsForms.Markers;
@@ -15,7 +14,7 @@ using SimulationOfBusRoute.Presenters.BusEditorPresenter;
 using SimulationOfBusRoute.Presenters.SimulationSettingsPresenter;
 using SimulationOfBusRoute.Presenters.DataEditorPresenter;
 using SimulationOfBusRoute.Presenters.StatisticsViewerPresenter;
-using SimulationOfBusRoute.Models.Implementations.Bus;
+
 
 namespace SimulationOfBusRoute.Presenters.MainFormPresenter
 {
@@ -88,11 +87,13 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             mView.OnNodeSelectionChanged += _onUpdateNodeProperties;
 
             //menu events
-            mView.OnLoadData += _onLoadModelData;
-            mView.OnSaveData += _onSaveModelData;
+            mView.OnLoadData   += _onLoadModelData;
+            mView.OnSaveData   += _onSaveModelData;
             mView.OnSaveDataAs += _onSaveModelDataAs;
-            mView.OnClearMap += _onClearMap;
-            mView.OnCloseForm += _onCloseForm;
+            mView.OnClearMap   += _onClearMap;
+            mView.OnCloseForm  += _onCloseForm;
+            mView.OnAbout      += _onShowAbout;
+            mView.OnOpenDocs   += _onOpenDocs;
 
             //привязка к событию изменения модели
             mModel.OnDataChanged += _onModelChanged;
@@ -744,6 +745,16 @@ namespace SimulationOfBusRoute.Presenters.MainFormPresenter
             currRoute.Stroke.Color = Color.Blue;
 
             routeLinesOverlay.Routes.Add(currRoute);
+        }
+
+        private void _onShowAbout(object sender, EventArgs e)
+        {
+            Help.ShowHelp(sender as Control, Properties.Resources.mHelpSource, HelpNavigator.Topic, "/About.htm");
+        }
+
+        private void _onOpenDocs(object sender, EventArgs e)
+        {
+            Help.ShowHelp(sender as Control, Properties.Resources.mHelpSource, HelpNavigator.Topic, "/MainWindowInterface.htm");
         }
 
         #endregion

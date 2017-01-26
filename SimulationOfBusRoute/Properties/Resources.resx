@@ -385,4 +385,7 @@
   <data name="mStationsPlotPassengersPowerTitle" xml:space="preserve">
     <value>Эпюра пассажиропотоков</value>
   </data>
+  <data name="mHelpSource" xml:space="preserve">
+    <value>.\help\SimulationOfBusRouteHelp.chm</value>
+  </data>
 </root>

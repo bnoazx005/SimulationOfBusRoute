@@ -47,5 +47,7 @@ namespace SimulationOfBusRoute.Views
         event MouseEventHandler OnMouseButtonPressed;
 
         event EventHandler OnCompileData;
+
+        event EventHandler OnOpenDocs;
     }
 }

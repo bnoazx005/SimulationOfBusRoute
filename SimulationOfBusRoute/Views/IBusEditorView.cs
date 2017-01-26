@@ -20,5 +20,7 @@ namespace SimulationOfBusRoute.Views
         event EventHandler OnAddBus;
 
         event EventHandler OnClearBusesList;
+
+        event EventHandler OnOpenDocs;
     }
 }

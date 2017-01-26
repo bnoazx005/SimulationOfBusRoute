@@ -57,3 +57,8 @@ C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\Simula
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\de\MigraDoc.RtfRendering.resources.dll
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\de\PdfSharp.resources.dll
 C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\de\PdfSharp.Charting.resources.dll
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\SimulationOfBusRoute.exe.manifest
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\bin\Release\SimulationOfBusRoute.application
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.TrustInfo.xml
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.exe.manifest
+C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\obj\Release\SimulationOfBusRoute.application

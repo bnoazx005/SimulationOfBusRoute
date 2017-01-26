@@ -12,7 +12,7 @@
          <Members>
           <Member Name="#Dispose()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="DisposeImplementation" Certainty="95" Level="Error" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CBaseListStorage.cs" Line="29">Modify 'CBaseListStorage&lt;T&gt;.Dispose()' so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Issue>
              <Issue Name="DisposeSignature" Certainty="95" Level="Error" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CBaseListStorage.cs" Line="29">Ensure that 'CBaseListStorage&lt;T&gt;.Dispose()' is declared as public and sealed.</Issue>
             </Message>
@@ -22,14 +22,14 @@
         </Type>
         <Type Name="CBusRoute" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
            <Issue Name="ProvideDisposeBool" Certainty="95" Level="Error">Provide an overridable implementation of Dispose(bool) on 'CBusRoute' or mark the type as sealed. A call to Dispose(false) should only clean up native resources. A call to Dispose(true) should clean up both managed and native resources.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#Dispose()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="DisposeImplementation" Certainty="95" Level="Error" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CBusRoute.cs" Line="35">Modify 'CBusRoute.Dispose()' so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Issue>
             </Message>
            </Messages>
@@ -40,7 +40,7 @@
          <Members>
           <Member Name="#OnGetData" Kind="Event" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="First" Certainty="95" Level="Error">Declare the first parameter of 'Action&lt;CBusStation&gt;' as an object named 'sender'.</Issue>
              <Issue Name="Second" Certainty="95" Level="Error">Declare the second parameter of 'Action&lt;CBusStation&gt;' as an EventArgs, or an instance of a type that extends EventArgs, named 'e'.</Issue>
             </Message>
@@ -50,14 +50,14 @@
         </Type>
         <Type Name="CComputationsResults" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
            <Issue Name="ProvideDisposeBool" Certainty="95" Level="Error">Provide an overridable implementation of Dispose(bool) on 'CComputationsResults' or mark the type as sealed. A call to Dispose(false) should only clean up native resources. A call to Dispose(true) should clean up both managed and native resources.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#Dispose()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="DisposeImplementation" Certainty="95" Level="Error" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CComputationsResults.cs" Line="20">Modify 'CComputationsResults.Dispose()' so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Issue>
             </Message>
            </Messages>
@@ -66,14 +66,14 @@
         </Type>
         <Type Name="CDataManager" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
            <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implement IDisposable on 'CDataManager' because it creates members of the following IDisposable types: 'CRouteNodesListStorage', 'CBusesListStorage', 'COptionsList', 'CBusRoute', 'CComputationsResults'. If 'CDataManager' has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#OnDataChanged" Kind="Event" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="First" Certainty="95" Level="Error">Declare the first parameter of 'Action' as an object named 'sender'.</Issue>
              <Issue Name="Second" Certainty="95" Level="Error">Declare the second parameter of 'Action' as an EventArgs, or an instance of a type that extends EventArgs, named 'e'.</Issue>
             </Message>
@@ -83,42 +83,42 @@
         </Type>
         <Type Name="CIncorrectNumOfBusesException" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
            <Issue Certainty="95" Level="Error">Add [Serializable] to 'CIncorrectNumOfBusesException' as this type implements ISerializable.</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="CInvalidModelStateException" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
            <Issue Certainty="95" Level="Error">Add [Serializable] to 'CInvalidModelStateException' as this type implements ISerializable.</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="CInvalidRouteConfigurationException" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
            <Issue Certainty="95" Level="Error">Add [Serializable] to 'CInvalidRouteConfigurationException' as this type implements ISerializable.</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="CNotCompiledDataException" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
            <Issue Certainty="95" Level="Error">Add [Serializable] to 'CNotCompiledDataException' as this type implements ISerializable.</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="COptionsList" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
            <Issue Name="ProvideDisposeBool" Certainty="95" Level="Error">Provide an overridable implementation of Dispose(bool) on 'COptionsList' or mark the type as sealed. A call to Dispose(false) should only clean up native resources. A call to Dispose(true) should clean up both managed and native resources.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#Dispose()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="DisposeImplementation" Certainty="95" Level="Error" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="COptionsList.cs" Line="32">Modify 'COptionsList.Dispose()' so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Issue>
             </Message>
            </Messages>
@@ -129,7 +129,7 @@
          <Members>
           <Member Name="#.ctor(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CPDFReportFile.cs" Line="21">'CPDFReportFile.CPDFReportFile(string)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;CPDFReportFile..ctor(String)&#xD;&#xA;CBaseReportFile.Open(String):Void</Issue>
             </Message>
            </Messages>
@@ -140,28 +140,28 @@
          <Members>
           <Member Name="#.ctor(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteBusDataMapper.cs" Line="14">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteBusDataMapper.CSqLiteBusDataMapper(string)' could contain the following variables 'Resources.mSQLQueryCreateBusesTable'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#DeleteAll()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteBusDataMapper.cs" Line="108">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteBusDataMapper.DeleteAll()' could contain the following variables 'Resources.mSQLDeleteAllRecords'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#LoadAll()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteBusDataMapper.cs" Line="45">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteBusDataMapper.LoadAll()' could contain the following variables 'Resources.mSQLSimpleSelectQuery'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Save(SimulationOfBusRoute.Models.Implementations.Bus.CBus)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteBusDataMapper.cs" Line="72">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteBusDataMapper.Save(CBus)' could contain the following variables 'Resources.mSQLQueryInsertBus'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
@@ -172,7 +172,7 @@
          <Members>
           <Member Name="#Dispose()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="DisposeImplementation" Certainty="95" Level="Error" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteDataMapper.cs" Line="41">Modify 'CSqLiteDataMapper&lt;T&gt;.Dispose()' so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Issue>
              <Issue Name="DisposeSignature" Certainty="95" Level="Error" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteDataMapper.cs" Line="41">Ensure that 'CSqLiteDataMapper&lt;T&gt;.Dispose()' is declared as public and sealed.</Issue>
             </Message>
@@ -184,7 +184,7 @@
          <Members>
           <Member Name="#.ctor(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="31">The query string passed to 'SQLiteCommand.CommandText.set(string)' in 'CSqLiteOptionsDataMapper.CSqLiteOptionsDataMapper(string)' could contain the following variables 'Resources.mSQLCreateBoolOptionsTable'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="27">The query string passed to 'SQLiteCommand.CommandText.set(string)' in 'CSqLiteOptionsDataMapper.CSqLiteOptionsDataMapper(string)' could contain the following variables 'Resources.mSQLCreateDoubleOptionsTable'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="23">The query string passed to 'SQLiteCommand.CommandText.set(string)' in 'CSqLiteOptionsDataMapper.CSqLiteOptionsDataMapper(string)' could contain the following variables 'Resources.mSQLCreateIntOptionsTable'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
@@ -195,14 +195,14 @@
           </Member>
           <Member Name="#DeleteAll()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="237">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteOptionsDataMapper.DeleteAll()' could contain the following variables 'Resources.mSQLDeleteAllRecords'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Load(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="52">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteOptionsDataMapper.Load(int)' could contain the following variables 'Resources.mSQLSimpleSelectQuery'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="68">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteOptionsDataMapper.Load(int)' could contain the following variables 'Resources.mSQLSimpleSelectQuery'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="84">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteOptionsDataMapper.Load(int)' could contain the following variables 'Resources.mSQLSimpleSelectQuery'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
@@ -212,7 +212,7 @@
           </Member>
           <Member Name="#Save(SimulationOfBusRoute.Models.Implementations.COptionsList)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="140">The query string passed to 'SQLiteCommand.CommandText.set(string)' in 'CSqLiteOptionsDataMapper.Save(COptionsList)' could contain the following variables 'Resources.mSQLQueryInsertTOption'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="166">The query string passed to 'SQLiteCommand.CommandText.set(string)' in 'CSqLiteOptionsDataMapper.Save(COptionsList)' could contain the following variables 'Resources.mSQLQueryInsertTOption'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteOptionsDataMapper.cs" Line="192">The query string passed to 'SQLiteCommand.CommandText.set(string)' in 'CSqLiteOptionsDataMapper.Save(COptionsList)' could contain the following variables 'Resources.mSQLQueryInsertTOption'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
@@ -230,28 +230,28 @@
          <Members>
           <Member Name="#.ctor(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteRouteNodesDataMapper.cs" Line="16">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteRouteNodesDataMapper.CSqLiteRouteNodesDataMapper(string)' could contain the following variables 'Resources.mSQLQueryCreateRouteNodesTable'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#DeleteAll()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteRouteNodesDataMapper.cs" Line="134">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteRouteNodesDataMapper.DeleteAll()' could contain the following variables 'Resources.mSQLDeleteAllRecords'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#LoadAll()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteRouteNodesDataMapper.cs" Line="47">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteRouteNodesDataMapper.LoadAll()' could contain the following variables 'Resources.mSQLSimpleSelectQuery'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Save(SimulationOfBusRoute.Models.Implementations.CRouteNode)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
              <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CSqLiteRouteNodesDataMapper.cs" Line="100">The query string passed to 'SQLiteCommand.SQLiteCommand(string, SQLiteConnection)' in 'CSqLiteRouteNodesDataMapper.Save(CRouteNode)' could contain the following variables 'Resources.mSQLQueryInsertRouteNode'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
             </Message>
            </Messages>
@@ -260,14 +260,14 @@
         </Type>
         <Type Name="CXLSXReportFile" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
            <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implement IDisposable on 'CXLSXReportFile' because it creates members of the following IDisposable types: 'FileStream'. If 'CXLSXReportFile' has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#.ctor(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
              <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\Ildar\Documents\Visual Studio 2015\Projects\SimulationOfBusRoute\SimulationOfBusRoute\Models\Implementations" File="CXLSXReportFile.cs" Line="25">'CXLSXReportFile.CXLSXReportFile(string)' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;CXLSXReportFile..ctor(String)&#xD;&#xA;CBaseReportFile.Open(String):Void</Issue>
             </Message>
            </Messages>
@@ -282,7 +282,7 @@
          <Members>
           <Member Name="#OnGetData" Kind="Event" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="First" Certainty="95" Level="Error">Declare the first parameter of 'Action&lt;CBus&gt;' as an object named 'sender'.</Issue>
              <Issue Name="Second" Certainty="95" Level="Error">Declare the second parameter of 'Action&lt;CBus&gt;' as an EventArgs, or an instance of a type that extends EventArgs, named 'e'.</Issue>
             </Message>
@@ -298,7 +298,7 @@
          <Members>
           <Member Name="#OnChanged" Kind="Event" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="First" Certainty="95" Level="Error">Declare the first parameter of 'Action' as an object named 'sender'.</Issue>
              <Issue Name="Second" Certainty="95" Level="Error">Declare the second parameter of 'Action' as an EventArgs, or an instance of a type that extends EventArgs, named 'e'.</Issue>
             </Message>
@@ -312,7 +312,7 @@
        <Types>
         <Type Name="CProgressDialogPresenter" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
            <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implement IDisposable on 'CProgressDialogPresenter' because it creates members of the following IDisposable types: 'Task'. If 'CProgressDialogPresenter' has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Issue>
           </Message>
          </Messages>
@@ -325,7 +325,7 @@
          <Members>
           <Member Name="#OnNeedGetCurrMarker" Kind="Event" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="First" Certainty="95" Level="Error">Declare the first parameter of 'Func&lt;GMapMarker&gt;' as an object named 'sender'.</Issue>
              <Issue Name="Return" Certainty="95" Level="Error">Change 'Func&lt;GMapMarker&gt;' to return void.</Issue>
              <Issue Name="Second" Certainty="95" Level="Error">Declare the second parameter of 'Func&lt;GMapMarker&gt;' as an EventArgs, or an instance of a type that extends EventArgs, named 'e'.</Issue>
@@ -338,7 +338,7 @@
          <Members>
           <Member Name="#OnNeedUpdateRouteLines" Kind="Event" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="First" Certainty="95" Level="Error">Declare the first parameter of 'Action&lt;GMapControl, ObservableCollectionThreadSafe&lt;GMapMarker&gt;&gt;' as an object named 'sender'.</Issue>
              <Issue Name="Second" Certainty="95" Level="Error">Declare the second parameter of 'Action&lt;GMapControl, ObservableCollectionThreadSafe&lt;GMapMarker&gt;&gt;' as an EventArgs, or an instance of a type that extends EventArgs, named 'e'.</Issue>
             </Message>
@@ -352,7 +352,7 @@
        <Types>
         <Type Name="CStatisticsViewerPresenter" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="DependsOnFix">
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="DependsOnFix">
            <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implement IDisposable on 'CStatisticsViewerPresenter' because it creates members of the following IDisposable types: 'BindingSource'. If 'CStatisticsViewerPresenter' has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Issue>
           </Message>
          </Messages>
@@ -363,14 +363,14 @@
        <Types>
         <Type Name="CGMapImageMarker" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
            <Issue Certainty="75" Level="Warning">Add [Serializable] to 'CGMapImageMarker' as this type implements ISerializable.</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="CInvalidValueException" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="NonBreaking">
+          <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="NonBreaking">
            <Issue Certainty="95" Level="Error">Add [Serializable] to 'CInvalidValueException' as this type implements ISerializable.</Issue>
           </Message>
          </Messages>
@@ -383,7 +383,7 @@
          <Members>
           <Member Name="#OnMarkerSelected" Kind="Event" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-14 13:58:49Z" FixCategory="Breaking">
+            <Message TypeName="DeclareEventHandlersCorrectly" Category="Microsoft.Design" CheckId="CA1009" Status="Active" Created="2016-06-24 08:16:15Z" FixCategory="Breaking">
              <Issue Name="First" Certainty="95" Level="Error">Declare the first parameter of 'MarkerClick' as an object named 'sender'.</Issue>
             </Message>
            </Messages>

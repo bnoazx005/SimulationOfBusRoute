@@ -20,6 +20,7 @@ namespace SimulationOfBusRoute.Views
         public event EventHandler OnCloseForm;
         public event EventHandler OnAddBus;
         public event EventHandler OnClearBusesList;
+        public event EventHandler OnOpenDocs;
         //public event EventHandler<DataGridViewCellEventArgs> OnVelocitiesTableValueChanged;
 
         #endregion
@@ -34,6 +35,7 @@ namespace SimulationOfBusRoute.Views
             //menu events
             quitMenuItem.Click              += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(this, EventArgs.Empty); } };
             clearBusesListMenuItem.Click    += (sender, e) => { if (OnClearBusesList != null) { OnClearBusesList(this, EventArgs.Empty); } };
+            openDocsMenuItem.Click          += (sender, e) => { if (OnOpenDocs != null) { OnOpenDocs(this, e); } };
 
             //toolbox events
             quitButton.Click                += (sender, e) => { if (OnCloseForm != null) { OnCloseForm(this, EventArgs.Empty); } };
